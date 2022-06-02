@@ -26,3 +26,27 @@ create table m_reply (
     mr_group number default 0,
     mr_layer number default 0
 );
+
+-- 공지사항 테이블
+create table music_notice (
+   music_no number(5) primary key,      -- 공지사항 글 번호
+   music_writer varchar2(30) not null,  -- 공지사항 글 작성자
+   music_title varchar2(1000) not null, -- 공지사항 글 제목
+   music_cont varchar2(2000) not null,  -- 공지사항 글 내용
+   music_pwd varchar2(30) not null,     -- 공지사항 글 비밀번호
+   music_hit number(10) default 0,      -- 공지사항 글 조회수
+   music_date date,                     -- 공지사항 글 작성일자
+   music_update date                -- 공지사항 글 수정일자 
+);
+
+-- 이벤트 테이블
+create table music_event (
+   event_no number(5) primary key,      -- 이벤트 글 번호
+   event_writer varchar2(30) not null,  -- 이벤트 글 작성자
+   event_title varchar2(1000) not null, -- 이벤트 글 제목
+   event_cont varchar2(2000) not null,  -- 이벤트 글 내용
+   event_pwd varchar2(30) not null,     -- 이벤트 글 비밀번호
+   event_hit number(10) default 0,      -- 이벤트 글 조회수
+   event_date date,                     -- 이벤트 글 작성일자
+   event_update date                -- 이벤트 글 수정일자 
+);
