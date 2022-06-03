@@ -68,9 +68,11 @@ create table music_event (
 create table music_playlist (
 	user_no number not null,		-- 회원 번호
 	m_no number not null,			-- 곡 번호
-	playlist_order number not null,		-- 플레이리스트 내 순서
+	m_order number not null,		-- 플레이리스트 내 순서
+	playlist_order number not null,		-- 플레이리스트 순서
 	playlist_no number not null,		-- 플레이리스트 번호
 	playlist_name varchar2(1000) not null	-- 플레이리스트 이름
+	playlist_thumbnail varchar2(50)		-- 플레이리스트 섬네일
 );
 
 -- 회원별 음원
