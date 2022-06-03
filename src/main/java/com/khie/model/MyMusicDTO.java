@@ -12,6 +12,5 @@ public class MyMusicDTO {
 	private int playlist_order;
 	private int playlist_no;
 	private String playlist_name;
-	
 
 }

@@ -3,7 +3,6 @@ package com.khie.model;
 import java.util.List;
 
 public interface MyMusicDAO {
-	
 	public List<MusicDTO> selectThumbs(String id); // '좋아요' 누른 음악 표시
 	public List<MusicDTO> selectRecent(String id); // 최근 재생한 음악
 	public List<MusicDTO> selectMuch(String id); // 많이 재생한 음악
