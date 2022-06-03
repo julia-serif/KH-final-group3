@@ -62,3 +62,22 @@ create table music_event (
    event_date date,                     -- 이벤트 글 작성일자
    event_update date                -- 이벤트 글 수정일자 
 );
+
+
+-- 회원별 플레이리스트
+create table music_playlist (
+	user_no number not null,		-- 회원 번호
+	m_no number not null,			-- 곡 번호
+	playlist_order number not null,		-- 플레이리스트 내 순서
+	playlist_no number not null,		-- 플레이리스트 번호
+	playlist_name varchar2(1000) not null	-- 플레이리스트 이름
+);
+
+-- 회원별 음원
+create table music_by_user (
+	user_no number not null,	-- 회원 번호
+	m_no number not null,		-- 곡 번호
+	play_date date,			-- 플레이리스트 내 순서
+	play_thumbs boolean,		-- '좋아요' 여부
+	play_counts number		-- 곡 플레이 횟수
+);
