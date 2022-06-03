@@ -27,6 +27,18 @@ create table m_reply (
     mr_layer number default 0
 );
 
+-- 영상별 댓글 테이블
+create table v_reply (
+    v_no number references music(m_no),
+    vr_no number primary key,
+    vr_cont varchar2(100) not null,
+    vr_writer varchar2(10) references user(user_id),
+    vr_date date,
+    vr_update date,
+    vr_group number default 0,
+    vr_layer number default 0
+);
+
 -- 공지사항 테이블
 create table music_notice (
    music_no number(5) primary key,      -- 공지사항 글 번호
