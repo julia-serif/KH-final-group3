@@ -5,5 +5,9 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
-  	<typeAliases></typeAliases>
+  	<typeAliases>
+  	<typeAlias type="com.khie.model.MusicDAO" alias="MusicDAO"/>
+  	<typeAlias type="com.khie.model.MusicDTO" alias="MusicDTO"/>
+  	<typeAlias type="com.khie.model.PageDTO" alias="PageDTO"/>
+  	</typeAliases>
   </configuration>

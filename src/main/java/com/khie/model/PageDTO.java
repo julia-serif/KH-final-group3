@@ -1,0 +1,43 @@
+package com.khie.model;
+
+public class PageDTO {
+	
+	//페이징 처리 변수
+	private int page;			//현재 페이지
+	private int rowpage;		//한 페이지에서 보요질 게시글 수
+	private int totalMusic;		//전체 음원 수
+	private int startNo;		//시작 은원 번호
+	private int endNo;			//끝 음원 번호
+	private int startBlock;		//시작 블럭
+	private int endBlock;		//마지막 블럭
+	private int totalBlock;		//전제 블럭 수
+	private int block = 3;		//블럭 간격
+	
+	//검색 변수
+	private String keyword;
+	private String field;
+	
+	public PageDTO() { }
+	public PageDTO(int page, int rowPage, int totalMusic) { 
+		
+		this.page = page;
+		this.rowpage = rowPage;
+		this.totalMusic = totalMusic;
+		
+		this.startNo = (page * rowPage)- rowPage +1;
+		this.endNo = (page * rowPage);
+		
+		this.startBlock = ((page - 1)/this.block)*this.block + 1;		
+		this.endBlock = ((page -1)/this.block)*this.block + this.block;
+		
+		this.totalBlock = (int)Math.ceil(totalMusic/(double)this.block);
+		
+		if(this.endBlock > this.totalBlock) {
+			this.endBlock = this.totalBlock;
+		}
+			
+	} //페이징 처리를 위한 인자 생성자
+	
+	
+
+}
