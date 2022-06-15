@@ -89,4 +89,30 @@ public class MusicController {
 	public String sitemap() {
 		return "sitemap";
 	}
+	
+	@RequestMapping("login_Ok.do")
+	public String login(MemberDTO dto, HttpServletRequest req) throws Exception{
+
+		
+		HttpSession session = req.getSession();
+		MemberDTO login = this.dao.login(dto);
+		
+		if(login == null) {
+			session.setAttribute("member", null);
+			
+		}else {
+			session.setAttribute("member", login);
+			
+		} 
+		
+		return "loginmain";
+	}
+	
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) throws Exception{
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 }
