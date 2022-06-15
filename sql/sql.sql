@@ -1,3 +1,8 @@
+--music 테이블 변경사항 반영하고 싶으면 이 테이블들 드랍 후 music 테이블 재생성
+drop table m_reply;
+drop table v_reply;
+drop table music;
+
 -- 음원 테이블 
 create table music (
     m_no number primary key,
@@ -11,7 +16,7 @@ create table music (
     m_image varchar2(50) not null,
     m_pcount number default 0,
     m_ptime number not null,
-    m_lyrics varchar2(1000) not null,
+    m_lyrics varchar2(2000) not null,
     m_date date,
     m_update date
 );
