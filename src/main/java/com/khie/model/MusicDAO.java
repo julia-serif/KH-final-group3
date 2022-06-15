@@ -13,4 +13,6 @@ public interface MusicDAO {
 	void updateLike(int m_no);					//좋아요 수 수정
 	void updatePlayCount(int m_no);				//음원 플레이 수 수정
 	
+	int searchMusicCount(String field, String keyword);	//검색으로 표시될 음악의 숫자
+	List<MusicDTO> searchMusicList(PageDTO pDto);	//검색 결과 음악들 페이지로 조회
 }

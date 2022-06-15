@@ -9,5 +9,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="MusicDAO">
+   <select id="searchAll"></select>
+   <select id="searchSong"></select>
+   <select id="searchArtist"></select>
+   <select id="searchAlbum"></select>
+   <select id="searchPlaylist"></select>
+   <select id="searchVideo"></select>
+   <select id="searchLyrics"></select>
    
+   <select id="countAll"></select>
+   <select id="countSong"></select>
+   <select id="countArtist"></select>
+   <select id="countAlbum"></select>
+   <select id="countPlaylist"></select>
+   <select id="countVideo"></select>
+   <select id="countLyrics"></select>
 </mapper>

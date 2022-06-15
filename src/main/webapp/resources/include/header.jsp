@@ -46,7 +46,7 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
-                                    <li><a href="<%= request.getContextPath() %>/about.do">Search</a></li> <!-- 검색 -->
+                                    <li><a href="<%= request.getContextPath() %>/search.do">Search</a></li> <!-- 검색 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">Top100</a></li> <!-- top100 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새음악 -->
                                     <li><a href="<%= request.getContextPath() %>/events.do">Events</a></li> <!-- 이벤트 -->
