@@ -33,12 +33,7 @@ public class MusicController {
 	}
 	
 	@RequestMapping("search.do")
-	public String search() {
-		return "search";
-	}
-	
-	@RequestMapping("search_perform.do")
-	public String searchPerform(@RequestParam("field") String field,
+	public String search(@RequestParam("field") String field,
 			@RequestParam("keyword") String keyword,
 			Model model) {
 		
