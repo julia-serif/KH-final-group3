@@ -10,7 +10,7 @@
     
 <mapper namespace="MusicDAO">
 
-	<select id="searchAll">
+	<select id="searchAll" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
 				(select m.*, row_number()
@@ -55,7 +55,7 @@
 	<select id="searchVideo"></select>
 	<select id="searchPlaylist"></select>
 	
-	<select id="searchLyrics">
+	<select id="searchLyrics" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
 				(select m.*, row_number()
