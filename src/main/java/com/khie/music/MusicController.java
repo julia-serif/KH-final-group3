@@ -21,6 +21,12 @@ public class MusicController {
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
 
+
+	@RequestMapping("index.do")
+	public String index() {
+		return "index";
+	}
+	
 	@RequestMapping("about.do")
 	public String about() {
 		return "about";

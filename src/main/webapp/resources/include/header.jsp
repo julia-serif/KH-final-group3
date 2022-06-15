@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <style type="text/css">
+.select{
+	width: 50%;
+ 	margin-left: 80%;
+	
+}
+#key{
+	width:25%;
+	background-color: rgba(255,255,255,0.5);
+}
+#search_submit{
+	background-color: rgba(255,255,255,0);
+	color: white;
+	border: 0px;
+}
+
+</style>
 </head>
 <body>
     <!-- Preloader -->
@@ -48,10 +65,13 @@
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
                                     <li><a href="<%= request.getContextPath() %>/search.do">Search</a></li> <!-- 검색 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">Top100</a></li> <!-- top100 -->
-                                    <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새음악 -->
-                                    <li><a href="<%= request.getContextPath() %>/events.do">Events</a></li> <!-- 이벤트 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새 음악 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">Event</a></li> <!-- 이벤트 -->
                                     <li><a href="<%= request.getContextPath() %>/service.do">MyMusic</a></li> <!-- 내 음악 -->
                                     <li><a href="<%= request.getContextPath() %>/news.do">Other</a></li> <!-- 전체메뉴 -->
+                                    <li><a href="#"></a></li> 
+                                    <li><a href="#"></a></li> 
+                                    <li><a href="#"></a></li> 
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -74,6 +94,16 @@
                 </div>
             </div>
         </div>
+         <div class="select">
+                        <form action="<%=request.getContextPath()%>">
+                       <!--   <select name="field">
+                        	<option value="m_name">제목</option>
+                        	<option value="m_artist">가수</option>
+                        	<option value="m_name_and_artist">제목+가수</option>
+                        </select> -->
+                        <input name="keyword" id="key"> &nbsp; &nbsp; <input type="submit" id="search_submit" value="검색">
+                        </form>
+         </div>
     </header>
     <!-- ##### Header Area End ##### -->
 </body>
