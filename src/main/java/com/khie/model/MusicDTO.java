@@ -1,10 +1,14 @@
 package com.khie.model;
 
+import lombok.Data;
+
+@Data
 public class MusicDTO {
 	
 	private int m_no;
     private String m_name;
     private String m_cont;
+    private String m_album;
     private String m_artist;
     private int m_like;
     private String m_audio;

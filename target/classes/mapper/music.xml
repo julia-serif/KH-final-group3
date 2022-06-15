@@ -9,19 +9,41 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="MusicDAO">
-   <select id="searchAll"></select>
-   <select id="searchSong"></select>
-   <select id="searchArtist"></select>
-   <select id="searchAlbum"></select>
-   <select id="searchPlaylist"></select>
-   <select id="searchVideo"></select>
-   <select id="searchLyrics"></select>
+	<select id="searchAll"></select>
+	<select id="searchSong"></select>
+	<select id="searchAlbum"></select>
+	<select id="searchArtist"></select>
+	<select id="searchVideo"></select>
+	<select id="searchPlaylist"></select>
+	<select id="searchLyrics"></select>
    
-   <select id="countAll"></select>
-   <select id="countSong"></select>
-   <select id="countArtist"></select>
-   <select id="countAlbum"></select>
-   <select id="countPlaylist"></select>
-   <select id="countVideo"></select>
-   <select id="countLyrics"></select>
+	<select id="countAll" resultType="int">
+		select count(*) from music
+			where m_name like '%' || #{keyword} || '%' or
+				m_album like '%' || #{keyword} || '%' or
+				m_artist like '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="countSong" resultType="int">
+		select count(*) from music
+			where m_name like '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="countAlbum" resultType="int">
+		select count(*) from music
+			where m_album like '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="countArtist" resultType="int">
+		select count(*) from music
+			where m_artist like '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="countVideo"></select>
+	<select id="countPlaylist"></select>
+	
+	<select id="countLyrics" resultType="int">
+		select count(*) from music
+			where m_lyrics like '%' || #{keyword} || '%'
+	</select>
 </mapper>

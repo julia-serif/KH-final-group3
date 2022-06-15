@@ -38,8 +38,8 @@
             	<form method="post" action="<%= request.getContextPath() %>/search_perform.do">
             		<fieldset>
             			<legend>검색</legend>
-            			<input type="hidden" value="All" name="field">
-            			<input type="search" autocomplete="off" name="keyword">
+            			<input type="hidden" name="field" value="All">
+            			<input type="search" name="keyword" autocomplete="off">
             			<input type="submit" value="검색">
             		</fieldset>
             	</form>
