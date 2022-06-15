@@ -1,8 +1,9 @@
 -- 음원 테이블 
 create table music (
     m_no number primary key,
-    m_name varchar2(10) not null,
+    m_name varchar2(100) not null,
     m_cont varchar2(1000),
+    m_album varchar2(100) not null,
     m_artist varchar2(100) not null,
     m_like number default 0,
     m_audio varchar2(50) not null,
