@@ -9,13 +9,55 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="MusicDAO">
-	<select id="searchAll"></select>
-	<select id="searchSong"></select>
-	<select id="searchAlbum"></select>
-	<select id="searchArtist"></select>
+	<select id="searchAll">
+		<![CDATA[
+			select * from
+				(select m.*, row_number()
+					over(order by m_no desc) rnum from music m
+					where m_name like '%' || #{keyword} || '%' or
+						m_album like '%' || #{keyword} || '%' or
+						m_artist like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
+		<![CDATA[
+			select * from
+				(select m.*, row_number()
+					over(order by m_no desc) rnum from music m
+					where m_name like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	<select id="searchAlbum" parameterType="PageDTO" resultType="MusicDTO">
+		<![CDATA[
+			select * from
+				(select m.*, row_number()
+					over(order by m_no desc) rnum from music m
+					where m_album like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	<select id="searchArtist" parameterType="PageDTO" resultType="MusicDTO">
+		<![CDATA[
+			select * from
+				(select m.*, row_number()
+					over(order by m_no desc) rnum from music m
+					where m_artist like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
 	<select id="searchVideo"></select>
 	<select id="searchPlaylist"></select>
-	<select id="searchLyrics"></select>
+	<select id="searchLyrics">
+		<![CDATA[
+			select * from
+				(select m.*, row_number()
+					over(order by m_no desc) rnum from music m
+					where m_lyrics like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
    
 	<select id="countAll" resultType="int">
 		select count(*) from music
