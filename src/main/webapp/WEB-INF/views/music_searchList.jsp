@@ -15,7 +15,7 @@
 		<c:set var="list" value="${searchMusicList }" />
 		<c:set var="paging" value="${Paging }" />
 		
-		<h3>검색 결과 페이지</h3>
+		<h3>검색 결과 더미 페이지</h3>
 		
 		<table>
 			<c:if test="${!empty list }">
