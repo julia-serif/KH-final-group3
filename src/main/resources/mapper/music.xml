@@ -9,6 +9,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="MusicDAO">
+
 	<select id="searchAll">
 		<![CDATA[
 			select * from
@@ -20,6 +21,7 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
+	
 	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
@@ -29,6 +31,7 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
+	
 	<select id="searchAlbum" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
@@ -38,6 +41,7 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
+	
 	<select id="searchArtist" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
@@ -47,8 +51,10 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
+	
 	<select id="searchVideo"></select>
 	<select id="searchPlaylist"></select>
+	
 	<select id="searchLyrics">
 		<![CDATA[
 			select * from
@@ -58,6 +64,7 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
+   
    
 	<select id="countAll" resultType="int">
 		select count(*) from music
@@ -88,4 +95,5 @@
 		select count(*) from music
 			where m_lyrics like '%' || #{keyword} || '%'
 	</select>
+	
 </mapper>
