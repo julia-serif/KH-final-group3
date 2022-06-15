@@ -102,3 +102,7 @@ create table music_by_user (
 	play_counts number,		-- 곡 플레이 횟수
 	constraint music_by_user_PK primary key(user_no, m_no)
 );
+
+insert into music_member
+    values('1','admin', '1234', '관리자', '','admin@naver.com','010-1234-5678','0', sysdate ,'');
+
