@@ -2,21 +2,28 @@ package com.khie.music;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.khie.model.MemberDTO;
 import com.khie.model.MusicDAO;
 import com.khie.model.MusicDTO;
 import com.khie.model.PageDTO;
+import com.khie.model.MemberDAO;
 
 @Controller
 public class MusicController {
 	
 	@Autowired
 	private MusicDAO dao;
+	@Autowired
+	private MemberDAO dao2;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
@@ -95,7 +102,7 @@ public class MusicController {
 
 		
 		HttpSession session = req.getSession();
-		MemberDTO login = this.dao.login(dto);
+		MemberDTO login = this.dao2.login(dto);
 		
 		if(login == null) {
 			session.setAttribute("member", null);
