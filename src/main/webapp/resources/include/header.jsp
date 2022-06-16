@@ -63,7 +63,7 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
-                                    <li><a href="<%= request.getContextPath() %>/about.do">Top100</a></li> <!-- top100 -->
+                                    <li><a href="<%= request.getContextPath() %>/music_cont.do">Top100</a></li> <!-- top100 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새 음악 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">Event</a></li> <!-- 이벤트 -->
                                     <li><a href="<%= request.getContextPath() %>/service.do">MyMusic</a></li> <!-- 내 음악 -->

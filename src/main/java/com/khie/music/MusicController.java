@@ -44,4 +44,9 @@ public class MusicController {
 	public String sitemap() {
 		return "sitemap";
 	}
+	
+	@RequestMapping("music_cont.do")
+	public String music_cont() {
+		return "music_cont";
+	}
 }
