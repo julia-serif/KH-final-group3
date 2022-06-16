@@ -94,9 +94,15 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <c:set var="dto" value="${member }" />                                     
-                                        <a href="<%= request.getContextPath() %>/Mypage.do" id="loginBtn"> ${dto.getUser_name() }님 환영합니다</a>&nbsp;&nbsp;&nbsp;
+                                        <c:set var="dto" value="${member }" />  
+                                        <c:if test="${member.user_name != null }">                                    
+                                        <a href="<%= request.getContextPath() %>/mypage.do" id="loginBtn"> ${dto.getUser_name() }님 환영합니다</a>&nbsp;&nbsp;&nbsp;
 	      							    <a href="<%= request.getContextPath() %>/logout.do" id="loginBtn">로그아웃</a>
+                                        </c:if>
+                                        <c:if test="${member.user_name == null }">                                    
+                                        <a href="<%= request.getContextPath() %>/login.do" id="loginBtn">Login / Register</a>
+                                        </c:if>
+                                        
                                     </div>
 
                                     <!-- Cart Button -->

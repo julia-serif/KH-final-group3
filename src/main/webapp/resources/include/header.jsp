@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,24 +63,46 @@
 
                             <!-- Nav Start -->
                             <div class="classynav">
+                                <c:if test="${member.user_rank == 1 }"> 
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/about.do">음원 관리</a></li> <!-- 음원 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">회원 관리</a></li> <!-- 사용자 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">고객센터 관리</a> <!-- 고객센터 관리 -->
+                                        <ul class="dropdown">
+                                         <li><a href="<%= request.getContextPath() %>/about.do">공지 사항</a></li>
+                                         <li><a href="<%= request.getContextPath() %>/about.do">Q/A 게시판</a></li>
+                                         <li><a href="<%= request.getContextPath() %>/about.do">도움말</a></li>
+                                       </ul>
+                                    </li>
+                                    <li><a href="<%= request.getContextPath() %>/service.do">이벤트 관리</a></li> <!-- 이벤트 관리 -->
+                                </ul>
+                             </c:if>
+                             <c:if test="${member.user_rank != 1 }"> 
+                                <ul>
+                                    <li><a href="<%= request.getContextPath() %>">Home</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/about.do">Search</a></li> <!-- 검색 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">Top100</a></li> <!-- top100 -->
-                                    <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새 음악 -->
-                                    <li><a href="<%= request.getContextPath() %>/about.do">Event</a></li> <!-- 이벤트 -->
-				                    <li><a href="<%= request.getContextPath() %>/about.do">Notice</a></li> <!-- 공지 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새음악 -->
+                                    <li><a href="<%= request.getContextPath() %>/events.do">Events</a></li> <!-- 이벤트 -->
                                     <li><a href="<%= request.getContextPath() %>/service.do">MyMusic</a></li> <!-- 내 음악 -->
                                     <li><a href="<%= request.getContextPath() %>/news.do">Other</a></li> <!-- 전체메뉴 -->
-                                    <li><a href="#"></a></li> 
-                                    <li><a href="#"></a></li> 
-                                    <li><a href="#"></a></li> 
                                 </ul>
+                             </c:if>
 
                                 <!-- Login/Register & Cart Button -->
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
+                                        <c:set var="dto" value="${member }" />  
+                                        <c:if test="${member.user_name != null }">                                    
+                                        <a href="<%= request.getContextPath() %>/mypage.do" id="loginBtn"> ${dto.getUser_name() }님 환영합니다</a>&nbsp;&nbsp;&nbsp;
+	      							    <a href="<%= request.getContextPath() %>/logout.do" id="loginBtn">로그아웃</a>
+                                        </c:if>
+                                        <c:if test="${member.user_name == null }">                                    
                                         <a href="<%= request.getContextPath() %>/login.do" id="loginBtn">Login / Register</a>
+                                        </c:if>
+                                        
                                     </div>
 
                                     <!-- Cart Button -->

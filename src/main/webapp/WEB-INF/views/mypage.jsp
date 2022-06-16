@@ -1,5 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <head>
@@ -19,18 +21,135 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
 </head>
+
 <body>
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
 
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <p>MyPage</p>
-            <h2>mypage</h2>
+            <h2>MyPage</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
-    
+
+    <!-- ##### Blog Area Start ##### -->
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9">
+
+    <!-- Single Post Start -->
+      <div >
+      <!-- Post Thumb -->
+                        
+
+       <!-- 정보 수정 페이지 -->
+       <div >
+       <c:set var="dto" value="${member }" />                                    
+        <h2> ${dto.getUser_name() }님 정보 수정</h2>
+        
+	   <br>
+	   
+	   <form method="post"
+	      action="<%=request.getContextPath() %>/user_modify_ok.do">
+	   
+	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
+	      <table border="1" cellspacing="0" width="450">
+	         <tr>
+	            <th>회원 아이디</th>
+	            <td> <input name="user_id"
+	            				value="${dto.user_id }" readonly> </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 비밀번호</th>
+	            <td> <input type="password" name="user_pwd"> </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 이름</th>
+	            <td> <input name="user_name"
+	            				value="${dto.user_name }" readonly> </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 성별</th>
+	            <td> <input name="user_gender"
+	            				value="${dto.user_gender }" readonly> </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 이메일</th>
+	            <td> 
+	               <input name="user_email"
+	            				value="${dto.user_email }">
+	            </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 연락처</th>
+	            <td> <input name="user_phone"
+	            				value="${dto.user_phone }"> </td>
+	         </tr>
+	         
+	         
+	         
+	         <tr>
+	            <td colspan="2" align="center">
+	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
+	               <input type="reset" value="다시작성">
+	            </td>
+	         </tr>
+	      </table>
+	   </form>
+	</div>
+                        </div>
+                    </div>
+
+
+                   
+
+                <div class="col-12 col-lg-3">
+                    <div class="blog-sidebar-area">
+
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <div class="widget-title">
+                                <h5>MyPage</h5>
+                            </div>
+                            <div class="widget-content">
+                                <ul>
+                                    <li><a href="#">회원 정보 수정</a></li>
+                                    <li><a href="#">회원 탈퇴</a></li>
+                                    <li><a href="#">이용권 구매</a></li>
+                                    <li><a href="#">이벤트 확인</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Blog Area End ##### -->
+
     <jsp:include page="/resources/include/footer.jsp"></jsp:include>
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="<%= request.getContextPath() %>/resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="<%= request.getContextPath() %>/resources/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="<%= request.getContextPath() %>/resources/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="<%= request.getContextPath() %>/resources/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="<%= request.getContextPath() %>/resources/js/active.js"></script>
 </body>
+
 </html>

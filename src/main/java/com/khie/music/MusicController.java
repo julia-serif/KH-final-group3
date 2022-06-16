@@ -76,7 +76,7 @@ public class MusicController {
 	}
 	
 	@RequestMapping("mypage.do")
-	public String mypage() {
+	public String login(MemberDTO dto, HttpServletRequest req) throws Exception{
 		return "mypage";
 	}
 	
@@ -95,26 +95,31 @@ public class MusicController {
 		return "sitemap";
 	}
 	
+	/*
+	 *  여기부터 관리자 영역입니다. 
+	 */
+	
+	// 로그인 작업입니다.
 	@RequestMapping("login_Ok.do")
 	public String login(MemberDTO dto, HttpServletRequest req, HttpServletResponse response) throws Exception{
 
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		
 		HttpSession session = req.getSession();
 		MemberDTO login = this.dao2.login(dto);
 		
+	// 	회원 정보가 틀리면 로그인 화면으로 다시 돌아갑니다.
 		if(login == null) {
 			session.setAttribute("member", null);
 			return "login_back";
+   // 로그인 성공시  회원 로그인 화면으로 넘어갑니다.
 		}else {
 			session.setAttribute("member", login);
-			
+	
 		} 
 		
 		return "loginmain";
 	}
-	
+
+// 로그아웃 
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) throws Exception{
 		
