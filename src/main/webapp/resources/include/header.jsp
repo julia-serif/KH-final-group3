@@ -8,7 +8,7 @@
     <style type="text/css">
 .select{
 	width: 50%;
- 	margin-left: 80%;
+ 	margin-left: 70%;
 	
 }
 #key{
@@ -66,6 +66,7 @@
                                     <li><a href="<%= request.getContextPath() %>/about.do">Top100</a></li> <!-- top100 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새 음악 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">Event</a></li> <!-- 이벤트 -->
+				    <li><a href="<%= request.getContextPath() %>/about.do">Notice</a></li> <!-- 공지 -->
                                     <li><a href="<%= request.getContextPath() %>/service.do">MyMusic</a></li> <!-- 내 음악 -->
                                     <li><a href="<%= request.getContextPath() %>/news.do">Other</a></li> <!-- 전체메뉴 -->
                                     <li><a href="#"></a></li> 
