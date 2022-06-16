@@ -99,7 +99,6 @@ public class MusicController {
 	public String login(MemberDTO dto, HttpServletRequest req, HttpServletResponse response) throws Exception{
 
 		response.setContentType("text/html; charset=UTF-8");
-		
 		PrintWriter out = response.getWriter();
 		
 		HttpSession session = req.getSession();
@@ -107,6 +106,7 @@ public class MusicController {
 		
 		if(login == null) {
 			session.setAttribute("member", null);
+			return "login_back";
 		}else {
 			session.setAttribute("member", login);
 			
