@@ -49,6 +49,16 @@
 
                             <!-- Nav Start -->
                             <div class="classynav">
+                             <c:if test="${member.user_rank == 1 }"> 
+                                <ul>
+                                    <li><a href="<%= request.getContextPath() %>">Home</a></li>
+                                    <li><a href="<%= request.getContextPath() %>/about.do">음원 관리</a></li> <!-- 음원 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">사용자 관리</a></li> <!-- 사용자 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">고객센터 관리</a></li> <!-- 고객센터 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/service.do">이벤트 관리</a></li> <!-- 이벤트 관리 -->
+                                </ul>
+                             </c:if>
+                             <c:if test="${member.user_rank != 1 }"> 
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
                                     <li><a href="<%= request.getContextPath() %>/about.do">Search</a></li> <!-- 검색 -->
@@ -58,12 +68,13 @@
                                     <li><a href="<%= request.getContextPath() %>/service.do">MyMusic</a></li> <!-- 내 음악 -->
                                     <li><a href="<%= request.getContextPath() %>/news.do">Other</a></li> <!-- 전체메뉴 -->
                                 </ul>
-
+                             </c:if>
                                 <!-- Login/Register & Cart Button -->
                                 
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
+                                    
                                        <c:set var="dto" value="${member }" />
                                         <a href="<%= request.getContextPath() %>/Mypage.do" id="loginBtn"> ${dto.getUser_name() }님 환영합니다</a>&nbsp;&nbsp;&nbsp;
 	      							    <a href="<%= request.getContextPath() %>/logout.do" id="loginBtn">로그아웃</a>

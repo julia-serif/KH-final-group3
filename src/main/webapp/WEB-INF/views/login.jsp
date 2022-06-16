@@ -1,5 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <head>
@@ -149,6 +151,10 @@
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
                                 <input type="button" class="btn oneMusic-btn mt-30" onclick="location.href='member_insert.do'" value="Register"></button>
+                            <c:if test="${msg == false }">
+                                 <P style="color: red;">로그인 실패, 아이디와 비밀번호를 확인해주세요</P>
+                            </c:if>
+                            
                             </form>
                         </div>
                     </div>
