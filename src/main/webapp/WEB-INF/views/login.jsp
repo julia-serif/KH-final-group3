@@ -136,15 +136,16 @@
                         <h3>Welcome</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form action="<%=request.getContextPath()%>/login_ok.do">
+                            <form action="<%=request.getContextPath()%>/login_Ok.do">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">UserId </label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="아이디를 입력하세요">
+                                    <input type="text" class="form-control" name="user_id" id="exampleInputEmail1" placeholder="아이디를 입력하세요">
+                                   
                                     
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요">
+                                    <input type="password" class="form-control" name="user_pwd" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요">
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
                                 <input type="button" class="btn oneMusic-btn mt-30" onclick="location.href='member_insert.do'" value="Register"></button>
