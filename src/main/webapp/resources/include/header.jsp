@@ -75,7 +75,7 @@
                                          <li><a href="<%= request.getContextPath() %>/about.do">도움말</a></li>
                                        </ul>
                                     </li>
-                                    <li><a href="<%= request.getContextPath() %>/service.do">이벤트 관리</a></li> <!-- 이벤트 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/events.do">이벤트 관리</a></li> <!-- 이벤트 관리 -->
                                 </ul>
                              </c:if>
                              <c:if test="${member.user_rank != 1 }"> 

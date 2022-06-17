@@ -95,6 +95,11 @@ public class MusicController {
 		return "sitemap";
 	}
 	
+	@RequestMapping("empty.do")
+	public String empty() {
+		return "empty1";
+	}
+	
 	/*
 	 *  여기부터 관리자 영역입니다. 
 	 */
