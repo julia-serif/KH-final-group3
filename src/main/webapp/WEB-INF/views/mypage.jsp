@@ -61,8 +61,8 @@
 	            <td> <input name="user_id"
 	            				value="${dto.user_id }" readonly> </td>
 	         </tr>
-	         
-	         <tr>
+
+	        	          <tr>
 	            <th>회원 비밀번호</th>
 	            <td> <input type="password" name="user_pwd"> </td>
 	         </tr>
@@ -106,11 +106,11 @@
 	</div>
                         </div>
                     </div>
-
+                <!-- 마이페이지 사이드바 -->
                 <div class="col-12 col-lg-3">
                     <div class="blog-sidebar-area">
 
-                        <!-- Widget Area -->
+                       
                         <div class="single-widget-area mb-30">
                             <div class="widget-title">
                                 <h5>MyPage</h5>
@@ -123,6 +123,16 @@
                                     <li><a href="#">이벤트 확인</a></li>
                                 </ul>
                             </div>
+                        </div>
+                        
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <a href="#"><img src="resources/img/bg-img/add.gif" alt=""></a>
+                        </div>
+
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <a href="#"><img src="resources/img/bg-img/add2.gif" alt=""></a>
                         </div>
 
                         

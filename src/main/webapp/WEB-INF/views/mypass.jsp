@@ -21,26 +21,31 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
 </head>
+
 <body>
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
 
-<c:set var="dto" value="${member }" />  
-<c:if test="${member.user_purchase == 0 }">                                    
-
-
-
-    <!-- 이용권 구매 제목 -->
+    <!-- 제목 구역 -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
-        <div class="bradcumbContent">  
-            <h2>이용권 구매</h2>
+        <div class="bradcumbContent">
+            <p>이용권</p>
+            <h2>My Pass</h2>
         </div>
     </section>
-    <!-- ##### Breadcumb Area End ##### -->
+   <!-- 제목 구역 끝-->
+
+    <!-- 옵션  -->
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9">
+                  <c:set var="dto" value="${member }" />  
+                <c:if test="${member.user_purchase == 0 }">                                    
+
+
+
+  
     
-    <!-- ##### Events Area Start ##### -->
-    <section class="events-area section-padding-100">
-        
-    </section>
    
     
     <!-- 이용권 옵션 종류 -->
@@ -167,7 +172,7 @@
    
     
     <!-- 이용권 옵션 종류 -->
-    <section class="newsletter-testimonials-area">
+    <div class="blog-area section-padding-100">
         <div class="container">
             <div class="row">
 <div class="col-12 col-lg-5">
@@ -187,14 +192,16 @@
     </div>
     </div>
     </div>
-    </section>
+    </div>
   
 </c:if>
 
-<div class="col-12 col-lg-3">
+                </div>
+                <!-- mypage 사이드바 -->
+                <div class="col-12 col-lg-3">
                     <div class="blog-sidebar-area">
 
-                        <!-- Widget Area -->
+                        
                         <div class="single-widget-area mb-30">
                             <div class="widget-title">
                                 <h5>MyPage</h5>
@@ -208,11 +215,38 @@
                                 </ul>
                             </div>
                         </div>
+
+                       
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <a href="#"><img src="resources/img/bg-img/add.gif" alt=""></a>
                         </div>
+
+                        <!-- Widget Area -->
+                        <div class="single-widget-area mb-30">
+                            <a href="#"><img src="resources/img/bg-img/add2.gif" alt=""></a>
                         </div>
-   
-    <!-- -->
-    
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Blog Area End ##### -->
+
     <jsp:include page="/resources/include/footer.jsp"></jsp:include>
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="<%= request.getContextPath() %>/resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="<%= request.getContextPath() %>/resources/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="<%= request.getContextPath() %>/resources/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="<%= request.getContextPath() %>/resources/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="<%= request.getContextPath() %>/resources/js/active.js"></script>
 </body>
+
 </html>
