@@ -22,7 +22,11 @@
 	color: white;
 	border: 0px;
 }
-
+#logoutBtn{
+	background-color: rgba(255, 255, 255, 0);
+	color: white;
+	border: 0px;
+}
 </style>
 </head>
 <body>
@@ -97,7 +101,7 @@
                                         <c:set var="dto" value="${member }" />  
                                         <c:if test="${member.user_name != null }">                                    
                                         <a href="<%= request.getContextPath() %>/mypage.do" id="loginBtn"> ${dto.getUser_name() }님 환영합니다</a>&nbsp;&nbsp;&nbsp;
-	      							    <a href="<%= request.getContextPath() %>/logout.do" id="loginBtn">로그아웃</a>
+	      							    <a href="<%= request.getContextPath() %>/logout.do" id="logoutBtn">로그아웃</a>
                                         </c:if>
                                         <c:if test="${member.user_name == null }">                                    
                                         <a href="<%= request.getContextPath() %>/login.do" id="loginBtn">Login / Register</a>
