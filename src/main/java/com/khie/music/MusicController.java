@@ -132,4 +132,11 @@ public class MusicController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping("mypass.do")
+	public String mypass() {
+		return "mypass";
+	}
+	
+	
 }

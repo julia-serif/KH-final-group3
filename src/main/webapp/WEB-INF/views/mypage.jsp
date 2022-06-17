@@ -120,9 +120,9 @@
                             </div>
                             <div class="widget-content">
                                 <ul>
-                                    <li><a href="#">회원 정보 수정</a></li>
+                                    <li><a href="mypage.do">회원 정보 수정</a></li>
                                     <li><a href="#">회원 탈퇴</a></li>
-                                    <li><a href="#">이용권 구매</a></li>
+                                    <li><a href="mypass.do">내 이용권 </a></li>
                                     <li><a href="#">이벤트 확인</a></li>
                                 </ul>
                             </div>
