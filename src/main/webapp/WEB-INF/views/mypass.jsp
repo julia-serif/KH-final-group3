@@ -57,15 +57,15 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <p>스마트 음악 감상</p>          
+                            <p>스마트 음악 감상1</p>          
                             <br>
                         </div>
                         <div class="newsletter-form">
-                            <form action="#">
+                            <form action="mypay.do">
                                 <p>첫달 100원</p>
                                 <p>98% <del>7,400원</del></p>
                                 <h3>100원</h3>
-                                <button onclick="#" class="btn oneMusic-btn">구독하기</button>
+                                <button onclick="mypay.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
                     </div>
@@ -75,15 +75,15 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <p>스마트 음악 감상</p>          
+                            <p>스마트 음악 감상2</p>          
                             <br>
                         </div>
                         <div class="newsletter-form">
-                            <form action="#">
+                            <form action="mypay2.do">
                                 <p>6개월 특가 할인</p>
                                 <p>34% <del>7,400원</del></p>
                                 <h3>4,900원</h3>
-                                <button onclick="#" class="btn oneMusic-btn">구독하기</button>
+                                <button onclick="mypay2.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
                     </div>
@@ -97,11 +97,11 @@
                             <br>
                         </div>
                         <div class="newsletter-form">
-                            <form action="#">
+                            <form action="mypay3.do">
                                 <p align="center">6개월 특가 할인</p>
                                 <p align="center">34% <del>7,400원</del></p>
                                 <h3 align="center">4,900원</h3>
-                                <button onclick="#" class="btn oneMusic-btn">구독하기</button>
+                                <button onclick="mypay3.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
                     </div>
@@ -115,15 +115,15 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <h4>음악 감상</h4>         
+                            <h4>음악 감상3</h4>         
                             <br>
                         </div>
                         <div class="newsletter-form">
-                            <form action="#">
+                            <form action="mypay4.do">
                                 <p>3개월 특가 할인</p>
                                 <p>50% <del>22,200원</del></p>
                                 <h3>11,100원</h3>
-                                <button onclick="#" class="btn oneMusic-btn">구독하기</button>
+                                <button onclick="mypay4.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
                     </div>
@@ -133,15 +133,15 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <h4>친구 할인</h4>         
+                            <h4>음악 감상4</h4>         
                             <br>
                         </div>
                         <div class="newsletter-form">
-                            <form action="#">
+                            <form action="mypay5.do">
                                 <p>12개월 특가 할인</p>
                                 <p>65% <del>888,000원</del></p>
                                 <h3>57,720원</h3>
-                                <button onclick="#" class="btn oneMusic-btn">구독하기</button>
+                                <button onclick="mypay5.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
                     </div>
@@ -166,8 +166,9 @@
         </div>
        <div class="newsletter-form">
         <form action="#">
-         <p>이용권 안내</p>
-         
+         <p></p>
+         <button onclick="#" class="btn oneMusic-btn">변경하기</button>
+         &nbsp;&nbsp;&nbsp;&nbsp;
          <button onclick="#" class="btn oneMusic-btn">취소하기</button>
           </form>
          </div>

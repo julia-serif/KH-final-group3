@@ -15,5 +15,35 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectOne("login", dto);
 	}
 
+	@Override
+	public void purchase1(int no) throws Exception {
+		this.sqlSession.update("pur1", no);
+		
+	}
+
+	@Override
+	public void purchase2(int no) throws Exception {
+		this.sqlSession.update("pur2", no);
+		
+	}
+
+	@Override
+	public void purchase3(int no) throws Exception {
+		this.sqlSession.update("pur3", no);
+		
+	}
+
+	@Override
+	public void purchase4(int no) throws Exception {
+		this.sqlSession.update("pur4", no);
+		
+	}
+
+	@Override
+	public void purchase5(int no) throws Exception {
+		this.sqlSession.update("pur5", no);
+		
+	}
+
 
 }

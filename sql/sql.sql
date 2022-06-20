@@ -32,7 +32,7 @@ create table music_user (
     user_purchase char(5) check(user_purchase in('false', 'true')),
     user_regdate date,
     user_update date
-   user_rank varchar2(10) not null
+    user_rank varchar2(10) not null
 );
 
 -- 음원별 댓글 테이블

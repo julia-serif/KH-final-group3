@@ -138,5 +138,31 @@ public class MusicController {
 		return "mypass";
 	}
 	
+	@RequestMapping("mypay.do")
+	public String mypay() {
+		return "mypay";
+	}
+	
+	
+	@RequestMapping("mypay2.do")
+	public String mypass2() {
+		return "mypay2";
+	}
+	
+	@RequestMapping("mypay3.do")
+	public String mypass3() {
+		return "mypay3";
+	}
+	
+	@RequestMapping("mypay4.do")
+	public String mypass4() {
+		return "mypay4";
+	}
+	
+	@RequestMapping("mypay5.do")
+	public String mypass5() {
+		return "mypay5";
+	}
+	
 	
 }
