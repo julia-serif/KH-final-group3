@@ -77,11 +77,17 @@
     <!-- ##### MyMusic Area End ##### -->
     
     <!-- ##### Playlist Area Start ##### -->
+    
     <div class="one-music-songs-area mb-70">
         <div class="container">
+			<hr width="100%" color="lightgray">
+	            <h2 style="display:inline">내 플레이리스트</h2>
+	            <p style="display:inline">&nbsp;&nbsp;&nbsp;|&nbsp;전체 04</p>
+                <div class="load-more-btn text-right mb-70">
+                    <a href="#" class="btn playlist-btn"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;ADD PLAYLIST</a>
+                </div>
             <div class="row">
-
-                <!-- Single Song Area -->
+                <!-- Single List Area -->
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -89,11 +95,13 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 1번</p>
+                                <p>플레이리스트 1번　|　01곡</p>
+                                <div class="blog-content">
+	                                <div class="post-meta d-inline-flex mb-20">
+		                                <img src="resources/img/bg-img/Audio.png" alt="">
+	                          	    </div>
+                          	    </div>
                             </div>
-                            <audio preload="auto" controls>
-                                <source src="resources/audio/dummy-audio.mp3">
-                            </audio>
                         </div>
                     </div>
                 </div>
@@ -106,11 +114,13 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 2번</p>
+                                <p>플레이리스트 2번　|　33곡</p>
+                                <div class="blog-content">
+	                                <div class="post-meta d-inline-flex mb-20">
+		                                <img src="resources/img/bg-img/Audio.png" alt="">
+	                          	    </div>
+                          	    </div>
                             </div>
-                            <audio preload="auto" controls>
-                                <source src="resources/audio/dummy-audio.mp3">
-                            </audio>
                         </div>
                     </div>
                 </div>
@@ -123,11 +133,13 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 3번</p>
+                                <p>플레이리스트 3번　|　08곡</p>
+                                <div class="blog-content">
+	                                <div class="post-meta d-inline-flex mb-20">
+		                                <img src="resources/img/bg-img/Audio.png" alt="">
+	                          	    </div>
+                          	    </div>
                             </div>
-                            <audio preload="auto" controls>
-                                <source src="resources/audio/dummy-audio.mp3">
-                            </audio>
                         </div>
                     </div>
                 </div>
@@ -140,11 +152,10 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 4번</p>
+                                <p>플레이리스트 4번　|　17곡</p>
                                 <div class="blog-content">
-	                                <div class="post-meta d-flex mb-30">
-		                                <p class="post-author">17곡</p>
-                                		<p class="tags"><a href="#">2 Comments</a></p>
+	                                <div class="post-meta d-inline-flex mb-20">
+		                                <img src="resources/img/bg-img/Audio.png" alt="">
 	                          	    </div>
                           	    </div>
                             </div>

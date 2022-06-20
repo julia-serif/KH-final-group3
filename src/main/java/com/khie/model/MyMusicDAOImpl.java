@@ -12,17 +12,17 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 
 	@Override
 	public List<MusicDTO> selectLike(int user_no) {
-		return this.sqlSession.selectList("select_Like", user_no);
+		return this.sqlSession.selectList("select_like", user_no);
 	}
 
 	@Override
 	public List<MusicDTO> selectRecent(int user_no) {
-		return this.sqlSession.selectList("recent_Watch", user_no);
+		return this.sqlSession.selectList("recent_watch", user_no);
 	}
 
 	@Override
 	public List<MusicDTO> selectMuch(int user_no) {
-		return this.sqlSession.selectList("much_Watch", user_no);
+		return this.sqlSession.selectList("much_watch", user_no);
 	}
 
 	@Override
@@ -32,13 +32,12 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 
 	@Override
 	public void updatePlayMusic(MyMusicDTO dto) {
-		this.sqlSession.update("updateWatch", dto);
+		this.sqlSession.update("watch_record", dto);
 	}
 
 	@Override
-	public MyMusicDTO musicToPlaylist(MyMusicDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public int musicToPlaylist(PlaylistDTO dto) {
+		return this.sqlSession.insert("to_playlist", dto);
 	}
 
 	@Override
@@ -46,13 +45,7 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public List<PlaylistDTO> getMusiclist(int user_no, int playlist_no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public void playlistOrder(int user_no) {
 		// TODO Auto-generated method stub
@@ -81,6 +74,12 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	public void imageRegister(int playlist_no) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<PlaylistDTO> getMusiclist(int user_no, int playlist_no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
