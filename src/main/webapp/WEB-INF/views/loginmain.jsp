@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
     <meta charset="UTF-8">
@@ -12,108 +14,15 @@
     <title>One Music - Modern Music HTML5 Template</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="<%= request.getContextPath() %>/resources/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-        <!-- Navbar Area -->
-        <div class="oneMusic-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
-
-                        <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- Close Button -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="#">Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-
-                                <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">Login / Register</a>
-                                    </div>
-
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Nav End -->
-
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
+    <jsp:include page="/resources/include/login_header.jsp"></jsp:include>
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Hero Area Start ##### -->
@@ -122,7 +31,7 @@
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-1.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(resources/img/bg-img/bg-1.jpg);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -140,7 +49,7 @@
             <!-- Single Hero Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(img/bg-img/bg-2.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(resources/img/bg-img/bg-2.jpg);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -158,31 +67,31 @@
     </section>
     <!-- ##### Hero Area End ##### -->
 
-     <!-- ##### TOP100 Area Start ##### -->
+    <!-- ##### Latest Albums Area Start ##### -->
     <section class="latest-albums-area section-padding-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
-                        <p>믿고 듣는 TOP100, 많은 사람들이 선택한 음악은?</p>
-                        <h2>TOP 100</h2>
+                        <p>See what’s new</p>
+                        <h2>Latest Albums</h2>
                     </div>
                 </div>
             </div>
-           <%-- <div class="row justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-12 col-lg-9">
                     <div class="ablums-text text-center mb-70">
-                        
+                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
                     </div>
-                </div>  
-            </div> --%>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-12">
                     <div class="albums-slideshow owl-carousel">
                         <!-- Single Album -->
                         <div class="single-album">
-                            <img src="img/bg-img/a1.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a1.jpg" alt="">
                             <div class="album-info">
                                 <a href="#">
                                     <h5>The Cure</h5>
@@ -193,7 +102,7 @@
 
                         <!-- Single Album -->
                         <div class="single-album">
-                            <img src="img/bg-img/a2.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a2.jpg" alt="">
                             <div class="album-info">
                                 <a href="#">
                                     <h5>Sam Smith</h5>
@@ -204,7 +113,7 @@
 
                         <!-- Single Album -->
                         <div class="single-album">
-                            <img src="img/bg-img/a3.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a3.jpg" alt="">
                             <div class="album-info">
                                 <a href="#">
                                     <h5>Will I am</h5>
@@ -215,7 +124,7 @@
 
                         <!-- Single Album -->
                         <div class="single-album">
-                            <img src="img/bg-img/a4.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a4.jpg" alt="">
                             <div class="album-info">
                                 <a href="#">
                                     <h5>The Cure</h5>
@@ -226,7 +135,7 @@
 
                         <!-- Single Album -->
                         <div class="single-album">
-                            <img src="img/bg-img/a5.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a5.jpg" alt="">
                             <div class="album-info">
                                 <a href="#">
                                     <h5>DJ SMITH</h5>
@@ -237,7 +146,7 @@
 
                         <!-- Single Album -->
                         <div class="single-album">
-                            <img src="img/bg-img/a6.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a6.jpg" alt="">
                             <div class="album-info">
                                 <a href="#">
                                     <h5>The Ustopable</h5>
@@ -248,7 +157,7 @@
 
                         <!-- Single Album -->
                         <div class="single-album">
-                            <img src="img/bg-img/a7.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a7.jpg" alt="">
                             <div class="album-info">
                                 <a href="#">
                                     <h5>Beyonce</h5>
@@ -261,16 +170,16 @@
             </div>
         </div>
     </section>
-    <!-- ##### TOP100 Area End ##### -->
+    <!-- ##### Latest Albums Area End ##### -->
 
-    <!-- ##### New Music Area Start ##### -->
+    <!-- ##### Buy Now Area Start ##### -->
     <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
-                        <p>오늘의 신곡, 새로운 음악을 만나보세요</p>
-                        <h2>new Music</h2>
+                        <p>See what’s new</p>
+                        <h2>Buy What’s New</h2>
                     </div>
                 </div>
             </div>
@@ -281,7 +190,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b1.jpg" alt="">
                             <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
@@ -304,7 +213,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b2.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -319,7 +228,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b3.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -334,7 +243,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b4.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -349,7 +258,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b1.jpg" alt="">
                             <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
@@ -372,7 +281,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b2.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -387,7 +296,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b3.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -402,7 +311,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b4.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -417,7 +326,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b1.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b1.jpg" alt="">
                             <!-- Album Price -->
                             <div class="album-price">
                                 <p>$0.90</p>
@@ -440,7 +349,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b2.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b2.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -455,7 +364,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b3.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b3.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -470,7 +379,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                     <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
                         <div class="album-thumb">
-                            <img src="img/bg-img/b4.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b4.jpg" alt="">
                         </div>
                         <div class="album-info">
                             <a href="#">
@@ -492,15 +401,15 @@
             </div>
         </div>
     </section>
-    <!-- ##### New Music Area End ##### -->
+    <!-- ##### Buy Now Area End ##### -->
 
     <!-- ##### Featured Artist Area Start ##### -->
-    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/bg-4.jpg);">
+    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(resources/img/bg-img/bg-4.jpg);">
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-12 col-md-5 col-lg-4">
                     <div class="featured-artist-thumb">
-                        <img src="img/bg-img/fa.jpg" alt="">
+                        <img src="<%= request.getContextPath() %>/resources/img/bg-img/fa.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-8">
@@ -516,7 +425,7 @@
                                 <p>01. Main Hit Song</p>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -541,7 +450,7 @@
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt1.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt1.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>Sam Smith</h6>
@@ -552,7 +461,7 @@
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="150ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt2.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt2.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>Power Play</h6>
@@ -563,7 +472,7 @@
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="200ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt3.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt3.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>Cristinne Smith</h6>
@@ -574,7 +483,7 @@
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="250ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt4.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt4.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>The Music Band</h6>
@@ -585,7 +494,7 @@
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="300ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt5.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt5.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>Creative Lyrics</h6>
@@ -596,7 +505,7 @@
                         <!-- Single Top Item -->
                         <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="350ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/wt6.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt6.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <h6>The Culture</h6>
@@ -619,7 +528,7 @@
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt7.jpg" alt="">
+                                    <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt7.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>Sam Smith</h6>
@@ -627,7 +536,7 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
                             </audio>
                         </div>
 
@@ -635,7 +544,7 @@
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="150ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt8.jpg" alt="">
+                                    <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt8.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>Power Play</h6>
@@ -643,7 +552,7 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
                             </audio>
                         </div>
 
@@ -651,7 +560,7 @@
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="200ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt9.jpg" alt="">
+                                    <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt9.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>Cristinne Smith</h6>
@@ -659,7 +568,7 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
                             </audio>
                         </div>
 
@@ -667,7 +576,7 @@
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="250ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt10.jpg" alt="">
+                                    <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt10.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>The Music Band</h6>
@@ -675,7 +584,7 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
                             </audio>
                         </div>
 
@@ -683,7 +592,7 @@
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="300ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt11.jpg" alt="">
+                                    <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt11.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>Creative Lyrics</h6>
@@ -691,7 +600,7 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
                             </audio>
                         </div>
 
@@ -699,7 +608,7 @@
                         <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="350ms">
                             <div class="first-part d-flex align-items-center">
                                 <div class="thumbnail">
-                                    <img src="img/bg-img/wt12.jpg" alt="">
+                                    <img src="resources/img/bg-img/wt12.jpg" alt="">
                                 </div>
                                 <div class="content-">
                                     <h6>The Culture</h6>
@@ -707,7 +616,7 @@
                                 </div>
                             </div>
                             <audio preload="auto" controls>
-                                <source src="audio/dummy-audio.mp3">
+                                <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
                             </audio>
                         </div>
                     </div>
@@ -724,7 +633,7 @@
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa1.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa1.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Sam Smith</p>
@@ -734,7 +643,7 @@
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="150ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa2.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa2.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>William Parker</p>
@@ -744,7 +653,7 @@
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="200ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa3.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa3.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Jessica Walsh</p>
@@ -754,7 +663,7 @@
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="250ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa4.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa4.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Tha Stoves</p>
@@ -764,7 +673,7 @@
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="300ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa5.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa5.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>DJ Ajay</p>
@@ -774,7 +683,7 @@
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="350ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa6.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa6.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Radio Vibez</p>
@@ -784,7 +693,7 @@
                         <!-- Single Artist -->
                         <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="400ms">
                             <div class="thumbnail">
-                                <img src="img/bg-img/pa7.jpg" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa7.jpg" alt="">
                             </div>
                             <div class="content-">
                                 <p>Music 4u</p>
@@ -797,95 +706,8 @@
         </div>
     </section>
     <!-- ##### Miscellaneous Area End ##### -->
-
-    <!-- ##### Contact Area Start ##### -->
-    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading white wow fadeInUp" data-wow-delay="100ms">
-                        <p>See what’s new</p>
-                        <h2>Get In Touch</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <!-- Contact Form Area -->
-                    <div class="contact-form-area">
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="100ms">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="200ms">
-                                        <input type="email" class="form-control" id="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="300ms">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group wow fadeInUp" data-wow-delay="400ms">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12 text-center wow fadeInUp" data-wow-delay="500ms">
-                                    <button class="btn oneMusic-btn mt-30" type="submit">Send <i class="fa fa-angle-double-right"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Contact Area End ##### -->
-
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
-        <div class="container">
-            <div class="row d-flex flex-wrap align-items-center">
-                <div class="col-12 col-md-6">
-                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
-                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <div class="footer-nav">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Albums</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ##### Footer Area Start ##### -->
-
-    <!-- ##### All Javascript Script ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="js/active.js"></script>
+    
+    <jsp:include page="/resources/include/footer.jsp"></jsp:include>
 </body>
 
 </html>

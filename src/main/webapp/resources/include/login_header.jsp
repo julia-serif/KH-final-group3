@@ -22,11 +22,7 @@
 	color: white;
 	border: 0px;
 }
-#logoutBtn{
-	background-color: rgba(255, 255, 255, 0);
-	color: white;
-	border: 0px;
-}
+
 </style>
 </head>
 <body>
@@ -71,7 +67,7 @@
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
                                     <li><a href="<%= request.getContextPath() %>/about.do">음원 관리</a></li> <!-- 음원 관리 -->
-                                    <li><a href="<%= request.getContextPath() %>/about.do">회원 관리</a></li> <!-- 사용자 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">회원 관리</a> <!-- 회원 관리 --></li>                               
                                     <li><a href="<%= request.getContextPath() %>/about.do">고객센터 관리</a> <!-- 고객센터 관리 -->
                                         <ul class="dropdown">
                                          <li><a href="<%= request.getContextPath() %>/about.do">공지 사항</a></li>
@@ -101,7 +97,7 @@
                                         <c:set var="dto" value="${member }" />  
                                         <c:if test="${member.user_name != null }">                                    
                                         <a href="<%= request.getContextPath() %>/mypage.do" id="loginBtn"> ${dto.getUser_name() }님 환영합니다</a>&nbsp;&nbsp;&nbsp;
-	      							    <a href="<%= request.getContextPath() %>/logout.do" id="logoutBtn">로그아웃</a>
+	      							    <a href="<%= request.getContextPath() %>/logout.do" id="loginBtn">로그아웃</a>
                                         </c:if>
                                         <c:if test="${member.user_name == null }">                                    
                                         <a href="<%= request.getContextPath() %>/login.do" id="loginBtn">Login / Register</a>
@@ -110,11 +106,9 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <c:if test="${member.user_name != null }">   
-	                                    <div class="cart-btn">
-	                                        <a href="<%=request.getContextPath() %>/mymusic.do"><p><span class="icon-music"></span></p></a>
-	                                    </div>
-	                                </c:if>
+                                    <div class="cart-btn">
+                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Nav End -->

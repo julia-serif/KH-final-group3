@@ -1,5 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <head>
@@ -99,13 +101,10 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">Login / Register</a>
+                                        <a href="login" id="loginBtn">Login / Register</a>
                                     </div>
 
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
+                                   
                                 </div>
                             </div>
                             <!-- Nav End -->
@@ -136,18 +135,20 @@
                         <h3>Welcome</h3>
                         <!-- Login Form -->
                         <div class="login-form">
-                            <form action="<%=request.getContextPath()%>/login_ok.do">
+                            <form action="<%=request.getContextPath()%>/login_Ok.do">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">UserId </label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="아이디를 입력하세요">
+                                    <input type="text" class="form-control" name="user_id" id="exampleInputEmail1" placeholder="아이디를 입력하세요">
+                                   
                                     
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요">
+                                    <input type="password" class="form-control" name="user_pwd" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요">
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
                                 <input type="button" class="btn oneMusic-btn mt-30" onclick="location.href='member_insert.do'" value="Register"></button>
+                            
                             </form>
                         </div>
                     </div>

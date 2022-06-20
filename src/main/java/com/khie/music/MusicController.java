@@ -2,8 +2,11 @@ package com.khie.music;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.PrintWriter;
+
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.khie.model.MemberDTO;
 import com.khie.model.MusicDAO;
@@ -102,7 +106,7 @@ public class MusicController {
 	}
 	
 	@RequestMapping("mypage.do")
-	public String mypage() {
+	public String login(MemberDTO dto, HttpServletRequest req) throws Exception{
 		return "mypage";
 	}
 	
@@ -121,24 +125,42 @@ public class MusicController {
 		return "sitemap";
 	}
 	
+	@RequestMapping("mymusic.do")
+	public String mymusic() {
+		return "mymusic";
+	}
+	
+	
+	@RequestMapping("empty.do")
+	public String empty() {
+		return "empty1";
+	}
+	
+	/*
+	 *  여기부터 관리자 영역입니다. 
+	 */
+	
+	// 로그인 작업입니다.
 	@RequestMapping("login_Ok.do")
-	public String login(MemberDTO dto, HttpServletRequest req) throws Exception{
+	public String login(MemberDTO dto, HttpServletRequest req, HttpServletResponse response) throws Exception{
 
-		
 		HttpSession session = req.getSession();
 		MemberDTO login = this.dao2.login(dto);
 		
+	// 	회원 정보가 틀리면 로그인 화면으로 다시 돌아갑니다.
 		if(login == null) {
 			session.setAttribute("member", null);
-			
+			return "login_back";
+   // 로그인 성공시  회원 로그인 화면으로 넘어갑니다.
 		}else {
 			session.setAttribute("member", login);
-			
+	
 		} 
 		
 		return "loginmain";
 	}
-	
+
+// 로그아웃 
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) throws Exception{
 		
@@ -146,4 +168,37 @@ public class MusicController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping("mypass.do")
+	public String mypass() {
+		return "mypass";
+	}
+	
+	@RequestMapping("mypay.do")
+	public String mypay() {
+		return "mypay";
+	}
+	
+	
+	@RequestMapping("mypay2.do")
+	public String mypass2() {
+		return "mypay2";
+	}
+	
+	@RequestMapping("mypay3.do")
+	public String mypass3() {
+		return "mypay3";
+	}
+	
+	@RequestMapping("mypay4.do")
+	public String mypass4() {
+		return "mypay4";
+	}
+	
+	@RequestMapping("mypay5.do")
+	public String mypass5() {
+		return "mypay5";
+	}
+	
+	
 }
