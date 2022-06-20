@@ -14,4 +14,6 @@ public interface MemberDAO {
 	public void purchase4(int no) throws Exception;
 	
 	public void purchase5(int no) throws Exception;
+	
+	public int updateBoard(MemberDTO dto);
 }

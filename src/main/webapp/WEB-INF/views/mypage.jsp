@@ -55,14 +55,14 @@
 	      action="<%=request.getContextPath() %>/user_modify_ok.do">
 	   
 	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
+	   	  <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
 	      <table border="1" cellspacing="0" width="450">
 	         <tr>
 	            <th>회원 아이디</th>
 	            <td> <input name="user_id"
 	            				value="${dto.user_id }" readonly> </td>
 	         </tr>
-
-	        	          <tr>
+	        <tr>
 	            <th>회원 비밀번호</th>
 	            <td> <input type="password" name="user_pwd"> </td>
 	         </tr>

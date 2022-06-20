@@ -1,5 +1,6 @@
 package com.khie.music;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -164,5 +165,38 @@ public class MusicController {
 		return "mypay5";
 	}
 	
+	@RequestMapping("user_modify_ok.do")
+	public void modifyOk(MemberDTO dto,
+			@RequestParam("db_pwd")String db_pwd,
+			HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(dto.getUser_pwd().equals(db_pwd)) {
+			
+			int check = this.dao2.updateBoard(dto);
+			
+			if(check > 0) {
+				out.println("<script>");
+				out.println("alert('게시물 수정 성공!!!')");
+				out.println("location.href='mypage.do'");
+				out.println("</script>");
+			}else {
+				out.println("<script>");
+				out.println("alert('게시물 수정 실패~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+			}else {
+				out.println("<script>");
+				out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+		}
+		
+	}
 	
-}
+	
+

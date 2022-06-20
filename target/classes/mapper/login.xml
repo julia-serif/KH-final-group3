@@ -48,6 +48,12 @@
            set user_purchase = 5 
            where user_no = #{user_no};
    </select>
+   
+   <update id="modify" parameterType="com.khie.model.MemberDTO">
+		update music_member set user_email = #{user_email},
+			user_phone = #{user_phone}, user_update = sysdate
+			where user_no = #{user_no}
+	</update>
 
    
    

@@ -45,5 +45,11 @@ public class MemberDAOImpl implements MemberDAO{
 		
 	}
 
+	@Override
+	public int updateBoard(MemberDTO dto) {
+		
+		return this.sqlSession.update("modify", dto);
+	}
+
 
 }
