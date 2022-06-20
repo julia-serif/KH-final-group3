@@ -110,9 +110,11 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div>
+                                    <c:if test="${member.user_name != null }">   
+	                                    <div class="cart-btn">
+	                                        <a href="<%=request.getContextPath() %>/mymusic.do"><p><span class="icon-music"></span></p></a>
+	                                    </div>
+	                                </c:if>
                                 </div>
                             </div>
                             <!-- Nav End -->

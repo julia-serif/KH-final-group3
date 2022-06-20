@@ -95,6 +95,12 @@ public class MusicController {
 		return "sitemap";
 	}
 	
+	@RequestMapping("mymusic.do")
+	public String mymusic() {
+		return "mymusic";
+	}
+	
+	
 	@RequestMapping("empty.do")
 	public String empty() {
 		return "empty1";
