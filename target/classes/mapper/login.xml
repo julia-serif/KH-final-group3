@@ -19,6 +19,8 @@
            and user_pwd = #{user_pwd}
    </select>
    
+<<<<<<< HEAD
+=======
    <select id="pur1" parameterType="int">
    update music_member 
            set user_purchase = 1 
@@ -56,5 +58,6 @@
 	</update>
 
    
+>>>>>>> d5890cdacbf35911ed3477dcc88ad8f5f1732885
    
 </mapper>
