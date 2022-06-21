@@ -86,7 +86,7 @@
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
                                     <li><a href="<%= request.getContextPath() %>/about.do">Search</a></li> <!-- 검색 -->
-                                    <li><a href="<%= request.getContextPath() %>/about.do">Top100</a></li> <!-- top100 -->
+                                    <li><a href="<%= request.getContextPath() %>/about.do">Top10</a></li> <!-- top10 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새음악 -->
                                     <li><a href="<%= request.getContextPath() %>/events.do">Events</a></li> <!-- 이벤트 -->
                                     <li><a href="<%= request.getContextPath() %>/service.do">MyMusic</a></li> <!-- 내 음악 -->
