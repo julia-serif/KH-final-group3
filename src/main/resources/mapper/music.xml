@@ -110,7 +110,9 @@
 	</select>
 	
 	<select id="top10" resultType="MusicDTO">
-		select * from (select * from music  order by m_pcount desc) where rownum <= 10;
+	<![CDATA[
+		select * from (select * from music  order by m_pcount desc) where rownum <= 10
+	]]>
 	</select>
 	
 </mapper>
