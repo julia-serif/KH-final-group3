@@ -105,4 +105,14 @@
 			where m_lyrics like '%' || #{keyword} || '%'
 	</select>
 	
+	<select id="newAll" resultType="MusicDTO">
+		select * from music order by m_no desc;
+	</select>
+	
+	<select id="top10" resultType="MusicDTO">
+	<![CDATA[
+		select * from (select * from music  order by m_pcount desc) where rownum <= 10
+	]]>
+	</select>
+	
 </mapper>
