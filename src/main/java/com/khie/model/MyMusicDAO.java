@@ -12,10 +12,9 @@ public interface MyMusicDAO {
 	public int musicToPlaylist(PlaylistDTO dto); // 음악을 플레이리스트에 추가
 	
 	public List<PlaylistDTO> getPlaylist(int user_no); // 플레이리스트 목록 조회
-	public void playlistOrder(int user_no); // 플레이리스트 순서 정렬
-	public MyMusicDTO addPlaylist(); // 플레이리스트 추가하기
-	public void modifyPlaylist(int playlist_no); // 플레이리스트 수정하기
-	public void deletePlaylist(int playlist_no); // 플레이리스트 삭제하기
+	public int addPlaylist(PlaylistDTO dto); // 플레이리스트 추가하기
+	public int modifyPlaylist(PlaylistDTO dto); // 플레이리스트 수정하기
+	public int deletePlaylist(PlaylistDTO dto); // 플레이리스트 삭제하기
 	public void imageRegister(int playlist_no); // 이미지로 곡 등록하기
 
 	public List<PlaylistDTO> getMusiclist(int user_no, int playlist_no); // 플레이리스트 보관 음악 조회
