@@ -42,32 +42,23 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 
 	@Override
 	public List<PlaylistDTO> getPlaylist(int user_no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public void playlistOrder(int user_no) {
-		// TODO Auto-generated method stub
-
+		return this.sqlSession.selectList("select_playlist", user_no);
 	}
 
 	@Override
-	public MyMusicDTO addPlaylist() {
-		// TODO Auto-generated method stub
-		return null;
+	public int addPlaylist(PlaylistDTO dto) {
+		return this.sqlSession.insert("insert_playlist", dto);
 	}
 
 	@Override
-	public void modifyPlaylist(int playlist_no) {
-		// TODO Auto-generated method stub
+	public int modifyPlaylist(PlaylistDTO dto) {
+		return this.sqlSession.update("update_playlist", dto);
 
 	}
 
 	@Override
-	public void deletePlaylist(int playlist_no) {
-		// TODO Auto-generated method stub
-
+	public int deletePlaylist(PlaylistDTO dto) {
+		return this.sqlSession.delete("delete_playlist", dto);
 	}
 
 	@Override
