@@ -71,7 +71,7 @@
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
                                     <li><a href="<%= request.getContextPath() %>/about.do">음원 관리</a></li> <!-- 음원 관리 -->
-                                    <li><a href="<%= request.getContextPath() %>/about.do">회원 관리</a></li> <!-- 사용자 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/member.do">회원 관리</a></li> <!-- 사용자 관리 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">고객센터 관리</a> <!-- 고객센터 관리 -->
                                         <ul class="dropdown">
                                          <li><a href="<%= request.getContextPath() %>/about.do">공지 사항</a></li>

@@ -54,6 +54,10 @@
 			user_phone = #{user_phone}, user_update = sysdate
 			where user_no = #{user_no}
 	</update>
+	
+	<select id="all" resultType="com.khie.model.MemberDTO">
+	   select * from music_member order by user_no desc
+	</select>
 
    
    

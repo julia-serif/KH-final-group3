@@ -1,5 +1,7 @@
 package com.khie.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,6 +51,12 @@ public class MemberDAOImpl implements MemberDAO{
 	public int updateBoard(MemberDTO dto) {
 		
 		return this.sqlSession.update("modify", dto);
+	}
+
+	@Override
+	public List<MemberDTO> getMemberList() {
+		
+		return this.sqlSession.selectList("all");
 	}
 
 

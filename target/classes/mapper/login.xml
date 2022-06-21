@@ -19,8 +19,6 @@
            and user_pwd = #{user_pwd}
    </select>
    
-<<<<<<< HEAD
-=======
    <select id="pur1" parameterType="int">
    update music_member 
            set user_purchase = 1 
@@ -56,8 +54,11 @@
 			user_phone = #{user_phone}, user_update = sysdate
 			where user_no = #{user_no}
 	</update>
+	
+	<select id="all" resultType="com.khie.model.MemberDTO">
+	   select * from music_member order by user_no desc
+	</select>
 
    
->>>>>>> d5890cdacbf35911ed3477dcc88ad8f5f1732885
    
 </mapper>

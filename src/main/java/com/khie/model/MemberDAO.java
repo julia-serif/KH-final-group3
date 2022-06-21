@@ -1,5 +1,6 @@
 package com.khie.model;
 
+import java.util.List;
 
 public interface MemberDAO {
 
@@ -16,4 +17,6 @@ public interface MemberDAO {
 	public void purchase5(int no) throws Exception;
 	
 	public int updateBoard(MemberDTO dto);
+	
+	public List<MemberDTO> getMemberList();
 }

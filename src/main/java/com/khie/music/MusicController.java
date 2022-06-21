@@ -1,13 +1,10 @@
 package com.khie.music;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.io.PrintWriter;
-=======
+
 import java.util.ArrayList;
->>>>>>> e6f17f4eeb389f114b2f7437cc04f012f751164a
 import java.util.List;
-import java.io.PrintWriter;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -235,6 +232,16 @@ public class MusicController {
 				out.println("</script>");
 			}
 		}
+	
+	@RequestMapping("member.do")
+	public String memberlist(Model model) {
+		
+		List<MemberDTO> list = this.dao2.getMemberList();
+		
+		model.addAttribute("List", list);
+		
+		return "member_list";
+	}
 		
 	}
 	
