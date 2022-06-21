@@ -242,6 +242,14 @@ public class MusicController {
 		
 		return "member_list";
 	}
+	
+	@RequestMapping("user_content.do")
+	public String content(@RequestParam("user_no")int user_no, Model model ) {
+		MemberDTO dto = this.dao2.getMember(user_no);
+		model.addAttribute("Cont", dto);
+		
+		return "user_content";
+	}
 		
 	}
 	

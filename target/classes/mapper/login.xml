@@ -58,6 +58,10 @@
 	<select id="all" resultType="com.khie.model.MemberDTO">
 	   select * from music_member order by user_no desc
 	</select>
+	
+	<select id="content" parameterType="int" resultType="com.khie.model.MemberDTO">
+	  select * from music_member where user_no = #{user_no}
+	</select>
 
    
    

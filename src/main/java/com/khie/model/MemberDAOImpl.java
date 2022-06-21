@@ -59,5 +59,11 @@ public class MemberDAOImpl implements MemberDAO{
 		return this.sqlSession.selectList("all");
 	}
 
+	@Override
+	public MemberDTO getMember(int user_no) {
+		
+		return this.sqlSession.selectOne("content", user_no);
+	}
+
 
 }

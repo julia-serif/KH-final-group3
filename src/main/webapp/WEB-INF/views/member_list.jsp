@@ -36,16 +36,16 @@
     <!-- ##### Contact Area Start ##### -->
     <section class="contact-area section-padding-100-0" >
         <div class="container">
-            <div class="row">
+            <div align="center">
 
-                <div class="col-12 col-lg-3" >
+                <div class="col-12 col-lg-9" >
                     <div class="contact-content mb-100" >
                         <!-- Title -->
                         <table border="1" cellspacing="0" width="400">
        <tr>
-         <th>사원 번호</th>
-         <th>사원 이름</th>
-         <th>담당 업무</th>
+         <th>회원 번호</th>
+         <th>회원 아이디</th>
+         <th>회원 이름</th>
          <th>가입일</th>
        </tr>
        
@@ -84,10 +84,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-9">
-                    <!-- ##### Google Maps ##### -->
-                    
-                </div>
+                
 
             </div>
         </div>

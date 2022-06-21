@@ -106,7 +106,7 @@
 	</select>
 	
 	<select id="newAll" resultType="MusicDTO">
-		select * from music order by m_no desc;
+		select * from music order by m_no desc
 	</select>
 	
 	<select id="top10" resultType="MusicDTO">
