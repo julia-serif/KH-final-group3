@@ -15,13 +15,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.khie.model.MemberDTO;
 import com.khie.model.MusicDAO;
 import com.khie.model.MusicDTO;
 import com.khie.model.MyMusicDAO;
 import com.khie.model.MyMusicDTO;
+import com.khie.model.MusicReplyDAO;
+import com.khie.model.MusicReplyDTO;
 import com.khie.model.PageDTO;
 import com.khie.model.PlaylistDTO;
 import com.khie.model.MemberDAO;
@@ -35,6 +37,8 @@ public class MusicController {
 	private MemberDAO dao2;
 	@Autowired
 	private MyMusicDAO mm_dao;
+	@Autowired
+	private MusicReplyDAO dao3;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
@@ -138,6 +142,31 @@ public class MusicController {
 	@RequestMapping("sitemap.do")
 	public String sitemap() {
 		return "sitemap";
+	}
+	
+
+	@RequestMapping("music_cont.do")
+	public String music_cont() {
+		/*
+		 * MusicDTO dto = this.dao.musicCont(m_no);
+		 * 
+		 * model.addAttribute("Cont", dto);
+		 */
+		return "music_cont";
+
+	}
+	
+	@RequestMapping("reply_write.do")
+	private String insertReply(@RequestParam("mr_no") int mr_no, @RequestParam("content") String content) {
+		
+		MusicReplyDTO dto = new MusicReplyDTO();
+		
+		dto.setMr_cont(content);
+		dto.setMr_no(mr_no);
+		this.dao3.insertBoard(dto);
+		String redirect_url = "redirect:/views/music_cont";
+		return redirect_url;
+		
 	}
 	
 	@RequestMapping("mymusic.do")
@@ -295,6 +324,7 @@ public class MusicController {
 	 */
 	
 	// 로그인 작업입니다.
+
 	@RequestMapping("login_Ok.do")
 	public String login(MemberDTO dto, HttpServletRequest req, HttpServletResponse response) throws Exception{
 
@@ -321,6 +351,7 @@ public class MusicController {
 		session.invalidate();
 		
 		return "redirect:/";
+
 	}
 	
 	@RequestMapping("mypass.do")

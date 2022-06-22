@@ -51,7 +51,10 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
+
 	
+	<select id="searchPlaylist"></select>
+
 	<select id="searchVideo">
 		<![CDATA[
 			select * from
@@ -61,6 +64,7 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
+
 	
 	<select id="searchLyrics" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
@@ -71,7 +75,6 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
-   
    
 	<select id="countAll" resultType="int">
 		select count(*) from music

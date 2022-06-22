@@ -29,6 +29,16 @@ public class MusicDAOImpl implements MusicDAO {
 		
 		return this.sqlSession.selectList("top10");
 	}
+	
+	@Override
+	public MusicDTO musicCont(int m_no) {
+		
+		// return this.sqlSession.selectOne("musicCont", m_no);
+		
+		return null;
+		
+	}
+
 
 	@Override
 	public int insertMusic(MusicDTO dto) {
@@ -70,4 +80,5 @@ public class MusicDAOImpl implements MusicDAO {
 		return this.sqlSession.selectList("search"+pDto.getField(), pDto);
 	}
 
+	
 }
