@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MyMusicDAOImpl implements MyMusicDAO {
 
 	@Autowired
@@ -46,6 +48,11 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	}
 
 	@Override
+	public List<PlaylistDTO> getPlaylistcount(int user_no) {
+		return this.sqlSession.selectList("select_playlistcount", user_no);
+	}
+
+	@Override
 	public int addPlaylist(PlaylistDTO dto) {
 		return this.sqlSession.insert("insert_playlist", dto);
 	}
@@ -53,7 +60,6 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	@Override
 	public int modifyPlaylist(PlaylistDTO dto) {
 		return this.sqlSession.update("update_playlist", dto);
-
 	}
 
 	@Override
@@ -62,9 +68,9 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	}
 
 	@Override
-	public void imageRegister(int playlist_no) {
+	public int imageRegister(PlaylistDTO dto) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override

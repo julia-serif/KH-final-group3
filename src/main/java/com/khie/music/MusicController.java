@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,7 +20,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.khie.model.MemberDTO;
 import com.khie.model.MusicDAO;
 import com.khie.model.MusicDTO;
+import com.khie.model.MyMusicDAO;
+import com.khie.model.MyMusicDTO;
 import com.khie.model.PageDTO;
+import com.khie.model.PlaylistDTO;
 import com.khie.model.MemberDAO;
 
 @Controller
@@ -31,6 +33,8 @@ public class MusicController {
 	private MusicDAO dao;
 	@Autowired
 	private MemberDAO dao2;
+	@Autowired
+	private MyMusicDAO mm_dao;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
@@ -137,10 +141,149 @@ public class MusicController {
 	}
 	
 	@RequestMapping("mymusic.do")
-	public String mymusic() {
+	public String mymusic(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		System.out.println("Member : " + member);
+		int user_no = member.getUser_no();
+		List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
+		List<PlaylistDTO> playlistcount = this.mm_dao.getPlaylistcount(user_no);
+
+		model.addAttribute("Member", member);
+		model.addAttribute("List", playlist);
+		model.addAttribute("Count", playlistcount);
 		return "mymusic";
 	}
 	
+	@RequestMapping("select_like.do") // 에러
+	public String select_like(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		List<MusicDTO> likelist = this.mm_dao.selectLike(user_no);
+		System.out.println("likelist" + likelist);
+		
+		model.addAttribute("List", likelist);
+		return "music_likelist";
+	}
+	@RequestMapping("select_recent.do")
+	public String recent_watch(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		List<MusicDTO> recentlist = this.mm_dao.selectRecent(user_no);
+		
+		model.addAttribute("List", recentlist);
+		return "music_recentlist";
+	}
+	
+	@RequestMapping("select_much.do")
+	public String much_watch(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		List<MusicDTO> muchlist = this.mm_dao.selectMuch(user_no);
+		
+		model.addAttribute("List", muchlist);
+		return "music_muchlist";
+	}
+	
+	@RequestMapping("add_to_playlist.do") // 미구현
+	public void add_to_playlist(PlaylistDTO dto, HttpServletResponse response) throws IOException {
+		int check = this.mm_dao.musicToPlaylist(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('추가 성공')");
+			out.println("location.reload()");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('추가 실패')");
+			out.println("</script>");
+		}
+	}
+	
+	@RequestMapping("playlist_insert.do")
+	public void playlist_insert(PlaylistDTO dto, HttpServletResponse response) throws IOException {
+		int check = this.mm_dao.addPlaylist(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('추가 성공')");
+			out.println("location.reload()");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('추가 실패')");
+			out.println("</script>");
+		}
+	}
+	
+	@RequestMapping("playlist_modify.do") // 미구현
+	public void playlist_modify(PlaylistDTO dto, HttpServletResponse response) throws IOException {
+		int check = this.mm_dao.modifyPlaylist(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		if(check > 0) {
+				out.println("<script>");
+				out.println("alert('수정 성공')");
+				out.println("location.reload()");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("alert('수정 실패')");
+				out.println("</script>");
+			}
+	}
+	
+	@RequestMapping("playlist_delete.do") // 미구현
+	public void playlist_delete(PlaylistDTO dto, HttpServletResponse response) throws IOException {
+		int check = this.mm_dao.deletePlaylist(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		if(check > 0) {
+				out.println("<script>");
+				out.println("alert('삭제 성공')");
+				out.println("location.reload()");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("alert('삭제 실패')");
+				out.println("</script>");
+			}
+	}
+	
+	@RequestMapping("image_register.do") // 미구현
+	public void image_register(PlaylistDTO dto, HttpServletResponse response) throws IOException {
+		int check = this.mm_dao.imageRegister(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		if(check > 0) {
+				out.println("<script>");
+				out.println("alert('수정 성공')");
+				out.println("location.reload()");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("alert('수정 실패')");
+				out.println("</script>");
+			}
+	}
 	
 	@RequestMapping("empty.do")
 	public String empty() {
