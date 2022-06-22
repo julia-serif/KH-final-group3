@@ -25,92 +25,53 @@
 <body>
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
 
-    <!-- ##### Breadcumb Area Start ##### -->
+    <!-- 제목 구역 -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>MyPage</h2>
+            <p>이용권</p>
+            <h2>My Pass</h2>
         </div>
     </section>
-    <!-- ##### Breadcumb Area End ##### -->
+   <!-- 제목 구역 끝-->
 
-    <!-- ##### Blog Area Start ##### -->
+    <!-- 옵션  -->
     <div class="blog-area section-padding-100">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9">
 
-    <!-- Single Post Start -->
-      <div >
-      <!-- Post Thumb -->
-                        
+            <!-- 이용권 옵션 2 설명 -->
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+      <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+            <h4>가족 이용권</h4>         
+             <br>
+        </div>
+       <div class="newsletter-form">
+        <form action="#">
+         <p></p>
+         <button onclick="#" class="btn oneMusic-btn">결제하기</button>
+         &nbsp;&nbsp;&nbsp;&nbsp;
+         <button onclick="#" class="btn oneMusic-btn">취소하기</button>
+          </form>
+         </div>
+       </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  
 
-       <!-- 정보 수정 페이지 -->
-       <div >
-       <c:set var="dto" value="${member }" />                                    
-        <h2> ${dto.getUser_name() }님 정보 수정</h2>
-        
-	   <br>
-	   
-	   <form method="post"
-	      action="<%=request.getContextPath() %>/user_modify_ok.do">
-	   
-	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
-	   	  <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
-	      <table border="1" cellspacing="0" width="450">
-	         <tr>
-	            <th>회원 아이디</th>
-	            <td> <input name="user_id"
-	            				value="${dto.user_id }" readonly> </td>
-	         </tr>
-	        <tr>
-	            <th>회원 비밀번호</th>
-	            <td> <input type="password" name="user_pwd"> </td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 이름</th>
-	            <td> <input name="user_name"
-	            				value="${dto.user_name }" readonly> </td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 성별</th>
-	            <td> <input name="user_gender"
-	            				value="${dto.user_gender }" readonly> </td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 이메일</th>
-	            <td> 
-	               <input name="user_email"
-	            				value="${dto.user_email }">
-	            </td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 연락처</th>
-	            <td> <input name="user_phone"
-	            				value="${dto.user_phone }"> </td>
-	         </tr>
-	         
-	         
-	         
-	         <tr>
-	            <td colspan="2" align="center">
-	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
-	               <input type="reset" value="다시작성">
-	            </td>
-	         </tr>
-	      </table>
-	   </form>
-	</div>
-                        </div>
-                    </div>
-                <!-- 마이페이지 사이드바 -->
+
+                </div>
+                <!-- mypage 사이드바 -->
                 <div class="col-12 col-lg-3">
                     <div class="blog-sidebar-area">
 
-                       
+                        
                         <div class="single-widget-area mb-30">
                             <div class="widget-title">
                                 <h5>MyPage</h5>
@@ -124,7 +85,8 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
+                       
                         <!-- Widget Area -->
                         <div class="single-widget-area mb-30">
                             <a href="#"><img src="resources/img/bg-img/add.gif" alt=""></a>
@@ -134,8 +96,6 @@
                         <div class="single-widget-area mb-30">
                             <a href="#"><img src="resources/img/bg-img/add2.gif" alt=""></a>
                         </div>
-
-                        
 
                     </div>
                 </div>

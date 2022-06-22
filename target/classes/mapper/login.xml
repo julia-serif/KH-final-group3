@@ -19,5 +19,42 @@
            and user_pwd = #{user_pwd}
    </select>
    
+   <select id="pur1" parameterType="int">
+   update music_member 
+           set user_purchase = 1 
+           where user_no = #{user_no};
+   </select>
+   
+   <select id="pur2" parameterType="int">
+   update music_member 
+           set user_purchase = 2 
+           where user_no = #{user_no};
+   </select>
+   
+   <select id="pur3" parameterType="int">
+   update music_member 
+           set user_purchase = 3 
+           where user_no = #{user_no};
+   </select>
+   
+   <select id="pur4" parameterType="int">
+   update music_member 
+           set user_purchase = 4 
+           where user_no = #{user_no};
+   </select>
+   
+   <select id="pur5" parameterType="int">
+   update music_member 
+           set user_purchase = 5 
+           where user_no = #{user_no};
+   </select>
+   
+   <update id="modify" parameterType="com.khie.model.MemberDTO">
+		update music_member set user_email = #{user_email},
+			user_phone = #{user_phone}, user_update = sysdate
+			where user_no = #{user_no}
+	</update>
+
+   
    
 </mapper>

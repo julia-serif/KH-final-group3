@@ -55,10 +55,9 @@
 						<div class="single_image"><img src="resources/img/bg-img/a2.jpg" alt=""></div>
 						<div class="single_info_list">
 							<ul>
-								<li><span>Release date: </span>25 August, 2017</li>
-								<li><span>Tags: </span>chill, techno, electronic</li>
-								<li><span>Producers: </span>Michael Smith, Jenna Williams</li>
-								<li><span>No of songs: </span>12</li>
+								<li><span>발매일 </span>25 August, 2017</li>
+								<li><span>장르</span>chill, techno, electronic</li>
+								<li><span>아티스트</span>Michael Smith, Jenna Williams</li>
 							</ul>
 						</div>
 					</div>
@@ -70,93 +69,7 @@
 						<div class="single_text">
 							<p>곡 소개</p>
 						</div>
-						<div class="single_players">
-							
-							<!-- Single Player -->
-							<div class="single_player_container d-flex flex-column align-items-start justify-content-center">
-								<div class="single_player">
-									<div id="jplayer_1" class="jp-jplayer"></div>
-									<div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
-										<div class="jp-type-single">
-											<div class="player_details d-flex flex-row align-items-center justify-content-start">
-												<div class="jp-details">
-													<div>playing</div>
-													<div class="jp-title" aria-label="title">&nbsp;</div>
-												</div>
-												<div class="jp-controls-holder ml-auto">
-													<button class="jp-play" tabindex="0"></button>
-												</div>
-											</div>
-											<div class="player_controls">
-												<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
-													<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-start">
-														<div><div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div></div>
-														<div class="jp-progress">
-															<div class="jp-seek-bar">
-																<div class="jp-play-bar"></div>
-															</div>
-														</div>
-														<div><div class="jp-duration ml-auto" role="timer" aria-label="duration">&nbsp;</div></div>
-													</div>
-													<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-start ml-auto">
-														<button class="jp-mute" tabindex="0"></button>
-														<div class="jp-volume-bar">
-															<div class="jp-volume-bar-value"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="jp-no-solution">
-												
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-
-							<!-- Single Player -->
-							<div class="single_player_container d-flex flex-column align-items-start justify-content-center">
-								<div class="single_player">
-									<div id="jplayer_2" class="jp-jplayer"></div>
-									<div id="jp_container_2" class="jp-audio" role="application" aria-label="media player">
-										<div class="jp-type-single">
-											<div class="player_details d-flex flex-row align-items-center justify-content-start">
-												<div class="jp-details">
-													<div>playing</div>
-													<div class="jp-title" aria-label="title">&nbsp;</div>
-												</div>
-												<div class="jp-controls-holder ml-auto">
-													<button class="jp-play" tabindex="0">
-													</button>
-												</div>
-											</div>
-											<div class="player_controls">
-												<div class="jp-gui jp-interface d-flex flex-row align-items-center justify-content-start">
-													<div class="jp-controls-holder time_controls d-flex flex-row align-items-center justify-content-start">
-														<div><div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div></div>
-														<div class="jp-progress">
-															<div class="jp-seek-bar">
-																<div class="jp-play-bar"></div>
-															</div>
-														</div>
-														<div><div class="jp-duration ml-auto" role="timer" aria-label="duration">&nbsp;</div></div>
-													</div>
-													<div class="jp-volume-controls d-flex flex-row align-items-center justify-content-start ml-auto">
-														<button class="jp-mute" tabindex="0"></button>
-														<div class="jp-volume-bar">
-															<div class="jp-volume-bar-value"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 
@@ -174,9 +87,8 @@
     	<div class="card my-4">
 			<h5 class="card-header">Leave a Comment:</h5>
 			<div class="card-body">
-				<form name="comment-form" action="<%=request.getContextPath() %>/reply_write.do" method="post" autocomplete="off">
+				<form name="comment-form" action="<%=request.getContextPath() %>/reply_write.do?m_no=${m_no}" method="post" autocomplete="off">
 					<div class="form-group">
-						<input type="hidden" name="mr_no" th:value="*{mr_no}" />
 						<textarea name="content" class="form-control" rows="3"></textarea>
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
