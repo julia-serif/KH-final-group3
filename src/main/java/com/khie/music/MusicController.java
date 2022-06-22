@@ -1,14 +1,10 @@
 package com.khie.music;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.io.PrintWriter;
-=======
 import java.util.ArrayList;
->>>>>>> e6f17f4eeb389f114b2f7437cc04f012f751164a
 import java.util.List;
 import java.io.PrintWriter;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +20,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.khie.model.MemberDTO;
 import com.khie.model.MusicDAO;
 import com.khie.model.MusicDTO;
+import com.khie.model.MyMusicDAO;
+import com.khie.model.MyMusicDTO;
 import com.khie.model.PageDTO;
+import com.khie.model.PlaylistDTO;
 import com.khie.model.MemberDAO;
 
 @Controller
@@ -34,6 +33,8 @@ public class MusicController {
 	private MusicDAO dao;
 	@Autowired
 	private MemberDAO dao2;
+	@Autowired
+	private MyMusicDAO mm_dao;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
@@ -140,10 +141,50 @@ public class MusicController {
 	}
 	
 	@RequestMapping("mymusic.do")
-	public String mymusic() {
+	public String mymusic(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
+		List<PlaylistDTO> playlistcount = this.mm_dao.getPlaylistcount(user_no);
+
+		model.addAttribute("List", playlist);
+		model.addAttribute("Count", playlistcount);
 		return "mymusic";
 	}
 	
+	@RequestMapping("select_like.do")
+	public String select_like(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		List<MusicDTO> likelist = this.mm_dao.selectLike(user_no);
+		System.out.println("likelist" + likelist);
+		
+		model.addAttribute("List", likelist);
+		return "music_likelist";
+	}
+	@RequestMapping("select_recent.do")
+	public String recent_watch(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		List<MusicDTO> recentlist = this.mm_dao.selectRecent(user_no);
+		
+		model.addAttribute("List", recentlist);
+		return "music_recentlist";
+	}
+	
+	@RequestMapping("select_much.do")
+	public String much_watch(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		List<MusicDTO> muchlist = this.mm_dao.selectMuch(user_no);
+		
+		model.addAttribute("List", muchlist);
+		return "music_muchlist";
+	}
 	
 	@RequestMapping("empty.do")
 	public String empty() {

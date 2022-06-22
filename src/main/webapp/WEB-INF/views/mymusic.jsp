@@ -43,7 +43,7 @@
                             <img src="resources/img/bg-img/MM01.png" alt="">
                         </div>
                         <div class="event-text">
-                            <a href="#" class="btn see-more-btn">좋아요 표시한 음악</a>
+                            <a href="<%=request.getContextPath() %>/select_like.do" class="btn see-more-btn">좋아요 표시한 음악</a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                             <img src="resources/img/bg-img/MM02.png" alt="">
                         </div>
                         <div class="event-text">
-                            <a href="#" class="btn see-more-btn">최근 들은 음악</a>
+                            <a href="<%=request.getContextPath() %>/select_recent.do" class="btn see-more-btn">최근 들은 음악</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <img src="resources/img/bg-img/MM03.png" alt="">
                         </div>
                         <div class="event-text">
-                            <a href="#" class="btn see-more-btn">많이 들은 음악</a>
+                            <a href="<%=request.getContextPath() %>/select_much.do" class="btn see-more-btn">많이 들은 음악</a>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 1번　|　01곡</p>
+                                <p>임시　|　01곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
@@ -114,7 +114,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 2번　|　33곡</p>
+                                <p>임시　|　33곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
@@ -133,7 +133,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 3번　|　08곡</p>
+                                <p>임시　|　08곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
@@ -143,8 +143,8 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Single Song Area -->
+				<c:set var="count" value="${Count }" />
+                <c:forEach items="${List }" var="playlist">
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -152,7 +152,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 4번　|　17곡</p>
+                                <p>${playlist.getPlaylist_name() }　|　</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
@@ -162,6 +162,7 @@
                         </div>
                     </div>
                 </div>
+                </c:forEach>
             </div>
         </div>
     </div>
