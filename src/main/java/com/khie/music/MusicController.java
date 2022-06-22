@@ -96,6 +96,15 @@ public class MusicController {
 		return "search" + field;
 	}
 	
+	@RequestMapping("top10.do")
+	public String top10(Model model) {
+		
+		List<MusicDTO> list = this.dao.selectTop();
+	
+		model.addAttribute("list", list);
+		
+		return "top10";
+	}
 	
 	@RequestMapping("events.do")
 	public String events() {
