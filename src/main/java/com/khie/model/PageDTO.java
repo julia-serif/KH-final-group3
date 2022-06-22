@@ -1,5 +1,8 @@
 package com.khie.model;
 
+import lombok.Data;
+
+@Data
 public class PageDTO {
 	
 	//페이징 처리 변수
@@ -38,6 +41,10 @@ public class PageDTO {
 			
 	} //페이징 처리를 위한 인자 생성자
 	
-	
+	public PageDTO(int page, int rowsize, int totalMusic, String field, String keyword) {
+		this(page, rowsize, totalMusic);
+		this.field = field;
+		this.keyword = keyword;
+	}
 
 }

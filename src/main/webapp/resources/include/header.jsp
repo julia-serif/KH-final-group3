@@ -8,7 +8,7 @@
     <style type="text/css">
 .select{
 	width: 50%;
- 	margin-left: 80%;
+ 	margin-left: 70%;
 	
 }
 #key{
@@ -66,6 +66,7 @@
                                     <li><a href="<%= request.getContextPath() %>/music_cont.do">Top100</a></li> <!-- top100 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">New</a></li> <!-- 새 음악 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">Event</a></li> <!-- 이벤트 -->
+				    <li><a href="<%= request.getContextPath() %>/about.do">Notice</a></li> <!-- 공지 -->
                                     <li><a href="<%= request.getContextPath() %>/service.do">MyMusic</a></li> <!-- 내 음악 -->
                                     <li><a href="<%= request.getContextPath() %>/news.do">Other</a></li> <!-- 전체메뉴 -->
                                     <li><a href="#"></a></li> 
@@ -93,16 +94,17 @@
                 </div>
             </div>
         </div>
-         <div class="select">
-                        <form action="<%=request.getContextPath()%>">
-                       <!--   <select name="field">
-                        	<option value="m_name">제목</option>
-                        	<option value="m_artist">가수</option>
-                        	<option value="m_name_and_artist">제목+가수</option>
-                        </select> -->
-                        <input name="keyword" id="key"> &nbsp; &nbsp; <input type="submit" id="search_submit" value="검색">
-                        </form>
-         </div>
+		<div class="select">
+			<form method="post" action="<%= request.getContextPath() %>/search.do">
+           		<fieldset>
+           			<!-- <legend>검색</legend> -->
+           			<input type="hidden" name="field" value="All">
+           			<input type="search" name="keyword" autocomplete="off" id="key">
+           			&nbsp;&nbsp;
+           			<input type="submit" value="검색" id="search_submit">
+           		</fieldset>
+           	</form>
+    	</div>
     </header>
     <!-- ##### Header Area End ##### -->
 </body>

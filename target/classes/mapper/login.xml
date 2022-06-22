@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD(Document Type Definition)
+	 - 작성한 문서가 어떤문서인지에 대해서 정의하는 것 
+	 - 하나의 시스템 내에서 사용할 XML 데엍의 구조를 정의하여 유효성을 점검시 사용함 -->
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.khie.model.MemberDAO">
+   
+   <select id="login" parameterType="com.khie.model.MemberDTO" resultType="com.khie.model.MemberDTO">
+    select 
+      *
+    from
+      music_member
+     where user_id = #{user_id}
+           and user_pwd = #{user_pwd}
+   </select>
+   
+   
+</mapper>

@@ -1,10 +1,41 @@
 package com.khie.music;
 
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.khie.model.MemberDTO;
+import com.khie.model.MusicDAO;
+import com.khie.model.MusicDTO;
+import com.khie.model.MusicReplyDAO;
+import com.khie.model.MusicReplyDTO;
+import com.khie.model.PageDTO;
+import com.khie.model.MemberDAO;
 
 @Controller
 public class MusicController {
+	
+	@Autowired
+	private MusicDAO dao;
+	@Autowired
+	private MemberDAO dao2;
+	@Autowired
+	private MusicReplyDAO dao3;
+	
+	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
+	private int totalMusic = 0;	//DB 상의 전체 음원의 수
+
+
 	@RequestMapping("index.do")
 	public String index() {
 		return "index";
@@ -14,6 +45,29 @@ public class MusicController {
 	public String about() {
 		return "about";
 	}
+	
+	@RequestMapping("search.do")
+	public String search(@RequestParam("field") String field,
+			@RequestParam("keyword") String keyword,
+			Model model) {
+		
+		//검색분류와 검색어에 해당하는 음원의 수를 DB에서 확인하는 작업
+		totalMusic = this.dao.searchMusicCount(field, keyword);
+		
+		PageDTO pdto = new PageDTO(1, rowsize, totalMusic, field, keyword);
+		
+		System.out.println("검색 음원 수: " + pdto.getTotalMusic());
+		System.out.println("검색 전체 블럭 수: " + pdto.getTotalBlock());
+		
+		//검색 시 한페이지당 보여질 음원의 수만큼 검색한 음원을 List로 가져오는 메서드
+		List<MusicDTO> list = this.dao.searchMusicList(pdto);
+		
+		model.addAttribute("searchMusicList", list);
+		model.addAttribute("Paging", pdto);
+		
+		return "music_searchList";
+	}
+	
 	
 	@RequestMapping("events.do")
 	public String events() {
@@ -45,8 +99,57 @@ public class MusicController {
 		return "sitemap";
 	}
 	
+
 	@RequestMapping("music_cont.do")
 	public String music_cont() {
+		/*
+		 * MusicDTO dto = this.dao.musicCont(m_no);
+		 * 
+		 * model.addAttribute("Cont", dto);
+		 */
 		return "music_cont";
+
+	}
+	
+	@RequestMapping("reply_write.do")
+	private String insertReply(@RequestParam("mr_no") int mr_no, @RequestParam("content") String content) {
+		
+		MusicReplyDTO dto = new MusicReplyDTO();
+		
+		dto.setMr_cont(content);
+		dto.setMr_no(mr_no);
+		this.dao3.insertBoard(dto);
+		String redirect_url = "redirect:/views/music_cont";
+		return redirect_url;
+		
+	}
+	
+	@RequestMapping("login_Ok.do")
+	public String login(MemberDTO dto, HttpServletRequest req, HttpServletResponse response) throws Exception{
+
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		HttpSession session = req.getSession();
+		MemberDTO login = this.dao2.login(dto);
+		
+		if(login == null) {
+			session.setAttribute("member", null);
+		}else {
+			session.setAttribute("member", login);
+			
+		} 
+		
+		return "loginmain";
+	}
+	
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) throws Exception{
+		
+		session.invalidate();
+		
+		return "redirect:/";
+
 	}
 }

@@ -68,7 +68,7 @@
 				<div class="col-lg-7 single_content_col">
 					<div class="single_content">
 						<div class="single_text">
-							<p> luctus.</p>
+							<p>곡 소개</p>
 						</div>
 						<div class="single_players">
 							
@@ -127,7 +127,8 @@
 													<div class="jp-title" aria-label="title">&nbsp;</div>
 												</div>
 												<div class="jp-controls-holder ml-auto">
-													<button class="jp-play" tabindex="0"></button>
+													<button class="jp-play" tabindex="0">
+													</button>
 												</div>
 											</div>
 											<div class="player_controls">
@@ -149,10 +150,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="jp-no-solution">
-												<span>Update Required</span>
-												To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>
-											</div>
+											
 										</div>
 									</div>
 
@@ -165,10 +163,29 @@
 			</div>
 		</div>
 	</div>
+	
+	<audio preload="auto" controls>
+         <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
+    </audio>
     
     </section>
     
-    
+    <section>
+    	<div class="card my-4">
+			<h5 class="card-header">Leave a Comment:</h5>
+			<div class="card-body">
+				<form name="comment-form" action="<%=request.getContextPath() %>/reply_write.do" method="post" autocomplete="off">
+					<div class="form-group">
+						<input type="hidden" name="mr_no" th:value="*{mr_no}" />
+						<textarea name="content" class="form-control" rows="3"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+		
+		
+    </section>
     
     
     
