@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +118,7 @@
                 <!-- ========== Milestones ========== -->
                 <div class="col-12">
                     <div class="elements-title mb-70">
-                        <h2>Milestone</h2>
+                        <h2>totalMusic</h2>
                     </div>
                 </div>
 
@@ -192,7 +193,45 @@
                
                     </div>
                 </div>
+  				<!-- top10음원 Area -->
+  				<div align="center">
+  				<c:set value="${list}" var="list"/>
+  				<c:set value="${1}" var="count"/>
+  				<c:if test="${! empty list}">
+  					<c:forEach items="${list}" var="top">
+  						<c:if test="${count == 1 }">
+  						<h5 align="center">오늘의 TOP Music</h5>
+  						<a>
+  							<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" height="5%">
+                                    <h3>${top.m_name}</h3>
+                        </a>
+                                <p>${top.m_artist}</p>
                                 
+                                <c:set value="${count + 1 }" var="count"/>
+  						</c:if>
+  						<c:if test="${cont != 1 }">
+  						<table>
+  							<tr>
+  								<td> ${count}</td>
+  								<td>
+  									<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" height="10%">
+                          			  <div class="album-info">
+                            		    <a href="#">
+                              		      <h5>${top.m_name}</h5>
+                             			   </a>
+                             		   <p>${top.m_artist}</p>
+                            	 </td>
+                             </tr>  
+                           </table>
+                            <c:set value="${count + 1 }" var="count"/>
+  						</c:if>
+  					</c:forEach>
+  				</c:if> 
+  				</div>
+  				<!-- top10음원 Area end-->
+                        </div>
+                    </div>
+                </div>          
             </div>
         </div>
     </section>
