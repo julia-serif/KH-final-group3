@@ -10,7 +10,9 @@
     
 <mapper namespace="MyMusicDAO">
 	<select id="select_playlist" parameterType="int" resultType="PlaylistDTO">
-		select distinct playlist_no, playlist_name, playlist_thumbnail from music_playlist where user_no = #{user_no} order by playlist_no
+		select distinct playlist_no, playlist_name, playlist_thumbnail
+		from music_playlist
+		where user_no = #{user_no} order by playlist_no
 	</select>
 	
 	<select id="select_playlistcount" parameterType="int" resultType="PlaylistDTO">
@@ -32,5 +34,53 @@
 	<select id="much_watch" parameterType="int" resultType="MusicDTO">
 		select m.* from music m, music_by_user u where m.m_no = u.m_no and user_no = #{user_no} order by play_counts desc, u.m_no
 	</select>
+	
+	<update id="like" parameterType="MyMusicDTO">
+		<![CDATA[
+			update music_by_user set play_thumbs = case
+				when play_thumbs = 'true' then 'false'
+				when play_thumbs = 'false' then 'true'
+			end
+			where user_no = #{user_no} and m_no = #{music_no}
+		]]>
+	</update>
 
+	<update id="watch_history" parameterType="MyMusicDTO">
+		update music_by_user
+		set play_date = sysdate, play_counts = play_counts + 1
+		where user_no = #{user_no} and m_no = #{music_no}
+	</update>
+	
+	<insert id="first_watch" parameterType="MyMusicDTO">
+		<![CDATA[
+			insert into music_by_user
+			select #{user_no}, #{music_no}, sysdate, 'false', 0 from dual
+			where not exists (select * from music_by_user where user_no = #{user_no} and m_no = #{music_no})
+		]]>
+	</insert>
+	
+ 	<insert id="to_playlist" parameterType="PlaylistDTO">
+		<![CDATA[
+			<selectKey resultType="int" parameterType="PlaylistDTO" keyProperty="count" order="BEFORE">
+				select count(*) from music_playlist where user_no = #{user_no} and playlist_no = #{playlist_no} and m_order > 0
+			</selectKey>
+			insert into music_playlist values
+			(#{user_no}, #{m_no}, #{count}+1, #{playlist_no}, #{playlist_name}, #{playlist_thumbnail})
+		]]>
+	</insert>
+	
+	<insert id="insert_playlist" parameterType="PlaylistDTO">
+		<selectKey resultType="int" keyProperty="count" order="BEFORE">
+			select max(playlist_no) from music_playlist where user_no = #{user_no}
+		</selectKey>
+		insert into music_playlist values(#{user_no}, 0, 0, #{count}+1, #{playlist_name}, '')
+	</insert>
+	
+	<update id="update_playlist" parameterType="PlaylistDTO">
+		update music_playlist set playlist_name = #{playlist_name} where user_no = #{user_no} and playlist_no = #{playlist_no}
+	</update>
+	
+	<delete id="delete_playlist" parameterType="PlaylistDTO">
+		delete from music_playlist where user_no = #{user_no} and playlist_no = #{playlist_no}
+	</delete>
 </mapper>
