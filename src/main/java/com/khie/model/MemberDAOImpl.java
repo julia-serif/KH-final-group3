@@ -65,5 +65,11 @@ public class MemberDAOImpl implements MemberDAO{
 		return this.sqlSession.selectOne("content", user_no);
 	}
 
+	@Override
+	public int insertMember(MemberDTO dto) {
+		
+		return this.sqlSession.insert("add", dto);
+	}
+
 
 }

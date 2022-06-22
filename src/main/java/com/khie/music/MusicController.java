@@ -243,6 +243,36 @@ public class MusicController {
 		return "member_list";
 	}
 	
+	@RequestMapping("user_insert.do")
+	public String insert() {
+		
+		return "member_insert";
+	}
+	
+	@RequestMapping("user_insert_ok.do")
+	public void insertOk(MemberDTO dto,
+			HttpServletResponse response) throws IOException {
+		
+		int check = this.dao2.insertMember(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('회원 등록 성공')");
+			out.println("location.href='member.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('회원 등록 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+			
+		}
+	}
+	
 	@RequestMapping("user_content.do")
 	public String content(@RequestParam("user_no")int user_no, Model model ) {
 		MemberDTO dto = this.dao2.getMember(user_no);

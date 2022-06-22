@@ -59,6 +59,12 @@
 	   select * from music_member order by user_no desc
 	</select>
 	
+	<insert id="add" parameterType="com.khie.model.MemberDTO">
+	 insert into music_member values((select max(user_no) from music_member) +1,
+	    #{user_id}, #{user_name}, #{user_pwd}, #{user_gender}, 
+	    #{user_email}, #{user_phone}, 0, sysdate,'',2)
+	</insert>
+	
 	<select id="content" parameterType="int" resultType="com.khie.model.MemberDTO">
 	  select * from music_member where user_no = #{user_no}
 	</select>
