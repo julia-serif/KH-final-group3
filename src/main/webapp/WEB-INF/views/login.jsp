@@ -147,7 +147,7 @@
                                     <input type="password" class="form-control" name="user_pwd" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요">
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
-                                <input type="button" class="btn oneMusic-btn mt-30" onclick="location.href='member_insert.do'" value="Register"></button>
+                                <input type="button" class="btn oneMusic-btn mt-30" onclick="location.href='user_insert.do'" value="Register"></button>
                             
                             </form>
                         </div>
