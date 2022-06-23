@@ -74,6 +74,9 @@
 						
 					</div>
 				</div>
+				
+				<jsp:include page="/resources/include/search_widget.jsp"></jsp:include>
+				
 			</div>
 		</div>
 	</div>
