@@ -5,16 +5,18 @@ import java.util.List;
 
 public interface NoticeDAO {
 
-    List<NoticeDTO> getMemberList();
+    List<NoticeDTO> getNoticeList();
 	
-	int insertMember(NoticeDTO dto);
+	int insertNotice(NoticeDTO dto);
 	
-	NoticeDTO getMember(int num);
+	public void readCount(int music_no);
 	
-	int updateMember(NoticeDTO dto);
+	NoticeDTO getNotice(int music_no);
 	
-	int deleteMember(int num);
+	int updateNotice(NoticeDTO dto);
 	
-	void updateSequence(int num);
+	int deleteNotice(int music_no);
+	
+	void updateSequence(int music_no);
 
 }

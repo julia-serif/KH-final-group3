@@ -473,7 +473,7 @@ public class MusicController {
 	
 	public String list(Model model) {
 		
-		   List<NoticeDTO> list = this.dao4.getMemberList();
+		   List<NoticeDTO> list = this.dao4.getNoticeList();
 	     	
 		   model.addAttribute("List", list);
 		   
@@ -485,6 +485,43 @@ public class MusicController {
 		
 		return "notice_write";
 	}
+	
+	@RequestMapping("notice_write_ok.do")
+	public void writeOk(NoticeDTO dto,
+			HttpServletResponse response) throws IOException {
+		
+		int check = this.dao4.insertNotice(dto);
+		
+        response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('공지사항 등록 성공')");
+			out.println("location.href='notice_list.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('공지사항 등록 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+			
+		}
+	}
+	
+	@RequestMapping("notice_content.do")
+	public String notice_content(@RequestParam("music_no") int music_no, Model model ) {
+		this.dao4.readCount(music_no);
+		NoticeDTO dto = this.dao4.getNotice(music_no);
+		
+		
+		model.addAttribute("content1", dto);
+		
+		return "notice_content";
+	}
+	
+	
 		
 	}
 	

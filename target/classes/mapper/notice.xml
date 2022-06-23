@@ -14,4 +14,19 @@
 		select * from music_notice order by music_no desc
 	</select>
 	
+	<insert id="write" parameterType="com.khie.model.NoticeDTO">
+	insert into music_notice values((select max(music_no) from music_notice) +1,
+           #{music_writer}, #{music_title}, #{music_cont}, #{music_pwd},default,sysdate,'')
+	</insert>
+	
+	<update id="read" parameterType="int">
+	   update music_notice set music_hit = music_hit + 1
+			where music_no = #{music_no}
+	</update>
+	
+	<select id="cont" parameterType="int" resultType="com.khie.model.NoticeDTO">
+	select * from music_notice where music_no = #{music_no}
+	</select>
+	
+	
 </mapper>

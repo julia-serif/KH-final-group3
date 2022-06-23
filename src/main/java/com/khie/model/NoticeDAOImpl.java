@@ -13,37 +13,44 @@ public class NoticeDAOImpl implements NoticeDAO{
 	private SqlSessionTemplate SqlSession;
 
 	@Override
-	public List<NoticeDTO> getMemberList() {
-		return this.SqlSession.selectList("all");
+	public void updateSequence(int music_no) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public int insertMember(NoticeDTO dto) {
+	public List<NoticeDTO> getNoticeList() {
+	return this.SqlSession.selectList("all");
+	}
+
+	@Override
+	public int insertNotice(NoticeDTO dto) {
+		
+		return this.SqlSession.insert("write", dto);
+	}
+
+	@Override
+	public NoticeDTO getNotice(int music_no) {
+
+		return this.SqlSession.selectOne("cont", music_no);
+	}
+
+	@Override
+	public int updateNotice(NoticeDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public NoticeDTO getMember(int num) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateMember(NoticeDTO dto) {
+	public int deleteNotice(int music_no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int deleteMember(int num) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void updateSequence(int num) {
-		// TODO Auto-generated method stub
+	public void readCount(int music_no) {
+		
+		this.SqlSession.update("read", music_no);
 		
 	}
 	
