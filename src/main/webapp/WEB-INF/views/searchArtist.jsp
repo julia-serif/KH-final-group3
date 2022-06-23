@@ -41,34 +41,28 @@
 					<c:set var="list" value="${searchMusicList }" />
 					<c:set var="paging" value="${Paging }" />
 					
-					<div class="new-hits-area mb-100">
+					<div class="popular-artists-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>총 ${resultNum }건</p>
-                            <h2>곡</h2>
+                            <h2>아티스트</h2>
                         </div>
                         
                         <c:if test="${!empty list }">
 							<c:forEach items="${list }" var="music">
-		                        <!-- Single Top Item -->
-		                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
-		                            <div class="first-part d-flex align-items-center">
-		                                <div class="thumbnail">
-		                                    <img src="<%= request.getContextPath() %>/resources/img/album-img/${music.getM_image() }" alt="${music.getM_album() } 앨범 재킷">
-		                                </div>
-		                                <div class="content-">
-		                                    <h6>${music.getM_name() }</h6>
-		                                    <p>${music.getM_album() }  |  ${music.getM_artist() }</p>
-		                                </div>
+								<!-- Single Artist -->
+		                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
+		                            <div class="thumbnail">
+		                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa1.jpg" alt="">
 		                            </div>
-		                            <audio preload="auto" controls>
-		                                <source src="<%= request.getContextPath() %>/resources/audio/${music.getM_audio() }">
-		                            </audio>
+		                            <div class="content-">
+		                                <p>${music.getM_artist() }</p>
+		                            </div>
 		                        </div>
                         	</c:forEach>
 						</c:if>
                         
                         <c:if test="${empty list }">
-							<h6>검색된 음원이 없습니다.</h6>
+							<h6>아티스트의 검색 결과가 없습니다.</h6>
 						</c:if>
 						
 					</div>

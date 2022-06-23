@@ -44,7 +44,7 @@
 					<div class="new-hits-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>총 ${resultNum }건</p>
-                            <h2>곡</h2>
+                            <h2>동영상</h2>
                         </div>
                         
                         <c:if test="${!empty list }">
@@ -52,23 +52,18 @@
 		                        <!-- Single Top Item -->
 		                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="first-part d-flex align-items-center">
-		                                <div class="thumbnail">
-		                                    <img src="<%= request.getContextPath() %>/resources/img/album-img/${music.getM_image() }" alt="${music.getM_album() } 앨범 재킷">
-		                                </div>
-		                                <div class="content-">
-		                                    <h6>${music.getM_name() }</h6>
-		                                    <p>${music.getM_album() }  |  ${music.getM_artist() }</p>
-		                                </div>
+		                                <iframe width="640" height="360" src="${music.getM_mv() }" title="${music.getM_name() }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		                            </div>
-		                            <audio preload="auto" controls>
-		                                <source src="<%= request.getContextPath() %>/resources/audio/${music.getM_audio() }">
-		                            </audio>
+		                            <div class="content-">
+	                                    <h6>${music.getM_name() }</h6>
+	                                    <p>${music.getM_artist() }</p>
+	                                </div>
 		                        </div>
                         	</c:forEach>
 						</c:if>
                         
                         <c:if test="${empty list }">
-							<h6>검색된 음원이 없습니다.</h6>
+							<h6>동영상의 검색 결과가 없습니다.</h6>
 						</c:if>
 						
 					</div>

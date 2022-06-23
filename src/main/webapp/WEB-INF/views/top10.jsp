@@ -6,7 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta charset="UTF-8">
+<style type="text/css">
+
+#addPlaylist {
+	background-color: black;
+	color: white;
+
+}
+
+#addPlaylist :hover {
+	background: white;
+	color: black;
+	border: 0.5 px;
+}
+#num{
+	font-size: 3em;
+}
+
+</style>
+
+
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,8 +57,8 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb2.jpg);">
         <div class="bradcumbContent">
-            <p>See what’s new</p>
-            <h2>Elements</h2>
+            <p>ONE SOUND 차트</p>
+            <h2>TOP10</h2>
         </div>
     </div>
     <!-- ##### Breadcumb Area End ##### -->
@@ -125,13 +144,12 @@
                 <div class="col-12">
                     <div class="oneMusic-cool-facts-area">
                         <div class="row">
-
                             <!-- Single Cool Facts -->
                             <div class="col-12 col-sm-6 col-lg-2">
                                 <div class="single-cool-fact mb-100">
                                     <div class="scf-text">
                                         <h2>+<span class="counter">1000</span></h2>
-                                        <p>Live Concerts</p>
+                                        <p>&nbsp;&nbsp; Live Concerts</p>
                                     </div>
                                 </div>
                             </div>
@@ -140,8 +158,8 @@
                             <div class="col-12 col-sm-6 col-lg-2">
                                 <div class="single-cool-fact mb-100">
                                     <div class="scf-text">
-                                        <h2><span class="counter">19</span>k</h2>
-                                        <p>Followers on FB</p>
+                                        <h2><span class="counter">19</span>K</h2>
+                                        <p>user for ONE SOUND</p>
                                     </div>
                                 </div>
                             </div>
@@ -200,26 +218,52 @@
   				<c:if test="${! empty list}">
   					<c:forEach items="${list}" var="top">
   						<c:if test="${count == 1 }">
-  						<h5 align="center">오늘의 TOP Music</h5>
+  						<h3 align="center">오늘의 TOP MUSIC</h3>
   						<a>
-  							<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" height="5%">
-                                    <h3>${top.m_name}</h3>
+  							<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}"  width="200" height="200" />
+                                    <p>${top.m_name}</p>
                         </a>
-                                <p>${top.m_artist}</p>
+                                <b>${top.m_artist}</b>
                                 
+                                <a href="#">
+                                <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="70" height="70" />
+                                </a>
+                                &nbsp; &nbsp; &nbsp;
+                                 <a href="#">
+                                <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="70" height="70" />
+                                </a>
+                                <br><br>
                                 <c:set value="${count + 1 }" var="count"/>
   						</c:if>
   						<c:if test="${cont != 1 }">
-  						<table>
+  						<table width="50%">
   							<tr>
-  								<td> ${count}</td>
-  								<td>
-  									<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" height="10%">
-                          			  <div class="album-info">
-                            		    <a href="#">
-                              		      <h5>${top.m_name}</h5>
-                             			   </a>
-                             		   <p>${top.m_artist}</p>
+  								<td width="10%"><p id="num"> ${count}</p></td>
+  								<td width="20%">
+  									<a href="#">
+  									<!-- 음원 상세페이지로 이동 -->
+  										<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="100" height="100" />
+                          			</a>
+                            	</td>
+                            	<td width="45%">
+                              		     <a href="#">
+                              		     <!-- 음원 상세페이지로 이동 -->
+                              		     	 <h5> ${top.m_name}</h5>
+     
+                             		   		<p> ${top.m_artist}</p>
+                             		   	</a>
+                            	 </td>
+                            	 <td>
+                            	  <a href="#">
+                            	  <!-- 플레이 리스트에 담기 -->
+                                <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
+                                </a>
+                                &nbsp; &nbsp; &nbsp;
+                                 <a href="#">
+                                 <!-- 뮤비 페이지로 이동 -->
+                                <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
+                                </a>
+                            	 
                             	 </td>
                              </tr>  
                            </table>
@@ -229,13 +273,12 @@
   				</c:if> 
   				</div>
   				<!-- top10음원 Area end-->
-                        </div>
-                    </div>
-                </div>          
             </div>
         </div>
     </section>
+    <br><br><br>
     <!-- ***** Elements Area End ***** -->
+
 
     
     <!-- ##### Footer Area Start ##### -->

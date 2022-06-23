@@ -9,18 +9,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="MusicDAO">
-
-	<select id="searchAll" parameterType="PageDTO" resultType="MusicDTO">
-		<![CDATA[
-			select * from
-				(select m.*, row_number()
-					over(order by m_no desc) rnum from music m
-					where m_name like '%' || #{keyword} || '%' or
-						m_album like '%' || #{keyword} || '%' or
-						m_artist like '%' || #{keyword} || '%')
-					where rnum >= #{startNo} and rnum <= #{endNo}
-		]]>
-	</select>
 	
 	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
@@ -51,16 +39,14 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
-
 	
-	<select id="searchPlaylist"></select>
-
-	<select id="searchVideo">
+	<select id="searchVideo" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
 				(select m.*, row_number()
 					over(order by m_no desc) rnum from music m
-					where m_name like '%' || #{keyword} || '%')
+					where m_name like '%' || #{keyword} || '%' and
+					m_mv is not null)
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
@@ -71,17 +57,12 @@
 			select * from
 				(select m.*, row_number()
 					over(order by m_no desc) rnum from music m
-					where m_lyrics like '%' || #{keyword} || '%')
+					where m_lyrics like '%' || #{keyword} || '%' or
+					m_name like '%' || #{keyword} || '%')
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
    
-	<select id="countAll" resultType="int">
-		select count(*) from music
-			where m_name like '%' || #{keyword} || '%' or
-				m_album like '%' || #{keyword} || '%' or
-				m_artist like '%' || #{keyword} || '%'
-	</select>
 	
 	<select id="countSong" resultType="int">
 		select count(*) from music
@@ -98,14 +79,16 @@
 			where m_artist like '%' || #{keyword} || '%'
 	</select>
 	
-	<select id="countVideo">
+	<select id="countVideo" resultType="int">
 		select count(*) from music
-			where m_name like '%' || #{keyword} || '%'
+			where m_name like '%' || #{keyword} || '%' and
+			m_mv is not null
 	</select>
 	
 	<select id="countLyrics" resultType="int">
 		select count(*) from music
-			where m_lyrics like '%' || #{keyword} || '%'
+			where m_lyrics like '%' || #{keyword} || '%' or
+			m_name like '%' || #{keyword} || '%'
 	</select>
 	
 	<select id="newAll" resultType="MusicDTO">

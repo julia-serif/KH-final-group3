@@ -64,6 +64,7 @@ public class MusicController {
 			Model model) {
 		
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("field", field);
 		
 		if(field.equals("All")) {
 			//모든 검색분류에 대하여 검색어에 해당하는 쿼리를 DB에서 실행하는 작업.
@@ -72,11 +73,11 @@ public class MusicController {
 			ArrayList<List<MusicDTO>> list = new ArrayList<List<MusicDTO>>();	//해당 검색분류에서 한 페이지에 보여질 튜플의 수를 저장하는 List
 			int[] results = new int[5];
 
-			for(int i=0; i<1; i++) {	//이후 5까지 돌아가도록 고칠것
+			for(int i=0; i<5; i++) {
 				totalMusic = this.dao.searchMusicCount(fields[i], keyword);
 				pdto[i] = new PageDTO(1, rowsize, totalMusic, fields[i], keyword);
 				
-				System.out.println(fields[i]+"으로 검색 음원 수: " + pdto[i].getTotalMusic());
+				System.out.println(fields[i]+"으로 검색 건 수: " + pdto[i].getTotalMusic());
 				System.out.println(fields[i]+"으로 검색 전체 블럭 수: " + pdto[i].getTotalBlock());
 				
 				list.add(this.dao.searchMusicList(pdto[i]));
