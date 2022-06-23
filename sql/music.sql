@@ -1,5 +1,5 @@
 insert into music values(1, 'TOMBOY', '', 'I NEVER DIE', '(여자)아이들', default,
-'dummy-audio.mp3', 'https://youtu.be/Jh4QFaPmdss', 'Q_80,0.jpg', default, '174', 
+'dummy-audio.mp3', 'https://www.youtube.com/embed/Jh4QFaPmdss', 'Q_80,0.jpg', default, '174', 
 'Look at you 넌 못 감당해 날
 Ya took off hook
 기분은 Coke like brrr

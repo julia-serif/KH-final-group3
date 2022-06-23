@@ -51,11 +51,8 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
-
 	
-	<select id="searchPlaylist"></select>
-
-	<select id="searchVideo">
+	<select id="searchVideo" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
 				(select m.*, row_number()
@@ -98,7 +95,7 @@
 			where m_artist like '%' || #{keyword} || '%'
 	</select>
 	
-	<select id="countVideo">
+	<select id="countVideo" resultType="int">
 		select count(*) from music
 			where m_name like '%' || #{keyword} || '%'
 	</select>
