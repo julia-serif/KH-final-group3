@@ -175,6 +175,14 @@
 							</c:when>
 							
 							<c:when test="${status.index == 4 }">
+							
+							<div class="weeks-top-area mb-0" style="pointer-events: none;">
+								<div class="section-heading text-left mb-0 wow fadeInUp" data-wow-delay="50ms">
+		                            <p>총 ${resultNum[status.index] }건</p>
+		                            <h2>가사</h2>
+                        		</div>
+							</div>
+							
 								<div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
 									<c:if test="${!empty list }">
 										<c:forEach items="${list }" var="music">
