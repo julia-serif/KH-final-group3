@@ -152,12 +152,13 @@
 					                        <!-- Single Top Item -->
 					                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 					                            <div class="first-part d-flex align-items-center">
-					                                <iframe width="640" height="360" src="${music.getM_mv() }" title="${music.getM_name() }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					                                <iframe src="${music.getM_mv() }" title="${music.getM_name() }" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					                            	<div class="content-">
+					                                    <h6>${music.getM_name() }</h6>
+					                                    <p>${music.getM_artist() }</p>
+					                                </div>
 					                            </div>
-					                            <div class="content-">
-				                                    <h6>${music.getM_name() }</h6>
-				                                    <p>${music.getM_artist() }</p>
-				                                </div>
+					                            
 					                        </div>
 			                        	</c:forEach>
 									</c:if>
