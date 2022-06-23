@@ -80,7 +80,7 @@
 							</c:when>
 							
 							<c:when test="${status.index == 1 }">
-								<div class="weeks-top-area mb-100">
+								<div class="weeks-top-area mb-100" style="background-color: #f5f9fa; border-color: #d8d8d8;">
 									<c:if test="${!empty list }">
 										<c:forEach items="${list }" var="music">
 											<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
