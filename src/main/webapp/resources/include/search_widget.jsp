@@ -59,10 +59,10 @@
 	                </li>
 	                
 	                <li>
-	                	<c:if test="${field == 'Video' }">
+	                	<c:if test="${field == 'Lyrics' }">
 		            		<a href="<%= request.getContextPath() %>/search.do?field=Lyrics&keyword=${keyword}" style="font-weight: 900">가사</a>
 		            	</c:if>
-		            	<c:if test="${field != 'Video' }">
+		            	<c:if test="${field != 'Lyrics' }">
 		            		<a href="<%= request.getContextPath() %>/search.do?field=Lyrics&keyword=${keyword}">가사</a>
 		            	</c:if>
 	                </li>
