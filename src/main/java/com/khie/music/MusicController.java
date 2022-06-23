@@ -60,6 +60,7 @@ public class MusicController {
 			Model model) {
 		
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("field", field);
 		
 		if(field.equals("All")) {
 			//모든 검색분류에 대하여 검색어에 해당하는 쿼리를 DB에서 실행하는 작업.
