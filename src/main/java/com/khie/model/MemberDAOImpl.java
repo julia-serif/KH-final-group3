@@ -56,7 +56,7 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public List<MemberDTO> getMemberList() {
 		
-		return this.sqlSession.selectList("all");
+		return this.sqlSession.selectList("every");
 	}
 
 	@Override

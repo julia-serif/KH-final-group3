@@ -55,7 +55,7 @@
 			where user_no = #{user_no}
 	</update>
 	
-	<select id="all" resultType="com.khie.model.MemberDTO">
+	<select id="every" resultType="com.khie.model.MemberDTO">
 	   select * from music_member order by user_no desc
 	</select>
 	

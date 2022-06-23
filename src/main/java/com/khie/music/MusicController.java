@@ -22,6 +22,8 @@ import com.khie.model.MusicDAO;
 import com.khie.model.MusicDTO;
 import com.khie.model.MyMusicDAO;
 import com.khie.model.MyMusicDTO;
+import com.khie.model.NoticeDAO;
+import com.khie.model.NoticeDTO;
 import com.khie.model.MusicReplyDAO;
 import com.khie.model.MusicReplyDTO;
 import com.khie.model.PageDTO;
@@ -39,6 +41,8 @@ public class MusicController {
 	private MyMusicDAO mm_dao;
 	@Autowired
 	private MusicReplyDAO dao3;
+	@Autowired
+	private NoticeDAO dao4;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
@@ -462,6 +466,23 @@ public class MusicController {
 		model.addAttribute("Cont", dto);
 		
 		return "user_content";
+	}
+	
+	@RequestMapping("notice_list.do")
+	
+	public String list(Model model) {
+		
+		   List<NoticeDTO> list = this.dao4.getMemberList();
+	     	
+		   model.addAttribute("List", list);
+		   
+	     	return "notice_list";
+	}
+	
+	@RequestMapping("notice_write.do")
+	public String write() {
+		
+		return "notice_write";
 	}
 		
 	}

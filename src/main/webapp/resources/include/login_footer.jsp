@@ -79,7 +79,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                     <li><a href="<%= request.getContextPath() %>/about.do">회원 관리</a></li> <!-- 사용자 관리 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">고객센터 관리</a> <!-- 고객센터 관리 -->
                                         <ul class="dropdown">
-                                         <li><a href="<%= request.getContextPath() %>/about.do">공지 사항</a></li>
+                                         <li><a href="<%= request.getContextPath() %>/notice.do">공지 사항</a></li>
                                          <li><a href="<%= request.getContextPath() %>/about.do">Q/A 게시판</a></li>
                                          <li><a href="<%= request.getContextPath() %>/about.do">도움말</a></li>
                                        </ul>
