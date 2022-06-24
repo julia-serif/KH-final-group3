@@ -7,6 +7,7 @@ public interface MusicDAO {
 	List<MusicDTO> selectAll();					//전체 목록 조회(최근 추가순으로)
 	List<MusicDTO> selectSomeMusic(PageDTO pDto);	//전체 목록 조회 중 일부 조회
 	List<MusicDTO> selectTop();					//상위 10개 조회
+	int selectTotalCont();						// 음원 총 개수 확인
 	MusicDTO musicCont(int m_no);				//음악 상세 조회
 	int insertMusic(MusicDTO dto);				//새 음악 삽입
 	int updateMusic(MusicDTO dto);				//음악 상세 정보 수정
