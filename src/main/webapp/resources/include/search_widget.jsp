@@ -73,23 +73,24 @@
 	    <!-- Widget Area -->
 	    <div class="single-widget-area mb-30">
 	        <div class="widget-title">
-	            <h5>HOT Album</h5>
+	            <h5>TOP 10</h5>
 	        </div>
 	        <div class="widget-content">
-	            <ul>
-	                <li><a href="#">February 2018</a></li>
-	                <li><a href="#">March 2018</a></li>
-	                <li><a href="#">April 2018</a></li>
-	                <li><a href="#">May 2018</a></li>
-	                <li><a href="#">June 2018</a></li>
-	            </ul>
+	        	<c:set var="toplist" value="${topList}"/>
+	        	<c:if test="${! empty toplist }">
+		            <ul>
+		            	<c:forEach items="${toplist}" var="top">
+		            		<li><a href="#">${top.m_name}</a></li>
+		            	</c:forEach>
+		            </ul>
+	            </c:if>
 	        </div>
 	    </div>
 	
 	    <!-- Widget Area -->
 	    <div class="single-widget-area mb-30">
 	        <div class="widget-title">
-	            <h5>실시간 차트</h5>
+	            <h5>급상승 검색어</h5>
 	        </div>
 	        <div class="widget-content">
 	            <ul class="tags">
