@@ -29,9 +29,9 @@
 		
             <!-- top1 음원 Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
-            <c:set var="newlist" value="${newList }" />
-                <c:if test="${!empty newlist }">
-                <c:forEach items="${newlist }" var="top1" begin="0" end="0">
+            <c:set var="toplist" value="${topList }" />
+                <c:if test="${!empty toplist }">
+                <c:forEach items="${toplist }" var="top1" begin="0" end="0">
                 <!-- Slide Img -->
                 <div class="slide-img bg-img" style="background-image: url(resources/img/album-img/${top1.m_image});"></div>
                 <!-- Slide Content -->
