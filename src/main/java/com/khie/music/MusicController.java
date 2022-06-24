@@ -124,7 +124,7 @@ public class MusicController {
 	public String newMusic(HttpServletRequest request,Model model) {
 		//새 음원 페이지로 이동
 		int page;
-		if(request.getParameter("page").trim() != null  ) {
+		if(request.getParameter("page") != null  ) {
 			page = Integer.parseInt(request.getParameter("page").trim());
 		}else {
 			page = 1;
