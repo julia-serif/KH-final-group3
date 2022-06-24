@@ -6,7 +6,6 @@
 <head>
 </head>
 <body>
-	<jsp:include page="/resources/include/header.jsp"></jsp:include>
 	<c:set var="list" value="${List }" />
 	<table border="3" cellspacing="0" width="600" bgcolor="white">
 		<tr bgcolor="lightpink">
@@ -22,6 +21,5 @@
 			</c:forEach>
 		</c:if>
 		</table>
-	<jsp:include page="/resources/include/footer.jsp"></jsp:include>
 </body>
 </html>
