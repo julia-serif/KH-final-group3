@@ -106,6 +106,9 @@ public class MusicController {
 			model.addAttribute("Paging", pdto);
 		}
 		
+		List<MusicDTO> topList = this.dao.selectTop();
+		model.addAttribute("topList", topList);
+		
 		return "search" + field;
 	}
 	
