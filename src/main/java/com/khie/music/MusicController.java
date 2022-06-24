@@ -493,8 +493,34 @@ public class MusicController {
 		return "user_content";
 	}
 	
-	@RequestMapping("notice_list.do")
+	@RequestMapping("user_delete.do")
+	public void user_delete(@RequestParam("user_no") int user_no,
+	HttpServletResponse response)throws IOException{
+		
+
+   int check = this.dao2.deleteMember(user_no);
+
+   response.setContentType("text/html; charset=UTF-8");
+   
+   PrintWriter out = response.getWriter();
+
+   if(check > 0) {
+	   this.dao2.updateSequence(user_no);
+	  
+	    out.println("<script>");
+		out.println("alert('회원 삭제 성공!!!')");
+		out.println("location.href='member.do'");
+		out.println("</script>");
+	}else {
+		out.println("<script>");
+		out.println("alert('회원 삭제 실패')");
+		out.println("history.back()");
+		out.println("</script>");
+	}
+}
 	
+	
+	@RequestMapping("notice_list.do")
 	public String list(Model model) {
 		
 		   List<NoticeDTO> list = this.dao4.getNoticeList();
@@ -633,12 +659,10 @@ public class MusicController {
 				out.println("history.back()");
 				out.println("</script>");
 		   }
-	   
-		
-		
-		
-		
-	}
+	 }
+	
+	@RequestMapping("qanda_list.do")
+	
 			 
 	
 	

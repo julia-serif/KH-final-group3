@@ -71,5 +71,18 @@ public class MemberDAOImpl implements MemberDAO{
 		return this.sqlSession.insert("add", dto);
 	}
 
+	@Override
+	public int deleteMember(int user_no) {
+		
+		return this.sqlSession.delete("user_delete",user_no);
+	}
+
+	@Override
+	public void updateSequence(int user_no) {
+		
+		this.sqlSession.update("Sequence",user_no);
+		
+	}
+
 
 }
