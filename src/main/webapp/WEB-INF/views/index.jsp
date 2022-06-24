@@ -23,43 +23,54 @@
 <body>
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
 
-    <!-- ##### Hero Area Start ##### -->
+   <!-- ##### Hero Area Start ##### -->
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
-            <!-- Single Hero Slide -->
+		
+            <!-- top1 음원 Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
+            <c:set var="toplist" value="${topList }" />
+                <c:if test="${!empty toplist }">
+                <c:forEach items="${toplist }" var="top1" begin="0" end="0">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(resources/img/bg-img/bg-1.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(resources/img/album-img/${top1.m_image});"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Today TOP music</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">${top1.m_name} <span>${top1.m_name}</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">go music <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
+                </c:forEach>
+                </c:if>
             </div>
 
-            <!-- Single Hero Slide -->
+            <!-- 새 음원 Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
+            <c:set var="newlist" value="${newList }" />
+                <c:if test="${!empty newlist }">
+                <c:forEach var="n1" items="${newlist}" begin="0" end="0">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(resources/img/bg-img/bg-2.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(resources/img/album-img/${n1.m_image});"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <h6 data-animation="fadeInUp" data-delay="100ms">new album</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">${n1.m_name} <span>${n1.m_name}</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">go music <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
+                </c:forEach>
+               	</c:if>
             </div>
         </div>
     </section>
