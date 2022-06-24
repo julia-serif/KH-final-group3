@@ -111,12 +111,24 @@ public class MusicController {
 	
 	@RequestMapping("top10.do")
 	public String top10(Model model) {
+		//top10페이지 이동
 		
 		List<MusicDTO> list = this.dao.selectTop();
 	
 		model.addAttribute("list", list);
 		
 		return "top10";
+	}
+	
+	@RequestMapping("newMusic.do")
+	public String newMusic(Model model) {
+		//새 음원 페이지로 이동
+		
+		List<MusicDTO> list = this.dao.selectAll();
+		
+		model.addAttribute("list" , list);
+		
+		return "music_new";
 	}
 	
 	@RequestMapping("events.do")
