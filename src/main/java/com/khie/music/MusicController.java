@@ -664,7 +664,7 @@ public class MusicController {
 		   }
 	 }
 	
-	@RequestMapping("qanda_list.do")
+	
 	
 			 
 	
