@@ -46,83 +46,32 @@
 
        <!-- 회원 상세 페이지 -->
        <div align="center">
-       <c:set var="dto" value="${content1 }" />                                    
-        <h2> 공지사항</h2>
-        
-	   <br>
- 
-	   	  <input type="hidden" name="music_no" value="${dto.music_no }">
-	   	  <input type="hidden" name="db_pwd" value="${dto.music_pwd }">
-	      <table border="1" cellspacing="0" width="400">
-	      <tr>
-	         <th>작성자</th>
-	         <td> ${dto.getMusic_writer() } </td>
-	      </tr>
-	      
-	      <tr>
-	         <th>글 제목</th>
-	         <td> ${dto.getMusic_title() } </td>
-	      </tr>
-	      
-	      <tr>
-	         <th>글 내용</th>
-	         <td>
-	            <textarea rows="7" cols="25" readonly>${dto.getMusic_cont() }</textarea>
-	         </td>
-	      </tr>
-	      
-	      <tr>
-	         <th>비밀번호</th>
-	         <td>
-	            <c:if test="${!empty dto.getMusic_pwd() }">
-	               <c:forEach begin="1" end="${dto.getMusic_pwd().length() }">
-	                    *
-	               </c:forEach>
-	            </c:if>
-	         </td>
-	      </tr>
-	      
-	      <tr>
-	         <th>조회 수</th>
-	         <td> ${dto.getMusic_hit() } </td>
-	      </tr>
-	      
-	      <tr>
-	         <c:if test="${empty dto.getMusic_update() }">
-	            <th>작성일자</th>
-	            <td> ${dto.getMusic_date().substring(0,10) } </td>
-	         </c:if>
-	         
-	         <c:if test="${!empty dto.getMusic_update() }">
-	            <th>수정일자</th>
-	            <td> ${dto.getMusic_update().substring(0,10) } </td>
-	         </c:if>
-	      </tr>
-	      
-	      <c:if test="${empty dto }">
-	         <tr>
-	            <td colspan="2" align="center">
-	               <h3>조회된 상세 내역이 없습니다.....</h3>
-	            </td>
-	         </tr>
-	      </c:if>
-	      
-	      <tr>
-	         <td colspan="2" align="center">
-	            <input type="button" value="글수정"
-	               onclick="location.href='notice_modify.do?music_no=${dto.getMusic_no()}'">
-	               &nbsp;
-	            <input type="button" value="글삭제"
-	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
-	               				location.href='notice_delete.do?music_no=${dto.getMusic_no()}'
-	               			}else { return; }">
-	               &nbsp;         
-	            <input type="button" value="전체목록"
-	               onclick="location.href='notice_list.do?'">
-	         </td>
-	      </tr>
-	   </table>
-	</div>
+       
+      
+      <br>
+      
+      <form method="post" 
+          action="<%=request.getContextPath()%>/notice_delete_Ok.do">
+           <c:set var="dto" value="${delete }"/> 
+           <input type="hidden" name="music_no" value="${dto.music_no }">
+           <input type="hidden" name="db_pwd" value="${dto.music_pwd }">
+           
+           <table border="1" cellspacing="0" width="350">
+
+         <tr>
+           <th>삭제할 글 비밀번호</th>
+           <td> <input type="password" name="music_pwd"> </td>
+         </tr>
+         
+         <tr>
+            <td colspan="2" align="center">
+              <input type="submit" value="글삭제">&nbsp;&nbsp;&nbsp;
+              <input type="reset" value="다시작성">
+             </td>
+         </tr>
+       </table>
+     </form>
+  </div>
                         </div>
                     </div>
                 

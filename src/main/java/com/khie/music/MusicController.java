@@ -404,12 +404,12 @@ public class MusicController {
 			
 			if(check > 0) {
 				out.println("<script>");
-				out.println("alert('게시물 수정 성공!!!')");
+				out.println("alert('정보 수정 성공!!!')");
 				out.println("location.href='mypage.do'");
 				out.println("</script>");
 			}else {
 				out.println("<script>");
-				out.println("alert('게시물 수정 실패~~~')");
+				out.println("alert('정보 수정 실패~~~')");
 				out.println("history.back()");
 				out.println("</script>");
 			}
@@ -520,10 +520,106 @@ public class MusicController {
 		
 		return "notice_content";
 	}
+
+	@RequestMapping("notice_modify.do")
+	public String modify(@RequestParam("music_no")int music_no, Model model) {
+		
+	  NoticeDTO dto = 	this.dao4.getNotice(music_no);
+	  
+	  model.addAttribute("notice_modify", dto);
+	  
+	  return "notice_update";
+	  
+	}
+	
+	
+	@RequestMapping("notice_modify_Ok.do")
+	public void notice_modifyOk(NoticeDTO dto,
+			             @RequestParam("db_pwd")String db_pwd,
+			             HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(dto.getMusic_pwd().equals(db_pwd)) {
+			
+			int check = this.dao4.updateNotice(dto);
+			
+			if(check > 0) {
+				out.println("<script>");
+				out.println("alert('게시판 수정 성공!!!')");
+				out.println("location.href='notice_list.do'");
+				out.println("</script>");
+			}else {
+				out.println("<script>");
+				out.println("alert('게시판 수정 실패~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+		    }else {
+		    	out.println("<script>");
+				out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+		    }
+	}
+	
+	@RequestMapping("notice_delete.do")
+	public String notice_delete(@RequestParam("music_no") int music_no,
+			Model model) {
+		
+		NoticeDTO dto = this.dao4.getNotice(music_no);
+		
+		model.addAttribute("delete", dto);
+		
+		return "notice_delete";
+	}
+	
+	@RequestMapping("notice_delete_Ok.do")
+	 public void notice_deleteOk(NoticeDTO dto,
+			 @RequestParam("db_pwd") String db_pwd,
+			 HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+	   
+	   if(dto.getMusic_pwd().equals(db_pwd)) {
+		   
+		   int check = this.dao4.deleteNotice(dto.getMusic_no());
+	
+		   if(check > 0) {
+			   this.dao4.updateSequence(dto.getMusic_no());
+		   
+			   out.println("<script>");
+			   out.println("alert('게시물 삭제 성공!!!')");
+			   out.println("location.href='notice_list.do'");
+			   out.println("</script>");
+		   
+		   }else {
+			    out.println("<script>");
+				out.println("alert('게시물 삭제 실패~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+		   }
+		   
+	   }else {
+			   out.println("<script>");
+				out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+		   }
+	   
+		
+		
+		
+		
+	}
+			 
 	
 	
 		
-	}
 	
+}
 	
 

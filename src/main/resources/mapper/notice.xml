@@ -28,5 +28,21 @@
 	select * from music_notice where music_no = #{music_no}
 	</select>
 	
+	<update id="notice_modify" parameterType="com.khie.model.NoticeDTO">
+	  update music_notice set music_title = #{music_title},
+	  music_cont = #{music_cont} where music_no = #{music_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+	    delete from music_notice where music_no = #{music_no}
+	</delete>
+	
+	<update id="seq" parameterType="int">
+		<![CDATA[
+			update music_notice set music_no = music_no - 1
+			where music_no > #{music_no}
+		]]>	
+	</update>
+	
 	
 </mapper>

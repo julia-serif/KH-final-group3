@@ -14,7 +14,8 @@ public class NoticeDAOImpl implements NoticeDAO{
 
 	@Override
 	public void updateSequence(int music_no) {
-		// TODO Auto-generated method stub
+		
+		this.SqlSession.delete("seq", music_no);
 		
 	}
 
@@ -37,14 +38,14 @@ public class NoticeDAOImpl implements NoticeDAO{
 
 	@Override
 	public int updateNotice(NoticeDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.SqlSession.update("notice_modify", dto);
 	}
 
 	@Override
 	public int deleteNotice(int music_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.SqlSession.delete("delete", music_no);
 	}
 
 	@Override
