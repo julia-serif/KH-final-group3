@@ -113,12 +113,11 @@
 							<c:when test="${status.index == 2 }">
 								<div class="popular-artists-area mb-100">
 									<c:if test="${!empty list }">
+										<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+				                            <p>총 ${resultNum[status.index] }건</p>
+				                            <h2>아티스트</h2>
+				                        </div>
 										<c:forEach items="${list }" var="music">
-											<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-					                            <p>총 ${resultNum[status.index] }건</p>
-					                            <h2>아티스트</h2>
-					                        </div>
-					
 					                        <!-- Single Artist -->
 					                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
 					                            <div class="thumbnail">
