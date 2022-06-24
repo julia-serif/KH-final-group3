@@ -57,7 +57,9 @@
 		                                </div>
 		                                <div class="content-">
 		                                    <h6>${music.getM_name() }</h6>
-		                                    <p>${music.getM_album() }  |  ${music.getM_artist() }</p>
+		                                    <p style="display: inline-block; padding-right: 5px;">${music.getM_album() }</p>
+		                                    |
+		                                    <p style="display: inline-block; padding-left: 5px;">${music.getM_artist() }</p>
 		                                </div>
 		                            </div>
 		                            <audio preload="auto" controls>
