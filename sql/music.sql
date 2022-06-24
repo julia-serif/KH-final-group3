@@ -60,3 +60,46 @@ It’s neither man nor woman
 Man nor woman
 It’s neither man nor woman
 (Just me loving Tomboy)', sysdate, '');
+
+
+insert into music values('2', '거침없이', '', '거침없이', '부석순(세븐틴)', '10',
+'거침없이.mp3', 'https://youtu.be/YGXiVHTy0JE', 'just_do_it.jpg', '20', '202', 
+'Ladies and gentlemen
+They call us 부.석.순
+Let is go!
+
+뭘 좀 아는 놈들이
+뭘 좀 알려주려 해
+이게 뭔가 싶을 걸
+UEUEO
+
+근심걱정 가득 찬
+세상살이 걷어차 걷어차 
+걷어차 차 차 차
+
+내 스타일로
+날 Follow
+거기 두 줄로 갈러
+너희 마음 다 알아
+손을 뻗어서 Hello
+하기 힘든 건 내일 해
+그냥 해 달라 해 다음에 하면 돼 ho
+한번 사는 인생 멋지게 살자 응 응
+
+거리를 거니는 사람들 속에 
+너를 숨기지마
+이제 어떻게 해야 하는지 
+눈 똑바로 뜨고 우릴 지켜보면 돼
+
+한다면 하는 놈 그게 나
+싫은 건 싫다고 말할 줄도
+알아야지 네 맘대로
+하고 싶은 건 거침없이 다 해
+
+거침없이 난 걸어가지 yeah!
+거침없이 난 달려가지 yeah!
+거침없이 난 날아가지 yeah!
+거침없이 더 거침없이 yeah!
+
+자자자 2절은 더 빡세게 간다
+', sysdate, '');

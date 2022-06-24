@@ -23,6 +23,10 @@
 	font-size: 3em;
 }
 
+#top1{
+	font-size: 3em;
+	font-weight: bold;
+}
 </style>
 
 
@@ -68,79 +72,7 @@
         <div class="container">
             <div class="row">
 
-               
-               
-
-                <!-- ========== Loaders ========== -->
-                <div class="col-12">
-                    <div class="elements-title mb-70">
-                        <h2>Loaders</h2>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <!-- Loaders Area Start -->
-                    <div class="our-skills-area">
-                        <div class="row">
-
-                            <!-- Single Skills Area -->
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="single-skils-area mb-100">
-                                    <div id="circle" class="circle" data-value="0.75">
-                                        <div class="skills-text">
-                                            <span>75%</span>
-                                            <p>Good Music</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Skills Area -->
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="single-skils-area mb-100">
-                                    <div id="circle2" class="circle" data-value="0.83">
-                                        <div class="skills-text">
-                                            <span>83%</span>
-                                            <p>Amazing Artists</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Skills Area -->
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="single-skils-area mb-100">
-                                    <div id="circle3" class="circle" data-value="0.25">
-                                        <div class="skills-text">
-                                            <span>25%</span>
-                                            <p>Concerts</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Single Skills Area -->
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="single-skils-area mb-100">
-                                    <div id="circle4" class="circle" data-value="0.95">
-                                        <div class="skills-text">
-                                            <span>95%</span>
-                                            <p>Superstars</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- ========== Milestones ========== -->
-                <div class="col-12">
-                    <div class="elements-title mb-70">
-                        <h2>totalMusic</h2>
-                    </div>
-                </div>
-
                 <div class="col-12">
                     <div class="oneMusic-cool-facts-area">
                         <div class="row">
@@ -211,64 +143,85 @@
                
                     </div>
                 </div>
-  				<!-- top10음원 Area -->
-  				<div align="center">
-  				<c:set value="${list}" var="list"/>
-  				<c:set value="${1}" var="count"/>
-  				<c:if test="${! empty list}">
-  					<c:forEach items="${list}" var="top">
-  						<c:if test="${count == 1 }">
-  						<h3 align="center">오늘의 TOP MUSIC</h3>
-  						<a>
-  							<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}"  width="200" height="200" />
-                                    <p>${top.m_name}</p>
-                        </a>
-                                <b>${top.m_artist}</b>
-                                
-                                <a href="#">
-                                <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="70" height="70" />
-                                </a>
-                                &nbsp; &nbsp; &nbsp;
-                                 <a href="#">
-                                <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="70" height="70" />
-                                </a>
-                                <br><br>
-                                <c:set value="${count + 1 }" var="count"/>
-  						</c:if>
-  						<c:if test="${cont != 1 }">
-  						<table width="50%">
-  							<tr>
-  								<td width="10%"><p id="num"> ${count}</p></td>
-  								<td width="20%">
-  									<a href="#">
-  									<!-- 음원 상세페이지로 이동 -->
-  										<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="100" height="100" />
-                          			</a>
-                            	</td>
-                            	<td width="45%">
-                              		     <a href="#">
-                              		     <!-- 음원 상세페이지로 이동 -->
-                              		     	 <h5> ${top.m_name}</h5>
+  		<!-- top10음원 Area -->
+  		<div align="center">
+  		<c:set value="${list}" var="list"/>
+  		<c:set value="${1}" var="count"/>
+  		<c:if test="${! empty list}">
+  			<c:forEach items="${list}" var="top">
+  				<c:if test="${count == 1 }">
+  				<h3 align="center">오늘의 TOP MUSIC</h3>
+  				<table>
+  					<tr>
+  						<td rowspan="2" width="30%">
+  							<a href="#">
+  							<!-- 음원 상세 페이지로 이동 -->
+  								<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}"  width="200" height="200" />
+  							</a>
+  						</td>
+  						<td>
+  						</td>
+  						<td>
+  						</td>
+  					</tr>
+  					<tr>
+  						<td width="45%" align="center">
+  							<a href="#">
+  							<!--  음원 상세 페이지로 이동 -->
+  									
+                              	    <p id="top1">${top.m_name}</p>
+                  	  	     <b>${top.m_artist}</b>
+                           	   </a>
+                           	 </td>
+                             	 <td>
+                             	   <a href="#">
+                             		   <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
+                             		   </a>
+                            	    &nbsp; &nbsp; &nbsp;
+                             	    <a href="#">
+                             		   <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
+                              	  </a>
+                                </td>
+                              </tr>
+                             </table>
+              			  <br><br>
+              
+  				</c:if>
+  				<c:if test="${count != 1 }">
+  				<table width="50%">
+  					<tr>
+  						<td width="10%"><p id="num"> ${count}</p></td>
+  						<td width="20%">
+  							<a href="#">
+  							<!-- 음원 상세페이지로 이동 -->
+  								<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="100" height="100" />
+                          				</a>
+                            			</td>
+                         		   	<td width="45%">
+                              				     <a href="#">
+                              				     <!-- 음원 상세페이지로 이동 -->
+                              				     	 <h5> ${top.m_name}</h5>
      
-                             		   		<p> ${top.m_artist}</p>
-                             		   	</a>
-                            	 </td>
-                            	 <td>
-                            	  <a href="#">
-                            	  <!-- 플레이 리스트에 담기 -->
-                                <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
-                                </a>
-                                &nbsp; &nbsp; &nbsp;
-                                 <a href="#">
-                                 <!-- 뮤비 페이지로 이동 -->
-                                <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
-                                </a>
+                             		 			<p> ${top.m_artist}</p>
+                             		   			</a>
+                            			 </td>
+                            			 <td>
+                            			  <a href="#">
+                            			  <!-- 플레이 리스트에 담기 -->
+                            			    <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
+                           			     </a>
+                           			     &nbsp; &nbsp; &nbsp;
+                           			      <a href="#">
+                            			     <!-- 뮤비 페이지로 이동 -->
+                           				     <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
+                               				</a>
                             	 
-                            	 </td>
-                             </tr>  
-                           </table>
-                            <c:set value="${count + 1 }" var="count"/>
+                            			 </td>
+                         		    </tr>  
+                    		       </table>
+                          
   						</c:if>
+					  <c:set value="${count + 1 }" var="count"/>
   					</c:forEach>
   				</c:if> 
   				</div>
