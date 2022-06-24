@@ -185,9 +185,9 @@
                               </tr>
                              </table>
               			  <br><br>
-                              <c:set value="${count + 1 }" var="count"/>
+              
   				</c:if>
-  				<c:if test="${cont != 1 }">
+  				<c:if test="${count != 1 }">
   				<table width="50%">
   					<tr>
   						<td width="10%"><p id="num"> ${count}</p></td>
@@ -218,9 +218,10 @@
                             	 
                             			 </td>
                          		    </tr>  
-                           </table>
-                            <c:set value="${count + 1 }" var="count"/>
+                    		       </table>
+                          
   						</c:if>
+					  <c:set value="${count + 1 }" var="count"/>
   					</c:forEach>
   				</c:if> 
   				</div>
