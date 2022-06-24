@@ -61,7 +61,7 @@
 		                                <p class="tags"><a href="#"> ${music.getM_album() }</a></p>
 		                            </div>
 		                            <!-- Post Excerpt -->
-		                            <p>${music.getM_lyrics().substring(0,500) }</p>
+		                            <p>${music.getM_lyrics().substring(0,500) }...</p>
 		                        </div>
                         	</c:forEach>
 						</c:if>
