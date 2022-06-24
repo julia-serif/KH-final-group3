@@ -12,7 +12,7 @@ create table music (
     m_artist varchar2(100) not null,
     m_like number default 0,
     m_audio varchar2(50) not null,
-    m_mv varchar2(50) not null,
+    m_mv varchar2(50),
     m_image varchar2(50) not null,
     m_pcount number default 0,
     m_ptime number not null,

@@ -45,13 +45,12 @@
 						<c:choose>
 							<c:when test="${status.index == 0 }">
 								<div class="new-hits-area mb-100">
+									<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+			                            <p>총 ${resultNum[status.index] }건</p>
+			                            <h2>곡</h2>
+	                        		</div>
 									<c:if test="${!empty list }">
 										<c:forEach items="${list }" var="music">
-											<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-					                            <p>총 ${resultNum[status.index] }건</p>
-					                            <h2>곡</h2>
-			                        		</div>
-										
 					                        <!-- Single Top Item -->
 					                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 					                            <div class="first-part d-flex align-items-center">
@@ -80,14 +79,13 @@
 							</c:when>
 							
 							<c:when test="${status.index == 1 }">
-								<div class="weeks-top-area mb-100">
+								<div class="weeks-top-area mb-100" style="background-color: #f5f9fa; border-color: #d8d8d8;">
+									<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+			                            <p>총 ${resultNum[status.index] }건</p>
+			                            <h2>앨범</h2>
+			                        </div>
 									<c:if test="${!empty list }">
 										<c:forEach items="${list }" var="music">
-											<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-					                            <p>총 ${resultNum[status.index] }건</p>
-					                            <h2>앨범</h2>
-					                        </div>
-					
 					                        <!-- Single Top Item -->
 					                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
 					                            <div class="thumbnail">
@@ -142,22 +140,24 @@
 							
 							<c:when test="${status.index == 3 }">
 								<div class="new-hits-area mb-100">
+									<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+			                            <p>총 ${resultNum[status.index] }건</p>
+			                            <h2>동영상</h2>
+	                        		</div>
 									<c:if test="${!empty list }">
 										<c:forEach items="${list }" var="music">
-											<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-					                            <p>총 ${resultNum[status.index] }건</p>
-					                            <h2>동영상</h2>
-			                        		</div>
-										
 					                        <!-- Single Top Item -->
 					                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 					                            <div class="first-part d-flex align-items-center">
-					                                <iframe width="640" height="360" src="${music.getM_mv() }" title="${music.getM_name() }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					                                <iframe src="${music.getM_mv() }" title="${music.getM_name() }"
+						                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						                                allowfullscreen style="margin-right: 20px;"></iframe>
+					                            	<div class="content-">
+					                                    <h6>${music.getM_name() }</h6>
+					                                    <p>${music.getM_artist() }</p>
+					                                </div>
 					                            </div>
-					                            <div class="content-">
-				                                    <h6>${music.getM_name() }</h6>
-				                                    <p>${music.getM_artist() }</p>
-				                                </div>
+					                            
 					                        </div>
 			                        	</c:forEach>
 									</c:if>
@@ -172,6 +172,14 @@
 							</c:when>
 							
 							<c:when test="${status.index == 4 }">
+							
+							<div class="weeks-top-area mb-0" style="pointer-events: none;">
+								<div class="section-heading text-left mb-0 wow fadeInUp" data-wow-delay="50ms">
+		                            <p>총 ${resultNum[status.index] }건</p>
+		                            <h2>가사</h2>
+                        		</div>
+							</div>
+							
 								<div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
 									<c:if test="${!empty list }">
 										<c:forEach items="${list }" var="music">
@@ -185,7 +193,7 @@
 					                                <p class="tags"><a href="#"> ${music.getM_album() }</a></p>
 					                            </div>
 					                            <!-- Post Excerpt -->
-					                            <p>${music.getM_lyrics().substring(0,500) }</p>
+					                            <p>${music.getM_lyrics().substring(0,500) }...</p>
 					                        </div>
 				                        </c:forEach>
 			                        </c:if>
