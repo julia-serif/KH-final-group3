@@ -101,4 +101,17 @@
 	]]>
 	</select>
 	
+	<select id="MusicCont" resultType="int">
+		select count(*) from music
+	</select>
+	
+	<select id="MusicList" parameterType="PageDTO" resultType="MusicDTO" >
+    		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by m_no desc) rnum from music b)
+					where rnum >= #{startNo} and rnum <= #{endNo}
+	    ]]>
+    	</select>
+	
 </mapper>
