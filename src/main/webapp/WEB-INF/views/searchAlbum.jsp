@@ -41,7 +41,7 @@
 					<c:set var="list" value="${searchMusicList }" />
 					<c:set var="paging" value="${Paging }" />
 					
-					<div class="weeks-top-area mb-100">
+					<div class="weeks-top-area mb-100" style="background-color: #f5f9fa; border-color: #d8d8d8;">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>총 ${resultNum }건</p>
                             <h2>앨범</h2>
