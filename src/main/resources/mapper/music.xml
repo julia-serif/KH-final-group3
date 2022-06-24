@@ -22,7 +22,7 @@
 	
 	<select id="searchAlbum" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
-			select * from
+			select distinct m_album, m_artist, m_image from
 				(select m.*, row_number()
 					over(order by m_no desc) rnum from music m
 					where m_album like '%' || #{keyword} || '%')
@@ -70,8 +70,9 @@
 	</select>
 	
 	<select id="countAlbum" resultType="int">
-		select count(*) from music
-			where m_album like '%' || #{keyword} || '%'
+		select count(*) from
+			(select distinct m_album from music 
+			where m_album like '%' || #{keyword} || '%')
 	</select>
 	
 	<select id="countArtist" resultType="int">
