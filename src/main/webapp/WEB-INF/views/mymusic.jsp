@@ -99,12 +99,8 @@
                             <div id="collapseThree" class="accordion-content collapse">
 	                            <form method="post" action="<%=request.getContextPath() %>/playlist_insert.do">
 									<table border="0" cellspacing="0" width="350" bgcolor="white">
-										<c:set value="${dto }" var="Member" />
-	   	  								<input type="hidden" name="user_no" value="${dto.user_no() }">
-	   	  								<tr>
-								            <th>회원 아이디</th>
-								            <td><input name="user_id" value="${dto.user_id() }" readonly> </td>
-								        </tr>
+										<c:set value="${Member }" var="dto" />
+	   	  								<input type="hidden" name="user_no" value="${dto.getUser_no() }">
 										<tr>
 											<th>플레이리스트 이름</th>
 											<td><input name="playlist_name"></td>
