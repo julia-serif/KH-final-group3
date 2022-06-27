@@ -105,9 +105,11 @@
                                     </div>
 
                                     <!-- Cart Button -->
-                                    <div class="cart-btn">
+                                    <c:if test="${member.user_name != null && member.user_rank != 1 }">   
+	                                    <div class="cart-btn">
 	                                        <a href="<%=request.getContextPath() %>/mymusic.do"><p><span class="icon-music"></span></p></a>
-	                                </div>
+	                                    </div>
+	                                </c:if>
                                 </div>
                             </div>
                             <!-- Nav End -->

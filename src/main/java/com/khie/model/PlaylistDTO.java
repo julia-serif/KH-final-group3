@@ -11,5 +11,5 @@ public class PlaylistDTO {
 	private int playlist_no;
 	private String playlist_name;
 	private String playlist_thumbnail;
-
+	private int playlist_order;
 }
