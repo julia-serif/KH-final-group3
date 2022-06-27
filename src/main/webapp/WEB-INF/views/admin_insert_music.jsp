@@ -85,7 +85,7 @@
   							<tr>
   								<td align="center"> 재생시간 </td>
   								<td> <input type="number" name="minute" value="0" max="99" min="0"  required="required"> 분 
-  									 <input type="number" name="second" value="0" max="60" min="0"  required="required"> 초  
+  									 <input type="number" name="second" value="0" max="59" min="0"  required="required"> 초  
   								</td>
   							</tr>
   							<tr>
