@@ -120,14 +120,14 @@
   										<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="300" height="300" />
                           			</a>
                             	</td>
-                            	<td width="50%" id="title">
+                            	<td width="30%" id="title">
                               		     <a href="#">
                               		     <!-- 음원 상세페이지로 이동 -->
                               		     	 <h5> &nbsp; &nbsp; ${top.m_name}</h5>
                              		   		<p> &nbsp;&nbsp;&nbsp; ${top.m_artist}</p>
                              		   	</a>
                             	 </td>
-                            	 <td width="40%">
+                            	 <td width="60%">
                             	  <a href="#">
                             	  <!-- 플레이 리스트에 담기 -->
                              	 	  <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
