@@ -66,7 +66,7 @@
                                 <c:if test="${member.user_rank == 1 }"> 
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
-                                    <li><a href="<%= request.getContextPath() %>/about.do">음원 관리</a></li> <!-- 음원 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/admin_Music.do">음원 관리</a></li> <!-- 음원 관리 -->
                                     <li><a href="<%= request.getContextPath() %>/member.do">회원 관리</a> <!-- 회원 관리 --></li>                               
                                     <li><a href="<%= request.getContextPath() %>/about.do">고객센터 관리</a> <!-- 고객센터 관리 -->
                                         <ul class="dropdown">
