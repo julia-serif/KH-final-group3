@@ -168,8 +168,39 @@
   				<!-- 새 음원 Area end-->
             </div>
         </div>
-    </section>
+   
     <br><br><br>
+    <!-- 페이징 Area start -->
+    <div align="center">
+  				<c:set value="${pageDTO}" var="paging"/>
+  				
+  				<!-- 1페이지 이후 페이지 -->
+  				<c:if test="${paging.page > paging.startBlock}">
+  					<a href="newMusic.do?page=1">◀◀</a>
+  					<a href="newMusic.do?page=${paging.page - 1 }">◀</a>
+  				</c:if>
+  				
+  				<!-- 페이지 위치 출력 -->
+  				<c:forEach begin="${paging.startBlock}" end="${paging.endBlock }" var="i">
+  					<c:if test="${paging.page == i }">
+  						<a href="newMusic.do?page=${i}"><b>[${i}]</b></a>
+  					</c:if>
+  					<c:if test="${paging.page != i }">
+  						<a href="newMusic.do?page=${i}">[${i}]</a>
+  					</c:if>
+  				</c:forEach>
+  				
+  				<!-- 마지막 블럭 -->
+  				<c:if test="${paging.endBlock < paging.totalBlock }">
+  					<a href="newMusic.do?page=${paging.page + 1 }">▶</a>
+  					<a href="newMusic.do?page=${paging.totalBlock }">▶▶</a>
+  				
+  				</c:if>
+  		</div>		
+  		<!-- 페이징 Area end -->
+  				
+  		<br><br><br>
+  		 </section>
     <!-- ***** Elements Area End ***** -->
                 
                 

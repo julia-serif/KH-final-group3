@@ -670,7 +670,29 @@ public class MusicController {
 	
 	
 	
-			 
+	//관리자 음원 조회
+	@RequestMapping("admin_Music.do")
+	public String adminSelectMusic(HttpServletRequest request,Model model) {
+		//새 음원 페이지로 이동
+		int page;
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+		
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
+		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont);
+		
+		List<MusicDTO> list = this.dao.selectNewMusic(pageDTO);
+		
+		model.addAttribute("list" , list);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "admin_music";
+	}		 
 	
 	
 		
