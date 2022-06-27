@@ -70,13 +70,13 @@
                                 <c:if test="${member.user_rank == 1 }"> 
                                 <ul>
                                     <li><a href="<%= request.getContextPath() %>">Home</a></li>
-                                    <li><a href="<%= request.getContextPath() %>/about.do">음원 관리</a></li> <!-- 음원 관리 -->
+                                    <li><a href="<%= request.getContextPath() %>/admin_Music.do">음원 관리</a></li> <!-- 음원 관리 -->
                                     <li><a href="<%= request.getContextPath() %>/member.do">회원 관리</a></li> <!-- 사용자 관리 -->
                                     <li><a href="<%= request.getContextPath() %>/about.do">고객센터 관리</a> <!-- 고객센터 관리 -->
                                         <ul class="dropdown">
                                          <li><a href="<%= request.getContextPath() %>/notice_list.do">공지 사항</a></li>
-                                         <li><a href="<%= request.getContextPath() %>/about.do">Q/A 게시판</a></li>
-                                         <li><a href="<%= request.getContextPath() %>/about.do">도움말</a></li>
+                                         <li><a href="<%= request.getContextPath() %>/qanda_list.do">Q/A 게시판</a></li>
+                                         <li><a href="<%= request.getContextPath() %>/help.do">도움말</a></li>
                                        </ul>
                                     </li>
                                     <li><a href="<%= request.getContextPath() %>/events.do">이벤트 관리</a></li> <!-- 이벤트 관리 -->

@@ -59,7 +59,9 @@
 					                                </div>
 					                                <div class="content-">
 					                                    <h6>${music.getM_name() }</h6>
-					                                    <p>${music.getM_album() }  |  ${music.getM_artist() }</p>
+					                                    <p style="display: inline-block; padding-right: 5px;">${music.getM_album() }</p>
+					                                    |
+					                                    <p style="display: inline-block; padding-left: 5px;">${music.getM_artist() }</p>
 					                                </div>
 					                            </div>
 					                            <audio preload="auto" controls>
@@ -111,12 +113,11 @@
 							<c:when test="${status.index == 2 }">
 								<div class="popular-artists-area mb-100">
 									<c:if test="${!empty list }">
+										<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+				                            <p>총 ${resultNum[status.index] }건</p>
+				                            <h2>아티스트</h2>
+				                        </div>
 										<c:forEach items="${list }" var="music">
-											<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-					                            <p>총 ${resultNum[status.index] }건</p>
-					                            <h2>아티스트</h2>
-					                        </div>
-					
 					                        <!-- Single Artist -->
 					                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
 					                            <div class="thumbnail">
@@ -193,7 +194,7 @@
 					                                <p class="tags"><a href="#"> ${music.getM_album() }</a></p>
 					                            </div>
 					                            <!-- Post Excerpt -->
-					                            <p>${music.getM_lyrics().substring(0,500) }...</p>
+					                            <p>${music.getM_lyrics().substring(0,200) }...</p>
 					                        </div>
 				                        </c:forEach>
 			                        </c:if>

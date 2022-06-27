@@ -24,5 +24,9 @@ public interface MemberDAO {
 	public MemberDTO getMember(int user_no);
 	
 	public int insertMember(MemberDTO dto);
+	
+    int deleteMember(int user_no);
+	
+	void updateSequence(int user_no);
 }
 

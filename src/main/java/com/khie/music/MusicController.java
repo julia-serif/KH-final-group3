@@ -106,6 +106,9 @@ public class MusicController {
 			model.addAttribute("Paging", pdto);
 		}
 		
+		List<MusicDTO> topList = this.dao.selectTop();
+		model.addAttribute("topList", topList);
+		
 		return "search" + field;
 	}
 	
@@ -492,8 +495,34 @@ public class MusicController {
 		return "user_content";
 	}
 	
-	@RequestMapping("notice_list.do")
+	@RequestMapping("user_delete.do")
+	public void user_delete(@RequestParam("user_no") int user_no,
+	HttpServletResponse response)throws IOException{
+		
+
+   int check = this.dao2.deleteMember(user_no);
+
+   response.setContentType("text/html; charset=UTF-8");
+   
+   PrintWriter out = response.getWriter();
+
+   if(check > 0) {
+	   this.dao2.updateSequence(user_no);
+	  
+	    out.println("<script>");
+		out.println("alert('회원 삭제 성공!!!')");
+		out.println("location.href='member.do'");
+		out.println("</script>");
+	}else {
+		out.println("<script>");
+		out.println("alert('회원 삭제 실패')");
+		out.println("history.back()");
+		out.println("</script>");
+	}
+}
 	
+	
+	@RequestMapping("notice_list.do")
 	public String list(Model model) {
 		
 		   List<NoticeDTO> list = this.dao4.getNoticeList();
@@ -632,13 +661,33 @@ public class MusicController {
 				out.println("history.back()");
 				out.println("</script>");
 		   }
-	   
+	 }
+	
+	
+	
+	//관리자 음원 조회
+	@RequestMapping("admin_Music.do")
+	public String adminSelectMusic(HttpServletRequest request,Model model) {
+		//새 음원 페이지로 이동
+		int page;
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
 		
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
 		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont);
 		
+		List<MusicDTO> list = this.dao.selectNewMusic(pageDTO);
 		
-	}
-			 
+		model.addAttribute("list" , list);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "admin_music";
+	}		 
 	
 	
 		
