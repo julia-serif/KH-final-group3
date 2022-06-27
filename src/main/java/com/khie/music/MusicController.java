@@ -46,6 +46,9 @@ public class MusicController {
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
+	
+	private final int QA_rowsize = 3;     // 한 페이지당 보여질 질문 게시물의 수
+	private int totalQA = 0;       // DB 상의 전체 질문 게시물의 수
 
 
 	@RequestMapping("index.do")
@@ -373,7 +376,7 @@ public class MusicController {
 	
 		} 
 		
-		return "loginmain";
+		return "index";
 	}
 
 // 로그아웃 
@@ -663,6 +666,7 @@ public class MusicController {
 				out.println("</script>");
 		   }
 	 }
+
 	
 	
 	
