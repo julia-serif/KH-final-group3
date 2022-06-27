@@ -51,7 +51,19 @@
 }
 
 </style>
+<script type="text/javascript">
 
+function deleteMusic() {
+	
+	let no = $("#m_no").val();
+	
+	 if(confirm("정말로 삭제하겠습니까")==true){
+	         location.href="admin_music_delete.do?no="+no;
+	      }
+	       
+	}
+
+</script>
 <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -97,7 +109,7 @@
             
             <!-- 새음원 추가  Area start -->
             <div id="newMusicArea">
-            	<input type="button" value="음원 추가 >>" onclick="locaion.href='admin_insert_music.do'" id="insertMusic"> 
+            	<input type="button" value="음원 추가 >>" onclick="location.href='admin_insert_music.do'" id="insertMusic"> 
             </div>
             <!-- 새 음원 추가 Area end -->
             
@@ -143,8 +155,7 @@
                                	 
                             	&nbsp; || &nbsp;
                             	 <!-- 삭제 페이지로 이동 -->
-                            	 	<input type="button" value="삭제" onclick="if(confirm('${top.m_name}을 삭제하겠습니까?'))
-                            	 				{location.href='admin_music_delete.do?no=${top.m_no}'}else{return;}">
+                            	 	<input type="button" value="삭제" onclick="deleteMusic()">
                             	 	
                             	 
                             	 </td>
