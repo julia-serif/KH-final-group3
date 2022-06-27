@@ -7,21 +7,21 @@ public interface QandADAO {
 
 public int getQandAListCount();
 	
-	public List<QandADTO> getQandAList(PageDTO dto);
+	public List<QandADTO> getQandAList(QA_PageDTO dto);
 	
 	public int insertQandA(QandADTO dto);
 	
-	public void readCount(int no);
+	public void readCount(int QA_no);
 	
-	public BoardDTO boardCont(int no);
+	public QandADTO boardCont(int QA_no);
 	
-	public int updateBoard(BoardDTO dto);
+	public int updateBoard(QandADTO  dto);
 	
-	public int deleteBoard(int no);
+	public int deleteBoard(int QA_no);
 	
-	public void updateSequence(int no);
+	public void updateSequence(int QA_no);
 	
-	public int searchBoardCount(String field, String keyword);
+	public int searchBoardCount(String QA_field, String QA_keyword);
 	
-	public List<BoardDTO> searchBoardList(PageDTO dto);
+	public List<QandADTO> searchBoardList(QA_PageDTO dto);
 }

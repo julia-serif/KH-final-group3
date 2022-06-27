@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+   <mapper namespace="com.khie.model.QandADAO">
+     
+     <select id="qa_count" resultType="int">
+       select count(*) from music_QandA
+     </select>
+     
+     <select id="list" parameterType="com.khie.model.QA_PageDTO" resultType="com.khie.model.QandADTO">
+       <![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by QA_no desc) rnum from music_qanda b)
+					where rnum >= #{startNo} and rnum <= #{endNo}
+	    ]]>
+     </select>
+     
+  
+   </mapper>

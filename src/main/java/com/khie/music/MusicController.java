@@ -28,6 +28,9 @@ import com.khie.model.MusicReplyDAO;
 import com.khie.model.MusicReplyDTO;
 import com.khie.model.PageDTO;
 import com.khie.model.PlaylistDTO;
+import com.khie.model.QA_PageDTO;
+import com.khie.model.QandADAO;
+import com.khie.model.QandADTO;
 import com.khie.model.MemberDAO;
 
 @Controller
@@ -43,12 +46,14 @@ public class MusicController {
 	private MusicReplyDAO dao3;
 	@Autowired
 	private NoticeDAO dao4;
+	@Autowired 
+	private QandADAO Qand_dao;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
 	
-	private final int QA_rowsize = 3;     // 한 페이지당 보여질 질문 게시물의 수
-	private int totalQA = 0;       // DB 상의 전체 질문 게시물의 수
+	private final int QA_rowsize = 5;     // 한 페이지당 보여질 질문 게시물의 수
+	private int QA_totalRecord = 0;       // DB 상의 전체 질문 게시물의 수
 
 
 	@RequestMapping("index.do")
@@ -667,6 +672,32 @@ public class MusicController {
 		   }
 	 }
 
+	
+	//관리자 Q/A 게시판 조회
+	@RequestMapping("qanda_list.do")
+	public String list(HttpServletRequest request, Model model) {
+		
+		int qa_page;   // 현재 페이지
+	
+	   if(request.getParameter("qa_page") != null) {
+		   qa_page = Integer.parseInt(request.getParameter("qa_page"));
+	   } else {
+		   qa_page = 1;
+	   }
+		   QA_totalRecord = this.Qand_dao.getQandAListCount();
+		   
+		   QA_PageDTO dto = new QA_PageDTO(qa_page, QA_rowsize, QA_totalRecord);
+	       
+		   List<QandADTO> list = this.Qand_dao.getQandAList(dto);
+		   
+		   model.addAttribute("List", list);
+		   model.addAttribute("Paging", dto);
+		   
+	   return "QA_board_list";
+	   
+	   
+	}
+	
 	
 	
 	
