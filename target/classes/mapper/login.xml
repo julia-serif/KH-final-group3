@@ -68,7 +68,16 @@
 	<select id="content" parameterType="int" resultType="com.khie.model.MemberDTO">
 	  select * from music_member where user_no = #{user_no}
 	</select>
+	
+	<delete id="user_delete" parameterType="int">
+	 delete from music_member where user_no = #{user_no}
+	</delete>
 
+    <update id="Sequence" parameterType="int">
+    <![CDATA[
+        update music_member set user_no = user_no -1 where user_no > #{user_no} 
+    ]]>
+    </update>
    
    
 </mapper>

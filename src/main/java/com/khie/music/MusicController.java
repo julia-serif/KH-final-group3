@@ -217,15 +217,13 @@ public class MusicController {
 		System.out.println("Member : " + member);
 		int user_no = member.getUser_no();
 		List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
-		List<PlaylistDTO> playlistcount = this.mm_dao.getPlaylistcount(user_no);
 
 		model.addAttribute("Member", member);
 		model.addAttribute("List", playlist);
-		model.addAttribute("Count", playlistcount);
 		return "mymusic";
 	}
 	
-	@RequestMapping("select_like.do") // 에러
+	@RequestMapping("select_like.do")
 	public String select_like(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
@@ -269,8 +267,9 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('추가 성공')");
-			out.println("location.reload()");
+			out.println("history.back()");
 			out.println("</script>");
+			this.mm_dao.updatePlaylistCount(dto);
 		} else {
 			out.println("<script>");
 			out.println("alert('추가 실패')");
@@ -289,7 +288,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('추가 성공')");
-			out.println("location.reload()");
+			out.println("location.href='mymusic.do'");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
@@ -505,8 +504,34 @@ public class MusicController {
 		return "user_content";
 	}
 	
-	@RequestMapping("notice_list.do")
+	@RequestMapping("user_delete.do")
+	public void user_delete(@RequestParam("user_no") int user_no,
+	HttpServletResponse response)throws IOException{
+		
+
+   int check = this.dao2.deleteMember(user_no);
+
+   response.setContentType("text/html; charset=UTF-8");
+   
+   PrintWriter out = response.getWriter();
+
+   if(check > 0) {
+	   this.dao2.updateSequence(user_no);
+	  
+	    out.println("<script>");
+		out.println("alert('회원 삭제 성공!!!')");
+		out.println("location.href='member.do'");
+		out.println("</script>");
+	}else {
+		out.println("<script>");
+		out.println("alert('회원 삭제 실패')");
+		out.println("history.back()");
+		out.println("</script>");
+	}
+}
 	
+	
+	@RequestMapping("notice_list.do")
 	public String list(Model model) {
 		
 		   List<NoticeDTO> list = this.dao4.getNoticeList();
@@ -645,15 +670,76 @@ public class MusicController {
 				out.println("history.back()");
 				out.println("</script>");
 		   }
-	   
+	 }
+	
+	
+	
+	//관리자 음원 조회
+	@RequestMapping("admin_Music.do")
+	public String adminSelectMusic(HttpServletRequest request,Model model) {
+		//새 음원 페이지로 이동
+		int page;
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
 		
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
 		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont);
 		
+		List<MusicDTO> list = this.dao.selectNewMusic(pageDTO);
 		
+		model.addAttribute("list" , list);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "admin_music";
+	}		 
+	
+	//관리자 음원 추가 페이지로 이동
+	@RequestMapping("admin_insert_music.do")
+	public String adminInertMusic() {
+		return"admin_insert_music";
 	}
-			 
 	
-	
+	//관리자 음원 추가 완료
+	@RequestMapping("admin_insert_music_ok.do")
+	public void adminInsertMusicOk(MusicDTO musicDTO ,HttpServletRequest requst, HttpServletResponse response) throws IOException {
+		
+		//재생시간 
+		int minute = Integer.parseInt(requst.getParameter("minute").trim());
+		int second = Integer.parseInt(requst.getParameter("second").trim());
+		
+		musicDTO.setM_ptime((minute*60) + second);
+		
+		//파일 업로드
+		boolean uploadAudio = upload.UploadAudio(musicDTO.getM_audio());
+		
+		if(uploadAudio) {
+			System.out.println("오디오 파일 업로드 성공");
+		}
+		
+		int check = this.dao.insertMusic(musicDTO);
+		
+		 response.setContentType("text/html; charset=UTF-8");
+			
+		 PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('음원 추가 성공')");
+			out.println("location.href='admin_Music.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('음원 추가 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+			
+		}
+	}
 		
 	
 }

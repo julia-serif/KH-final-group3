@@ -178,7 +178,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>${playlist.getPlaylist_name() }　|　</p>
+                                <p>${playlist.getPlaylist_name() }　|　${playlist.getPlaylist_order() }곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
