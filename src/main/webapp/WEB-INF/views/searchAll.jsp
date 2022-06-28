@@ -156,7 +156,7 @@
 						                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						                                allowfullscreen style="margin-right: 20px;"></iframe>
 					                            	<div class="content-">
-					                                    <h6>${music.getM_name() }</h6>
+					                                    <h6><a href="<%= request.getContextPath() %>/video.do?no=${music.getM_no() }">${music.getM_name() }</a></h6>
 					                                    <p>${music.getM_artist() }</p>
 					                                </div>
 					                            </div>

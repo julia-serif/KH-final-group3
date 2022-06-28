@@ -188,6 +188,15 @@ public class MusicController {
 
 	}
 	
+	@RequestMapping("video.do")
+	public String video_cont(@RequestParam("no") int no, Model model) {
+		
+		MusicDTO dto = this.dao.musicCont(no);
+		model.addAttribute("music", dto);
+		
+		return "video_content";
+	}
+	
 	@RequestMapping("reply_write.do")
 	private String insertReply(@RequestParam("mr_no") int mr_no, @RequestParam("content") String content) {
 		
