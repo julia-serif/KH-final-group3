@@ -1,5 +1,6 @@
 <%@ page session="false" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -52,7 +53,8 @@
 		                        <!-- Single Top Item -->
 		                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="first-part d-flex align-items-center">
-		                                <iframe src="${music.getM_mv() }" title="${music.getM_name() }"
+		                            <c:set var="mv" value="${fn:split(music.getM_mv(), '/')[2] }" />
+		                                <iframe src="https://www.youtube.com/embed/${mv }" title="${music.getM_name() }"
 						                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						                                allowfullscreen style="margin-right: 20px;"></iframe>
 			                            <div class="content-">
