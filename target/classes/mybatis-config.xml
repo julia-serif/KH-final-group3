@@ -9,5 +9,6 @@
   	<typeAlias type="com.khie.model.MusicDAO" alias="MusicDAO"/>
   	<typeAlias type="com.khie.model.MusicDTO" alias="MusicDTO"/>
   	<typeAlias type="com.khie.model.PageDTO" alias="PageDTO"/>
+  	<typeAlias type="com.khie.model.MusicReplyDTO" alias="MusicReplyDTO"/>
   	</typeAliases>
   </configuration>

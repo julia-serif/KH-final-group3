@@ -199,7 +199,7 @@
                             </div>
                         </div>
                         <div class="album-info">
-                            <a href="#">
+                            <a href="<%=request.getContextPath() %>/music_cont.do?m_no=1">
                                 <h5>Garage Band</h5>
                             </a>
                             <p>Radio Station</p>

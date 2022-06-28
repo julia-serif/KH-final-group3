@@ -142,26 +142,22 @@ public class MusicController {
 	
 
 	@RequestMapping("music_cont.do")
-	public String music_cont() {
-		/*
-		 * MusicDTO dto = this.dao.musicCont(m_no);
-		 * 
-		 * model.addAttribute("Cont", dto);
-		 */
+	public String music_cont(@RequestParam("m_no") int m_no, MusicDTO dto, Model model) {
+		
+		dto = this.dao.musicCont(m_no);
+		
+		model.addAttribute("cont", dto);
+		
 		return "music_cont";
 
 	}
 	
 	@RequestMapping("reply_write.do")
-	private String insertReply(@RequestParam("mr_no") int mr_no, @RequestParam("content") String content) {
+	private String insertReply(HttpServletResponse response, MusicReplyDTO dto) {
 		
-		MusicReplyDTO dto = new MusicReplyDTO();
-		
-		dto.setMr_cont(content);
-		dto.setMr_no(mr_no);
 		this.dao3.insertBoard(dto);
-		String redirect_url = "redirect:/views/music_cont";
-		return redirect_url;
+		
+		return null;
 		
 	}
 	

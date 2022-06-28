@@ -33,10 +33,8 @@ public class MusicDAOImpl implements MusicDAO {
 	@Override
 	public MusicDTO musicCont(int m_no) {
 		
-		// return this.sqlSession.selectOne("musicCont", m_no);
-		
-		return null;
-		
+		return this.sqlSession.selectOne("musicCont", m_no);
+	
 	}
 
 
