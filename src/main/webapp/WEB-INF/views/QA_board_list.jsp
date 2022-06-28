@@ -76,7 +76,7 @@
        <tr>
         <td colspan="4" align="right">
             <input type="button" value="게시물 등록"
-                    onclick="location.href='user_insert.do'"> 
+                    onclick="location.href='qa_insert.do'"> 
         </td>      
       </tr>
      </table>
@@ -84,18 +84,18 @@
      
      <%-- 페이징 처리 부분 --%>
 	   <c:if test="${QA_Paging.getQa_page() > QA_Paging.getQa_block() }">
-	      <a href="board_list.do?page=1">[처음으로]</a>
-	      <a href="board_list.do?page=${QA_Paging.getQa_startBlock() - 1 }">◀</a>
+	      <a href="QA_board_list.do?page=1">[처음으로]</a>
+	      <a href="QA_board_list.do?page=${QA_Paging.getQa_startBlock() - 1 }">◀</a>
 	   </c:if>
 	   
 	   <c:forEach begin="${QA_Paging.getQa_startBlock() }"
 	          				end="${QA_Paging.getQa_endBlock() }" var="i">
 	      <c:if test="${dto == QA_Paging.getPage() }">
-	         <b> <a href="board_list.do?page=${dto }">[${dto }]</a></b>
+	         <b> <a href="QA_board_list?page=${dto }">[${dto }]</a></b>
 	      </c:if>
 	   
 	   	  <c:if test="${dto != QA_Paging.getPage() }">
-	         <a href="board_list.do?page=${dto }">[${dto }]</a>
+	         <a href="QA_board_list?page=${dto }">[${dto }]</a>
 	      </c:if>
 	   </c:forEach>
 

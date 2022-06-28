@@ -159,6 +159,16 @@ public class MusicController {
 		return "events";
 	}
 	
+	@RequestMapping("event2.do")
+	public String event2() {
+		return "event2";
+	}
+	
+	@RequestMapping("event3.do")
+	public String event3() {
+		return "event3";
+	}
+	
 	@RequestMapping("login.do")
 	public String login() {
 		return "login";
@@ -529,6 +539,12 @@ public class MusicController {
 	}
 }
 	
+
+	@RequestMapping("event1.do")
+	public String event1() {
+		return "event1";
+	}
+	
 	
 	@RequestMapping("notice_list.do")
 	public String list(Model model) {
@@ -700,6 +716,8 @@ public class MusicController {
 	
 	
 	
+	
+	
 	//관리자 음원 조회
 	@RequestMapping("admin_Music.do")
 	public String adminSelectMusic(HttpServletRequest request,Model model) {
@@ -766,6 +784,8 @@ public class MusicController {
 			
 		}
 	}
+	
+	
 		
 	
 }
