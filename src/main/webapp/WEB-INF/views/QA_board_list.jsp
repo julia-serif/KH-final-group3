@@ -41,31 +41,31 @@
                 <div class="col-12 col-lg-9" >
                     <div class="contact-content mb-100" >
                         <!-- Title -->
-                        <table border="1" cellspacing="0" width="400">
+                        <table border="1" cellspacing="0" width="500">
        <tr>
          <th>게시물 번호</th>
          <th>제목</th>
-         <th>작성자 아이디</th>
+         <th>아이디</th>
          <th>게시일</th>
        </tr>
        
-       <c:set var="list" value="${List }"/>
-       <c:set var="paging" value="${Paging }" />
+       <c:set var="qa_list" value="${QA_List}"/>
+       <c:set var="QA_Paging" value="${QA_Paging}" />
        
-       <c:if test="${!empty list }">
-          <c:forEach items="${list }" var="dto">
+       <c:if test="${!empty qa_list}">
+          <c:forEach items="${qa_list }" var="dto">
             <tr>
-              <td>${dto.getQA_no() }</td>
+              <td>${dto.qa_no }</td>
               <td>
-               <a href="<%=request.getContextPath()%>/qanda_content.do?user_no=${dto.getQA_no()}">
-              ${dto.getQA_title() }</a></td>
-              <td>${dto.getQA_id() }</td>
-              <td>${dto.getQA_date().substring(0,10) }</td>            
+               <a href="<%=request.getContextPath()%>/qanda_content.do?qa_no=${dto.qa_no}&page=${QA_Paging.qa_page }">
+              ${dto.qa_title }</a></td>
+              <td>${dto.qa_id }</td>
+              <td>${dto.qa_date.substring(0,10) }</td>            
             </tr>  
           </c:forEach>
        </c:if>
      
-     <c:if test="${empty list }">
+     <c:if test="${empty qa_list }">
         <tr>
           <td colspan="4" align="center">
            <h3>검색된 게시물이 없습니다.</h3>
@@ -83,25 +83,25 @@
      <br>
      
      <%-- 페이징 처리 부분 --%>
-	   <c:if test="${paging.getQa_page() > paging.getQa_block() }">
+	   <c:if test="${QA_Paging.getQa_page() > QA_Paging.getQa_block() }">
 	      <a href="board_list.do?page=1">[처음으로]</a>
-	      <a href="board_list.do?page=${paging.getQa_startBlock() - 1 }">◀</a>
+	      <a href="board_list.do?page=${QA_Paging.getQa_startBlock() - 1 }">◀</a>
 	   </c:if>
 	   
-	   <c:forEach begin="${paging.getQa_startBlock() }"
-	          				end="${paging.getQa_endBlock() }" var="i">
-	      <c:if test="${dto == paging.getPage() }">
+	   <c:forEach begin="${QA_Paging.getQa_startBlock() }"
+	          				end="${QA_Paging.getQa_endBlock() }" var="i">
+	      <c:if test="${dto == QA_Paging.getPage() }">
 	         <b> <a href="board_list.do?page=${dto }">[${dto }]</a></b>
 	      </c:if>
 	   
-	   	  <c:if test="${dto != paging.getPage() }">
+	   	  <c:if test="${dto != QA_Paging.getPage() }">
 	         <a href="board_list.do?page=${dto }">[${dto }]</a>
 	      </c:if>
 	   </c:forEach>
 
-	   <c:if test="${paging.getQa_endBlock() < paging.getQa_allPage() }">
-	      <a href="board_list.do?page=${paging.getQa_endBlock() + 1 }">▶</a>
-	      <a href="board_list.do?page=${paging.getQa_allPage() }">[마지막으로]</a>
+	   <c:if test="${QA_Paging.getQa_endBlock() < QA_Paging.getQa_allPage() }">
+	      <a href="board_list.do?page=${QA_Paging.getQa_endBlock() + 1 }">▶</a>
+	      <a href="board_list.do?page=${QA_Paging.getQa_allPage() }">[마지막으로]</a>
 	   </c:if>
 	   
 	   <br> <br>
@@ -109,7 +109,7 @@
 	   <form method="post"
 	      action="<%=request.getContextPath() %>/board_search.do">
 	   
-	   	  <input type="hidden" name="page" value="${paging.getQa_page() }">
+	   	  <input type="hidden" name="page" value="${QA_Paging.getQa_page() }">
 	   	  
 	      <select name="field">
 	         <option value="title">제목</option>
@@ -125,8 +125,6 @@
 
                     </div>
                 </div>
-
-                
 
             </div>
         </div>

@@ -687,10 +687,10 @@ public class MusicController {
 		   
 		   QA_PageDTO dto = new QA_PageDTO(qa_page, QA_rowsize, QA_totalRecord);
 	       
-		   List<QandADTO> list = this.Qand_dao.getQandAList(dto);
+		   List<QandADTO> qa_list = this.Qand_dao.getQandAList(dto);
 		   
-		   model.addAttribute("List", list);
-		   model.addAttribute("Paging", dto);
+		   model.addAttribute("QA_List", qa_list);
+		   model.addAttribute("QA_Paging", dto);
 		   
 	   return "QA_board_list";
 	   

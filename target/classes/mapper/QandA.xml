@@ -10,12 +10,12 @@
        select count(*) from music_QandA
      </select>
      
-     <select id="list" parameterType="com.khie.model.QA_PageDTO" resultType="com.khie.model.QandADTO">
+     <select id="qa_list" parameterType="com.khie.model.QA_PageDTO" resultType="com.khie.model.QandADTO">
        <![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by QA_no desc) rnum from music_qanda b)
-					where rnum >= #{startNo} and rnum <= #{endNo}
+					over(order by qa_no desc) rnum from music_qanda b)
+					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
 	    ]]>
      </select>
      

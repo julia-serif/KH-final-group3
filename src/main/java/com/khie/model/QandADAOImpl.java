@@ -20,8 +20,8 @@ public class QandADAOImpl implements QandADAO{
 
 	@Override
 	public List<QandADTO> getQandAList(QA_PageDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.sqlSession.selectList("qa_list", dto);
 	}
 
 	@Override
