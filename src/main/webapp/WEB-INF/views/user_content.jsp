@@ -94,7 +94,11 @@
 	         <tr>
 	            <td colspan="2" align="center">
 	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
-	               <input type="reset" value="다시작성">
+	               <input type="reset" value="다시작성">&nbsp;&nbsp;&nbsp;
+	               <input type="button" value="글삭제"
+	               onclick="if(confirm('회원을 삭제하시겠습니까?')) {
+	               				location.href='user_delete.do?user_no=${dto.getUser_no()}'
+	               			}else { return; }">
 	            </td>
 	         </tr>
 	      </table>
