@@ -44,7 +44,9 @@
 	<br><br><br>
 
 	<!-- Single -->
-
+	
+	<c:set var="dto" value="${cont }"/>
+	<c:if test="${!empty dto }">
 	<div class="single">
 		<div class="container">
 			<div class="row">
@@ -53,13 +55,6 @@
 				<div class="col-lg-5">
 					<div class="single_info">
 						<div class="single_image"><img src="resources/img/bg-img/a2.jpg" alt=""></div>
-						<div class="single_info_list">
-							<ul>
-								<li><span>발매일 </span>25 August, 2017</li>
-								<li><span>장르</span>chill, techno, electronic</li>
-								<li><span>아티스트</span>Michael Smith, Jenna Williams</li>
-							</ul>
-						</div>
 					</div>
 				</div>
 
@@ -70,6 +65,23 @@
 							<p>곡 소개</p>
 						</div>
 						
+						<div class="single_text">
+							<h3>${dto.getM_name() }</h3>
+							<ul>
+								<li><span>아티스트</span>${dto.getM_artist() }</li>
+								<li><span>앨범명</span>${dto.getM_album() }</li>
+								<li><span>좋아요</span>${dto.getM_like() }</li>
+								<li><span>발매일</span>${dto.getM_date().substring(0,10) }</li>
+							</ul>
+						</div>
+						
+						<br> <br>
+						
+						<div class="single_text">
+							<p>${dto.getM_lyrics() }</p>
+						
+						</div>
+						
 					</div>
 				</div>
 
@@ -78,18 +90,18 @@
 	</div>
 	
 	<audio preload="auto" controls>
-         <source src="<%= request.getContextPath() %>/resources/audio/dummy-audio.mp3">
+         <source src="<%= request.getContextPath() %>/resources/audio/${dto.getM_audio() }">
     </audio>
-    
+    </c:if>
     </section>
     
     <section>
     	<div class="card my-4">
-			<h5 class="card-header">Leave a Comment:</h5>
+			<h5 class="card-header">댓글</h5>
 			<div class="card-body">
-				<form name="comment-form" action="<%=request.getContextPath() %>/reply_write.do?m_no=${m_no}" method="post" autocomplete="off">
+				<form name="comment-form" action="<%=request.getContextPath() %>/reply_write.do?m_no=${dto.getM_no() }" method="post" autocomplete="off">
 					<div class="form-group">
-						<textarea name="content" class="form-control" rows="3"></textarea>
+						<textarea name="mr_cont" class="form-control" rows="3"></textarea>
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
@@ -98,17 +110,6 @@
 		
 		
     </section>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 	
