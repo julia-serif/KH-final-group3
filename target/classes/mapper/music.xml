@@ -41,7 +41,7 @@
 	</select>
 
 	<select id="musicCont" parameterType="int" resultType="MusicDTO">
-		select * from final.music where m_no = #{m_no}
+		select * from music where m_no = #{m_no}
 	</select>
 	
 	<insert id="music_reply" parameterType="MusicReplyDTO">
@@ -107,12 +107,12 @@
 	
 	
 	<select id="newAll" resultType="MusicDTO">
-		select * from final.music order by m_no desc
+		select * from music order by m_no desc
 	</select>
 	
 	<select id="top10" resultType="MusicDTO">
 	<![CDATA[
-		select * from (select * from final.music order by m_pcount desc) where rownum <= 10
+		select * from (select * from music order by m_pcount desc) where rownum <= 10
 	]]>
 	</select>
 	
