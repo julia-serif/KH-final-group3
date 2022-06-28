@@ -724,7 +724,48 @@ public class MusicController {
 		return "admin_music";
 	}		 
 	
+	//관리자 음원 추가 페이지로 이동
+	@RequestMapping("admin_insert_music.do")
+	public String adminInertMusic() {
+		return"admin_insert_music";
+	}
 	
+	//관리자 음원 추가 완료
+	@RequestMapping("admin_insert_music_ok.do")
+	public void adminInsertMusicOk(MusicDTO musicDTO ,HttpServletRequest requst, HttpServletResponse response) throws IOException {
+		
+		//재생시간 
+		int minute = Integer.parseInt(requst.getParameter("minute").trim());
+		int second = Integer.parseInt(requst.getParameter("second").trim());
+		
+		musicDTO.setM_ptime((minute*60) + second);
+		
+		//파일 업로드
+		boolean uploadAudio = upload.UploadAudio(musicDTO.getM_audio());
+		
+		if(uploadAudio) {
+			System.out.println("오디오 파일 업로드 성공");
+		}
+		
+		int check = this.dao.insertMusic(musicDTO);
+		
+		 response.setContentType("text/html; charset=UTF-8");
+			
+		 PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('음원 추가 성공')");
+			out.println("location.href='admin_Music.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('음원 추가 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+			
+		}
+	}
 		
 	
 }

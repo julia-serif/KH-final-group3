@@ -5,15 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ONE SOUND</title>
 <style type="text/css">
 
 #newMusicArea{
-	margin-left: 80%;
-}
-
-#newtable{
-	margin-left: 30%;
+	margin-left: 65%;
 }
 
 #newMusicArea input{
@@ -102,10 +98,7 @@ function deleteMusic() {
     </div>
     <!-- ##### Breadcumb Area End ##### -->
 
-    <!-- ##### Elements Area Start ##### -->
-    <section class="elements-area mt-30 section-padding-100-0">
-        <div class="container">
-            <div class="row">
+<br><br><br>
             
             <!-- 새음원 추가  Area start -->
             <div id="newMusicArea">
@@ -123,23 +116,23 @@ function deleteMusic() {
   					<c:forEach items="${list}" var="top">
   					<input type="hidden" value="${top.m_no}" id="m_no">
   						
-  						<table width="180%" id="newtable">
+  						<table width="45%" id="newtable">
   							<tr>
  
-  								<td width="10%" >
+  								<td width="7%" >
   									<a href="#">
   									<!-- 음원 상세페이지로 이동 -->
   										<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="300" height="300" />
                           			</a>
                             	</td>
-                            	<td width="30%" id="title">
+                            	<td width="20%" id="title">
                               		     <a href="#">
                               		     <!-- 음원 상세페이지로 이동 -->
-                              		     	 <h5> &nbsp; &nbsp; ${top.m_name}</h5>
-                             		   		<p> &nbsp;&nbsp;&nbsp; ${top.m_artist}</p>
+                              		     	 <h4> &nbsp; &nbsp; ${top.m_name}</h4>
+                             		   		<p> &nbsp;&nbsp;&nbsp;&nbsp; ${top.m_artist}</p>
                              		   	</a>
                             	 </td>
-                            	 <td width="60%">
+                            	 <td width="18%" align="right">
                             	  <a href="#">
                             	  <!-- 플레이 리스트에 담기 -->
                              	 	  <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
@@ -169,11 +162,7 @@ function deleteMusic() {
   				</div>
   				<!-- 음원 Area end-->
   				
-  				
-  				
-            </div>
-        </div>
-  
+ 
     <br><br><br>
     <!-- 페이징 Area start -->
     <div align="center">
