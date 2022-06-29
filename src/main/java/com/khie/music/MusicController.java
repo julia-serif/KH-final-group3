@@ -417,6 +417,34 @@ public class MusicController {
 		return "mypass";
 	}
 	
+	
+	
+	@RequestMapping("mypay.do")
+	public String mypay() {
+		return "mypay";
+	}
+	
+	
+	@RequestMapping("mypay2.do")
+	public String mypass2() {
+		return "mypay2";
+	}
+	
+	@RequestMapping("mypay3.do")
+	public String mypass3() {
+		return "mypay3";
+	}
+	
+	@RequestMapping("mypay4.do")
+	public String mypass4() {
+		return "mypay4";
+	}
+	
+	@RequestMapping("mypay5.do")
+	public String mypass5() {
+		return "mypay5";
+	}
+	
 	@RequestMapping("mypass_cancel.do")
 	public String mypass_cancel(@RequestParam("user_no") int user_no, 
 			Model model) {
@@ -455,32 +483,6 @@ public class MusicController {
 		}
 	}
 	
-	@RequestMapping("mypay.do")
-	public String mypay() {
-		return "mypay";
-	}
-	
-	
-	@RequestMapping("mypay2.do")
-	public String mypass2() {
-		return "mypay2";
-	}
-	
-	@RequestMapping("mypay3.do")
-	public String mypass3() {
-		return "mypay3";
-	}
-	
-	@RequestMapping("mypay4.do")
-	public String mypass4() {
-		return "mypay4";
-	}
-	
-	@RequestMapping("mypay5.do")
-	public String mypass5() {
-		return "mypay5";
-	}
-	
 	@RequestMapping("user_modify_ok.do")
 	public void modifyOk(MemberDTO dto,
 			@RequestParam("db_pwd")String db_pwd,
@@ -491,7 +493,7 @@ public class MusicController {
 		
 		if(dto.getUser_pwd().equals(db_pwd)) {
 			
-			int check = this.dao2.updateBoard(dto);
+			int check = this.dao2.updateMypass(dto);
 			
 			if(check > 0) {
 				out.println("<script>");
@@ -551,6 +553,47 @@ public class MusicController {
 			
 		}
 	}
+
+	
+	@RequestMapping("user_modify.do")
+	public String user_modify(@RequestParam("user_no")int user_no,Model model) {
+		MemberDTO dto = this.dao2.getMember(user_no);
+		
+		model.addAttribute("member_update", dto);
+		
+		return "member_modify";
+	}
+	
+	@RequestMapping("user_change_ok.do")
+	public void userChange(MemberDTO dto,
+			@RequestParam("db_pwd")String db_pwd,
+			HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(dto.getUser_pwd().equals(db_pwd)) {
+			
+			int check = this.dao2.updateBoard(dto);
+			
+			if(check > 0) {
+				out.println("<script>");
+				out.println("alert('정보 수정 성공!!!')");
+				out.println("location.href='member.do'");
+				out.println("</script>");
+			}else {
+				out.println("<script>");
+				out.println("alert('정보 수정 실패~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+			}else {
+				out.println("<script>");
+				out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+		}
 	
 	@RequestMapping("user_content.do")
 	public String content(@RequestParam("user_no")int user_no, Model model ) {

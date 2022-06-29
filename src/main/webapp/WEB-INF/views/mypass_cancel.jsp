@@ -48,7 +48,7 @@
       
       <br>
       
-      <form method="post" 
+      <form  method="post" 
           action="<%=request.getContextPath()%>/mypass_change_Ok.do">
            <c:set var="dto" value="${change }"/> 
            <input type="hidden" name="user_no" value="${dto.user_no }">

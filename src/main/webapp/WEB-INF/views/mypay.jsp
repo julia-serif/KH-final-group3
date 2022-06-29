@@ -49,13 +49,16 @@
         <div class="section-heading text-left mb-50">
             <h4>스마트 이용권 1</h4>         
              <br>
+             
+             <p> 위 이용권은 구입한 날부터 1달 후에는<br>
+                               정상가(7,400원)로 결제가 됩나다.</p>
         </div>
        <div class="newsletter-form">
-        <form action="#">
+        <form action="mypass.do">
          <p></p>
-         <button onclick="#" class="btn oneMusic-btn">결제하기</button>
+         <button onclick="" class="btn oneMusic-btn">결제하기</button>
          &nbsp;&nbsp;&nbsp;&nbsp;
-         <button onclick="#" class="btn oneMusic-btn">취소하기</button>
+         <button onclick="mypass.do" class="btn oneMusic-btn">취소하기</button>
           </form>
          </div>
        </div>

@@ -58,7 +58,13 @@
 	            <th>회원 아이디</th>
 	            <td> ${dto.getUser_id() } </td>
 	         </tr>
-	        <tr>
+
+	         <tr>
+	            <th>회원 이름</th>
+	            <td> ${dto.getUser_name() }</td>
+	         </tr>
+	         
+	         <tr>
 	            <th>회원 비밀번호</th>
 	            <td> 
 	                <c:if test="${!empty dto.getUser_pwd() }">
@@ -67,11 +73,6 @@
 	               </c:forEach>
 	            </c:if>
 	                </td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 이름</th>
-	            <td> ${dto.getUser_name() }</td>
 	         </tr>
 	         
 	         <tr>
@@ -93,8 +94,9 @@
 	         
 	         <tr>
 	            <td colspan="2" align="center">
-	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
-	               <input type="reset" value="다시작성">&nbsp;&nbsp;&nbsp;
+	               <input type="button" value="정보 수정"
+	               onclick="location.href='user_modify.do?user_no=${dto.getUser_no()}'">
+	               &nbsp;&nbsp;&nbsp;
 	               <input type="button" value="회원 탈퇴"
 	               onclick="if(confirm('회원을 탈퇴 처리하시겠습니까?')) {
 	               				location.href='user_delete.do?user_no=${dto.getUser_no()}'

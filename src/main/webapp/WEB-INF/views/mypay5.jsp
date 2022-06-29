@@ -55,7 +55,7 @@
          <p></p>
          <button onclick="#" class="btn oneMusic-btn">결제하기</button>
          &nbsp;&nbsp;&nbsp;&nbsp;
-         <button onclick="#" class="btn oneMusic-btn">취소하기</button>
+         <button onclick="mypass.do" class="btn oneMusic-btn">취소하기</button>
           </form>
          </div>
        </div>
