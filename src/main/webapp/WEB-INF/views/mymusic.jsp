@@ -113,68 +113,17 @@
                     </div>
                 </div>
             <div class="row">
-                <!-- Single List Area -->
-                <div class="col-12">
-                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                        <div class="song-thumbnail">
-                            <img src="resources/img/bg-img/s1.jpg" alt="">
-                        </div>
-                        <div class="song-play-area">
-                            <div class="song-name">
-                                <p>임시　|　01곡</p>
-                                <div class="blog-content">
-	                                <div class="post-meta d-inline-flex mb-20">
-		                                <img src="resources/img/bg-img/Audio.png" alt="">
-	                          	    </div>
-                          	    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Song Area -->
-                <div class="col-12">
-                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                        <div class="song-thumbnail">
-                            <img src="resources/img/bg-img/s2.jpg" alt="">
-                        </div>
-                        <div class="song-play-area">
-                            <div class="song-name">
-                                <p>임시　|　33곡</p>
-                                <div class="blog-content">
-	                                <div class="post-meta d-inline-flex mb-20">
-		                                <img src="resources/img/bg-img/Audio.png" alt="">
-	                          	    </div>
-                          	    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Song Area -->
-                <div class="col-12">
-                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                        <div class="song-thumbnail">
-                            <img src="resources/img/bg-img/s3.jpg" alt="">
-                        </div>
-                        <div class="song-play-area">
-                            <div class="song-name">
-                                <p>임시　|　08곡</p>
-                                <div class="blog-content">
-	                                <div class="post-meta d-inline-flex mb-20">
-		                                <img src="resources/img/bg-img/Audio.png" alt="">
-	                          	    </div>
-                          	    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 				<c:set value="${Count }" var="count" />
                 <c:forEach items="${List }" var="playlist">
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
-                            <img src="resources/img/bg-img/s4.jpg" alt="">
+                        	<c:if test="${playlist.getPlaylist_thumbnail != null }">
+                            	<img src=${playlist.getPlaylist_thumbnail() } alt="">
+                            </c:if>
+                            <c:if test="${playlist.getPlaylist_thumbnail == null }">
+                            	<img src="resources/img/album-img/PlaylistDefault.jpg" alt="">
+                            </c:if>
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
@@ -183,6 +132,10 @@
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
 	                          	    </div>
+	                          	    <input type="button" value="delete"
+	               						onclick="if(confirm('재생 목록을 삭제하시겠습니까?')) {
+	               						location.href='user_delete.do?user_no=${dto.getPlaylist_no()}'
+	               						}else { return; }">
                           	    </div>
                             </div>
                         </div>
