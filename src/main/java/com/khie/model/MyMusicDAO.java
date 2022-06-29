@@ -17,8 +17,8 @@ public interface MyMusicDAO {
 	public int deletePlaylist(PlaylistDTO dto); // 플레이리스트 삭제하기
 	public int imageRegister(PlaylistDTO dto); // 이미지로 곡 등록하기
 
-	public List<PlaylistDTO> getMusiclist(PlaylistDTO dto); // 플레이리스트 보관 음악 조회
-	public void orderMusiclist(PlaylistDTO dto); // 플레이리스트 보관 음악 순서 정렬
+	public List<MusicDTO> getMusiclist(PlaylistDTO dto); // 플레이리스트 보관 음악 조회
+	public List<MusicDTO> orderMusiclist(PlaylistDTO dto); // 플레이리스트 보관 음악 순서 정렬
 	public void deleteMusiclist(PlaylistDTO dto); // 플레이리스트 보관 음악 삭제
 	public List<PlaylistDTO> updatePlaylistCount(PlaylistDTO dto); // 플레이리스트 별 음악 수 업데이트
 }
