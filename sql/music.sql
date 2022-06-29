@@ -1,5 +1,5 @@
 insert into music values(1, 'TOMBOY', '', 'I NEVER DIE', '(여자)아이들', default,
-'dummy-audio.mp3', 'https://www.youtube.com/embed/Jh4QFaPmdss', 'I NEVER DIE.jpg', default, '174', 
+'dummy-audio.mp3', 'https://youtu.be/Jh4QFaPmdss', 'I NEVER DIE.jpg', default, '174', 
 'Look at you 넌 못 감당해 날
 Ya took off hook
 기분은 Coke like brrr
@@ -179,7 +179,7 @@ Let’s make a funny face', sysdate, '');
 
 
 insert into music values(4, 'LOVE DIVE', '', 'LOVE DIVE', 'IVE (아이브)', default,
-'dummy-audio.mp3', 'https://www.youtube.com/embed/Y8JFxS1HlDo', 'LOVE DIVE.jpg', default, '177', 
+'dummy-audio.mp3', 'https://youtu.be/Y8JFxS1HlDo', 'LOVE DIVE.jpg', default, '177', 
 '네가 참 궁금해 그건 너도 마찬가지
 이거면 충분해 쫓고 쫓는 이런 놀이
 참을 수 없는 이끌림과 호기심 
@@ -233,7 +233,7 @@ Woo oh perfect sacrifice yeah
 숨 참고 love dive', sysdate, '');
 
 insert into music values(5, '사랑은 늘 도망가', '', '신사와 아가씨 OST Part.2', '임영웅', default,
-'dummy-audio.mp3', 'https://www.youtube.com/embed/LKQ-18LoFQk', '신사와 아가씨 OST Part.2.jpg', default, '243', 
+'dummy-audio.mp3', 'https://youtu.be/LKQ-18LoFQk', '신사와 아가씨 OST Part.2.jpg', default, '243', 
 '눈물이 난다 이 길을 걸으면
 그 사람 손길이 자꾸 생각이 난다
 붙잡지 못하고 가슴만 떨었지
@@ -278,7 +278,7 @@ insert into music values(5, '사랑은 늘 도망가', '', '신사와 아가씨 
 
 
 insert into music values(6, '우리들의 블루스', '', 'IM HERO', '임영웅', default,
-'dummy-audio.mp3', 'https://www.youtube.com/embed/JPPIrXdocjQ', 'IM HERO.jpg', default, '243', 
+'dummy-audio.mp3', 'https://youtu.be/JPPIrXdocjQ', 'IM HERO.jpg', default, '243', 
 '잊지는 말아요 함께 했던 날들
 눈물이 날 때면 그대 뒤를 돌아보면 돼요
 

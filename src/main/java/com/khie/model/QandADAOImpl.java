@@ -26,8 +26,8 @@ public class QandADAOImpl implements QandADAO{
 
 	@Override
 	public int insertQandA(QandADTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.insert("qa_add", dto);
 	}
 
 	@Override

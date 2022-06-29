@@ -19,5 +19,14 @@
 	    ]]>
      </select>
      
+     <insert id="qa_add" parameterType="com.khie.model.QandADTO">
+		<selectKey resultType="int" keyProperty="qa_no" order="BEFORE">
+			select max(qa_no) from music_qanda
+		</selectKey>
+		insert into music_qanda values(#{qa_no} + 1, #{qa_writer}, 
+				#{qa_title},#{qa_pwd}, #{qa_cont}, sysdate,'')
+	</insert>
+     
+     
   
    </mapper>
