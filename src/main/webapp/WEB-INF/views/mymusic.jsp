@@ -132,6 +132,10 @@
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
 	                          	    </div>
+	                          	    <input type="button" value="delete"
+	               						onclick="if(confirm('재생 목록을 삭제하시겠습니까?')) {
+	               						location.href='user_delete.do?user_no=${dto.getPlaylist_no()}'
+	               						}else { return; }">
                           	    </div>
                             </div>
                         </div>
