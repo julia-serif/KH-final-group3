@@ -64,26 +64,22 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 
 	@Override
 	public int imageRegister(PlaylistDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.update("image_register", dto);
 	}
 
 	@Override
-	public List<PlaylistDTO> getMusiclist(PlaylistDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MusicDTO> getMusiclist(PlaylistDTO dto) {
+		return this.sqlSession.selectList("get_musiclist", dto);
 	}
 
 	@Override
-	public void orderMusiclist(PlaylistDTO dto) {
-		// TODO Auto-generated method stub
-
+	public List<MusicDTO> orderMusiclist(PlaylistDTO dto) {
+		return this.sqlSession.selectList("order_musiclist", dto);
 	}
 
 	@Override
 	public void deleteMusiclist(PlaylistDTO dto) {
-		// TODO Auto-generated method stub
-
+		this.sqlSession.delete("delete_musiclist", dto);
 	}
 
 	@Override
