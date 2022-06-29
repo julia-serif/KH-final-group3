@@ -78,6 +78,13 @@
         update music_member set user_no = user_no -1 where user_no > #{user_no} 
     ]]>
     </update>
+    
+    <update id="change" parameterType="com.khie.model.MemberDTO">
+		<![CDATA[
+		update music_member set user_purchase = 0
+			where user_no = #{user_no}
+		]]>	
+	</update>
    
    
 </mapper>

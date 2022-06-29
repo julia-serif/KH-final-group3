@@ -84,5 +84,10 @@ public class MemberDAOImpl implements MemberDAO{
 		
 	}
 
+	@Override
+	public int updateMypass(MemberDTO dto) {
+		return this.sqlSession.update("change", dto);
+	}
+
 
 }

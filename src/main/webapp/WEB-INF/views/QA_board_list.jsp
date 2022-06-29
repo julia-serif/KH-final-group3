@@ -49,11 +49,11 @@
          <th>게시일</th>
        </tr>
        
-       <c:set var="qa_list" value="${QA_List}"/>
+       <c:set var="QA_list" value="${QA_List}"/>
        <c:set var="QA_Paging" value="${QA_Paging}" />
        
-       <c:if test="${!empty qa_list}">
-          <c:forEach items="${qa_list }" var="dto">
+       <c:if test="${!empty QA_list}">
+          <c:forEach items="${QA_list }" var="dto">
             <tr>
               <td>${dto.qa_no }</td>
               <td>
@@ -65,7 +65,7 @@
           </c:forEach>
        </c:if>
      
-     <c:if test="${empty qa_list }">
+     <c:if test="${empty QA_list }">
         <tr>
           <td colspan="4" align="center">
            <h3>검색된 게시물이 없습니다.</h3>

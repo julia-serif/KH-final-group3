@@ -5,15 +5,15 @@ import lombok.Data;
 @Data
 public class QandADTO {
 
-	private int QA_no;
-    private String QA_writer;
-    private String QA_title;
-    private String QA_cont;
-    private String QA_userID;
-    private String QA_date;
-    private String QA_update ;
-    private int QA_group;
-    private int QA_step;
-    private int QA_indent;
+	private int qa_no;
+    private String qa_writer;
+    private String qa_title;
+    private String qa_cont;
+    private String qa_userID;
+    private String qa_date;
+    private String qa_update ;
+    private int qa_group;
+    private int qa_step;
+    private int qa_indent;
     
 }

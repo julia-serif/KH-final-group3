@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -414,6 +415,44 @@ public class MusicController {
 		return "mypass";
 	}
 	
+	@RequestMapping("mypass_cancel.do")
+	public String mypass_cancel(@RequestParam("user_no") int user_no, 
+			Model model) {
+		MemberDTO dto = this.dao2.getMember(user_no);
+		model.addAttribute("change", dto);
+		return "mypass_cancel";
+	}
+	
+	@RequestMapping("mypass_change_Ok.do")
+	public void mypass_cancel_ok(MemberDTO dto, 
+			@RequestParam("db_pwd") String db_pwd,
+			HttpServletResponse response) throws IOException{
+	
+	response.setContentType("text/html; charset=UTF-8");
+	
+	PrintWriter out = response.getWriter();
+	
+	if(dto.getUser_pwd().equals(db_pwd)) {
+		int check = this.dao2.updateMypass(dto);
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('취소 성공!!!')");
+			out.println("location.href='mypass.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('취소 실패~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}else {
+			out.println("<script>");
+			out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
 	@RequestMapping("mypay.do")
 	public String mypay() {
 		return "mypay";
@@ -705,14 +744,18 @@ public class MusicController {
 	   } else {
 		   qa_page = 1;
 	   }
+	   
+	   
+	   
 		   QA_totalRecord = this.Qand_dao.getQandAListCount();
+		   int QA_rowsize = 5;
 		   
-		   QA_PageDTO dto = new QA_PageDTO(qa_page, QA_rowsize, QA_totalRecord);
+		   QA_PageDTO qa_dto = new QA_PageDTO(qa_page, QA_rowsize, QA_totalRecord);
 	       
-		   List<QandADTO> qa_list = this.Qand_dao.getQandAList(dto);
+		   List<QandADTO> qa_list = this.Qand_dao.getQandAList(qa_dto);
 		   
 		   model.addAttribute("QA_List", qa_list);
-		   model.addAttribute("QA_Paging", dto);
+		   model.addAttribute("QandADTO", qa_dto);
 		   
 	   return "QA_board_list";
 	   
