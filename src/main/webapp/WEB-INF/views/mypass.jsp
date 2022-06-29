@@ -199,7 +199,7 @@
         
          <p></p>   
          <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
-				location.href='mypass_change_Ok.do?user_no=${dto.getUser_no()}'
+				location.href='mypass_cancel.do?user_no=${dto.getUser_no()}'
        			}else { return; }" class="btn oneMusic-btn">취소하기</button>
           
          </div>
