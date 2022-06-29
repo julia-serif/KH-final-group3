@@ -100,14 +100,14 @@
 	   </c:forEach>
 
 	   <c:if test="${QA_Paging.getQa_endBlock() < QA_Paging.getQa_allPage() }">
-	      <a href="board_list.do?page=${QA_Paging.getQa_endBlock() + 1 }">▶</a>
-	      <a href="board_list.do?page=${QA_Paging.getQa_allPage() }">[마지막으로]</a>
+	      <a href="QA_board_list.do?page=${QA_Paging.getQa_endBlock() + 1 }">▶</a>
+	      <a href="QA_board_list.do?page=${QA_Paging.getQa_allPage() }">[마지막으로]</a>
 	   </c:if>
 	   
 	   <br> <br>
 	   
 	   <form method="post"
-	      action="<%=request.getContextPath() %>/board_search.do">
+	      action="<%=request.getContextPath() %>/QA_board_search.do">
 	   
 	   	  <input type="hidden" name="page" value="${QA_Paging.getQa_page() }">
 	   	  

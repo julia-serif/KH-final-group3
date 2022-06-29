@@ -31,6 +31,7 @@ import com.khie.model.PlaylistDTO;
 import com.khie.model.QA_PageDTO;
 import com.khie.model.QandADAO;
 import com.khie.model.QandADTO;
+import com.board.model.BoardDTO;
 import com.khie.model.MemberDAO;
 
 @Controller
@@ -711,6 +712,36 @@ public class MusicController {
 	   return "QA_board_list";
 	   
 	   
+	}
+	
+	@RequestMapping("qa_insert.do")
+     public String qa_insert() {
+		
+		return "qa_board_insert";
+	}
+	
+	@RequestMapping("qa_notice_write_ok.do")
+	public void writeOk(QandADTO dto,
+			HttpServletResponse response) throws IOException {
+		
+		int check = this.Qand_dao.insertQandA(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('게시글 추가 성공!!!')");
+			out.println("location.href='qanda_list.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('게시글 추가 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		
 	}
 	
 	
