@@ -43,6 +43,8 @@ public class MusicController {
 	private MusicReplyDAO dao3;
 	@Autowired
 	private NoticeDAO dao4;
+	@Autowired
+	private Upload upload;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
@@ -210,7 +212,6 @@ public class MusicController {
 	public String mymusic(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
-		System.out.println("Member : " + member);
 		int user_no = member.getUser_no();
 		List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
 
@@ -230,6 +231,7 @@ public class MusicController {
 		model.addAttribute("List", likelist);
 		return "music_likelist";
 	}
+	
 	@RequestMapping("select_recent.do")
 	public String recent_watch(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
