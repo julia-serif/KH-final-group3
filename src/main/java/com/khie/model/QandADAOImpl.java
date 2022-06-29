@@ -31,15 +31,16 @@ public class QandADAOImpl implements QandADAO{
 	}
 
 	@Override
-	public void readCount(int QA_no) {
-		// TODO Auto-generated method stub
+	public void readCount(int qa_no) {
+		
+		this.sqlSession.update("read", qa_no);
 		
 	}
 
 	@Override
-	public QandADTO boardCont(int QA_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public QandADTO boardCont(int qa_no) {
+		
+		return this.sqlSession.selectOne("content", qa_no);
 	}
 
 	@Override
@@ -49,19 +50,19 @@ public class QandADAOImpl implements QandADAO{
 	}
 
 	@Override
-	public int deleteBoard(int QA_no) {
+	public int deleteBoard(int qa_no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void updateSequence(int QA_no) {
+	public void updateSequence(int qa_no) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int searchBoardCount(String QA_field, String QA_keyword) {
+	public int searchBoardCount(String qa_field, String qa_keyword) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

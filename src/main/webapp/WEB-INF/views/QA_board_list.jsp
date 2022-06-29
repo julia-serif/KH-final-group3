@@ -45,21 +45,21 @@
        <tr>
          <th>게시물 번호</th>
          <th>제목</th>
-         <th>아이디</th>
+         <th>작성자</th>
          <th>게시일</th>
        </tr>
        
        <c:set var="QA_list" value="${QA_List}"/>
-       <c:set var="QA_Paging" value="${QA_Paging}" />
+      
        
        <c:if test="${!empty QA_list}">
           <c:forEach items="${QA_list }" var="dto">
             <tr>
               <td>${dto.qa_no }</td>
               <td>
-               <a href="<%=request.getContextPath()%>/qanda_content.do?qa_no=${dto.qa_no}&page=${QA_Paging.qa_page }">
+               <a href="<%=request.getContextPath()%>/qanda_content.do?qa_no=${dto.qa_no}">
               ${dto.qa_title }</a></td>
-              <td>${dto.qa_id }</td>
+              <td>${dto.qa_writer }</td>
               <td>${dto.qa_date.substring(0,10) }</td>            
             </tr>  
           </c:forEach>
@@ -83,25 +83,26 @@
      <br>
      
      <%-- 페이징 처리 부분 --%>
+       <c:set var="QA_Paging" value="${QA_Paging}" />
 	   <c:if test="${QA_Paging.getQa_page() > QA_Paging.getQa_block() }">
-	      <a href="QA_board_list.do?page=1">[처음으로]</a>
-	      <a href="QA_board_list.do?page=${QA_Paging.getQa_startBlock() - 1 }">◀</a>
+	      <a href="qanda_list.do?qa_page=1">◀◀</a>
+	      <a href="qanda_list.do?qa_page=${QA_Paging.getQa_startBlock() - 1 }">◀</a>
 	   </c:if>
 	   
 	   <c:forEach begin="${QA_Paging.getQa_startBlock() }"
 	          				end="${QA_Paging.getQa_endBlock() }" var="i">
-	      <c:if test="${dto == QA_Paging.getPage() }">
-	         <b> <a href="QA_board_list?page=${dto }">[${dto }]</a></b>
+	      <c:if test="${i == QA_Paging.getQa_page() }">
+	         <b> <a href="qanda_list.do?qa_page=${i }">[${i }]</a></b>
 	      </c:if>
 	   
-	   	  <c:if test="${dto != QA_Paging.getPage() }">
-	         <a href="QA_board_list?page=${dto }">[${dto }]</a>
+	   	  <c:if test="${i != QA_Paging.getQa_page() }">
+	         <a href="qanda_list.do?qa_page=${i}">[${i}]</a>
 	      </c:if>
 	   </c:forEach>
 
 	   <c:if test="${QA_Paging.getQa_endBlock() < QA_Paging.getQa_allPage() }">
-	      <a href="QA_board_list.do?page=${QA_Paging.getQa_endBlock() + 1 }">▶</a>
-	      <a href="QA_board_list.do?page=${QA_Paging.getQa_allPage() }">[마지막으로]</a>
+	      <a href="qanda_list.do?page=${QA_Paging.getQa_endBlock() + 1 }">▶</a>
+	      <a href="qanda_list.do?page=${QA_Paging.getQa_allPage() }">▶▶</a>
 	   </c:if>
 	   
 	   <br> <br>

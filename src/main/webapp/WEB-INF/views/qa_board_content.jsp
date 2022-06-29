@@ -28,7 +28,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>Q/A 게시물 입력 창</h2>
+            <h2>MyPage</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -46,47 +46,89 @@
 
        <!-- 회원 상세 페이지 -->
        <div align="center">
+       <c:set var="dto" value="${content2 }" />                                    
+        <h2> 공지사항</h2>
+        
+	   <br>
  
-      
-      <br>
-      <c:set var="dto" value="${member }" />
-      <form method="post" 
-          action="<%=request.getContextPath()%>/qa_notice_write_ok.do">
-           
-           <table border="1" cellspacing="0" width="500">
-         <tr>
-           <th>제목</th>
-           <td> <input name="qa_title"> </td>
-         </tr>
-         
-         
-         <tr>
-           <th>작성자</th>
-           <td><input  name="qa_writer" value="${dto.user_name }" readonly ></td>
-         </tr>
+	   	  <input type="hidden" name="qa_no" value="${dto.qa_no }">
+	   	  <input type="hidden" name="db_pwd" value="${dto.qa_pwd }">
+	      <table border="1" cellspacing="0" width="400">
 
-         <tr>
-           <th>비밀번호</th>
-           <td> <input type="password" name="qa_pwd"> </td>
-         </tr>
-
-         <tr>
-           <th>내 용</th>
-           <td> 
-           <textarea rows="7"cols="50" name="qa_cont"></textarea>  
-           </td>
-         </tr>
-         
-  
-         <tr>
-            <td colspan="2" align="center">
-              <input type="submit" value="글 등록">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
-             </td>
-         </tr>
-       </table>
-     </form>
-  </div>
+	      <tr>
+	         <th>글 제목</th>
+	         <td> ${dto.getQa_title() } </td>
+	      </tr>
+	      
+	      <tr>
+	         <th>작성자</th>
+	         <td> ${dto.getQa_writer() } </td>
+	      </tr>
+	      
+	      <tr>
+	         <th>비밀번호</th>
+	         <td>
+	            <c:if test="${!empty dto.getMusic_pwd() }">
+	               <c:forEach begin="1" end="${dto.getMusic_pwd().length() }">
+	                    *
+	               </c:forEach>
+	            </c:if>
+	         </td>
+	      </tr>
+	      
+	      
+				      	
+	      <tr>
+	         <th>글 내용</th>
+	         <td>
+	            <textarea rows="10" cols="40" readonly>${dto.getQa_cont() }</textarea>
+	         </td>
+	      </tr>
+	      
+	      <tr>
+			<c:if test="${empty dto.getQa_update() }">
+				   <th>작성일자</th>
+				   <td> ${dto.getQa_date().substring(0,10) } </td>
+			</c:if>
+				         
+			<c:if test="${!empty dto.getQa_update() }">
+				    <th>수정일자</th>
+				    <td> ${dto.getQa_update() } </td>
+			</c:if>
+		</tr>
+	      
+	      
+	      <tr>
+	         <th>조회 수</th>
+	         <td> ${dto.getQa_hit() } </td>
+	      </tr>
+	      
+	     
+	      
+	      <c:if test="${empty dto }">
+	         <tr>
+	            <td colspan="2" align="center">
+	               <h3>조회된 상세 내역이 없습니다.....</h3>
+	            </td>
+	         </tr>
+	      </c:if>
+	      
+	      <tr>
+	         <td colspan="2" align="center">
+	            <input type="button" value="글수정"
+	               onclick="location.href='qa_modify.do?qa_no=${dto.getQa_no()}'">
+	               &nbsp;
+	            <input type="button" value="글삭제"
+	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
+	               				location.href='qa_delete.do?qa_no=${dto.getQa_no()}'
+	               				}else { return; }">
+	               &nbsp;         
+	            <input type="button" value="전체목록"
+	               onclick="location.href='qa_list.do?'">
+	         </td>
+	      </tr>
+	   </table>
+	</div>
                         </div>
                     </div>
                 

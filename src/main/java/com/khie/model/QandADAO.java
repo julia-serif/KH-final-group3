@@ -11,17 +11,17 @@ public int getQandAListCount();
 	
 	public int insertQandA(QandADTO dto);
 	
-	public void readCount(int QA_no);
+	public void readCount(int qa_no);
 	
-	public QandADTO boardCont(int QA_no);
+	public QandADTO boardCont(int qa_no);
 	
 	public int updateBoard(QandADTO  dto);
 	
-	public int deleteBoard(int QA_no);
+	public int deleteBoard(int qa_no);
 	
-	public void updateSequence(int QA_no);
+	public void updateSequence(int qa_no);
 	
-	public int searchBoardCount(String QA_field, String QA_keyword);
+	public int searchBoardCount(String qa_field, String qa_keyword);
 	
 	public List<QandADTO> searchBoardList(QA_PageDTO dto);
 }

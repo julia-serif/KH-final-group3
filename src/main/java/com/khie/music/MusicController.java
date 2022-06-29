@@ -800,7 +800,7 @@ public class MusicController {
 		   List<QandADTO> qa_list = this.Qand_dao.getQandAList(qa_dto);
 		   
 		   model.addAttribute("QA_List", qa_list);
-		   model.addAttribute("QandADTO", qa_dto);
+		   model.addAttribute("QA_Paging", qa_dto);
 		   
 	   return "QA_board_list";
 	   
@@ -835,6 +835,17 @@ public class MusicController {
 			out.println("</script>");
 		}
 		
+	}
+	
+	@RequestMapping("qanda_content.do")
+	public String qa_content(@RequestParam("qa_no") int qa_no, Model model) {
+		this.Qand_dao.readCount(qa_no);
+		
+		QandADTO dto = this.Qand_dao.boardCont(qa_no);
+		
+		model.addAttribute("content2", dto);
+
+		return "qa_board_content";
 	}
 	
 	

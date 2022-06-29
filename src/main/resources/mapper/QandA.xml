@@ -23,10 +23,17 @@
 		<selectKey resultType="int" keyProperty="qa_no" order="BEFORE">
 			select max(qa_no) from music_qanda
 		</selectKey>
-		insert into music_qanda values(#{qa_no} + 1, #{qa_writer}, 
-				#{qa_title},#{qa_pwd}, #{qa_cont}, sysdate,'')
+		insert into music_qanda values((select max(qa_no) from music_qanda) +1, #{qa_writer}, 
+				#{qa_pwd},#{qa_title}, #{qa_cont}, sysdate,'',(select max(qa_no) from music_qanda) +1,0,0)
 	</insert>
      
-     
+     <update id="read" parameterType="int">
+	   update music_qanda set qa_hit = qa_hit + 1
+			where qa_no = #{qa_no}
+	  </update>
+	  
+	  <select id="content" parameterType="int" resultType="com.khie.model.QandADTO">
+        select * from music_qanda where qa_no = #{qa_no}
+	   </select>
   
    </mapper>
