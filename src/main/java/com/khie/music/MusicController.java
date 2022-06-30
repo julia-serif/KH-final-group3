@@ -902,6 +902,52 @@ public class MusicController {
 		}
 	
 	
+	     @RequestMapping("qa_delete.do")    
+	 	public String qa_delete(@RequestParam("qa_no") int qa_no,
+	 			Model model) {
+	 		
+	    	 QandADTO dto = this.Qand_dao.boardCont(qa_no);
+	 		
+	 		model.addAttribute("qa_delete", dto);
+	 		
+	 		return "qa_delete";
+	 	}
+	
+	    @RequestMapping("qa_delete_Ok.do")
+		 public void qa_deleteOk(QandADTO dto,
+				 @RequestParam("db_pwd") String db_pwd,
+				 HttpServletResponse response) throws IOException {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter out = response.getWriter();
+		   
+		   if(dto.getQa_pwd().equals(db_pwd)) {
+			   
+			   int check = this.Qand_dao.deleteBoard(dto.getQa_no());
+		
+			   if(check > 0) {
+				   this.Qand_dao.updateSequence(dto.getQa_no());
+			   
+				   out.println("<script>");
+				   out.println("alert('게시물 삭제 성공!!!')");
+				   out.println("location.href='qanda_list.do'");
+				   out.println("</script>");
+			   
+			   }else {
+				    out.println("<script>");
+					out.println("alert('게시물 삭제 실패~~~')");
+					out.println("history.back()");
+					out.println("</script>");
+			   }
+			   
+		   }else {
+				   out.println("<script>");
+					out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+					out.println("history.back()");
+					out.println("</script>");
+			   }
+		 }
 	
 	
 	//관리자 음원 조회

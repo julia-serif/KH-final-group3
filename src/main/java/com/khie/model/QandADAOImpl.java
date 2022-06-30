@@ -50,13 +50,14 @@ public class QandADAOImpl implements QandADAO{
 
 	@Override
 	public int deleteBoard(int qa_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.delete("qa_delete",qa_no);
 	}
 
 	@Override
 	public void updateSequence(int qa_no) {
-		// TODO Auto-generated method stub
+		
+		this.sqlSession.update("qa_seq", qa_no);
 		
 	}
 

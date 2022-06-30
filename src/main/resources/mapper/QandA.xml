@@ -42,5 +42,16 @@
 	          qa_cont = #{qa_cont}, qa_update = sysdate
 	          where qa_no = #{qa_no} 
 	   </update>
+	   
+	   <delete id="qa_delete" parameterType="int">
+	      delete from music_qanda where qa_no = #{qa_no}
+	   </delete>
+	   
+	   <update id="qa_seq" parameterType="int">
+	       <![CDATA[
+			update music_qanda set qa_no  = qa_no  - 1
+			where qa_no  > #{qa_no }
+		]]>	
+	   </update>
 
    </mapper>

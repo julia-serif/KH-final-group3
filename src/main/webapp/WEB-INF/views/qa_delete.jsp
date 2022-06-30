@@ -46,64 +46,32 @@
 
        <!-- 회원 상세 페이지 -->
        <div align="center">
-       <c:set var="dto" value="${content2 }" />                                  
-        <h2> 답변글</h2>
-        
-	   <br>
- 
-	   	  
-	   	  <form method="post" 
-          action="<%=request.getContextPath()%>/qa_update_ok.do">
-          
-	      <input type="hidden" name="qa_no" value="${dto.qa_no }">
-	   	  <input type="hidden" name="db_pwd" value="${dto.qa_pwd }">
-	      <table border="1" cellspacing="0" width="600">
-         
-	      <tr>
-	         <th>글 제목</th>
-	         <td> <input name="qa_title" value="${dto.getQa_title() }" ></td>
-	      </tr>
-	     
-	      <tr>
-	         <th>작성자</th>
-	         <td> <input  name="qa_writer" value="${dto.getQa_writer() }" readonly ></td>
-	      </tr>
+       
+      
+      <br>
+      
+      <form method="post" 
+          action="<%=request.getContextPath()%>/qa_delete_Ok.do">
+           <c:set var="dto" value="${qa_delete }"/> 
+           <input type="hidden" name="qa_no" value="${dto.qa_no }">
+           <input type="hidden" name="db_pwd" value="${dto.qa_pwd }">
+           
+           <table border="1" cellspacing="0" width="350">
 
-	      
-	      <tr>
-           <th>비밀번호</th>
+         <tr>
+           <th>삭제할 글 비밀번호</th>
            <td> <input type="password" name="qa_pwd"> </td>
          </tr>
-	      
-	      
-				      	
-	      <tr>
-           <th> 답변 내 용</th>
-           <td> 
-           <textarea rows="7" cols="50" name="qa_cont">${ dto.getQa_cont() }</textarea>  
-           </td>
-         </tr>
-	      
-	      
-	     
-	      
-	      <c:if test="${empty dto }">
-	         <tr>
-	            <td colspan="2" align="center">
-	               <h3>조회된 상세 내역이 없습니다.....</h3>
-	            </td>
-	         </tr>
-	      </c:if>
-	      
-	      <tr>
+         
+         <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="글 등록">&nbsp;&nbsp;&nbsp;
+              <input type="submit" value="글삭제">&nbsp;&nbsp;&nbsp;
               <input type="reset" value="다시작성">
              </td>
          </tr>
-	   </table>
-	  </form>
-	</div>
+       </table>
+     </form>
+  </div>
                         </div>
                     </div>
                 
