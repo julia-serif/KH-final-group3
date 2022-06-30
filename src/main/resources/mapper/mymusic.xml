@@ -10,7 +10,7 @@
     
 <mapper namespace="MyMusicDAO">
 	<select id="select_playlist" parameterType="int" resultType="PlaylistDTO">
-		select distinct playlist_no, playlist_name, playlist_thumbnail, last_value(m_no) over(order by m_no) as music_num
+		select distinct playlist_no, playlist_name, playlist_thumbnail, last_value(m_no) over(order by playlist_no) as m_no
 		from music_playlist
 		where user_no = #{user_no} order by playlist_no
 	</select>

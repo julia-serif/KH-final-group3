@@ -11,7 +11,6 @@ public class MyMusicDTO {
 	private String play_thumbs;
 	private int play_counts;
 	
-	private int playlist_order;
 	private int playlist_no;
 	private String playlist_name;
 
