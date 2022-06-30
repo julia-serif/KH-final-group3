@@ -112,6 +112,7 @@
                 </div>
             <div class="row">
                 <c:forEach items="${List }" var="playlist">
+	   	  		<input type="hidden" name="playlist_no" value="${playlist.getPlaylist_no() }">
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                        <div class="song-thumbnail">
@@ -131,7 +132,7 @@
 	                          	    </div>
 	                          	    <input type="button" value="delete"
 	               						onclick="if(confirm('재생 목록을 삭제하시겠습니까?')) {
-	               						location.href='playlist_delete.do?playlist_no=${playlist.getPlaylist_no()}'
+	               						location.href='playlist_delete.do?user_no=${dto.getUser_no() }&playlist_no=${playlist.getPlaylist_no()}'
 	               						}else { return; }">
                           	    </div>
                             </div>

@@ -239,8 +239,10 @@ public class MusicController {
 		} else {
 			int user_no = member.getUser_no();
 			List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
+			int count = playlist.size();
 
 			model.addAttribute("Member", member);
+			model.addAttribute("Count", count);
 			model.addAttribute("List", playlist);
 			return "mymusic";
 		}
