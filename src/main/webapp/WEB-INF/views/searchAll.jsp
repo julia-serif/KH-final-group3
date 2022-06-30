@@ -66,10 +66,12 @@
 					                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 					                            <div class="first-part d-flex align-items-center">
 					                                <div class="thumbnail">
-					                                    <img src="<%= request.getContextPath() %>/resources/img/album-img/${music.getM_image() }" alt="${music.getM_album() } 앨범 재킷">
+					                                    <a href="<%= request.getContextPath() %>/music_cont.do?m_no=${music.getM_no() }">
+					                                    	<img src="<%= request.getContextPath() %>/resources/img/album-img/${music.getM_image() }" alt="${music.getM_album() } 앨범 재킷">
+				                                    	</a>
 					                                </div>
 					                                <div class="content-">
-					                                    <h6>${music.getM_name() }</h6>
+					                                    <a href="<%= request.getContextPath() %>/music_cont.do?m_no=${music.getM_no() }"><h6>${music.getM_name() }</h6></a>
 					                                    <p style="display: inline-block; padding-right: 5px;">${music.getM_album() }</p>
 					                                    |
 					                                    <p style="display: inline-block; padding-left: 5px;">${music.getM_artist() }</p>
@@ -217,11 +219,11 @@
 					                        <!-- Blog Content -->
 					                        <div class="blog-content">
 					                            <!-- Post Title -->
-					                            <a href="#" class="post-title">${music.getM_name() }</a>
+					                            <a href="<%= request.getContextPath() %>/music_cont.do?m_no=${music.getM_no() }" class="post-title">${music.getM_name() }</a>
 					                            <!-- Post Meta -->
 					                            <div class="post-meta d-flex mb-30">
-					                                <p class="post-author"><a href="#"> ${music.getM_artist() }</a></p>
-					                                <p class="tags"><a href="#"> ${music.getM_album() }</a></p>
+					                                <p class="post-author">${music.getM_artist() }</p>
+					                                <p class="tags">${music.getM_album() }</p>
 					                            </div>
 					                            <!-- Post Excerpt -->
 					                            <p>${music.getM_lyrics().substring(0,200) }...</p>

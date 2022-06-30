@@ -54,11 +54,11 @@
 		                        <!-- Blog Content -->
 		                        <div class="blog-content">
 		                            <!-- Post Title -->
-		                            <a href="#" class="post-title">${music.getM_name() }</a>
+		                            <a href="<%= request.getContextPath() %>/music_cont.do?m_no=${music.getM_no() }" class="post-title">${music.getM_name() }</a>
 		                            <!-- Post Meta -->
 		                            <div class="post-meta d-flex mb-30">
-		                                <p class="post-author"><a href="#"> ${music.getM_artist() }</a></p>
-		                                <p class="tags"><a href="#"> ${music.getM_album() }</a></p>
+		                                <p class="post-author">${music.getM_artist() }</p>
+		                                <p class="tags">${music.getM_album() }</p>
 		                            </div>
 		                            <!-- Post Excerpt -->
 		                            <p>${music.getM_lyrics().substring(0,200) }...</p>

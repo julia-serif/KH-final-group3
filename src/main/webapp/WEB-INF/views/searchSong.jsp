@@ -53,10 +53,14 @@
 		                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="first-part d-flex align-items-center">
 		                                <div class="thumbnail">
-		                                    <img src="<%= request.getContextPath() %>/resources/img/album-img/${music.getM_image() }" alt="${music.getM_album() } 앨범 재킷">
+		                                	<a href="<%= request.getContextPath() %>/music_cont.do?m_no=${music.getM_no() }">
+		                                    	<img src="<%= request.getContextPath() %>/resources/img/album-img/${music.getM_image() }" alt="${music.getM_album() } 앨범 재킷">
+	                                    	</a>
 		                                </div>
 		                                <div class="content-">
-		                                    <h6>${music.getM_name() }</h6>
+		                                    <a href="<%= request.getContextPath() %>/music_cont.do?m_no=${music.getM_no() }">
+		                                    	<h6>${music.getM_name() }</h6>
+	                                    	</a>
 		                                    <p style="display: inline-block; padding-right: 5px;">${music.getM_album() }</p>
 		                                    |
 		                                    <p style="display: inline-block; padding-left: 5px;">${music.getM_artist() }</p>
