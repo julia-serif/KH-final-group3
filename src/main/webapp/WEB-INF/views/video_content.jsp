@@ -19,7 +19,27 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
-
+    
+    <style type="text/css">
+	    .video-container {
+			position: relative;
+			padding-bottom: 56.25%;
+			padding-top: 30px;
+			height: 0;
+			overflow: hidden;
+		}
+		 
+		.video-container iframe,
+		.video-container object,
+		.video-container embed {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+    </style>
+    
 </head>
 <body>
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
@@ -28,40 +48,67 @@
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>영상플레이어</p>
-            <h2>${music.getM_name() }</h2>
+            <c:if test="${!empty music }">
+            	<h2>${music.getM_name() }</h2>
+            </c:if>
+            
+            <c:if test="${empty music }">
+            	<h2>잘못된 접근</h2>
+            </c:if>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
     
-    <!-- ##### Events Area Start ##### -->
-    <section class="events-area section-padding-100">
-        <div class="container">
-            <div class="row">
-	            <div class="col-12" align="center">
-					<div class="single-event-area mb-30">
-						<div class="event-thumbnail">
-							<c:set var="mv" value="${fn:split(music.getM_mv(), '/')[2] }" />
-				            <iframe width="940" height="528.750" src="https://www.youtube.com/embed/${mv }" title="${music.getM_name() }"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen"></iframe>
-						</div>
-						<div class="event-text">
-							<h4>${music.getM_name() }</h4>
-							<div class="event-meta-data">
-								<a href="#" class="event-place">${music.getM_artist() }</a>
-								<a href="#" class="event-date">${music.getM_album() }</a>
-							</div>
-							<p>${music.getM_date().substring(0,10) }</p>
-							<p>▶${music.getPlay_counts() }</p>
-	                   </div>
-	                   <p>가사</p>
-	                   <p>댓글</p>
-	               	</div>
-	            </div>
-            
-            </div>
-        </div>
-    </section>
+    <!-- ##### Blog Area Start ##### -->
+    <div class="blog-area section-padding-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<c:if test="${!empty music }">
+						<!-- Single Post Start -->
+	                    <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
+	                        <!-- Post Thumb -->
+	                        <div class="blog-post-thumb mt-30" style="height: 100%;">
+	                            <c:set var="mv" value="${fn:split(music.getM_mv(), '/')[2] }" />
+	                            <div class="video-container">
+						            <iframe src="https://www.youtube.com/embed/${mv }" title="${music.getM_name() }"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+										allowfullscreen" style="width: 100%; height: 100%;"></iframe>
+								</div>
+	                        </div>
+	
+	                        <!-- Blog Content -->
+	                        <div class="blog-content">
+	                            <!-- Post Title -->
+	                            <a href="#" class="post-title">${music.getM_name() }</a>
+	                            <!-- Post Meta -->
+	                            <div class="post-meta d-flex mb-0">
+	                                <p class="post-author"><a href="#">${music.getM_artist() }</a></p>
+	                                <p class="tags"><a href="#">${music.getM_album() }</a></p>
+	                                <p class="tags">${music.getM_date().substring(0,10) }</p>
+	                                <p class="tags">▶${music.getPlay_counts() }</p>
+	                            </div>
+	                        </div>
+	                        
+	                        <!-- Blog Content -->
+	                        <div class="blog-content">
+	                            <!-- Post Excerpt -->
+	                            <h6 style="margin-bottom: 15px;">가사 정보</h6>
+	                            <p>${music.getM_lyrics() }</p>
+	                        </div>
+	                    </div>
+                    </c:if>
+                    
+                    <c:if test="${empty music }">
+						<h6>동영상 정보가 존재하지 않습니다.</h6>
+					</c:if>
+                    
+                    <p>댓글</p>
+                    
+				</div>
+			</div>
+		</div>
+	</div>
     
 	
 	<jsp:include page="/resources/include/footer.jsp"></jsp:include>
