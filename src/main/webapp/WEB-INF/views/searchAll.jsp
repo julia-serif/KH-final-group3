@@ -26,6 +26,42 @@
 		}
     </style>
 </head>
+<script type="text/javascript">
+	function make_bold(input) {
+		var keyword = "${keyword}";
+		var pattern = new RegExp('([' + keyword + '|\b]+)gm');
+		return input.trim().replace(pattern, "<em>$1</em>");
+	}
+	
+	function visit_text(html, visitor) {
+		var output = '';
+		var idx = 0;
+		while (true) {
+			var s = html.indexOf('<', idx);
+			if (s == -1)
+				break;
+			var e = html.indexOf('>', s+1);
+			if (e == -1)
+				break;
+			output += visitor(html.substring(idx, s));
+			output += html.substring(s, ++e);
+			idx = e;
+			}
+		return output;
+	}
+	
+	function make_keyword_bold() {
+		var items = document.getElementsByTagName('body');
+		for (var i = 0; i < items.length; i++) {
+			items[i].innerHTML = visit_text(items[i].innerHTML, make_bold);
+		}
+	}
+	
+	function on_load() {
+		make_keyword_bold();
+	}
+	
+</script>
 <body>
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
 
