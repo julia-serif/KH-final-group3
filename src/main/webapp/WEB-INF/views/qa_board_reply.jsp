@@ -45,63 +45,42 @@
                         
 
        <!-- 회원 상세 페이지 -->
-       <div align="center">
-       <c:set var="dto" value="${content2 }" />                                    
-        <h2> 공지사항</h2>
+       <div align="center">                                  
+        <h2> 답변글</h2>
         
 	   <br>
  
 	   	  <input type="hidden" name="qa_no" value="${dto.qa_no }">
-	   	  <input type="hidden" name="db_pwd" value="${dto.qa_pwd }">
-	      <table border="1" cellspacing="0" width="400">
-
+	   	  <form method="post" 
+          action="<%=request.getContextPath()%>/qa_notice_write_ok.do">
+	      <table border="1" cellspacing="0" width="600">
+         <c:set var="dto" value="${content2 }" />
 	      <tr>
 	         <th>글 제목</th>
-	         <td> ${dto.getQa_title() } </td>
+	         <td> <input name="qa_title" value="[RE] ▶ ${dto.getQa_title() }" ></td>
 	      </tr>
-	      
+	     
+	     <c:set var="dto" value="${member }" />
 	      <tr>
 	         <th>작성자</th>
-	         <td> ${dto.getQa_writer() } </td>
+	         <td> <input  name="qa_writer" value="${dto.user_name }" readonly ></td>
 	      </tr>
+
 	      
 	      <tr>
-	         <th>비밀번호</th>
-	         <td>
-	            <c:if test="${!empty dto.getQa_pwd() }">
-	               <c:forEach begin="1" end="${dto.getQa_pwd().length() }">
-	                    *
-	               </c:forEach>
-	            </c:if>
-	         </td>
-	      </tr>
+           <th>비밀번호</th>
+           <td> <input type="password" name="qa_pwd"> </td>
+         </tr>
 	      
 	      
 				      	
 	      <tr>
-	         <th>글 내용</th>
-	         <td>
-	            <textarea rows="10" cols="40" readonly>${dto.getQa_cont() }</textarea>
-	         </td>
-	      </tr>
+           <th> 답변 내 용</th>
+           <td> 
+           <textarea rows="7"cols="50" name="qa_cont"></textarea>  
+           </td>
+         </tr>
 	      
-	      <tr>
-			<c:if test="${empty dto.getQa_update() }">
-				   <th>작성일자</th>
-				   <td> ${dto.getQa_date().substring(0,10) } </td>
-			</c:if>
-				         
-			<c:if test="${!empty dto.getQa_update() }">
-				    <th>수정일자</th>
-				    <td> ${dto.getQa_update() } </td>
-			</c:if>
-		</tr>
-	      
-	      
-	      <tr>
-	         <th>조회 수</th>
-	         <td> ${dto.getQa_hit() } </td>
-	      </tr>
 	      
 	     
 	      
@@ -114,22 +93,13 @@
 	      </c:if>
 	      
 	      <tr>
-	         <td colspan="2" align="center">
-	            <input type="button" value="글수정"
-	               onclick="location.href='qa_modify.do?qa_no=${dto.getQa_no()}'">
-	               &nbsp;
-	            <input type="button" value="글삭제"
-	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
-	               				location.href='qa_delete.do?qa_no=${dto.getQa_no()}'
-	               				}else { return; }">
-	               &nbsp;         
-	            <input type="button" value="전체목록"
-	               onclick="location.href='qanda_list.do?'">
-	            <input type="button" value="답변 달기"
-	               onclick="location.href='qanda_reply.do?qa_no=${dto.getQa_no()}'">   	               
-	         </td>
-	      </tr>
+            <td colspan="2" align="center">
+              <input type="submit" value="글 등록">&nbsp;&nbsp;&nbsp;
+              <input type="reset" value="다시작성">
+             </td>
+         </tr>
 	   </table>
+	  </form>
 	</div>
                         </div>
                     </div>

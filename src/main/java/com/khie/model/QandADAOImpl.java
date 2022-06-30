@@ -33,20 +33,19 @@ public class QandADAOImpl implements QandADAO{
 	@Override
 	public void readCount(int qa_no) {
 		
-		this.sqlSession.update("read", qa_no);
+		this.sqlSession.update("qa_read", qa_no);
 		
 	}
 
 	@Override
 	public QandADTO boardCont(int qa_no) {
 		
-		return this.sqlSession.selectOne("content", qa_no);
+		return this.sqlSession.selectOne("qa_content", qa_no);
 	}
 
 	@Override
 	public int updateBoard(QandADTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.update("qa_modify", dto);
 	}
 
 	@Override

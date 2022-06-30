@@ -228,6 +228,8 @@ public class MusicController {
 		
 	}
 	
+	
+	
 	@RequestMapping("mymusic.do")
 	public String mymusic(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -847,6 +849,58 @@ public class MusicController {
 
 		return "qa_board_content";
 	}
+	
+	@RequestMapping("qanda_reply.do")
+	public String qa_reply(@RequestParam("qa_no") int qa_no, Model model) {
+		
+		QandADTO dto = this.Qand_dao.boardCont(qa_no);
+		
+		model.addAttribute("content2", dto);
+		
+		return "qa_board_reply";
+	}
+	
+	@RequestMapping("qa_modify.do")
+	public String qa_modify(@RequestParam("qa_no") int qa_no, Model model) {
+		
+		QandADTO dto = this.Qand_dao.boardCont(qa_no);
+		
+        model.addAttribute("content2", dto);
+		
+		return "qa_modify";
+	}
+	
+	@RequestMapping("qa_update_ok.do")
+	public void qa_modifyOk(QandADTO dto,
+            @RequestParam("db_pwd")String db_pwd,
+            HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(dto.getQa_pwd().equals(db_pwd)) {
+		
+		int check = this.Qand_dao.updateBoard(dto);
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('게시판 수정 성공!!!')");
+			out.println("location.href='qanda_list.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('게시판 수정 실패~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}else {
+			out.println("<script>");
+			out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}
+	
 	
 	
 	

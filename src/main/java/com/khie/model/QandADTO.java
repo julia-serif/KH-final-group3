@@ -15,5 +15,6 @@ public class QandADTO {
     private int qa_group;
     private int qa_step;
     private int qa_indent;
+    private int qa_hit;
     
 }
