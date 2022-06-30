@@ -46,48 +46,26 @@
 
        <!-- 회원 상세 페이지 -->
        <div align="center">
-      
-         <h3>회원 가입 페이지</h3>
+       
       
       <br>
       
       <form method="post" 
-          action="<%=request.getContextPath()%>/user_insert_ok.do">
+          action="<%=request.getContextPath()%>/qa_delete_Ok.do">
+           <c:set var="dto" value="${qa_delete }"/> 
+           <input type="hidden" name="qa_no" value="${dto.qa_no }">
+           <input type="hidden" name="db_pwd" value="${dto.qa_pwd }">
            
            <table border="1" cellspacing="0" width="350">
-         <tr>
-           <th>회원아이디</th>
-           <td><input name="user_id"></td>
-         </tr>
 
          <tr>
-           <th>회원 이름</th>
-           <td> <input name="user_name"> </td>
+           <th>삭제할 글 비밀번호</th>
+           <td> <input type="password" name="qa_pwd"> </td>
          </tr>
          
-         <tr>
-           <th>회원 비밀번호</th>
-           <td> <input type="password" name="user_pwd"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 성별</th>
-           <td> <input name="user_gender"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 이메일</th>
-           <td> <input name="user_email"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 연락처</th>
-           <td> <input name="user_phone"> </td>
-         </tr>
-  
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="회원등록">&nbsp;&nbsp;&nbsp;
+              <input type="submit" value="글삭제">&nbsp;&nbsp;&nbsp;
               <input type="reset" value="다시작성">
              </td>
          </tr>

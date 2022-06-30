@@ -10,7 +10,7 @@
     
 <mapper namespace="MyMusicDAO">
 	<select id="select_playlist" parameterType="int" resultType="PlaylistDTO">
-		select distinct playlist_no, playlist_name, playlist_thumbnail, playlist_order
+		select distinct playlist_no, playlist_name, playlist_thumbnail, last_value(m_no) over(order by playlist_no) as m_no
 		from music_playlist
 		where user_no = #{user_no} order by playlist_no
 	</select>
@@ -40,16 +40,14 @@
 	</update>
 
 	<update id="watch_history" parameterType="MyMusicDTO">
-		update music_by_user
-		set play_date = sysdate, play_counts = play_counts + 1
-		where user_no = #{user_no} and m_no = #{music_no}
+		update music_by_user set play_date = sysdate, play_counts = play_counts + 1 where user_no = #{user_no} and m_no = #{music_no}
 	</update>
 	
 	<insert id="first_watch" parameterType="MyMusicDTO">
 		<![CDATA[
 			insert into music_by_user
-			select #{user_no}, #{music_no}, sysdate, 'false', 0 from dual
-			where not exists (select * from music_by_user where user_no = #{user_no} and m_no = #{music_no})
+			select #{user_no}, #{music_no}, sysdate, 'false', 0 from dual where not exists
+			(select * from music_by_user where user_no = #{user_no} and m_no = #{music_no})
 		]]>
 	</insert>
 	
@@ -64,7 +62,7 @@
 		<selectKey resultType="int" keyProperty="playlist_no" order="BEFORE">
 			select count(distinct playlist_no) + 1 from music_playlist where user_no = #{user_no}
 		</selectKey>
-		insert into music_playlist values(#{user_no}, 0, 0, #{playlist_no}, #{playlist_name}, '', 0)
+		insert into music_playlist values(#{user_no}, 0, 0, #{playlist_no}, #{playlist_name}, '')
 	</insert>
 	
 	<update id="update_playlist" parameterType="PlaylistDTO">
@@ -75,10 +73,20 @@
 		delete from music_playlist where user_no = #{user_no} and playlist_no = #{playlist_no}
 	</delete>
 	
-	<update id="playlist_order" parameterType="PlaylistDTO">
-		update music_playlist
-		set playlist_order =
-			(select max(m_order) from music_playlist where playlist_no = #{playlist_no} and user_no = #{user_no})
-		where playlist_no = #{playlist_no} where user_no = #{user_no}
+	<update id="image_register" parameterType="PlaylistDTO">
+		update music_playlist set playlist_thumbnail = #{playlist_thumbnail} where user_no = #{user_no} and playlist_no = #{playlist_no}
 	</update>
+	
+	<select id="get_musiclist" parameterType="PlaylistDTO" resultType="MusicDTO">
+		select m.* from music m, music_playlist p where m.m_no = p.m_no and user_no = #{user_no} and playlist_no = #{playlist_no}
+	</select>
+	
+	<select id="order_musiclist" parameterType="PlaylistDTO" resultType="MusicDTO">
+		select m.* from music m, music_playlist p where m.m_no = p.m_no and user_no = #{user_no} and playlist_no = #{playlist_no}
+		order by #{music_no}
+	</select>
+	
+	<select id="delete_musiclist" parameterType="PlaylistDTO">
+		delete from music_playlist where m_no = #{m_no} and user_no = #{user_no} and playlist_no = #{playlist_no}
+	</select>
 </mapper>

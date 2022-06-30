@@ -37,56 +37,24 @@
             <div class="row">
 
                 <!-- Single Event Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-event-area mb-30">
-                        <div class="event-thumbnail">
-                            <img src="resources/img/bg-img/IU.jpg" alt="">
-                        </div>
-                        <div class="event-text">
-                            <h4>세상의 모든 TOP 100</h4>
-                            <div class="event-meta-data">
-                                <a href="#" class="event-place">IU</a>
-                                <a href="#" class="event-date">July 7, 2022</a>
-                            </div>
-                            <a href="<%= request.getContextPath() %>/event1.do" class="btn see-more-btn">See Event</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Event Area -->
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-16 col-md-6 col-lg-12">
                     <div class="single-event-area mb-30">
                         <div class="event-thumbnail">
                             <img src="resources/img/bg-img/event2.png" alt="">
                         </div>
-                        <div class="event-text">
-                            <h4>감사 이벤트</h4>
-                            <div class="event-meta-data">
-                                <a href="#" class="event-place">고객 할인</a>
-                                <a href="#" class="event-date">July 7, 2022</a>
-                            </div>
-                            <a href="<%= request.getContextPath() %>/event2.do" class="btn see-more-btn">See Event</a>
-                        </div>
+                        
                     </div>
                 </div>
 
-                <!-- Single Event Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-event-area mb-30">
-                        <div class="event-thumbnail">
-                            <img src="resources/img/bg-img/re.png" alt="">
-                        </div>
-                        <div class="event-text">
-                            <h4>Planet ibiza</h4>
-                            <div class="event-meta-data">
-                                <a href="#" class="event-place">고객 추첨 이벤트</a>
-                                <a href="#" class="event-date">July 7, 2022</a>
-                            </div>
-                            <a href="<%= request.getContextPath() %>/event3.do" class="btn see-more-btn">See Event</a>
-                        </div>
+
+               
+            <div class="row">
+                <div class="col-12">
+                    <div class="load-more-btn text-center mt-70">
+                        <a href="<%= request.getContextPath() %>/events.do" class="btn oneMusic-btn">Load More <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
-
+            </div>
         </div>
     </section>
     <!-- ##### Events Area End ##### -->

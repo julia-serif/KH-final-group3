@@ -28,7 +28,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>MyPage</h2>
+            <h2>Q/A 게시물 입력 창</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -46,48 +46,41 @@
 
        <!-- 회원 상세 페이지 -->
        <div align="center">
-      
-         <h3>회원 가입 페이지</h3>
+ 
       
       <br>
-      
+      <c:set var="dto" value="${member }" />
       <form method="post" 
-          action="<%=request.getContextPath()%>/user_insert_ok.do">
+          action="<%=request.getContextPath()%>/qa_notice_write_ok.do">
            
-           <table border="1" cellspacing="0" width="350">
+           <table border="1" cellspacing="0" width="500">
          <tr>
-           <th>회원아이디</th>
-           <td><input name="user_id"></td>
+           <th>제목</th>
+           <td> <input name="qa_title"> </td>
+         </tr>
+         
+         
+         <tr>
+           <th>작성자</th>
+           <td><input  name="qa_writer" value="${dto.user_name }" readonly ></td>
          </tr>
 
          <tr>
-           <th>회원 이름</th>
-           <td> <input name="user_name"> </td>
+           <th>비밀번호</th>
+           <td> <input type="password" name="qa_pwd"> </td>
+         </tr>
+
+         <tr>
+           <th>내 용</th>
+           <td> 
+           <textarea rows="7"cols="50" name="qa_cont"></textarea>  
+           </td>
          </tr>
          
-         <tr>
-           <th>회원 비밀번호</th>
-           <td> <input type="password" name="user_pwd"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 성별</th>
-           <td> <input name="user_gender"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 이메일</th>
-           <td> <input name="user_email"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 연락처</th>
-           <td> <input name="user_phone"> </td>
-         </tr>
   
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="회원등록">&nbsp;&nbsp;&nbsp;
+              <input type="submit" value="글 등록">&nbsp;&nbsp;&nbsp;
               <input type="reset" value="다시작성">
              </td>
          </tr>

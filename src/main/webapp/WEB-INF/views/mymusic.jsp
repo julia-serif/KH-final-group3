@@ -83,9 +83,7 @@
 			<hr width="100%" color="lightgray">
 	            <h2 style="display:inline">내 플레이리스트</h2>
 	            <p style="display:inline">&nbsp;&nbsp;&nbsp;|&nbsp;전체 04</p>
-                <div class="load-more-btn text-right mb-70">
-                    <a href="#" class="btn playlist-btn"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;ADD PLAYLIST</a>
-                </div>
+                <br><br><br>
 				<div class="col-12 col-lg-6">
                     <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
                         <!-- single accordian area -->
@@ -113,76 +111,29 @@
                     </div>
                 </div>
             <div class="row">
-                <!-- Single List Area -->
-                <div class="col-12">
-                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                        <div class="song-thumbnail">
-                            <img src="resources/img/bg-img/s1.jpg" alt="">
-                        </div>
-                        <div class="song-play-area">
-                            <div class="song-name">
-                                <p>임시　|　01곡</p>
-                                <div class="blog-content">
-	                                <div class="post-meta d-inline-flex mb-20">
-		                                <img src="resources/img/bg-img/Audio.png" alt="">
-	                          	    </div>
-                          	    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Song Area -->
-                <div class="col-12">
-                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                        <div class="song-thumbnail">
-                            <img src="resources/img/bg-img/s2.jpg" alt="">
-                        </div>
-                        <div class="song-play-area">
-                            <div class="song-name">
-                                <p>임시　|　33곡</p>
-                                <div class="blog-content">
-	                                <div class="post-meta d-inline-flex mb-20">
-		                                <img src="resources/img/bg-img/Audio.png" alt="">
-	                          	    </div>
-                          	    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Song Area -->
-                <div class="col-12">
-                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                        <div class="song-thumbnail">
-                            <img src="resources/img/bg-img/s3.jpg" alt="">
-                        </div>
-                        <div class="song-play-area">
-                            <div class="song-name">
-                                <p>임시　|　08곡</p>
-                                <div class="blog-content">
-	                                <div class="post-meta d-inline-flex mb-20">
-		                                <img src="resources/img/bg-img/Audio.png" alt="">
-	                          	    </div>
-                          	    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				<c:set value="${Count }" var="count" />
                 <c:forEach items="${List }" var="playlist">
+	   	  		<input type="hidden" name="playlist_no" value="${playlist.getPlaylist_no() }">
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
-                        <div class="song-thumbnail">
-                            <img src="resources/img/bg-img/s4.jpg" alt="">
+                       <div class="song-thumbnail">
+                        	<c:if test="${playlist.getPlaylist_thumbnail() != null }">
+                            	<img src="<%= request.getContextPath() %>/resources/img/album-img/${playlist.getPlaylist_thumbnail() }" alt="${playlist.getPlaylist_thumbnail() } 앨범 재킷">
+                            </c:if>
+                            <c:if test="${playlist.getPlaylist_thumbnail() == null }">
+                            	<img src="/resources/img/album-img/just_do_it.jpg" alt="PlaylistDefault.jpg">
+                            </c:if>
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>${playlist.getPlaylist_name() }　|　${playlist.getPlaylist_order() }곡</p>
+                               <p>${playlist.getPlaylist_name() }　|　${playlist.getM_no() }곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
 	                          	    </div>
+	                          	    <input type="button" value="delete"
+	               						onclick="if(confirm('재생 목록을 삭제하시겠습니까?')) {
+	               						location.href='playlist_delete.do?user_no=${dto.getUser_no() }&playlist_no=${playlist.getPlaylist_no()}'
+	               						}else { return; }">
                           	    </div>
                             </div>
                         </div>

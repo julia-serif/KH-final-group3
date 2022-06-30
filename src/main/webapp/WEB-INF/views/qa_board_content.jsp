@@ -46,64 +46,90 @@
 
        <!-- 회원 상세 페이지 -->
        <div align="center">
-       <c:set var="dto" value="${Cont }" />                                    
-        <h2> ${dto.getUser_name() }님 상세 내역</h2>
+       <c:set var="dto" value="${content2 }" />                                    
+        <h2> 공지사항</h2>
         
 	   <br>
  
-	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
-	   	  <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
-	      <table border="1" cellspacing="0" width="450">
-	         <tr>
-	            <th>회원 아이디</th>
-	            <td> ${dto.getUser_id() } </td>
-	         </tr>
+	   	  <input type="hidden" name="qa_no" value="${dto.qa_no }">
+	   	  <input type="hidden" name="db_pwd" value="${dto.qa_pwd }">
+	      <table border="1" cellspacing="0" width="400">
 
-	         <tr>
-	            <th>회원 이름</th>
-	            <td> ${dto.getUser_name() }</td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 비밀번호</th>
-	            <td> 
-	                <c:if test="${!empty dto.getUser_pwd() }">
-	               <c:forEach begin="1" end="${dto.getUser_pwd().length() }">
+	      <tr>
+	         <th>글 제목</th>
+	         <td> ${dto.getQa_title() } </td>
+	      </tr>
+	      
+	      <tr>
+	         <th>작성자</th>
+	         <td> ${dto.getQa_writer() } </td>
+	      </tr>
+	      
+	      <tr>
+	         <th>비밀번호</th>
+	         <td>
+	            <c:if test="${!empty dto.getQa_pwd() }">
+	               <c:forEach begin="1" end="${dto.getQa_pwd().length() }">
 	                    *
 	               </c:forEach>
 	            </c:if>
-	                </td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 성별</th>
-	            <td> ${dto.getUser_gender() } </td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 이메일</th>
-	            <td> ${dto.getUser_email() }</td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 연락처</th>
-	            <td> ${dto.getUser_phone() }</td>
-	         </tr>
-	         
-	         
-	         
+	         </td>
+	      </tr>
+	      
+	      
+				      	
+	      <tr>
+	         <th>글 내용</th>
+	         <td>
+	            <textarea rows="10" cols="40" readonly>${dto.getQa_cont() }</textarea>
+	         </td>
+	      </tr>
+	      
+	      <tr>
+			<c:if test="${empty dto.getQa_update() }">
+				   <th>작성일자</th>
+				   <td> ${dto.getQa_date().substring(0,10) } </td>
+			</c:if>
+				         
+			<c:if test="${!empty dto.getQa_update() }">
+				    <th>수정일자</th>
+				    <td> ${dto.getQa_update() } </td>
+			</c:if>
+		</tr>
+	      
+	      
+	      <tr>
+	         <th>조회 수</th>
+	         <td> ${dto.getQa_hit() } </td>
+	      </tr>
+	      
+	     
+	      
+	      <c:if test="${empty dto }">
 	         <tr>
 	            <td colspan="2" align="center">
-	               <input type="button" value="정보 수정"
-	               onclick="location.href='user_modify.do?user_no=${dto.getUser_no()}'">
-	               &nbsp;&nbsp;&nbsp;
-	               <input type="button" value="회원 탈퇴"
-	               onclick="if(confirm('회원을 탈퇴 처리하시겠습니까?')) {
-	               				location.href='user_delete.do?user_no=${dto.getUser_no()}'
-	               			}else { return; }">
+	               <h3>조회된 상세 내역이 없습니다.....</h3>
 	            </td>
 	         </tr>
-	      </table>
+	      </c:if>
+	      
+	      <tr>
+	         <td colspan="2" align="center">
+	            <input type="button" value="글수정"
+	               onclick="location.href='qa_modify.do?qa_no=${dto.getQa_no()}'">
+	               &nbsp;
+	            <input type="button" value="글삭제"
+	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
+	               				location.href='qa_delete.do?qa_no=${dto.getQa_no()}'
+	               				}else { return; }">
+	               &nbsp;         
+	            <input type="button" value="전체목록"
+	               onclick="location.href='qanda_list.do?'">
+	            <input type="button" value="답변 달기"
+	               onclick="location.href='qanda_reply.do?qa_no=${dto.getQa_no()}'">   	               
+	         </td>
+	      </tr>
+	   </table>
 	</div>
                         </div>
                     </div>

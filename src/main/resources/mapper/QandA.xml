@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+   <mapper namespace="com.khie.model.QandADAO">
+     
+     <select id="qa_count" resultType="int">
+       select count(*) from music_QandA
+     </select>
+     
+     <select id="qa_list" parameterType="com.khie.model.QA_PageDTO" resultType="com.khie.model.QandADTO">
+       <![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by qa_no desc) rnum from music_qanda b)
+					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
+	    ]]>
+     </select>
+     
+     <insert id="qa_add" parameterType="com.khie.model.QandADTO">
+		<selectKey resultType="int" keyProperty="qa_no" order="BEFORE">
+			select max(qa_no) from music_qanda
+		</selectKey>
+		insert into music_qanda values((select max(qa_no) from music_qanda) +1, #{qa_writer}, 
+				#{qa_pwd},#{qa_title}, #{qa_cont}, sysdate,'',(select max(qa_no) from music_qanda) +1,0,0,default)
+	</insert>
+     
+     <update id="qa_read" parameterType="int">
+	   update music_qanda set qa_hit = qa_hit + 1
+			where qa_no = #{qa_no}
+	  </update>
+	  
+	  <select id="qa_content" parameterType="int" resultType="com.khie.model.QandADTO">
+        select * from music_qanda where qa_no = #{qa_no}
+	   </select>
+	   
+	   <update id="qa_modify" parameterType="com.khie.model.QandADTO" >
+	   update music_qanda set 
+	          qa_title = #{qa_title},
+	          qa_cont = #{qa_cont}, qa_update = sysdate
+	          where qa_no = #{qa_no} 
+	   </update>
+	   
+	   <delete id="qa_delete" parameterType="int">
+	      delete from music_qanda where qa_no = #{qa_no}
+	   </delete>
+	   
+	   <update id="qa_seq" parameterType="int">
+	       <![CDATA[
+			update music_qanda set qa_no  = qa_no  - 1
+			where qa_no  > #{qa_no }
+		]]>	
+	   </update>
+
+   </mapper>

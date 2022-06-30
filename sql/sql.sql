@@ -105,7 +105,6 @@ create table music_playlist (
 	playlist_no number not null,		-- 플레이리스트 번호
 	playlist_name varchar2(1000) not null,	-- 플레이리스트 이름
 	playlist_thumbnail varchar2(50),	-- 플레이리스트 섬네일
-	playlist_order number not null,		-- 플레이리스트 순서
 	constraint music_playlist_pk primary key(user_no, m_no, playlist_no)
 );
 
@@ -119,6 +118,6 @@ create table music_by_user (
 	constraint music_by_user_PK primary key(user_no, m_no)
 );
 
-insert into music_member
-    values('1','admin', '1234', '관리자', '','admin@naver.com','010-1234-5678','0', sysdate ,'');
+ insert into music_member
+    values('1','admin', '1234', '관리자','','admin@naver.com','010-1234-5678','1', sysdate ,'','1');     
 

@@ -28,7 +28,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>MyPage</h2>
+            <h2>회원 관리</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -44,59 +44,78 @@
       <!-- Post Thumb -->
                         
 
-       <!-- 회원 상세 페이지 -->
-       <div align="center">
-      
-         <h3>회원 가입 페이지</h3>
-      
-      <br>
-      
-      <form method="post" 
-          action="<%=request.getContextPath()%>/user_insert_ok.do">
-           
-           <table border="1" cellspacing="0" width="350">
-         <tr>
-           <th>회원아이디</th>
-           <td><input name="user_id"></td>
-         </tr>
-
-         <tr>
-           <th>회원 이름</th>
-           <td> <input name="user_name"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 비밀번호</th>
-           <td> <input type="password" name="user_pwd"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 성별</th>
-           <td> <input name="user_gender"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 이메일</th>
-           <td> <input name="user_email"> </td>
-         </tr>
-         
-         <tr>
-           <th>회원 연락처</th>
-           <td> <input name="user_phone"> </td>
-         </tr>
-  
-         <tr>
-            <td colspan="2" align="center">
-              <input type="submit" value="회원등록">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
-             </td>
-         </tr>
-       </table>
-     </form>
-  </div>
+       <!-- 정보 수정 페이지 -->
+       <div  align="center">
+       <c:set var="dto" value="${member_update }" />                                    
+        <h2> ${dto.getUser_name() }님 정보 수정</h2>
+        
+	   <br>
+	   
+	   <form method="post"
+	      action="<%=request.getContextPath() %>/user_change_ok.do">
+	   
+	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
+	   	  <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
+	      <table border="1" cellspacing="0" width="450">
+	         <tr>
+	            <th>회원 아이디</th>
+	            <td> <input name="user_id"
+	            				value="${dto.user_id }" readonly> </td>
+	         </tr>
+	        <tr>
+	            <th>회원 비밀번호</th>
+	            <td> <input type="password" name="user_pwd"> </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 이름</th>
+	            <td> <input name="user_name"
+	            				value="${dto.user_name }" readonly> </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 성별</th>
+	            <td> <input name="user_gender"
+	            				value="${dto.user_gender }" readonly> </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 이메일</th>
+	            <td> 
+	               <input name="user_email"
+	            				value="${dto.user_email }">
+	            </td>
+	         </tr>
+	         
+	         <tr>
+	            <th>회원 연락처</th>
+	            <td> <input name="user_phone"
+	            				value="${dto.user_phone }"> </td>
+	         </tr>
+	         
+	         
+	         
+	         <tr>
+	            <td colspan="2" align="center">
+	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
+	               <input type="reset" value="다시작성">
+	            </td>
+	         </tr>
+	      </table>
+	   </form>
+	</div>
                         </div>
                     </div>
-                
+                <!-- 마이페이지 사이드바 -->
+                <div class="col-12 col-lg-3">
+                    <div class="blog-sidebar-area">
+
+                       
+                        
+                        
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

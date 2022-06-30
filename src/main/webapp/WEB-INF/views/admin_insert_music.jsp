@@ -76,7 +76,7 @@
   							</tr>
   							<tr>
   								<td align="center"> 뮤직비디오 링크 </td>
-  								<td> <input name="m_mv" required="required"></td>
+  								<td> <input name="m_mv"></td>
   							</tr>
   							<tr>
   								<td align="center"> 앨범 이미지 </td>

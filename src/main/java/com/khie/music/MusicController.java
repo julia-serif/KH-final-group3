@@ -28,6 +28,9 @@ import com.khie.model.MusicReplyDAO;
 import com.khie.model.MusicReplyDTO;
 import com.khie.model.PageDTO;
 import com.khie.model.PlaylistDTO;
+import com.khie.model.QA_PageDTO;
+import com.khie.model.QandADAO;
+import com.khie.model.QandADTO;
 import com.khie.model.MemberDAO;
 
 @Controller
@@ -43,9 +46,18 @@ public class MusicController {
 	private MusicReplyDAO dao3;
 	@Autowired
 	private NoticeDAO dao4;
+
+	@Autowired 
+	private QandADAO Qand_dao;
+
+	@Autowired
+	private Upload upload;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
+	
+	private final int QA_rowsize = 5;     // 한 페이지당 보여질 질문 게시물의 수
+	private int QA_totalRecord = 0;       // DB 상의 전체 질문 게시물의 수
 
 
 	@RequestMapping("index.do")
@@ -151,6 +163,16 @@ public class MusicController {
 		return "events";
 	}
 	
+	@RequestMapping("event2.do")
+	public String event2() {
+		return "event2";
+	}
+	
+	@RequestMapping("event3.do")
+	public String event3() {
+		return "event3";
+	}
+	
 	@RequestMapping("login.do")
 	public String login() {
 		return "login";
@@ -206,17 +228,24 @@ public class MusicController {
 		
 	}
 	
+	
+	
 	@RequestMapping("mymusic.do")
 	public String mymusic(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
-		System.out.println("Member : " + member);
-		int user_no = member.getUser_no();
-		List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
+		if(member == null) {
+			return "login";
+		} else {
+			int user_no = member.getUser_no();
+			List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
+			int count = playlist.size();
 
-		model.addAttribute("Member", member);
-		model.addAttribute("List", playlist);
-		return "mymusic";
+			model.addAttribute("Member", member);
+			model.addAttribute("Count", count);
+			model.addAttribute("List", playlist);
+			return "mymusic";
+		}
 	}
 	
 	@RequestMapping("select_like.do")
@@ -230,6 +259,7 @@ public class MusicController {
 		model.addAttribute("List", likelist);
 		return "music_likelist";
 	}
+	
 	@RequestMapping("select_recent.do")
 	public String recent_watch(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -269,6 +299,7 @@ public class MusicController {
 		} else {
 			out.println("<script>");
 			out.println("alert('추가 실패')");
+			out.println("history.back()");
 			out.println("</script>");
 		}
 	}
@@ -289,6 +320,7 @@ public class MusicController {
 		} else {
 			out.println("<script>");
 			out.println("alert('추가 실패')");
+			out.println("history.back()");
 			out.println("</script>");
 		}
 	}
@@ -303,11 +335,12 @@ public class MusicController {
 		if(check > 0) {
 				out.println("<script>");
 				out.println("alert('수정 성공')");
-				out.println("location.reload()");
+				out.println("location.href='mymusic.do'");
 				out.println("</script>");
 			} else {
 				out.println("<script>");
 				out.println("alert('수정 실패')");
+				out.println("history.back()");
 				out.println("</script>");
 			}
 	}
@@ -322,11 +355,12 @@ public class MusicController {
 		if(check > 0) {
 				out.println("<script>");
 				out.println("alert('삭제 성공')");
-				out.println("location.reload()");
+				out.println("location.href='mymusic.do'");
 				out.println("</script>");
 			} else {
 				out.println("<script>");
 				out.println("alert('삭제 실패')");
+				out.println("history.back()");
 				out.println("</script>");
 			}
 	}
@@ -341,11 +375,12 @@ public class MusicController {
 		if(check > 0) {
 				out.println("<script>");
 				out.println("alert('수정 성공')");
-				out.println("location.reload()");
+				out.println("location.href='mymusic.do'");
 				out.println("</script>");
 			} else {
 				out.println("<script>");
 				out.println("alert('수정 실패')");
+				out.println("history.back()");
 				out.println("</script>");
 			}
 	}
@@ -377,7 +412,7 @@ public class MusicController {
 	
 		} 
 		
-		return "loginmain";
+		return "index";
 	}
 
 // 로그아웃 
@@ -394,6 +429,8 @@ public class MusicController {
 	public String mypass() {
 		return "mypass";
 	}
+	
+	
 	
 	@RequestMapping("mypay.do")
 	public String mypay() {
@@ -421,6 +458,44 @@ public class MusicController {
 		return "mypay5";
 	}
 	
+	@RequestMapping("mypass_cancel.do")
+	public String mypass_cancel(@RequestParam("user_no") int user_no, 
+			Model model) {
+		MemberDTO dto = this.dao2.getMember(user_no);
+		model.addAttribute("change", dto);
+		return "mypass_cancel";
+	}
+	
+	@RequestMapping("mypass_change_Ok.do")
+	public void mypass_cancel_ok(MemberDTO dto, 
+			@RequestParam("db_pwd") String db_pwd,
+			HttpServletResponse response) throws IOException{
+	
+	response.setContentType("text/html; charset=UTF-8");
+	
+	PrintWriter out = response.getWriter();
+	
+	if(dto.getUser_pwd().equals(db_pwd)) {
+		int check = this.dao2.updateMypass(dto);
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('취소 성공!!!')");
+			out.println("location.href='mypass.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('취소 실패~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}else {
+			out.println("<script>");
+			out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
 	@RequestMapping("user_modify_ok.do")
 	public void modifyOk(MemberDTO dto,
 			@RequestParam("db_pwd")String db_pwd,
@@ -431,7 +506,7 @@ public class MusicController {
 		
 		if(dto.getUser_pwd().equals(db_pwd)) {
 			
-			int check = this.dao2.updateBoard(dto);
+			int check = this.dao2.updateMypass(dto);
 			
 			if(check > 0) {
 				out.println("<script>");
@@ -491,6 +566,47 @@ public class MusicController {
 			
 		}
 	}
+
+	
+	@RequestMapping("user_modify.do")
+	public String user_modify(@RequestParam("user_no")int user_no,Model model) {
+		MemberDTO dto = this.dao2.getMember(user_no);
+		
+		model.addAttribute("member_update", dto);
+		
+		return "member_modify";
+	}
+	
+	@RequestMapping("user_change_ok.do")
+	public void userChange(MemberDTO dto,
+			@RequestParam("db_pwd")String db_pwd,
+			HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(dto.getUser_pwd().equals(db_pwd)) {
+			
+			int check = this.dao2.updateBoard(dto);
+			
+			if(check > 0) {
+				out.println("<script>");
+				out.println("alert('정보 수정 성공!!!')");
+				out.println("location.href='member.do'");
+				out.println("</script>");
+			}else {
+				out.println("<script>");
+				out.println("alert('정보 수정 실패~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+			}else {
+				out.println("<script>");
+				out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+		}
 	
 	@RequestMapping("user_content.do")
 	public String content(@RequestParam("user_no")int user_no, Model model ) {
@@ -525,6 +641,12 @@ public class MusicController {
 		out.println("</script>");
 	}
 }
+	
+
+	@RequestMapping("event1.do")
+	public String event1() {
+		return "event1";
+	}
 	
 	
 	@RequestMapping("notice_list.do")
@@ -667,7 +789,176 @@ public class MusicController {
 				out.println("</script>");
 		   }
 	 }
+
 	
+	//관리자 Q/A 게시판 조회
+	@RequestMapping("qanda_list.do")
+	public String list(HttpServletRequest request, Model model) {
+		
+		int qa_page;   // 현재 페이지
+	
+	   if(request.getParameter("qa_page") != null) {
+		   qa_page = Integer.parseInt(request.getParameter("qa_page"));
+	   } else {
+		   qa_page = 1;
+	   }
+	   
+	   
+	   
+		   QA_totalRecord = this.Qand_dao.getQandAListCount();
+		   int QA_rowsize = 5;
+		   
+		   QA_PageDTO qa_dto = new QA_PageDTO(qa_page, QA_rowsize, QA_totalRecord);
+	       
+		   List<QandADTO> qa_list = this.Qand_dao.getQandAList(qa_dto);
+		   
+		   model.addAttribute("QA_List", qa_list);
+		   model.addAttribute("QA_Paging", qa_dto);
+		   
+	   return "QA_board_list";
+	   
+	   
+	}
+	
+	@RequestMapping("qa_insert.do")
+     public String qa_insert() {
+		
+		return "qa_board_insert";
+	}
+	
+	@RequestMapping("qa_notice_write_ok.do")
+	public void writeOk(QandADTO dto,
+			HttpServletResponse response) throws IOException {
+		
+		int check = this.Qand_dao.insertQandA(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('게시글 추가 성공!!!')");
+			out.println("location.href='qanda_list.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('게시글 추가 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		
+	}
+	
+	@RequestMapping("qanda_content.do")
+	public String qa_content(@RequestParam("qa_no") int qa_no, Model model) {
+		this.Qand_dao.readCount(qa_no);
+		
+		QandADTO dto = this.Qand_dao.boardCont(qa_no);
+		
+		model.addAttribute("content2", dto);
+
+		return "qa_board_content";
+	}
+	
+	@RequestMapping("qanda_reply.do")
+	public String qa_reply(@RequestParam("qa_no") int qa_no, Model model) {
+		
+		QandADTO dto = this.Qand_dao.boardCont(qa_no);
+		
+		model.addAttribute("content2", dto);
+		
+		return "qa_board_reply";
+	}
+	
+	@RequestMapping("qa_modify.do")
+	public String qa_modify(@RequestParam("qa_no") int qa_no, Model model) {
+		
+		QandADTO dto = this.Qand_dao.boardCont(qa_no);
+		
+        model.addAttribute("content2", dto);
+		
+		return "qa_modify";
+	}
+	
+	@RequestMapping("qa_update_ok.do")
+	public void qa_modifyOk(QandADTO dto,
+            @RequestParam("db_pwd")String db_pwd,
+            HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(dto.getQa_pwd().equals(db_pwd)) {
+		
+		int check = this.Qand_dao.updateBoard(dto);
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('게시판 수정 성공!!!')");
+			out.println("location.href='qanda_list.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('게시판 수정 실패~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}else {
+			out.println("<script>");
+			out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}
+	
+	
+	     @RequestMapping("qa_delete.do")    
+	 	public String qa_delete(@RequestParam("qa_no") int qa_no,
+	 			Model model) {
+	 		
+	    	 QandADTO dto = this.Qand_dao.boardCont(qa_no);
+	 		
+	 		model.addAttribute("qa_delete", dto);
+	 		
+	 		return "qa_delete";
+	 	}
+	
+	    @RequestMapping("qa_delete_Ok.do")
+		 public void qa_deleteOk(QandADTO dto,
+				 @RequestParam("db_pwd") String db_pwd,
+				 HttpServletResponse response) throws IOException {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter out = response.getWriter();
+		   
+		   if(dto.getQa_pwd().equals(db_pwd)) {
+			   
+			   int check = this.Qand_dao.deleteBoard(dto.getQa_no());
+		
+			   if(check > 0) {
+				   this.Qand_dao.updateSequence(dto.getQa_no());
+			   
+				   out.println("<script>");
+				   out.println("alert('게시물 삭제 성공!!!')");
+				   out.println("location.href='qanda_list.do'");
+				   out.println("</script>");
+			   
+			   }else {
+				    out.println("<script>");
+					out.println("alert('게시물 삭제 실패~~~')");
+					out.println("history.back()");
+					out.println("</script>");
+			   }
+			   
+		   }else {
+				   out.println("<script>");
+					out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+					out.println("history.back()");
+					out.println("</script>");
+			   }
+		 }
 	
 	
 	//관리자 음원 조회
@@ -736,6 +1027,8 @@ public class MusicController {
 			
 		}
 	}
+	
+	
 		
 	
 }
