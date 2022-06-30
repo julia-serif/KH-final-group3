@@ -234,12 +234,16 @@ public class MusicController {
 	public String mymusic(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
-		int user_no = member.getUser_no();
-		List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
+		if(member == null) {
+			return "login";
+		} else {
+			int user_no = member.getUser_no();
+			List<PlaylistDTO> playlist = this.mm_dao.getPlaylist(user_no);
 
-		model.addAttribute("Member", member);
-		model.addAttribute("List", playlist);
-		return "mymusic";
+			model.addAttribute("Member", member);
+			model.addAttribute("List", playlist);
+			return "mymusic";
+		}
 	}
 	
 	@RequestMapping("select_like.do")
@@ -293,6 +297,7 @@ public class MusicController {
 		} else {
 			out.println("<script>");
 			out.println("alert('추가 실패')");
+			out.println("history.back()");
 			out.println("</script>");
 		}
 	}
@@ -313,6 +318,7 @@ public class MusicController {
 		} else {
 			out.println("<script>");
 			out.println("alert('추가 실패')");
+			out.println("history.back()");
 			out.println("</script>");
 		}
 	}
@@ -327,11 +333,12 @@ public class MusicController {
 		if(check > 0) {
 				out.println("<script>");
 				out.println("alert('수정 성공')");
-				out.println("location.reload()");
+				out.println("location.href='mymusic.do'");
 				out.println("</script>");
 			} else {
 				out.println("<script>");
 				out.println("alert('수정 실패')");
+				out.println("history.back()");
 				out.println("</script>");
 			}
 	}
@@ -346,11 +353,12 @@ public class MusicController {
 		if(check > 0) {
 				out.println("<script>");
 				out.println("alert('삭제 성공')");
-				out.println("location.reload()");
+				out.println("location.href='mymusic.do'");
 				out.println("</script>");
 			} else {
 				out.println("<script>");
 				out.println("alert('삭제 실패')");
+				out.println("history.back()");
 				out.println("</script>");
 			}
 	}
@@ -365,11 +373,12 @@ public class MusicController {
 		if(check > 0) {
 				out.println("<script>");
 				out.println("alert('수정 성공')");
-				out.println("location.reload()");
+				out.println("location.href='mymusic.do'");
 				out.println("</script>");
 			} else {
 				out.println("<script>");
 				out.println("alert('수정 실패')");
+				out.println("history.back()");
 				out.println("</script>");
 			}
 	}
