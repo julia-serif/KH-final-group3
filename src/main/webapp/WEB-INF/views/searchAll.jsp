@@ -19,7 +19,12 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
-
+    
+    <style type="text/css">
+    	.more-link::after {
+			clear: both;
+		}
+    </style>
 </head>
 <body>
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
@@ -47,9 +52,14 @@
 							<c:when test="${status.index == 0 }">
 								<div class="new-hits-area mb-100">
 									<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+										<div class="more_link" style="float: right;">
+	                        				<a href="<%= request.getContextPath() %>/search.do?field=Song&keyword=${keyword}"><p>곡 결과 더보기 →</p></a>
+	                        			</div>
+	                        			
 			                            <p>총 ${resultNum[status.index] }건</p>
 			                            <h2>곡</h2>
 	                        		</div>
+	                        		
 									<c:if test="${!empty list }">
 										<c:forEach items="${list }" var="music">
 					                        <!-- Single Top Item -->
@@ -84,7 +94,11 @@
 							<c:when test="${status.index == 1 }">
 								<div class="weeks-top-area mb-100" style="background-color: #f5f9fa; border-color: #d8d8d8;">
 									<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-			                            <p>총 ${resultNum[status.index] }건</p>
+			                            <div class="more_link" style="float: right;">
+	                        				<a href="<%= request.getContextPath() %>/search.do?field=Album&keyword=${keyword}"><p>앨범 결과 더보기 →</p></a>
+	                        			</div>
+	                        			
+	                        			<p>총 ${resultNum[status.index] }건</p>
 			                            <h2>앨범</h2>
 			                        </div>
 									<c:if test="${!empty list }">
@@ -115,7 +129,11 @@
 								<div class="popular-artists-area mb-100">
 									<c:if test="${!empty list }">
 										<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-				                            <p>총 ${resultNum[status.index] }건</p>
+				                            <div class="more_link" style="float: right;">
+		                        				<a href="<%= request.getContextPath() %>/search.do?field=Artist&keyword=${keyword}"><p>아티스트 결과 더보기 →</p></a>
+		                        			</div>
+		                        			
+		                        			<p>총 ${resultNum[status.index] }건</p>
 				                            <h2>아티스트</h2>
 				                        </div>
 										<c:forEach items="${list }" var="music">
@@ -143,7 +161,11 @@
 							<c:when test="${status.index == 3 }">
 								<div class="new-hits-area mb-100">
 									<div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-			                            <p>총 ${resultNum[status.index] }건</p>
+			                            <div class="more_link" style="float: right;">
+	                        				<a href="<%= request.getContextPath() %>/search.do?field=Video&keyword=${keyword}"><p>동영상 결과 더보기 →</p></a>
+	                        			</div>
+	                        			
+	                        			<p>총 ${resultNum[status.index] }건</p>
 			                            <h2>동영상</h2>
 	                        		</div>
 									<c:if test="${!empty list }">
@@ -180,6 +202,10 @@
 							
 							<div class="weeks-top-area mb-0" style="pointer-events: none;">
 								<div class="section-heading text-left mb-0 wow fadeInUp" data-wow-delay="50ms">
+									<div class="more_link" style="float: right;">
+                        				<a href="<%= request.getContextPath() %>/search.do?field=Lyrics&keyword=${keyword}"><p>가사 결과 더보기 →</p></a>
+                        			</div>
+                        			
 		                            <p>총 ${resultNum[status.index] }건</p>
 		                            <h2>가사</h2>
                         		</div>
