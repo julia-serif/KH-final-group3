@@ -140,7 +140,7 @@
 					                        <!-- Single Artist -->
 					                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
 					                            <div class="thumbnail">
-					                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa1.jpg" alt="">
+					                                <img src="<%= request.getContextPath() %>/resources/img/artist-img/${music.getM_artist() }.jpg" alt="">
 					                            </div>
 					                            <div class="content-">
 					                                <p>${music.getM_artist() }</p>
