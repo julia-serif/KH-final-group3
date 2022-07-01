@@ -238,7 +238,7 @@
 							
 							<c:when test="${status.index == 4 }">
 							
-							<div class="weeks-top-area mb-0" style="pointer-events: none;">
+							<div class="weeks-top-area-non-focus mb-0">
 								<div class="section-heading text-left mb-0 wow fadeInUp" data-wow-delay="50ms">
 									<div class="more_link" style="float: right;">
                         				<a href="<%= request.getContextPath() %>/search.do?field=Lyrics&keyword=${keyword}"><p>가사 결과 더보기 →</p></a>
