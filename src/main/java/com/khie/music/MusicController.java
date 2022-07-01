@@ -82,12 +82,13 @@ public class MusicController {
 			//모든 검색분류에 대하여 검색어에 해당하는 쿼리를 DB에서 실행하는 작업.
 			PageDTO[] pdto = new PageDTO[5];
 			String[] fields = {"Song", "Album", "Artist", "Video", "Lyrics"};
+			int[] rowsizes = {rowsize, 5, 5, 3, 5};
 			ArrayList<List<MusicDTO>> list = new ArrayList<List<MusicDTO>>();	//해당 검색분류에서 한 페이지에 보여질 튜플의 수를 저장하는 List
 			int[] results = new int[5];
 
 			for(int i=0; i<5; i++) {
 				totalMusic = this.dao.searchMusicCount(fields[i], keyword);
-				pdto[i] = new PageDTO(1, rowsize, totalMusic, fields[i], keyword);
+				pdto[i] = new PageDTO(1, rowsizes[i], totalMusic, fields[i], keyword);
 				
 				System.out.println(fields[i]+"으로 검색 건 수: " + pdto[i].getTotalMusic());
 				System.out.println(fields[i]+"으로 검색 전체 블럭 수: " + pdto[i].getTotalBlock());
@@ -1059,7 +1060,73 @@ public class MusicController {
 		}
 	}
 	
+	//관리자 음원 삭제
+	@RequestMapping("admin_music_delete.do")
+	public void adminDeleteMusic(HttpServletResponse response, @RequestParam("no") int m_no) throws IOException {
+		
+		int check = this.dao.deleteMusic(m_no);
+
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('음원 삭제 성공')");
+			out.println("location.href='admin_Music.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('음원 삭제 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
+		}
+	}
 	
+	//관리자 아티스트 페이지
+	@RequestMapping("admin_artist.do")
+	public String adminArtist(Model model, HttpServletRequest request) {
+		
+		//새 음원 페이지로 이동
+		int page;
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+				
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
+				
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont);
+				
+		List<MusicDTO> list = this.dao.selectNewMusic(pageDTO);
+				
+		model.addAttribute("list" , list);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "admin_artist";
+	}
+	
+	//관리자 아티스트 추가 페이지 이동
+	@RequestMapping("admin_insert_artist.do")
+	public String adminInsertArtist() {
+		return"admin_insert_artist";
+	}
+	
+	//관리자 아티스트 추가
+	@RequestMapping("admin_insert_artist_ok.do")
+	private void adminInsertArtistOk() {
+	
+
+	}
+	
+	//관리자 아티스트 삭제
+	@RequestMapping("admin_delete_artist.do")
+	public void adminDeleteArtist() {
+		
+	}
 		
 	
 }
