@@ -391,9 +391,9 @@ public class MusicController {
 		return "empty1";
 	}
 	
-	/*
-	 *  여기부터 관리자 영역입니다. 
-	 */
+/*
+*  ====================여기부터 관리자 영역입니다. =================
+*/
 	
 	// 로그인 작업입니다.
 
@@ -425,12 +425,19 @@ public class MusicController {
 		return "redirect:/";
 
 	}
+
+	/* =========================이용권 결제 파트입니다.========================================= */
 	
 	@RequestMapping("mypass.do")
 	public String mypass() {
 		return "mypass";
 	}
 	
+	@RequestMapping("mypass1.do")
+	public String mypass1() {
+		
+		return "pass_change";
+	}
 	
 	
 	@RequestMapping("mypay.do")
@@ -497,7 +504,62 @@ public class MusicController {
 		}
 	}
 	
+	/* =========================회원 관리 파트입니다.========================================= */	
 	
+	// 회원 목록//
+	@RequestMapping("member.do")
+	public String memberlist(Model model) {
+		
+		List<MemberDTO> list = this.dao2.getMemberList();
+		
+		model.addAttribute("List", list);
+		
+		return "member_list";
+	}
+	
+	// 회원 가입 //
+	@RequestMapping("user_insert.do")
+	public String insert() {
+		
+		return "member_insert";
+	}
+	
+	// 회원 가입 완료//
+	@RequestMapping("user_insert_ok.do")
+	public void insertOk(MemberDTO dto,
+			HttpServletResponse response) throws IOException {
+		
+		int check = this.dao2.insertMember(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('회원 등록 성공')");
+			out.println("location.href='member.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('회원 등록 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+			
+		}
+	}
+
+	//관리자 회원 수정 요구//
+	@RequestMapping("user_modify.do")
+	public String user_modify(@RequestParam("user_no")int user_no,Model model) {
+		MemberDTO dto = this.dao2.getMember(user_no);
+		
+		model.addAttribute("member_update", dto);
+		
+		return "member_modify";
+	}
+	
+	//관리자 회원 수정 완료//
 	@RequestMapping("user_modify_ok.do")
 	public void modifyOk(MemberDTO dto,
 			@RequestParam("db_pwd")String db_pwd,
@@ -529,56 +591,8 @@ public class MusicController {
 			}
 		}
 	
-	@RequestMapping("member.do")
-	public String memberlist(Model model) {
-		
-		List<MemberDTO> list = this.dao2.getMemberList();
-		
-		model.addAttribute("List", list);
-		
-		return "member_list";
-	}
 	
-	@RequestMapping("user_insert.do")
-	public String insert() {
-		
-		return "member_insert";
-	}
-	
-	@RequestMapping("user_insert_ok.do")
-	public void insertOk(MemberDTO dto,
-			HttpServletResponse response) throws IOException {
-		
-		int check = this.dao2.insertMember(dto);
-		
-		response.setContentType("text/html; charset=UTF-8");
-		
-		PrintWriter out = response.getWriter();
-		
-		if(check > 0) {
-			out.println("<script>");
-			out.println("alert('회원 등록 성공')");
-			out.println("location.href='member.do'");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('회원 등록 실패')");
-			out.println("history.back()");
-			out.println("</script>");
-			
-		}
-	}
-
-	
-	@RequestMapping("user_modify.do")
-	public String user_modify(@RequestParam("user_no")int user_no,Model model) {
-		MemberDTO dto = this.dao2.getMember(user_no);
-		
-		model.addAttribute("member_update", dto);
-		
-		return "member_modify";
-	}
-	
+	//관리자 회원 수정 완료//
 	@RequestMapping("user_change_ok.do")
 	public void userChange(MemberDTO dto,
 			@RequestParam("db_pwd")String db_pwd,
@@ -609,6 +623,8 @@ public class MusicController {
 				out.println("</script>");
 			}
 		}
+	
+	//관리자 회원 상세내역//
 	
 	@RequestMapping("user_content.do")
 	public String content(@RequestParam("user_no")int user_no, Model model ) {
@@ -650,6 +666,9 @@ public class MusicController {
 		return "event1";
 	}
 	
+	/* =========================공지사항 관리 파트입니다.========================================= */	
+	
+	//관리자 공지사항 게시판 전체 목록//
 	
 	@RequestMapping("notice_list.do")
 	public String list(Model model) {
@@ -661,11 +680,15 @@ public class MusicController {
 	     	return "notice_list";
 	}
 	
+	//관리자 공지사항 게시판 삽입//
+	
 	@RequestMapping("notice_write.do")
 	public String write() {
 		
 		return "notice_write";
 	}
+	
+	//관리자 공지사항 게시판 삽입 확인//
 	
 	@RequestMapping("notice_write_ok.do")
 	public void writeOk(NoticeDTO dto,
@@ -691,6 +714,8 @@ public class MusicController {
 		}
 	}
 	
+	//관리자 공지사항 게시판 상세내역//
+	
 	@RequestMapping("notice_content.do")
 	public String notice_content(@RequestParam("music_no") int music_no, Model model ) {
 		this.dao4.readCount(music_no);
@@ -702,6 +727,8 @@ public class MusicController {
 		return "notice_content";
 	}
 
+	//관리자 공지사항 게시판 수정//
+	
 	@RequestMapping("notice_modify.do")
 	public String modify(@RequestParam("music_no")int music_no, Model model) {
 		
@@ -713,6 +740,7 @@ public class MusicController {
 	  
 	}
 	
+	//관리자 공지사항 게시판 수정 완료//
 	
 	@RequestMapping("notice_modify_Ok.do")
 	public void notice_modifyOk(NoticeDTO dto,
@@ -745,6 +773,8 @@ public class MusicController {
 		    }
 	}
 	
+	//관리자 공지사항 게시판 삭제 요청//
+	
 	@RequestMapping("notice_delete.do")
 	public String notice_delete(@RequestParam("music_no") int music_no,
 			Model model) {
@@ -755,6 +785,8 @@ public class MusicController {
 		
 		return "notice_delete";
 	}
+	
+	//관리자 공지사항 게시판 삭제 확인//
 	
 	@RequestMapping("notice_delete_Ok.do")
 	 public void notice_deleteOk(NoticeDTO dto,
@@ -792,6 +824,8 @@ public class MusicController {
 		   }
 	 }
 
+	/* =========================Q/A 관리 파트입니다.========================================= */		
+	
 	
 	//관리자 Q/A 게시판 조회
 	@RequestMapping("qanda_list.do")
@@ -919,7 +953,7 @@ public class MusicController {
 		}
 		}
 	
-	    //관리자 Q/A 게시판 수정
+	    //관리자 Q/A 게시판 삭제 요청 페이지 
 	     @RequestMapping("qa_delete.do")    
 	 	public String qa_delete(@RequestParam("qa_no") int qa_no,
 	 			Model model) {
@@ -931,6 +965,7 @@ public class MusicController {
 	 		return "qa_delete";
 	 	}
 	
+	   //관리자 Q/A 게시판 삭제 완료 페이지 
 	    @RequestMapping("qa_delete_Ok.do")
 		 public void qa_deleteOk(QandADTO dto,
 				 @RequestParam("db_pwd") String db_pwd,
@@ -993,6 +1028,9 @@ public class MusicController {
 	     
 	}
 	
+		
+		/* =========================음원 관리 파트입니다.========================================= */	
+		
 	//관리자 음원 조회
 	@RequestMapping("admin_Music.do")
 	public String adminSelectMusic(HttpServletRequest request,Model model) {
