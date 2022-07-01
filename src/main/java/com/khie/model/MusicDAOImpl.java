@@ -46,8 +46,12 @@ public class MusicDAOImpl implements MusicDAO {
 
 	@Override
 	public int insertMusic(MusicDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int no = this.sqlSession.selectOne("selectM_no");
+		
+		dto.setM_no(no + 1);
+		
+		return this.sqlSession.insert("addMusic", dto);
 	}
 
 	@Override
