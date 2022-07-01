@@ -29,8 +29,8 @@
 <script type="text/javascript">
 	function make_bold(input) {
 		var keyword = "${keyword}";
-		var pattern = new RegExp('([' + keyword + '|\b]+)gm');
-		return input.trim().replace(pattern, "<em>$1</em>");
+		var pattern = new RegExp('([' + keyword + '|\\s]+)', 'gm');
+		return input.trim().replace(pattern, "<b>$1</b>");
 	}
 	
 	function visit_text(html, visitor) {
@@ -51,7 +51,7 @@
 	}
 	
 	function make_keyword_bold() {
-		var items = document.getElementsByTagName('body');
+		var items = document.getElementsByClassName('col-12 col-lg-9');
 		for (var i = 0; i < items.length; i++) {
 			items[i].innerHTML = visit_text(items[i].innerHTML, make_bold);
 		}
@@ -62,7 +62,7 @@
 	}
 	
 </script>
-<body>
+<body onload="on_load()">
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
 
 	<!-- ##### Breadcumb Area Start ##### -->

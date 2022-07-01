@@ -21,7 +21,43 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
 </head>
-<body>
+<script type="text/javascript">
+	function make_bold(input) {
+		var keyword = "${keyword}";
+		var pattern = new RegExp('([' + keyword + '|\\s]+)', 'gm');
+		return input.trim().replace(pattern, "<b>$1</b>");
+	}
+	
+	function visit_text(html, visitor) {
+		var output = '';
+		var idx = 0;
+		while (true) {
+			var s = html.indexOf('<', idx);
+			if (s == -1)
+				break;
+			var e = html.indexOf('>', s+1);
+			if (e == -1)
+				break;
+			output += visitor(html.substring(idx, s));
+			output += html.substring(s, ++e);
+			idx = e;
+			}
+		return output;
+	}
+	
+	function make_keyword_bold() {
+		var items = document.getElementsByClassName('col-12 col-lg-9');
+		for (var i = 0; i < items.length; i++) {
+			items[i].innerHTML = visit_text(items[i].innerHTML, make_bold);
+		}
+	}
+	
+	function on_load() {
+		make_keyword_bold();
+	}
+	
+</script>
+<body onload="on_load()">
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
 
 	<!-- ##### Breadcumb Area Start ##### -->
