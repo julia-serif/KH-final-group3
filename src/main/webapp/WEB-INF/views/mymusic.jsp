@@ -18,6 +18,16 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
+    <script type="text/javascript">
+        $(function() {
+            $('#success-alert').hide(); // 처음에 가리고
+            $('#eventButtonClick').click(function() { // 버튼 클릭시
+                $('#success-alert').show(); // div가 보여지며
+                setTimeout(function() { // 시간지연 1.5초 걸고 그 안에 alert 함수 사라지게
+                $('#success-alert').hide(); }, 1500);
+            });
+        });
+    </script>
 </head>
 <body>
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
@@ -82,7 +92,7 @@
         <div class="container">
 			<hr width="100%" color="lightgray">
 	            <h2 style="display:inline">내 플레이리스트</h2>
-	            <p style="display:inline">&nbsp;&nbsp;&nbsp;|&nbsp;전체 04</p>
+	            <p style="display:inline">&nbsp;&nbsp;&nbsp;|&nbsp;전체 ${Count }</p>
                 <br><br><br>
 				<div class="col-12 col-lg-6">
                     <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
@@ -120,7 +130,7 @@
                             	<img src="<%= request.getContextPath() %>/resources/img/album-img/${playlist.getPlaylist_thumbnail() }" alt="${playlist.getPlaylist_thumbnail() } 앨범 재킷">
                             </c:if>
                             <c:if test="${playlist.getPlaylist_thumbnail() == null }">
-                            	<img src="/resources/img/album-img/just_do_it.jpg" alt="PlaylistDefault.jpg">
+                            	<img src="<%= request.getContextPath() %>/resources/img/album-img/PlaylistDefault.jpg" alt="PlaylistDefault.jpg">
                             </c:if>
                         </div>
                         <div class="song-play-area">
@@ -128,12 +138,21 @@
                                <p>${playlist.getPlaylist_name() }　|　${playlist.getM_no() }곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
-		                                <img src="resources/img/bg-img/Audio.png" alt="">
+	                                <a href="<%=request.getContextPath() %>/select_musiclist.do?playlist_no=${playlist.getPlaylist_no() }"><img src="resources/img/bg-img/Audio.png" alt=""></a>
+		                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									    <!-- <div class="alert alert-primary" id="success-alert">
+									        <button type="button" class="close" data-dismiss="alert">x</button>
+									        <strong>응모 완료! </strong>
+									      	  이벤트에 응모되셨습니다.
+									    </div> -->
 	                          	    </div>
-	                          	    <input type="button" value="delete"
+	                          	    <div style="float:right">
+	                          	    <button type="button" class="btn btn-secondary">Rename</button>
+	                          	    <button type="button" class="btn btn-secondary"
 	               						onclick="if(confirm('재생 목록을 삭제하시겠습니까?')) {
 	               						location.href='playlist_delete.do?user_no=${dto.getUser_no() }&playlist_no=${playlist.getPlaylist_no()}'
-	               						}else { return; }">
+	               						}else { return; }">Delete</button>
+	               					</div>
                           	    </div>
                             </div>
                         </div>
@@ -144,7 +163,9 @@
         </div>
     </div>
     <!-- ##### Playlist Area End ##### -->
-    
+
+	<!-- <button type="button" id="eventButtonClick" class="btn btn-raised btn-success">이벤트 참여</button> -->
+
     <jsp:include page="/resources/include/footer.jsp"></jsp:include>
 </body>
 </html>

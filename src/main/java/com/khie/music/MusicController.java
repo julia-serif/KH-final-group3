@@ -254,9 +254,20 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
-		List<MusicDTO> likelist = this.mm_dao.selectLike(user_no);
-		System.out.println("likelist" + likelist);
+
+		int page;
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
 		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont, user_no);
+		List<MusicDTO> likelist = this.mm_dao.selectLike(pageDTO);
+
+		model.addAttribute("pageDTO", pageDTO);
 		model.addAttribute("List", likelist);
 		return "music_likelist";
 	}
@@ -266,8 +277,20 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
-		List<MusicDTO> recentlist = this.mm_dao.selectRecent(user_no);
+		int page;
 		
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
+		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont, user_no);
+		List<MusicDTO> recentlist = this.mm_dao.selectRecent(pageDTO);
+
+		model.addAttribute("pageDTO", pageDTO);
 		model.addAttribute("List", recentlist);
 		return "music_recentlist";
 	}
@@ -277,8 +300,20 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
-		List<MusicDTO> muchlist = this.mm_dao.selectMuch(user_no);
+		int page;
 		
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
+		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont, user_no);
+		List<MusicDTO> muchlist = this.mm_dao.selectMuch(pageDTO);
+
+		model.addAttribute("pageDTO", pageDTO);
 		model.addAttribute("List", muchlist);
 		return "music_muchlist";
 	}
@@ -384,6 +419,24 @@ public class MusicController {
 				out.println("history.back()");
 				out.println("</script>");
 			}
+	}
+	
+	@RequestMapping("select_musiclist.do")
+	public String select_musiclist(@RequestParam("playlist_no") int playlist_no, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		PlaylistDTO playlist = new PlaylistDTO();
+		playlist.setPlaylist_no(playlist_no);
+		playlist.setUser_no(user_no);
+		
+		List<MusicDTO> musiclist = this.mm_dao.getMusiclist(playlist);
+		String name = this.mm_dao.getPlaylistName(playlist);
+		System.out.println("Name : " + name);
+
+		model.addAttribute("List", musiclist);
+		model.addAttribute("Name", name);
+		return "music_playlist";
 	}
 	
 	@RequestMapping("empty.do")

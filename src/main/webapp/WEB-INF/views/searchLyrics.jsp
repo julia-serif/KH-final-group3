@@ -41,24 +41,24 @@
 					<c:set var="list" value="${searchMusicList }" />
 					<c:set var="paging" value="${Paging }" />
 					
-					<div class="weeks-top-area mb-0" style="pointer-events: none;">
+					<div class="weeks-top-area-non-focus mb-0">
 						<div class="section-heading text-left mb-0 wow fadeInUp" data-wow-delay="50ms">
                             <p>총 ${resultNum }건</p>
                             <h2>가사</h2>
                       		</div>
 					</div>
 					
-					<div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
+					<div class="single-blog-post mb-50 wow fadeInUp" data-wow-delay="100ms">
                         <c:if test="${!empty list }">
 							<c:forEach items="${list }" var="music">
 		                        <!-- Blog Content -->
 		                        <div class="blog-content">
 		                            <!-- Post Title -->
-		                            <a href="#" class="post-title">${music.getM_name() }</a>
+		                            <a href="<%= request.getContextPath() %>/music_cont.do?m_no=${music.getM_no() }" class="post-title">${music.getM_name() }</a>
 		                            <!-- Post Meta -->
 		                            <div class="post-meta d-flex mb-30">
-		                                <p class="post-author"><a href="#"> ${music.getM_artist() }</a></p>
-		                                <p class="tags"><a href="#"> ${music.getM_album() }</a></p>
+		                                <p class="post-author">${music.getM_artist() }</p>
+		                                <p class="tags">${music.getM_album() }</p>
 		                            </div>
 		                            <!-- Post Excerpt -->
 		                            <p>${music.getM_lyrics().substring(0,200) }...</p>
@@ -70,6 +70,30 @@
 							<h6>가사의 검색 결과가 없습니다.</h6>
 						</c:if>
 						
+					</div>
+					
+					<div align="center">
+						<%-- 페이징 처리 부분 --%>
+					   	<c:if test="${paging.getPage() > paging.getBlock() }">
+					      	<a href="board_list.do?page=1">◀◀</a>
+					      	<a href="board_list.do?page=${paging.getStartBlock() - 1 }">◀</a>
+					   	</c:if>
+					   
+					   	<c:forEach begin="${paging.getStartBlock() }"
+					          				end="${paging.getEndBlock() }" var="i">
+					      	<c:if test="${i == paging.getPage() }">
+					         	<b> <a href="board_list.do?page=${i }">[${i }]</a></b>
+					      	</c:if>
+					   
+					   	  	<c:if test="${i != paging.getPage() }">
+					         	<a href="board_list.do?page=${i }" style="font-weight: 300;">[${i }]</a>
+					      	</c:if>
+					   	</c:forEach>
+				
+					   	<c:if test="${paging.getEndBlock() < paging.getTotalBlock() }">
+					      	<a href="board_list.do?page=${paging.getEndBlock() + 1 }">▶</a>
+					      	<a href="board_list.do?page=${paging.getAllPage() }">▶▶</a>
+					   	</c:if>
 					</div>
 				</div>
 				
