@@ -39,14 +39,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9">
-                  <c:set var="dto" value="${member }" />
+                  <c:set var="dto" value="${member2 }" />
                   <input type="hidden" name="user_no" value="${dto.user_no }">
                   <input type="hidden" name="user_purchase" value="${dto.user_purchase }">  
-                <c:if test="${member.user_purchase == 0 }">                                    
+                
+                                                  
 
-
-    
     <!-- 이용권 옵션 종류 -->
+    <c:if test="${member.user_purchase == 0 }">  
     <section class="newsletter-testimonials-area">
         <div class="container">
             <div class="row">
@@ -113,7 +113,7 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <h4>음악 감상3</h4>         
+                            <h4>음악 감상1</h4>         
                             <br>
                         </div>
                         <div class="newsletter-form">
@@ -131,7 +131,7 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <h4>음악 감상4</h4>         
+                            <h4>음악 감상2</h4>         
                             <br>
                         </div>
                         <div class="newsletter-form">
@@ -150,6 +150,7 @@
         </div>        
     </section>
 </c:if> 
+
 <c:if test="${member.user_purchase != 0 }">   
  
     <!-- 이용권 옵션 종류 -->

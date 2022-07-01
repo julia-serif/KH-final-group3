@@ -56,7 +56,7 @@
 	   
 	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
 	   	  <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
-	      <table border="1" cellspacing="0" width="450">
+	      <table border="1" cellspacing="0" width="480">
 	         <tr>
 	            <th>회원 아이디</th>
 	            <td> <input name="user_id"
@@ -93,8 +93,53 @@
 	            				value="${dto.user_phone }"> </td>
 	         </tr>
 	         
+	         <c:if test="${member.user_purchase == 0 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="이용권 없음" readonly> </td>
+	         </tr>
+	         </c:if>
+
+	         <c:if test="${member.user_purchase == 1 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="스마트 이용권1"> </td>
+	         </tr>
+	         </c:if>
 	         
+	         <c:if test="${member.user_purchase == 2 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="스마트 이용권2"> </td>
+	         </tr>
+	         </c:if>
 	         
+	         <c:if test="${member.user_purchase == 3 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="가족 할인 이용권"> </td>
+	         </tr>
+	         </c:if>
+	         
+	         <c:if test="${member.user_purchase == 4 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="음악 감상 이용권  1"> </td>
+	         </tr>
+	         </c:if>
+	         
+	         <c:if test="${member.user_purchase == 5 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="음악 감상 이용권  2"> </td>
+	         </tr>
+	         </c:if>
 	         <tr>
 	            <td colspan="2" align="center">
 	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
@@ -118,8 +163,10 @@
                             <div class="widget-content">
                                 <ul>
                                     <li><a href="mypage.do">회원 정보 수정</a></li>
-                                    <li><a href="user_delete.do?user_no=${dto.getUser_no()}">회원 탈퇴</a></li>
-                                    <li><a href="mypass.do">내 이용권 </a></li>
+                                    <li><a href="user_delete.do?user_no=${dto.getUser_no()}" 
+                                           onclick="return confirm('정말로 삭제하시겠습니까?');"
+                                                    >회원 탈퇴</a></li>
+                                    <li><a href="mypass.do?user_no=${dto.getUser_no()}">내 이용권 </a></li>
                                     <li><a href="events.do">이벤트 확인</a></li>
                                 </ul>
                             </div>
