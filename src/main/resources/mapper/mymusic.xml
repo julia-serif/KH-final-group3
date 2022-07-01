@@ -91,6 +91,10 @@
 		delete from music_playlist where user_no = #{user_no} and playlist_no = #{playlist_no}
 	</delete>
 	
+	<update id="update_p_seq" parameterType="PlaylistDTO">
+		update music_playlist set playlist_no = playlist_no - 1 where playlist_no > #{playlist_no} and user_no = #{user_no} and playlist_no = #{playlist_no}
+	</update>
+	
 	<update id="image_register" parameterType="PlaylistDTO">
 		update music_playlist set playlist_thumbnail = #{playlist_thumbnail} where user_no = #{user_no} and playlist_no = #{playlist_no}
 	</update>
@@ -111,4 +115,8 @@
 	<select id="delete_musiclist" parameterType="PlaylistDTO">
 		delete from music_playlist where m_no = #{m_no} and user_no = #{user_no} and playlist_no = #{playlist_no}
 	</select>
+	
+	<update id="update_m_seq" parameterType="PlaylistDTO">
+		update music_playlist set m_no = m_no - 1 where m_no > #{m_no} and user_no = #{user_no} and playlist_no = #{playlist_no}
+	</update>
 </mapper>

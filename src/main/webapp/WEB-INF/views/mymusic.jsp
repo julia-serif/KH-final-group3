@@ -3,6 +3,7 @@
 <html>
 
 <head>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,17 +18,6 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
-
-    <script type="text/javascript">
-        $(function() {
-            $('#success-alert').hide(); // 처음에 가리고
-            $('#eventButtonClick').click(function() { // 버튼 클릭시
-                $('#success-alert').show(); // div가 보여지며
-                setTimeout(function() { // 시간지연 1.5초 걸고 그 안에 alert 함수 사라지게
-                $('#success-alert').hide(); }, 1500);
-            });
-        });
-    </script>
 </head>
 <body>
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
@@ -140,18 +130,12 @@
 	                                <div class="post-meta d-inline-flex mb-20">
 	                                <a href="<%=request.getContextPath() %>/select_musiclist.do?playlist_no=${playlist.getPlaylist_no() }"><img src="resources/img/bg-img/Audio.png" alt=""></a>
 		                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									    <!-- <div class="alert alert-primary" id="success-alert">
-									        <button type="button" class="close" data-dismiss="alert">x</button>
-									        <strong>응모 완료! </strong>
-									      	  이벤트에 응모되셨습니다.
-									    </div> -->
 	                          	    </div>
 	                          	    <div style="float:right">
-	                          	    <button type="button" class="btn btn-secondary">Rename</button>
 	                          	    <button type="button" class="btn btn-secondary"
-	               						onclick="if(confirm('재생 목록을 삭제하시겠습니까?')) {
-	               						location.href='playlist_delete.do?user_no=${dto.getUser_no() }&playlist_no=${playlist.getPlaylist_no()}'
-	               						}else { return; }">Delete</button>
+	                          	    	onclick="if(confirm('재생 목록을 삭제하시겠습니까?')) {
+	               							location.href='playlist_delete.do?playlist_no=${playlist.getPlaylist_no()}'
+	               							} else { return; }">Delete</button> <!-- user_no=${dto.getUser_no() }& -->
 	               					</div>
                           	    </div>
                             </div>
@@ -163,9 +147,6 @@
         </div>
     </div>
     <!-- ##### Playlist Area End ##### -->
-
-	<!-- <button type="button" id="eventButtonClick" class="btn btn-raised btn-success">이벤트 참여</button> -->
-
     <jsp:include page="/resources/include/footer.jsp"></jsp:include>
 </body>
 </html>
