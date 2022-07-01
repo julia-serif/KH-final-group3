@@ -13,18 +13,18 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<MusicDTO> selectLike(int user_no) {
-		return this.sqlSession.selectList("select_like", user_no);
+	public List<MusicDTO> selectLike(PageDTO dto) {
+		return this.sqlSession.selectList("select_like", dto);
 	}
 
 	@Override
-	public List<MusicDTO> selectRecent(int user_no) {
-		return this.sqlSession.selectList("recent_watch", user_no);
+	public List<MusicDTO> selectRecent(PageDTO dto) {
+		return this.sqlSession.selectList("recent_watch", dto);
 	}
 
 	@Override
-	public List<MusicDTO> selectMuch(int user_no) {
-		return this.sqlSession.selectList("much_watch", user_no);
+	public List<MusicDTO> selectMuch(PageDTO dto) {
+		return this.sqlSession.selectList("much_watch", dto);
 	}
 
 	@Override
@@ -70,6 +70,11 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	@Override
 	public List<MusicDTO> getMusiclist(PlaylistDTO dto) {
 		return this.sqlSession.selectList("get_musiclist", dto);
+	}
+
+	@Override
+	public String getPlaylistName(PlaylistDTO dto) {
+		return this.sqlSession.selectOne("get_playlist_name", dto);
 	}
 
 	@Override
