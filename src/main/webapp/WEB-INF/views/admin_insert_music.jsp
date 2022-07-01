@@ -70,6 +70,10 @@
   								<td align="center"> 앨범 명 </td>
   								<td> <input name="m_album" required="required"></td>
   							</tr>
+							<tr>
+  								<td align="center"> 아티스트 </td>
+  								<td> <input name="m_artist" required="required"></td>
+  							</tr>
   							<tr>
   								<td align="center"> mp3 파일 </td>
   								<td> <input type="file" name="m_audio" required="required"></td>
