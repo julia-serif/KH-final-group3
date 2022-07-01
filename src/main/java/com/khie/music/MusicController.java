@@ -496,6 +496,7 @@ public class MusicController {
 		}
 	}
 	
+	
 	@RequestMapping("user_modify_ok.do")
 	public void modifyOk(MemberDTO dto,
 			@RequestParam("db_pwd")String db_pwd,
@@ -820,6 +821,7 @@ public class MusicController {
 	   
 	}
 	
+	//관리자 Q/A 게시판 삽입
 	@RequestMapping("qa_insert.do")
      public String qa_insert() {
 		
@@ -850,6 +852,7 @@ public class MusicController {
 		
 	}
 	
+	//관리자 Q/A 게시판 상세내역
 	@RequestMapping("qanda_content.do")
 	public String qa_content(@RequestParam("qa_no") int qa_no, Model model) {
 		this.Qand_dao.readCount(qa_no);
@@ -861,6 +864,7 @@ public class MusicController {
 		return "qa_board_content";
 	}
 	
+	//관리자 Q/A 게시판 답변
 	@RequestMapping("qanda_reply.do")
 	public String qa_reply(@RequestParam("qa_no") int qa_no, Model model) {
 		
@@ -871,6 +875,7 @@ public class MusicController {
 		return "qa_board_reply";
 	}
 	
+	//관리자 Q/A 게시판 수정 폼 페이지
 	@RequestMapping("qa_modify.do")
 	public String qa_modify(@RequestParam("qa_no") int qa_no, Model model) {
 		
@@ -881,6 +886,7 @@ public class MusicController {
 		return "qa_modify";
 	}
 	
+	//관리자 Q/A 게시판 수정완료
 	@RequestMapping("qa_update_ok.do")
 	public void qa_modifyOk(QandADTO dto,
             @RequestParam("db_pwd")String db_pwd,
@@ -912,7 +918,7 @@ public class MusicController {
 		}
 		}
 	
-	
+	    //관리자 Q/A 게시판 수정
 	     @RequestMapping("qa_delete.do")    
 	 	public String qa_delete(@RequestParam("qa_no") int qa_no,
 	 			Model model) {
@@ -960,6 +966,31 @@ public class MusicController {
 			   }
 		 }
 	
+	  //관리자 Q/A 게시판 찾기 기능
+		@RequestMapping("QA_board_search.do")
+		public String qa_search(
+		@RequestParam("qa_field") String qa_field,
+		@RequestParam("qa_keyword") String qa_keyword,
+		@RequestParam("qa_page") int qa_nowPage, Model model) {
+		
+		QA_totalRecord = this.Qand_dao.searchBoardCount(qa_field, qa_keyword);
+		
+		QA_PageDTO qdto = new QA_PageDTO(qa_nowPage, QA_rowsize, QA_totalRecord, qa_field, qa_keyword);
+		
+        System.out.println("검색 게시물 수 >>> " + qdto.getQa_totalRecord());
+		
+		System.out.println("검색 전체 페이지 수 >>> " + qdto.getQa_allPage());
+		
+	     List<QandADTO> list = this.Qand_dao.searchBoardList(qdto);
+	     
+	     model.addAttribute("qa_searchPageList", list);
+	     
+	     
+	     model.addAttribute("qa_Paging", qdto);
+	     
+	     return "qa_searchList";
+	     
+	}
 	
 	//관리자 음원 조회
 	@RequestMapping("admin_Music.do")

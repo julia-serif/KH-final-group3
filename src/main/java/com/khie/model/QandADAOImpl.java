@@ -63,14 +63,14 @@ public class QandADAOImpl implements QandADAO{
 
 	@Override
 	public int searchBoardCount(String qa_field, String qa_keyword) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.selectOne(qa_field, qa_keyword);
 	}
 
 	@Override
 	public List<QandADTO> searchBoardList(QA_PageDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.sqlSession.selectList(dto.getQa_field()+"1",dto);
 	}
 
 }

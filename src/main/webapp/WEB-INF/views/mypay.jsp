@@ -59,11 +59,11 @@
                                정상가(7,400원)로 결제가 됩나다.</p>
         </div>
        <div class="newsletter-form">
-        <form action="mypass.do">
+        <form action="mypass1.do">
          <p></p>
          <button onclick="mypass1.do" class="btn oneMusic-btn">결제하기</button>
          &nbsp;&nbsp;&nbsp;&nbsp;
-         <button onclick="mypass.do" class="btn oneMusic-btn">취소하기</button>
+         <button onclick="history.back()" class="btn oneMusic-btn">취소하기</button>
           </form>
          </div>
        </div>
