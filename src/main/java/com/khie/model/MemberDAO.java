@@ -19,7 +19,17 @@ public interface MemberDAO {
 	
 	public int updateBoard(MemberDTO dto);
 	
-	public int updateMypass(MemberDTO dto);
+	public int updateMypass(int user_no);
+	
+	public int updateMypass2(int user_no);
+	
+	public int updateMypass3(int user_no);
+	
+	public int updateMypass4(int user_no);
+	
+	public int updateMypass5(int user_no);
+	
+	public int cancelMypass(int user_no);
 	
 	public List<MemberDTO> getMemberList();
 

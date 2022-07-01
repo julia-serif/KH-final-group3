@@ -61,11 +61,11 @@
              <label><input type="checkbox" name="checkbox2" value="checkbox2" >전자금융거래 이용약관에 동의합니다.</label>         
         </div>
        <div class="newsletter-form">
-        <form action="mypass.do">
+        <form action="mypass2.do">
          <p></p>
-         <button onclick="#" class="btn oneMusic-btn">결제하기</button>
+         <button onclick="mypass2.do" class="btn oneMusic-btn">결제하기</button>
          &nbsp;&nbsp;&nbsp;&nbsp;
-         <button onclick="mypass.do" class="btn oneMusic-btn">취소하기</button>
+         <button onclick="history.back()" class="btn oneMusic-btn">취소하기</button>
           </form>
          </div>
        </div>

@@ -28,7 +28,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>MyPass</h2>
+            <h2>MyPage</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -42,28 +42,29 @@
     <!-- Single Post Start -->
       <div >
       <!-- Post Thumb -->
-    
+                        
+       <!-- 회원 상세 페이지 -->
        <div align="center">
        
-      
       <br>
-      
-      <form  method="post" 
-          action="<%=request.getContextPath()%>/mypass_cancel_Ok.do">
-           <c:set var="dto" value="${member }"/> 
+
+      <form method="post" 
+          action="<%=request.getContextPath()%>/pass_change_Ok4.do">
+           <c:set var="dto" value="${member }" /> 
            <input type="hidden" name="user_no" value="${dto.user_no }">
            <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
            <input type="hidden" name="user_purchase" value="${dto.user_purchase }">
+           
            <table border="1" cellspacing="0" width="350">
 
          <tr>
-           <th> 사용자 비밀번호</th>
+           <th>고객 비밀번호</th>
            <td> <input type="password" name="user_pwd"> </td>
          </tr>
          
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="회원권 취소">&nbsp;&nbsp;&nbsp;
+              <input type="submit" value="글삭제">&nbsp;&nbsp;&nbsp;
               <input type="reset" value="다시작성">
              </td>
          </tr>

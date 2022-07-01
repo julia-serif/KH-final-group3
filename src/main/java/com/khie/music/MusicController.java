@@ -486,6 +486,12 @@ public class MusicController {
 		return "mypass";
 	}
 	
+
+	@RequestMapping("mypay.do")
+	public String mypay() {
+		return "mypay";
+	}
+	
 	@RequestMapping("mypass1.do")
 	public String mypass1() {
 		
@@ -493,43 +499,92 @@ public class MusicController {
 	}
 	
 	
-	@RequestMapping("mypay.do")
-	public String mypay() {
-		return "mypay";
-	}
-	
-	
 	@RequestMapping("mypay2.do")
-	public String mypass2() {
+	public String mypay2() {
 		return "mypay2";
 	}
 	
+	@RequestMapping("mypass2.do")
+	public String mypass2() {
+		
+		return "pass_change2";
+	}
+	
+	
 	@RequestMapping("mypay3.do")
-	public String mypass3() {
+	public String mypay3() {
 		return "mypay3";
 	}
 	
+	@RequestMapping("mypass3.do")
+	public String mypass3() {
+		
+		return "pass_change3";
+	}
+	
 	@RequestMapping("mypay4.do")
-	public String mypass4() {
+	public String mypay4() {
 		return "mypay4";
 	}
 	
+	@RequestMapping("mypass4.do")
+	public String mypass4() {
+		
+		return "pass_change4";
+	}
+	
+	
 	@RequestMapping("mypay5.do")
-	public String mypass5() {
+	public String mypay5() {
 		return "mypay5";
 	}
 	
+	@RequestMapping("mypass5.do")
+	public String mypass5() {
+		
+		return "pass_change5";
+	}
+	
 	@RequestMapping("mypass_cancel.do")
-	public String mypass_cancel(@RequestParam("user_no") int user_no, 
-			Model model) {
-		MemberDTO dto = this.dao2.getMember(user_no);
-		model.addAttribute("change", dto);
+	public String mypass_cancel() {
 		return "mypass_cancel";
 	}
 	
-	@RequestMapping("mypass_change_Ok.do")
-	public void mypass_cancel_ok(MemberDTO dto, 
+	@RequestMapping("mypass_cancel_Ok.do")
+	public void mypass_cancel_ok(MemberDTO dto,
+			                     @RequestParam("db_pwd") String db_pwd,
+			                     @RequestParam("user_no") int user_no, 
+			                     HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(dto.getUser_pwd().equals(db_pwd)) {
+			int check = this.dao2.cancelMypass(user_no);
+			if(check > 0) {
+				out.println("<script>");
+				out.println("alert('취소 성공!!!')");
+				out.println("location.href='mypass.do'");
+				out.println("</script>");
+			}else {
+				out.println("<script>");
+				out.println("alert('취소 실패~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+			}else {
+				out.println("<script>");
+				out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+		}
+	
+	@RequestMapping("pass_change_Ok.do")
+	public void mypass_change_ok(MemberDTO dto, 
 			@RequestParam("db_pwd") String db_pwd,
+			@RequestParam("user_no") int user_no,
 			HttpServletResponse response) throws IOException{
 	
 	response.setContentType("text/html; charset=UTF-8");
@@ -537,15 +592,139 @@ public class MusicController {
 	PrintWriter out = response.getWriter();
 	
 	if(dto.getUser_pwd().equals(db_pwd)) {
-		int check = this.dao2.updateMypass(dto);
+		int check = this.dao2.updateMypass(user_no);
 		if(check > 0) {
 			out.println("<script>");
-			out.println("alert('취소 성공!!!')");
+			out.println("alert('결제 성공!!!')");
 			out.println("location.href='mypass.do'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
-			out.println("alert('취소 실패~~~')");
+			out.println("alert('결제 실패~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}else {
+			out.println("<script>");
+			out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
+	@RequestMapping("pass_change_Ok2.do")
+	public void mypass_change_ok2(MemberDTO dto, 
+			@RequestParam("db_pwd") String db_pwd,
+			@RequestParam("user_no") int user_no,
+			HttpServletResponse response) throws IOException{
+	
+	response.setContentType("text/html; charset=UTF-8");
+	
+	PrintWriter out = response.getWriter();
+	
+	if(dto.getUser_pwd().equals(db_pwd)) {
+		int check = this.dao2.updateMypass2(user_no);
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('결제 성공!!!')");
+			out.println("location.href='mypass.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('결제 실패~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}else {
+			out.println("<script>");
+			out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
+	@RequestMapping("pass_change_Ok3.do")
+	public void mypass_change_ok3(MemberDTO dto, 
+			@RequestParam("db_pwd") String db_pwd,
+			@RequestParam("user_no") int user_no,
+			HttpServletResponse response) throws IOException{
+	
+	response.setContentType("text/html; charset=UTF-8");
+	
+	PrintWriter out = response.getWriter();
+	
+	if(dto.getUser_pwd().equals(db_pwd)) {
+		int check = this.dao2.updateMypass3(user_no);
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('결제 성공!!!')");
+			out.println("location.href='mypass.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('결제 실패~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}else {
+			out.println("<script>");
+			out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
+	@RequestMapping("pass_change_Ok4.do")
+	public void mypass_change_ok4(MemberDTO dto, 
+			@RequestParam("db_pwd") String db_pwd,
+			@RequestParam("user_no") int user_no,
+			HttpServletResponse response) throws IOException{
+	
+	response.setContentType("text/html; charset=UTF-8");
+	
+	PrintWriter out = response.getWriter();
+	
+	if(dto.getUser_pwd().equals(db_pwd)) {
+		int check = this.dao2.updateMypass4(user_no);
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('결제 성공!!!')");
+			out.println("location.href='mypass.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('결제 실패~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		}else {
+			out.println("<script>");
+			out.println("alert('비밀번호가 틀립니다. 확인해 주세요~~~')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
+	@RequestMapping("pass_change_Ok5.do")
+	public void mypass_change_ok5(MemberDTO dto, 
+			@RequestParam("db_pwd") String db_pwd,
+			@RequestParam("user_no") int user_no,
+			HttpServletResponse response) throws IOException{
+	
+	response.setContentType("text/html; charset=UTF-8");
+	
+	PrintWriter out = response.getWriter();
+	
+	if(dto.getUser_pwd().equals(db_pwd)) {
+		int check = this.dao2.updateMypass5(user_no);
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('결제 성공!!!')");
+			out.println("location.href='mypass.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('결제 실패~~~')");
 			out.println("history.back()");
 			out.println("</script>");
 		}
@@ -623,7 +802,7 @@ public class MusicController {
 		
 		if(dto.getUser_pwd().equals(db_pwd)) {
 			
-			int check = this.dao2.updateMypass(dto);
+			int check = this.dao2.updateBoard(dto);
 			
 			if(check > 0) {
 				out.println("<script>");
@@ -1082,7 +1261,7 @@ public class MusicController {
 	}
 	
 		
-		/* =========================음원 관리 파트입니다.========================================= */	
+/* =========================음원 관리 파트입니다.========================================= */	
 		
 	//관리자 음원 조회
 	@RequestMapping("admin_Music.do")

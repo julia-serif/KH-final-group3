@@ -85,8 +85,38 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public int updateMypass(MemberDTO dto) {
-		return this.sqlSession.update("change", dto);
+	public int updateMypass(int user_no) {
+		return this.sqlSession.update("change", user_no);
+	}
+
+	@Override
+	public int cancelMypass(int user_no) {
+		
+		return this.sqlSession.update("cancle", user_no);
+	}
+
+	@Override
+	public int updateMypass2(int user_no) {
+		
+		return this.sqlSession.update("change2", user_no);
+	}
+
+	@Override
+	public int updateMypass3(int user_no) {
+		
+		return this.sqlSession.update("change3", user_no);
+	}
+
+	@Override
+	public int updateMypass4(int user_no) {
+		
+		return this.sqlSession.update("change4", user_no);
+	}
+
+	@Override
+	public int updateMypass5(int user_no) {
+		
+		return this.sqlSession.update("change5", user_no);
 	}
 
 

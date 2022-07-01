@@ -39,7 +39,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9">
-                  <c:set var="dto" value="${member }" />  
+                  <c:set var="dto" value="${member }" />
+                  <input type="hidden" name="user_no" value="${dto.user_no }">
+                  <input type="hidden" name="user_purchase" value="${dto.user_purchase }">  
                 <c:if test="${member.user_purchase == 0 }">                                    
 
 
