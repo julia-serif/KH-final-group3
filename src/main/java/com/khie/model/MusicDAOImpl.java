@@ -58,8 +58,8 @@ public class MusicDAOImpl implements MusicDAO {
 
 	@Override
 	public int deleteMusic(int m_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.delete("deleteMusic", m_no);
 	}
 
 	@Override
