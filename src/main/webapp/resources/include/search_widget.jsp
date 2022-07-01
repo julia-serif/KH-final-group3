@@ -80,41 +80,26 @@
 	        	<c:if test="${! empty toplist }">
 		            <ul>
 		            	<c:forEach items="${toplist}" var="top">
-		            		<li><a href="#">${top.m_name}</a></li>
+		            		<li><a href="<%= request.getContextPath() %>/music_cont.do?m_no=${top.getM_no() }">${top.m_name}</a></li>
 		            	</c:forEach>
 		            </ul>
 	            </c:if>
 	        </div>
 	    </div>
-	
+
 	    <!-- Widget Area -->
 	    <div class="single-widget-area mb-30">
-	        <div class="widget-title">
-	            <h5>급상승 검색어</h5>
-	        </div>
-	        <div class="widget-content">
-	            <ul class="tags">
-	                <li><a href="#">music</a></li>
-	                <li><a href="#">events</a></li>
-	                <li><a href="#">artists</a></li>
-	                <li><a href="#">press</a></li>
-	                <li><a href="#">mp3</a></li>
-	                <li><a href="#">videos</a></li>
-	                <li><a href="#">concerts</a></li>
-	                <li><a href="#">performers</a></li>
-	            </ul>
-	        </div>
+	        <a href="<%= request.getContextPath() %>/event2.do">
+	        	<img src="resources/img/bg-img/event2.png" alt="">
+	        </a>
 	    </div>
 	
 	    <!-- Widget Area -->
-	    <div class="single-widget-area mb-30">
-	        <a href="#"><img src="resources/img/bg-img/add.gif" alt=""></a>
-	    </div>
-	
-	    <!-- Widget Area -->
-	      <div class="single-widget-area mb-30">
-	          <a href="#"><img src="resources/img/bg-img/add2.gif" alt=""></a>
-	      </div>
+      	<div class="single-widget-area mb-30">
+        	<a href="<%= request.getContextPath() %>/event3.do">
+         		<img src="resources/img/bg-img/re.png" alt="">
+          	</a>
+      	</div>
 	
 	  </div>
 </div>

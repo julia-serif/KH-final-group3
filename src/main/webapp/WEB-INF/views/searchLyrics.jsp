@@ -41,7 +41,7 @@
 					<c:set var="list" value="${searchMusicList }" />
 					<c:set var="paging" value="${Paging }" />
 					
-					<div class="weeks-top-area mb-0" style="pointer-events: none;">
+					<div class="weeks-top-area-non-focus mb-0">
 						<div class="section-heading text-left mb-0 wow fadeInUp" data-wow-delay="50ms">
                             <p>총 ${resultNum }건</p>
                             <h2>가사</h2>
