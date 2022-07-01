@@ -63,6 +63,11 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	}
 
 	@Override
+	public void updatePlaylistSequence(PlaylistDTO dto) {
+		this.sqlSession.update("update_p_seq", dto);
+	}
+
+	@Override
 	public int imageRegister(PlaylistDTO dto) {
 		return this.sqlSession.update("image_register", dto);
 	}
@@ -85,6 +90,11 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	@Override
 	public void deleteMusiclist(PlaylistDTO dto) {
 		this.sqlSession.delete("delete_musiclist", dto);
+	}
+
+	@Override
+	public void updateMusiclistSequence(PlaylistDTO dto) {
+		this.sqlSession.update("update_m_seq", dto);
 	}
 
 	@Override

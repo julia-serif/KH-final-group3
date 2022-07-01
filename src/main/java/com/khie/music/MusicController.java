@@ -361,8 +361,18 @@ public class MusicController {
 		}
 	}
 	
-	@RequestMapping("playlist_modify.do") // 미구현
-	public void playlist_modify(PlaylistDTO dto, HttpServletResponse response) throws IOException {
+	@RequestMapping("playlist_modify.do")
+	public void playlist_modify(PlaylistDTO dto, @RequestParam("playlist_no") int playlist_no, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		
+		dto.setUser_no(user_no);
+		dto.setPlaylist_no(playlist_no);
+		
+		System.out.println("플레이리스트 번호 : " + dto.getPlaylist_no());
+		System.out.println("플레이리스트 이름 : " + dto.getPlaylist_name());
+		System.out.println("유저번호 : " + dto.getUser_no());
 		int check = this.mm_dao.modifyPlaylist(dto);
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -371,7 +381,7 @@ public class MusicController {
 		if(check > 0) {
 				out.println("<script>");
 				out.println("alert('수정 성공')");
-				out.println("location.href='mymusic.do'");
+				out.println("location.href='select_musiclist.do?playlist_no=" + dto.getPlaylist_no() + "'");
 				out.println("</script>");
 			} else {
 				out.println("<script>");
@@ -381,14 +391,21 @@ public class MusicController {
 			}
 	}
 	
-	@RequestMapping("playlist_delete.do") // 미구현
-	public void playlist_delete(PlaylistDTO dto, HttpServletResponse response) throws IOException {
+	@RequestMapping("playlist_delete.do")
+	public void playlist_delete(PlaylistDTO dto, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		dto.setUser_no(user_no);
+		
 		int check = this.mm_dao.deletePlaylist(dto);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
 		if(check > 0) {
+				this.mm_dao.updatePlaylistSequence(dto);
+				
 				out.println("<script>");
 				out.println("alert('삭제 성공')");
 				out.println("location.href='mymusic.do'");
@@ -426,16 +443,18 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
+		
 		PlaylistDTO playlist = new PlaylistDTO();
 		playlist.setPlaylist_no(playlist_no);
 		playlist.setUser_no(user_no);
 		
 		List<MusicDTO> musiclist = this.mm_dao.getMusiclist(playlist);
 		String name = this.mm_dao.getPlaylistName(playlist);
-		System.out.println("Name : " + name);
-
-		model.addAttribute("List", musiclist);
+		
+		model.addAttribute("Member", member);
 		model.addAttribute("Name", name);
+		model.addAttribute("Playlist", playlist_no);
+		model.addAttribute("List", musiclist);
 		return "music_playlist";
 	}
 	
@@ -604,7 +623,7 @@ public class MusicController {
 
 	//관리자 회원 수정 요구//
 	@RequestMapping("user_modify.do")
-	public String user_modify(@RequestParam("user_no")int user_no,Model model) {
+	public String user_modify(@RequestParam("user_no") int user_no, Model model) {
 		MemberDTO dto = this.dao2.getMember(user_no);
 		
 		model.addAttribute("member_update", dto);
