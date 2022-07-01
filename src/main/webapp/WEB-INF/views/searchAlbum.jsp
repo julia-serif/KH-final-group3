@@ -41,7 +41,7 @@
 					<c:set var="list" value="${searchMusicList }" />
 					<c:set var="paging" value="${Paging }" />
 					
-					<div class="weeks-top-area mb-100" style="background-color: #f5f9fa; border-color: #d8d8d8;">
+					<div class="weeks-top-area mb-50" style="background-color: #f5f9fa; border-color: #d8d8d8;">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>총 ${resultNum }건</p>
                             <h2>앨범</h2>
@@ -66,6 +66,30 @@
 							<h6>앨범의 검색 결과가 없습니다.</h6>
 						</c:if>
 						
+					</div>
+					
+					<div align="center">
+						<%-- 페이징 처리 부분 --%>
+					   	<c:if test="${paging.getPage() > paging.getBlock() }">
+					      	<a href="board_list.do?page=1">◀◀</a>
+					      	<a href="board_list.do?page=${paging.getStartBlock() - 1 }">◀</a>
+					   	</c:if>
+					   
+					   	<c:forEach begin="${paging.getStartBlock() }"
+					          				end="${paging.getEndBlock() }" var="i">
+					      	<c:if test="${i == paging.getPage() }">
+					         	<b> <a href="board_list.do?page=${i }">[${i }]</a></b>
+					      	</c:if>
+					   
+					   	  	<c:if test="${i != paging.getPage() }">
+					         	<a href="board_list.do?page=${i }" style="font-weight: 300;">[${i }]</a>
+					      	</c:if>
+					   	</c:forEach>
+				
+					   	<c:if test="${paging.getEndBlock() < paging.getTotalBlock() }">
+					      	<a href="board_list.do?page=${paging.getEndBlock() + 1 }">▶</a>
+					      	<a href="board_list.do?page=${paging.getAllPage() }">▶▶</a>
+					   	</c:if>
 					</div>
 				</div>
 				
