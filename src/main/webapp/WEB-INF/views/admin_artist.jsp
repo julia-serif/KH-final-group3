@@ -9,16 +9,16 @@
 <style type="text/css">
 
 #musicList{
-	background-color: rgb(89,89,89);
-	color: white;
+	color: rgb(89,89,89);
+	background-color: white;
 	font-weight: bold;
 	width: 400px;
 	height: 50px;
 }
 
 #musicList:hover, #musicList:focus, #musicList:active{
-	background-color: rgb(89,89,89);
-	color: white;
+	color: rgb(89,89,89);
+	background-color: white;
 	font-weight: bold;
 	font-size: 1.2em;
 	width: 400px;
@@ -26,22 +26,22 @@
 } 
 
 #artistList{
-	color: rgb(89,89,89);
-	background-color: white;
+	background-color: rgb(89,89,89);
+	color: white;
 	font-weight: bold;
 	width: 400px;
 	height: 50px;
 }
 
 #artistList:hover, #artistList:focus, #artistList:active{
-	color: rgb(89,89,89);
-	background-color: white;
+	background-color: rgb(89,89,89);
+	color: white;
 	font-weight: bold;
 	font-size: 1.2em;
 	width: 400px;
 	height: 60px;
 	
-} 
+}
 
 #newArtistArea{
 	margin-left: 65%;
