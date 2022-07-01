@@ -1029,7 +1029,73 @@ public class MusicController {
 		}
 	}
 	
+	//관리자 음원 삭제
+	@RequestMapping("admin_music_delete.do")
+	public void adminDeleteMusic(HttpServletResponse response, @RequestParam("no") int m_no) throws IOException {
+		
+		int check = this.dao.deleteMusic(m_no);
+
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('음원 삭제 성공')");
+			out.println("location.href='admin_Music.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('음원 삭제 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
+		}
+	}
 	
+	//관리자 아티스트 페이지
+	@RequestMapping("admin_artist.do")
+	public String adminArtist(Model model, HttpServletRequest request) {
+		
+		//새 음원 페이지로 이동
+		int page;
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+				
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
+				
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont);
+				
+		List<MusicDTO> list = this.dao.selectNewMusic(pageDTO);
+				
+		model.addAttribute("list" , list);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "admin_artist";
+	}
+	
+	//관리자 아티스트 추가 페이지 이동
+	@RequestMapping("admin_insert_artist.do")
+	public String adminInsertArtist() {
+		return"admin_insert_artist";
+	}
+	
+	//관리자 아티스트 추가
+	@RequestMapping("admin_insert_artist_ok.do")
+	private void adminInsertArtistOk() {
+	
+
+	}
+	
+	//관리자 아티스트 삭제
+	@RequestMapping("admin_delete_artist.do")
+	public void adminDeleteArtist() {
+		
+	}
 		
 	
 }
