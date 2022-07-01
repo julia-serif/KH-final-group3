@@ -15,6 +15,7 @@ public class PageDTO {
 	private int endBlock;		//마지막 블럭
 	private int totalBlock;		//전제 블럭 수
 	private int block = 3;		//블럭 간격
+	private int user_no;		//회원 번호
 	
 	//검색 변수
 	private String keyword;
@@ -46,5 +47,10 @@ public class PageDTO {
 		this.field = field;
 		this.keyword = keyword;
 	}
+	
+	public PageDTO(int page, int rowsize, int totalMusic, int user_no) {
+		this(page, rowsize, totalMusic);
+		this.user_no = user_no;
+	} // 내 음악에서 찾기
 
 }
