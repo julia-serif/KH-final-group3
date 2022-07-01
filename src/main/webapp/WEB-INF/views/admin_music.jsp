@@ -7,6 +7,41 @@
 <meta charset="UTF-8">
 <title>ONE SOUND</title>
 <style type="text/css">
+	
+#musicList{
+	background-color: rgb(89,89,89);
+	color: white;
+	font-weight: bold;
+	width: 400px;
+	height: 50px;
+}
+
+#musicList:hover, #musicList:focus, #musicList:active{
+	background-color: rgb(89,89,89);
+	color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	width: 400px;
+	height: 60px;
+} 
+
+#artistList{
+	color: rgb(89,89,89);
+	background-color: white;
+	font-weight: bold;
+	width: 400px;
+	height: 50px;
+}
+
+#artistList:hover, #artistList:focus, #artistList:active{
+	color: rgb(89,89,89);
+	background-color: white;
+	font-weight: bold;
+	font-size: 1.2em;
+	width: 400px;
+	height: 60px;
+	
+} 
 
 #newMusicArea{
 	margin-left: 65%;
@@ -99,6 +134,14 @@ function deleteMusic() {
     <!-- ##### Breadcumb Area End ##### -->
 
 <br><br><br>
+             <!-- 음원/아티스트 이동 바 start -->
+            <div align="center">
+            	<input type="button" value="음원 목록" id="musicList" onclick="#">
+            	<input type="button" value="아티스트 목록" id="artistList" onclick="location.href='admin_artist.do'">
+            </div>
+            <!-- 음원/아티스트 이동 바 end -->
+            
+            <br>
             
             <!-- 새음원 추가  Area start -->
             <div id="newMusicArea">
