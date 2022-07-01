@@ -53,5 +53,70 @@
 			where qa_no  > #{qa_no }
 		]]>	
 	   </update>
+	   
+	   <select id="qa_title" resultType="int">
+		select count(*) from music_qanda
+			where qa_title like '%' || #{qa_keyword} || '%'
+	</select>
+	
+	
+	<select id="qa_cont" resultType="int">
+		select count(*) from music_qanda
+			where qa_cont like '%' || #{qa_keyword} || '%'
+	</select>
+	
+	
+	<select id="qa_title_cont" resultType="int">
+		select count(*) from music_qanda
+			where qa_title like '%' || #{qa_keyword} || '%' or
+			    qa_cont like '%' || #{qa_keyword} || '%'
+	</select>
+	
+	
+	<select id="qa_writer" resultType="int">
+		select count(*) from music_qanda
+			where qa_writer like '%' || #{qa_keyword} || '%'
+	</select>
+	
+	<select id="qa_title1" parameterType="com.khie.model.QA_PageDTO" resultType="com.khie.model.QandADTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by qa_no desc) rnum from music_qanda b
+					where qa_title like '%' || #{qa_keyword} || '%')
+					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
+	    ]]>
+	</select>
+	
+	<select id="qa_cont1" parameterType="com.khie.model.QA_PageDTO" resultType="com.khie.model.QandADTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by qa_no desc) rnum from music_qanda b
+					where qa_cont like '%' || #{qa_keyword} || '%')
+					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
+	    ]]>
+	</select>
+	
+	<select id="qa_title_cont1" parameterType="com.khie.model.QA_PageDTO" resultType="com.khie.model.QandADTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by qa_no desc) rnum from music_qanda b
+					where qa_title like '%' || #{qa_keyword} || '%' or 
+					qa_cont like '%' || #{qa_keyword} || '%')
+					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
+	    ]]>
+	</select>
+	
+	<select id="qa_writer1" parameterType="com.khie.model.QA_PageDTO" resultType="com.khie.model.QandADTO">
+		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by qa_no desc) rnum from music_qanda b
+					where qa_writer like '%' || #{keyword} || '%')
+					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
+	    ]]>
+	</select>
 
    </mapper>

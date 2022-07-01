@@ -5,20 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ONE SOUND</title>
+<title>Insert title here</title>
 <style type="text/css">
-	
+
 #musicList{
-	background-color: rgb(89,89,89);
-	color: white;
+	color: rgb(89,89,89);
+	background-color: white;
 	font-weight: bold;
 	width: 400px;
 	height: 50px;
 }
 
 #musicList:hover, #musicList:focus, #musicList:active{
-	background-color: rgb(89,89,89);
-	color: white;
+	color: rgb(89,89,89);
+	background-color: white;
 	font-weight: bold;
 	font-size: 1.2em;
 	width: 400px;
@@ -26,28 +26,29 @@
 } 
 
 #artistList{
-	color: rgb(89,89,89);
-	background-color: white;
+	background-color: rgb(89,89,89);
+	color: white;
 	font-weight: bold;
 	width: 400px;
 	height: 50px;
 }
 
 #artistList:hover, #artistList:focus, #artistList:active{
-	color: rgb(89,89,89);
-	background-color: white;
+	background-color: rgb(89,89,89);
+	color: white;
 	font-weight: bold;
 	font-size: 1.2em;
 	width: 400px;
 	height: 60px;
 	
-} 
+}
 
-#newMusicArea{
+#newArtistArea{
 	margin-left: 65%;
 }
 
-#newMusicArea input{
+
+#newArtistArea input{
 	color: rgb(89,89,89);
 	background-color: white;
 	font-weight: bold;
@@ -56,7 +57,8 @@
 	height: 30px;
 }
 
-#newMusicArea input:hover , #newMusicArea input:focus, #newMusicArea input:active {
+
+#newArtistArea input:hover , #newArtistArea input:focus, #newArtistArea input:active {
 	background-color: rgb(89,89,89);
 	color: white;
 	font-weight: bold;
@@ -65,7 +67,7 @@
 	height: 30px;
 }
 
-#musicArea input{
+#artistArea input{
 	color: rgb(89,89,89);
 	background-color: white;
 	border: 0px;
@@ -73,7 +75,7 @@
 	font-size: 1.2em;
 }
 
-#musicArea input:hover , #musicArea input:focus, #musicArea input:active {
+#artistArea input:hover , #artistArea input:focus, #artistArea input:active {
 	background-color: rgb(89,89,89);
 	color: white;
 	border: 0px;
@@ -89,7 +91,7 @@ function deleteMusic() {
 	let no = $("#m_no").val();
 	
 	 if(confirm("정말로 삭제하겠습니까")==true){
-	         location.href="admin_music_delete.do?no="+no;
+	         location.href="admin_delete_artist.do?no="+no;
 	      }
 	       
 	}
@@ -127,37 +129,37 @@ function deleteMusic() {
     <!-- ##### Breadcumb Area Start ##### -->
     <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb2.jpg);">
         <div class="bradcumbContent">
-            <p>ONE SOUND의 모든 음원 관리</p>
-            <h2>All MUSIC</h2>
+            <p>ONE SOUND의 아티스트 관리</p>
+            <h2>All ARTIST</h2>
         </div>
     </div>
     <!-- ##### Breadcumb Area End ##### -->
 
 <br><br><br>
-             <!-- 음원/아티스트 이동 바 start -->
+            <!-- 음원/아티스트 이동 바 start -->
             <div align="center">
-            	<input type="button" value="음원 목록" id="musicList" onclick="#">
-            	<input type="button" value="아티스트 목록" id="artistList" onclick="location.href='admin_artist.do'">
+            	<input type="button" value="음원 목록" id="musicList" onclick="location.href='admin_Music.do'">
+            	<input type="button" value="아티스트 목록" id="artistList">
             </div>
             <!-- 음원/아티스트 이동 바 end -->
             
             <br>
             
             <!-- 새음원 추가  Area start -->
-            <div id="newMusicArea">
-            	<input type="button" value="음원 추가 >>" onclick="location.href='admin_insert_music.do'" id="insertMusic"> 
+            <div id="newArtistArea">
+            	<input type="button" value="아티스트 추가 >>" onclick="location.href='admin_insert_artist.do'"> 
             </div>
             <!-- 새 음원 추가 Area end -->
             
             <br><br>
                 
                 <!-- 음원 Area start -->
-  				<div align="center" id="musicArea">
+  				<div align="center" id="artistArea">
   				<c:set value="${list}" var="list"/>
   				
   				<c:if test="${! empty list}">
   					<c:forEach items="${list}" var="top">
-  					<input type="hidden" value="${top.m_no}" id="m_no">
+  					<input type="hidden" value="${top.m_artist_no}" id="m_no">
   						
   						<table width="45%" id="newtable">
   							<tr>
@@ -165,33 +167,24 @@ function deleteMusic() {
   								<td width="7%" >
   									<a href="#">
   									<!-- 음원 상세페이지로 이동 -->
-  										<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="300" height="300" />
+  										<img src="<%= request.getContextPath() %>/resources/img/artist-img/${top.m_artist_img}" width="300" height="300" />
                           			</a>
                             	</td>
                             	<td width="20%" id="title">
                               		     <a href="#">
                               		     <!-- 음원 상세페이지로 이동 -->
-                              		     	 <h4> &nbsp; &nbsp; ${top.m_name}</h4>
-                             		   		<p> &nbsp;&nbsp;&nbsp;&nbsp; ${top.m_artist}</p>
-                             		   	</a>
+                              		     	 <h4> &nbsp; &nbsp; ${top.m_artist}</h4>
                             	 </td>
                             	 <td width="18%" align="right">
                             	  <a href="#">
-                            	  <!-- 플레이 리스트에 담기 -->
-                             	 	  <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
-                             	   </a>
-                             	   &nbsp; &nbsp; &nbsp;
-                               	  <a href="#">
-                                 <!-- 뮤비 페이지로 이동 -->
-                               		 <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
-                               	 </a>
+                    
                                	 &nbsp; &nbsp; &nbsp;
                                	 <!-- 수정 페이지로 이동 -->
-                               	 	<input type="button" value="수정" onclick="location.href='#?no=${top.m_no}'">
+                               	 	<input type="button" value="수정" onclick="location.href='#?no=${top.m_artist_no}'">
                                	 
                             	&nbsp; || &nbsp;
                             	 <!-- 삭제 페이지로 이동 -->
-                            	 	<input type="button" value="삭제" onclick="deleteMusic()">
+                            	 	<input type="button" value="삭제" onclick="deleteArtist()">
                             	 	
                             	 
                             	 </td>
@@ -206,6 +199,7 @@ function deleteMusic() {
   				<!-- 음원 Area end-->
   				
  
+  
     <br><br><br>
     <!-- 페이징 Area start -->
     <div align="center">

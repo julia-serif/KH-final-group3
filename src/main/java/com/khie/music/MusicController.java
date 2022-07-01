@@ -254,9 +254,20 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
-		List<MusicDTO> likelist = this.mm_dao.selectLike(user_no);
-		System.out.println("likelist" + likelist);
+
+		int page;
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
 		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont, user_no);
+		List<MusicDTO> likelist = this.mm_dao.selectLike(pageDTO);
+
+		model.addAttribute("pageDTO", pageDTO);
 		model.addAttribute("List", likelist);
 		return "music_likelist";
 	}
@@ -266,8 +277,20 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
-		List<MusicDTO> recentlist = this.mm_dao.selectRecent(user_no);
+		int page;
 		
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
+		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont, user_no);
+		List<MusicDTO> recentlist = this.mm_dao.selectRecent(pageDTO);
+
+		model.addAttribute("pageDTO", pageDTO);
 		model.addAttribute("List", recentlist);
 		return "music_recentlist";
 	}
@@ -277,8 +300,20 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
-		List<MusicDTO> muchlist = this.mm_dao.selectMuch(user_no);
+		int page;
 		
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
+		
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont, user_no);
+		List<MusicDTO> muchlist = this.mm_dao.selectMuch(pageDTO);
+
+		model.addAttribute("pageDTO", pageDTO);
 		model.addAttribute("List", muchlist);
 		return "music_muchlist";
 	}
@@ -386,14 +421,32 @@ public class MusicController {
 			}
 	}
 	
+	@RequestMapping("select_musiclist.do")
+	public String select_musiclist(@RequestParam("playlist_no") int playlist_no, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		PlaylistDTO playlist = new PlaylistDTO();
+		playlist.setPlaylist_no(playlist_no);
+		playlist.setUser_no(user_no);
+		
+		List<MusicDTO> musiclist = this.mm_dao.getMusiclist(playlist);
+		String name = this.mm_dao.getPlaylistName(playlist);
+		System.out.println("Name : " + name);
+
+		model.addAttribute("List", musiclist);
+		model.addAttribute("Name", name);
+		return "music_playlist";
+	}
+	
 	@RequestMapping("empty.do")
 	public String empty() {
 		return "empty1";
 	}
 	
-	/*
-	 *  여기부터 관리자 영역입니다. 
-	 */
+/*
+*  ====================여기부터 관리자 영역입니다. =================
+*/
 	
 	// 로그인 작업입니다.
 
@@ -425,12 +478,19 @@ public class MusicController {
 		return "redirect:/";
 
 	}
+
+	/* =========================이용권 결제 파트입니다.========================================= */
 	
 	@RequestMapping("mypass.do")
 	public String mypass() {
 		return "mypass";
 	}
 	
+	@RequestMapping("mypass1.do")
+	public String mypass1() {
+		
+		return "pass_change";
+	}
 	
 	
 	@RequestMapping("mypay.do")
@@ -497,6 +557,62 @@ public class MusicController {
 		}
 	}
 	
+	/* =========================회원 관리 파트입니다.========================================= */	
+	
+	// 회원 목록//
+	@RequestMapping("member.do")
+	public String memberlist(Model model) {
+		
+		List<MemberDTO> list = this.dao2.getMemberList();
+		
+		model.addAttribute("List", list);
+		
+		return "member_list";
+	}
+	
+	// 회원 가입 //
+	@RequestMapping("user_insert.do")
+	public String insert() {
+		
+		return "member_insert";
+	}
+	
+	// 회원 가입 완료//
+	@RequestMapping("user_insert_ok.do")
+	public void insertOk(MemberDTO dto,
+			HttpServletResponse response) throws IOException {
+		
+		int check = this.dao2.insertMember(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('회원 등록 성공')");
+			out.println("location.href='member.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('회원 등록 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+			
+		}
+	}
+
+	//관리자 회원 수정 요구//
+	@RequestMapping("user_modify.do")
+	public String user_modify(@RequestParam("user_no")int user_no,Model model) {
+		MemberDTO dto = this.dao2.getMember(user_no);
+		
+		model.addAttribute("member_update", dto);
+		
+		return "member_modify";
+	}
+	
+	//관리자 회원 수정 완료//
 	@RequestMapping("user_modify_ok.do")
 	public void modifyOk(MemberDTO dto,
 			@RequestParam("db_pwd")String db_pwd,
@@ -528,56 +644,8 @@ public class MusicController {
 			}
 		}
 	
-	@RequestMapping("member.do")
-	public String memberlist(Model model) {
-		
-		List<MemberDTO> list = this.dao2.getMemberList();
-		
-		model.addAttribute("List", list);
-		
-		return "member_list";
-	}
 	
-	@RequestMapping("user_insert.do")
-	public String insert() {
-		
-		return "member_insert";
-	}
-	
-	@RequestMapping("user_insert_ok.do")
-	public void insertOk(MemberDTO dto,
-			HttpServletResponse response) throws IOException {
-		
-		int check = this.dao2.insertMember(dto);
-		
-		response.setContentType("text/html; charset=UTF-8");
-		
-		PrintWriter out = response.getWriter();
-		
-		if(check > 0) {
-			out.println("<script>");
-			out.println("alert('회원 등록 성공')");
-			out.println("location.href='member.do'");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('회원 등록 실패')");
-			out.println("history.back()");
-			out.println("</script>");
-			
-		}
-	}
-
-	
-	@RequestMapping("user_modify.do")
-	public String user_modify(@RequestParam("user_no")int user_no,Model model) {
-		MemberDTO dto = this.dao2.getMember(user_no);
-		
-		model.addAttribute("member_update", dto);
-		
-		return "member_modify";
-	}
-	
+	//관리자 회원 수정 완료//
 	@RequestMapping("user_change_ok.do")
 	public void userChange(MemberDTO dto,
 			@RequestParam("db_pwd")String db_pwd,
@@ -608,6 +676,8 @@ public class MusicController {
 				out.println("</script>");
 			}
 		}
+	
+	//관리자 회원 상세내역//
 	
 	@RequestMapping("user_content.do")
 	public String content(@RequestParam("user_no")int user_no, Model model ) {
@@ -649,6 +719,9 @@ public class MusicController {
 		return "event1";
 	}
 	
+	/* =========================공지사항 관리 파트입니다.========================================= */	
+	
+	//관리자 공지사항 게시판 전체 목록//
 	
 	@RequestMapping("notice_list.do")
 	public String list(Model model) {
@@ -660,11 +733,15 @@ public class MusicController {
 	     	return "notice_list";
 	}
 	
+	//관리자 공지사항 게시판 삽입//
+	
 	@RequestMapping("notice_write.do")
 	public String write() {
 		
 		return "notice_write";
 	}
+	
+	//관리자 공지사항 게시판 삽입 확인//
 	
 	@RequestMapping("notice_write_ok.do")
 	public void writeOk(NoticeDTO dto,
@@ -690,6 +767,8 @@ public class MusicController {
 		}
 	}
 	
+	//관리자 공지사항 게시판 상세내역//
+	
 	@RequestMapping("notice_content.do")
 	public String notice_content(@RequestParam("music_no") int music_no, Model model ) {
 		this.dao4.readCount(music_no);
@@ -701,6 +780,8 @@ public class MusicController {
 		return "notice_content";
 	}
 
+	//관리자 공지사항 게시판 수정//
+	
 	@RequestMapping("notice_modify.do")
 	public String modify(@RequestParam("music_no")int music_no, Model model) {
 		
@@ -712,6 +793,7 @@ public class MusicController {
 	  
 	}
 	
+	//관리자 공지사항 게시판 수정 완료//
 	
 	@RequestMapping("notice_modify_Ok.do")
 	public void notice_modifyOk(NoticeDTO dto,
@@ -744,6 +826,8 @@ public class MusicController {
 		    }
 	}
 	
+	//관리자 공지사항 게시판 삭제 요청//
+	
 	@RequestMapping("notice_delete.do")
 	public String notice_delete(@RequestParam("music_no") int music_no,
 			Model model) {
@@ -754,6 +838,8 @@ public class MusicController {
 		
 		return "notice_delete";
 	}
+	
+	//관리자 공지사항 게시판 삭제 확인//
 	
 	@RequestMapping("notice_delete_Ok.do")
 	 public void notice_deleteOk(NoticeDTO dto,
@@ -791,6 +877,8 @@ public class MusicController {
 		   }
 	 }
 
+	/* =========================Q/A 관리 파트입니다.========================================= */		
+	
 	
 	//관리자 Q/A 게시판 조회
 	@RequestMapping("qanda_list.do")
@@ -821,6 +909,7 @@ public class MusicController {
 	   
 	}
 	
+	//관리자 Q/A 게시판 삽입
 	@RequestMapping("qa_insert.do")
      public String qa_insert() {
 		
@@ -851,6 +940,7 @@ public class MusicController {
 		
 	}
 	
+	//관리자 Q/A 게시판 상세내역
 	@RequestMapping("qanda_content.do")
 	public String qa_content(@RequestParam("qa_no") int qa_no, Model model) {
 		this.Qand_dao.readCount(qa_no);
@@ -862,6 +952,7 @@ public class MusicController {
 		return "qa_board_content";
 	}
 	
+	//관리자 Q/A 게시판 답변
 	@RequestMapping("qanda_reply.do")
 	public String qa_reply(@RequestParam("qa_no") int qa_no, Model model) {
 		
@@ -872,6 +963,7 @@ public class MusicController {
 		return "qa_board_reply";
 	}
 	
+	//관리자 Q/A 게시판 수정 폼 페이지
 	@RequestMapping("qa_modify.do")
 	public String qa_modify(@RequestParam("qa_no") int qa_no, Model model) {
 		
@@ -882,6 +974,7 @@ public class MusicController {
 		return "qa_modify";
 	}
 	
+	//관리자 Q/A 게시판 수정완료
 	@RequestMapping("qa_update_ok.do")
 	public void qa_modifyOk(QandADTO dto,
             @RequestParam("db_pwd")String db_pwd,
@@ -913,7 +1006,7 @@ public class MusicController {
 		}
 		}
 	
-	
+	    //관리자 Q/A 게시판 삭제 요청 페이지 
 	     @RequestMapping("qa_delete.do")    
 	 	public String qa_delete(@RequestParam("qa_no") int qa_no,
 	 			Model model) {
@@ -925,6 +1018,7 @@ public class MusicController {
 	 		return "qa_delete";
 	 	}
 	
+	   //관리자 Q/A 게시판 삭제 완료 페이지 
 	    @RequestMapping("qa_delete_Ok.do")
 		 public void qa_deleteOk(QandADTO dto,
 				 @RequestParam("db_pwd") String db_pwd,
@@ -961,7 +1055,35 @@ public class MusicController {
 			   }
 		 }
 	
+	  //관리자 Q/A 게시판 찾기 기능
+		@RequestMapping("QA_board_search.do")
+		public String qa_search(
+		@RequestParam("qa_field") String qa_field,
+		@RequestParam("qa_keyword") String qa_keyword,
+		@RequestParam("qa_page") int qa_nowPage, Model model) {
+		
+		QA_totalRecord = this.Qand_dao.searchBoardCount(qa_field, qa_keyword);
+		
+		QA_PageDTO qdto = new QA_PageDTO(qa_nowPage, QA_rowsize, QA_totalRecord, qa_field, qa_keyword);
+		
+        System.out.println("검색 게시물 수 >>> " + qdto.getQa_totalRecord());
+		
+		System.out.println("검색 전체 페이지 수 >>> " + qdto.getQa_allPage());
+		
+	     List<QandADTO> list = this.Qand_dao.searchBoardList(qdto);
+	     
+	     model.addAttribute("qa_searchPageList", list);
+	     
+	     
+	     model.addAttribute("qa_Paging", qdto);
+	     
+	     return "qa_searchList";
+	     
+	}
 	
+		
+		/* =========================음원 관리 파트입니다.========================================= */	
+		
 	//관리자 음원 조회
 	@RequestMapping("admin_Music.do")
 	public String adminSelectMusic(HttpServletRequest request,Model model) {
@@ -1029,7 +1151,73 @@ public class MusicController {
 		}
 	}
 	
+	//관리자 음원 삭제
+	@RequestMapping("admin_music_delete.do")
+	public void adminDeleteMusic(HttpServletResponse response, @RequestParam("no") int m_no) throws IOException {
+		
+		int check = this.dao.deleteMusic(m_no);
+
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('음원 삭제 성공')");
+			out.println("location.href='admin_Music.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('음원 삭제 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
+		}
+	}
 	
+	//관리자 아티스트 페이지
+	@RequestMapping("admin_artist.do")
+	public String adminArtist(Model model, HttpServletRequest request) {
+		
+		//새 음원 페이지로 이동
+		int page;
+		if(request.getParameter("page") != null  ) {
+			page = Integer.parseInt(request.getParameter("page").trim());
+		}else {
+			page = 1;
+		}
+				
+		int totalcont = dao.selectTotalCont();
+		int rowpage = 10;
+				
+		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont);
+				
+		List<MusicDTO> list = this.dao.selectNewMusic(pageDTO);
+				
+		model.addAttribute("list" , list);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "admin_artist";
+	}
+	
+	//관리자 아티스트 추가 페이지 이동
+	@RequestMapping("admin_insert_artist.do")
+	public String adminInsertArtist() {
+		return"admin_insert_artist";
+	}
+	
+	//관리자 아티스트 추가
+	@RequestMapping("admin_insert_artist_ok.do")
+	private void adminInsertArtistOk() {
+	
+
+	}
+	
+	//관리자 아티스트 삭제
+	@RequestMapping("admin_delete_artist.do")
+	public void adminDeleteArtist() {
+		
+	}
 		
 	
 }

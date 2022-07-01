@@ -43,10 +43,6 @@
                 <c:if test="${member.user_purchase == 0 }">                                    
 
 
-
-  
-    
-   
     
     <!-- 이용권 옵션 종류 -->
     <section class="newsletter-testimonials-area">
@@ -99,8 +95,8 @@
                         <div class="newsletter-form">
                             <form action="mypay3.do">
                                 <p align="center">6개월 특가 할인</p>
-                                <p align="center">34% <del>7,400원</del></p>
-                                <h3 align="center">4,900원</h3>
+                                <p align="center">34% <del>17,300원</del></p>
+                                <h3 align="center">9,900원</h3>
                                 <button onclick="mypay3.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
@@ -139,7 +135,7 @@
                         <div class="newsletter-form">
                             <form action="mypay5.do">
                                 <p>12개월 특가 할인</p>
-                                <p>65% <del>888,000원</del></p>
+                                <p>65% <del>88,000원</del></p>
                                 <h3>57,720원</h3>
                                 <button onclick="mypay5.do" class="btn oneMusic-btn">구독하기</button>
                             </form>

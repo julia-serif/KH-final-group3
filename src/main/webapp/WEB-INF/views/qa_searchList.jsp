@@ -49,7 +49,7 @@
          <th>게시일</th>
        </tr>
        
-       <c:set var="QA_list" value="${QA_List}"/>
+       <c:set var="QA_list" value="${qa_searchPageList}"/>
       
        
        <c:if test="${!empty QA_list}">
@@ -72,21 +72,14 @@
           </td>
         </tr>
       </c:if>
-      
-       <tr>
-        <td colspan="4" align="right">
-            <input type="button" value="게시물 등록"
-                    onclick="location.href='qa_insert.do'"> 
-        </td>      
-      </tr>
      </table>
      <br>
      
      <%-- 페이징 처리 부분 --%>
-       <c:set var="QA_Paging" value="${QA_Paging}" />
+       <c:set var="QA_Paging" value="${qa_Paging}" />
 	   <c:if test="${QA_Paging.getQa_page() > QA_Paging.getQa_block() }">
-	      <a href="qanda_list.do?qa_page=1">◀◀</a>
-	      <a href="qanda_list.do?qa_page=${QA_Paging.getQa_startBlock() - 1 }">◀</a>
+	      <a href="QA_board_search.do?qa_page=1&qa_field=${QA_Paging.qa_field}&keyword=${QA_Paging.keyword}">◀◀</a>
+	      <a href="QA_board_search.do?qa_page=${QA_Paging.getQa_startBlock() - 1 }&field=${QA_Paging.qa_field}$keyword=${QA_Paging.qa_keyword}">◀</a>
 	   </c:if>
 	   
 	   <c:forEach begin="${QA_Paging.getQa_startBlock() }"
@@ -106,22 +99,9 @@
 	   </c:if>
 	   
 	   <br> <br>
-	   
-	   <form method="post"
-	      action="<%=request.getContextPath() %>/QA_board_search.do">
-	   
-	   	  <input type="hidden" name="qa_page" value="${QA_Paging.getQa_page() }">
-	   	  
-	      <select name="qa_field">
-	         <option value="qa_title">제목</option>
-	         <option value="qa_cont">내용</option>
-	         <option value="qa_title_cont">제목+내용</option>
-	         <option value="qa_writer">작성자</option>
-	      </select>
-	      
-	      <input name="qa_keyword">&nbsp;&nbsp;
-	      <input type="submit" value="검색">
-	   </form>
+	    
+	    <input type="button" value="전체목록"
+	      onclick="location.href='qanda_list.do?'">
                         
 
                     </div>
