@@ -481,7 +481,7 @@ public class MusicController {
 	
 		} 
 		
-		return "index";
+		return "loginmain";
 	}
 
 // 로그아웃 
@@ -496,7 +496,9 @@ public class MusicController {
 	
 //마이 페이지	
 	@RequestMapping("mypage.do")
-	public String login(MemberDTO dto, HttpServletRequest req) throws Exception{
+	public String login(@RequestParam("user_no")int user_no, Model model ) {
+		MemberDTO dto = this.dao2.getMember(user_no);
+		model.addAttribute("Cont", dto);		
 		return "mypage";
 	}
 
@@ -589,7 +591,7 @@ public class MusicController {
 			if(check > 0) {
 				out.println("<script>");
 				out.println("alert('취소 성공!!!')");
-				out.println("location.href='mypage.do'");
+				out.println("location.href='mypage.do?user_no="+dto.getUser_no()+"'");
 				out.println("</script>");
 			}else {
 				out.println("<script>");
@@ -620,7 +622,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('결제 성공!!!')");
-			out.println("location.href='mypage.do'");
+			out.println("location.href='mypage.do?user_no="+dto.getUser_no()+"'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
@@ -651,7 +653,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('결제 성공!!!')");
-			out.println("location.href='mypage.do'");
+			out.println("location.href='mypage.do?user_no="+dto.getUser_no()+"'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
@@ -682,7 +684,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('결제 성공!!!')");
-			out.println("location.href='mypage.do'");
+			out.println("location.href='mypage.do?user_no="+dto.getUser_no()+"'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
@@ -713,7 +715,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('결제 성공!!!')");
-			out.println("location.href='mypage.do'");
+			out.println("location.href='mypage.do?user_no="+dto.getUser_no()+"'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
@@ -744,7 +746,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('결제 성공!!!')");
-			out.println("location.href='mypage.do'");
+			out.println("location.href='mypage.do?user_no="+dto.getUser_no()+"'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
@@ -833,7 +835,7 @@ public class MusicController {
 			if(check > 0) {
 				out.println("<script>");
 				out.println("alert('정보 수정 성공!!!')");
-				out.println("location.href='mypage.do'");
+				out.println("location.href='mypage.do?user_no="+dto.getUser_no()+"'");
 				out.println("</script>");
 			}else {
 				out.println("<script>");

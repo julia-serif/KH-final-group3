@@ -49,6 +49,9 @@ create table music_member(
      user_rank varchar2(10) not null
      );
 
+ insert into music_member
+    values('1','admin', '1234', '관리자','','admin@naver.com','010-1234-5678','1', sysdate ,'','1');     
+
 -- 음원별 댓글 테이블
 create table m_reply (
     m_no number references music(m_no),
@@ -100,7 +103,7 @@ create table music_event (
 -- 회원별 플레이리스트
 create table music_playlist (
 	user_no number not null,		-- 회원 번호
-	m_no number not null,			-- 곡 번호
+	m_no number not null,		 -- 곡 번호
 	m_order number not null,		-- 플레이리스트 내 순서
 	playlist_no number not null,		-- 플레이리스트 번호
 	playlist_name varchar2(1000) not null,	-- 플레이리스트 이름
@@ -110,14 +113,28 @@ create table music_playlist (
 
 -- 회원별 음원
 create table music_by_user (
-	user_no number not null,							-- 회원 번호
-	m_no number not null,								-- 곡 번호
-	play_date date,									-- 최근 재생한 날짜
+	user_no number not null,						-- 회원 번호
+	m_no number not null,						-- 곡 번호
+	play_date date,							-- 최근 재생한 날짜
 	play_thumbs  varchar2(5) check(play_thumbs in('false', 'true')),		-- '좋아요' 여부
-	play_counts number,								-- 곡 플레이 횟수
+	play_counts number,						- 곡 플레이 횟수
 	constraint music_by_user_PK primary key(user_no, m_no)
 );
 
- insert into music_member
-    values('1','admin', '1234', '관리자','','admin@naver.com','010-1234-5678','1', sysdate ,'','1');     
+-- 공지사항 테이블
+create table music_qanda(
+   qa_no number(5) not null,         -- 질문게시판 글 번호
+   qa_writer varchar2(50) not null,  -- 질문게시판 글 작성자
+   qa_pwd varchar2(100) not null,    -- 질문게시판 글 비번
+   qa_title varchar2(2000) not null,  -- 질문게시판 글 제목
+   qa_cont varchar2(30) not null,     -- 질문게시판 글 내용    
+   qa_date date,                      -- 질문게시판 글 작성일자
+   qa_update date,                    -- 질문게시판 글 수정일자 
+   qa_group number(5)  not null,      -- 질문게시판 그룹 번호
+   qa_step number(5),                 -- 질문게시판  번호
+   qa_indent number(5),               -- 질문게시판  번호
+   qa_hit number(5) default 0         -- 질문게시판 조회수
+   );  
+
+
 
