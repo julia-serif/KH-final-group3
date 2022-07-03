@@ -64,7 +64,7 @@
          
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="글삭제">&nbsp;&nbsp;&nbsp;
+              <input type="submit" value="결제하기">&nbsp;&nbsp;&nbsp;
               <input type="reset" value="다시작성">
              </td>
          </tr>

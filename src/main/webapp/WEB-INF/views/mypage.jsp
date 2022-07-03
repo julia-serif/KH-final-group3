@@ -162,7 +162,7 @@
                             </div>
                             <div class="widget-content">
                                 <ul>
-                                    <li><a href="mypage.do">회원 정보 수정</a></li>
+                                    <li><a href="mypage.do?user_no=${dto2.getUser_no()}">회원 정보 수정</a></li>
                                     <li><a href="user_delete.do?user_no=${dto2.getUser_no()}" 
                                            onclick="return confirm('정말로 삭제하시겠습니까?');"
                                                     >회원 탈퇴</a></li>
