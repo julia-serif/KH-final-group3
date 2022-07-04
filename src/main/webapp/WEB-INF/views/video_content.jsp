@@ -143,8 +143,15 @@
 		                                </div>
 		                                <div class="content-">
 		                                    <h6 style="text-transform: none;">${reply.getVr_writer() }</h6>
+		                                    <p>${reply.getVr_date().substring(0,10) }</p>
 		                                    <p>${reply.getVr_cont() }</p>
 		                                </div>
+		                            </div>
+		                            <div>
+		                            	<c:if test="${reply.getVr_writer() == member.getUser_id() }">
+			                            	<button type="button" class="oneMusic-btn-small">삭제</button>
+			                            </c:if>
+		                            <button type="button" class="oneMusic-btn-small">댓글</button>
 		                            </div>
 		                        </div>
 	                        </c:forEach>

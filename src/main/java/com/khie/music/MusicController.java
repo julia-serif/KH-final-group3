@@ -241,6 +241,10 @@ public class MusicController {
 		model.addAttribute("list", list);
 		model.addAttribute("paging", pdto);
 		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		model.addAttribute("member", member);
+		
 		return "video_content";
 	}
 	
