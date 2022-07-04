@@ -58,7 +58,13 @@
 	            <th>회원 아이디</th>
 	            <td> ${dto.getUser_id() } </td>
 	         </tr>
-	        <tr>
+
+	         <tr>
+	            <th>회원 이름</th>
+	            <td> ${dto.getUser_name() }</td>
+	         </tr>
+	         
+	         <tr>
 	            <th>회원 비밀번호</th>
 	            <td> 
 	                <c:if test="${!empty dto.getUser_pwd() }">
@@ -67,11 +73,6 @@
 	               </c:forEach>
 	            </c:if>
 	                </td>
-	         </tr>
-	         
-	         <tr>
-	            <th>회원 이름</th>
-	            <td> ${dto.getUser_name() }</td>
 	         </tr>
 	         
 	         <tr>
@@ -89,14 +90,55 @@
 	            <td> ${dto.getUser_phone() }</td>
 	         </tr>
 	         
-	         
+	         <c:if test="${dto.user_purchase == 0 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> 이용권 없음</td>
+	         </tr>
+             </c:if>
+             
+             <c:if test="${dto.user_purchase == 1 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> 스마트 이용권 1</td>
+	         </tr>
+             </c:if>
+             
+             <c:if test="${dto.user_purchase == 2 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> 스마트 이용권 2</td>
+	         </tr>
+             </c:if>
+             
+             <c:if test="${dto.user_purchase == 3 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> 가족 할인권</td>
+	         </tr>
+             </c:if>
+             
+             <c:if test="${dto.user_purchase == 4 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> 음악  감상 이용권1</td>
+	         </tr>
+             </c:if>
+             
+             <c:if test="${dto.user_purchase == 5 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> 음악  감상 이용권2</td>
+	         </tr>
+             </c:if>
 	         
 	         <tr>
 	            <td colspan="2" align="center">
-	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
-	               <input type="reset" value="다시작성">&nbsp;&nbsp;&nbsp;
-	               <input type="button" value="글삭제"
-	               onclick="if(confirm('회원을 삭제하시겠습니까?')) {
+	               <input type="button" value="정보 수정"
+	               onclick="location.href='user_modify.do?user_no=${dto.getUser_no()}'">
+	               &nbsp;&nbsp;&nbsp;
+	               <input type="button" value="회원 탈퇴"
+	               onclick="if(confirm('회원을 탈퇴 처리하시겠습니까?')) {
 	               				location.href='user_delete.do?user_no=${dto.getUser_no()}'
 	               			}else { return; }">
 	            </td>

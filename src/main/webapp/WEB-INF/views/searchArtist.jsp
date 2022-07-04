@@ -20,7 +20,43 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
 </head>
-<body>
+<script type="text/javascript">
+	function make_bold(input) {
+		var keyword = "${keyword}";
+		var pattern = new RegExp('([' + keyword + '|\\s]+)', 'gm');
+		return input.trim().replace(pattern, "<b>$1</b>");
+	}
+	
+	function visit_text(html, visitor) {
+		var output = '';
+		var idx = 0;
+		while (true) {
+			var s = html.indexOf('<', idx);
+			if (s == -1)
+				break;
+			var e = html.indexOf('>', s+1);
+			if (e == -1)
+				break;
+			output += visitor(html.substring(idx, s));
+			output += html.substring(s, ++e);
+			idx = e;
+			}
+		return output;
+	}
+	
+	function make_keyword_bold() {
+		var items = document.getElementsByClassName('col-12 col-lg-9');
+		for (var i = 0; i < items.length; i++) {
+			items[i].innerHTML = visit_text(items[i].innerHTML, make_bold);
+		}
+	}
+	
+	function on_load() {
+		make_keyword_bold();
+	}
+	
+</script>
+<body onload="on_load()">
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
 
 	<!-- ##### Breadcumb Area Start ##### -->
@@ -41,7 +77,7 @@
 					<c:set var="list" value="${searchMusicList }" />
 					<c:set var="paging" value="${Paging }" />
 					
-					<div class="popular-artists-area mb-100">
+					<div class="popular-artists-area mb-50">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
                             <p>총 ${resultNum }건</p>
                             <h2>아티스트</h2>
@@ -52,7 +88,7 @@
 								<!-- Single Artist -->
 		                        <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
 		                            <div class="thumbnail">
-		                                <img src="<%= request.getContextPath() %>/resources/img/bg-img/pa1.jpg" alt="">
+		                                <img src="<%= request.getContextPath() %>/resources/img/artist-img/${music.getM_artist() }.jpg" alt="">
 		                            </div>
 		                            <div class="content-">
 		                                <p>${music.getM_artist() }</p>
@@ -65,6 +101,30 @@
 							<h6>아티스트의 검색 결과가 없습니다.</h6>
 						</c:if>
 						
+					</div>
+					
+					<div align="center">
+						<%-- 페이징 처리 부분 --%>
+					   	<c:if test="${paging.getPage() > paging.getBlock() }">
+					      	<a href="board_list.do?page=1">◀◀</a>
+					      	<a href="board_list.do?page=${paging.getStartBlock() - 1 }">◀</a>
+					   	</c:if>
+					   
+					   	<c:forEach begin="${paging.getStartBlock() }"
+					          				end="${paging.getEndBlock() }" var="i">
+					      	<c:if test="${i == paging.getPage() }">
+					         	<b> <a href="board_list.do?page=${i }">[${i }]</a></b>
+					      	</c:if>
+					   
+					   	  	<c:if test="${i != paging.getPage() }">
+					         	<a href="board_list.do?page=${i }" style="font-weight: 300;">[${i }]</a>
+					      	</c:if>
+					   	</c:forEach>
+				
+					   	<c:if test="${paging.getEndBlock() < paging.getTotalBlock() }">
+					      	<a href="board_list.do?page=${paging.getEndBlock() + 1 }">▶</a>
+					      	<a href="board_list.do?page=${paging.getAllPage() }">▶▶</a>
+					   	</c:if>
 					</div>
 				</div>
 				

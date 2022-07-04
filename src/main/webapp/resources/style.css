@@ -1044,6 +1044,34 @@ img {
   .weeks-top-area:hover, .weeks-top-area:focus {
     background-color: #f5f9fa;
     border-color: #d8d8d8; }
+    
+/* focus 효과 제거한 css 필요로 생성 */
+.weeks-top-area-non-focus {
+  position: relative;
+  z-index: 1;
+  padding: 45px 30px;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  border: 1px solid transparent; }
+  .weeks-top-area-non-focus .single-top-item {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 21px; }
+    .weeks-top-area-non-focus .single-top-item:last-child {
+      margin-bottom: 0; }
+    .weeks-top-area-non-focus .single-top-item .thumbnail {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 73px;
+      flex: 0 0 73px;
+      max-width: 73px;
+      width: 73px;
+      margin-right: 20px; }
+    .weeks-top-area-non-focus .single-top-item .content- h6 {
+      text-transform: uppercase;
+      margin-bottom: 0; }
+    .weeks-top-area-non-focus .single-top-item .content- p {
+      font-size: 14px;
+      margin-bottom: 0; }
 
 .popular-artists-area {
   position: relative;

@@ -58,12 +58,14 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">UserId </label>
                                     <input type="text" class="form-control" name="user_id" id="exampleInputEmail1" placeholder="아이디를 입력하세요">
-                                   
-                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" name="user_pwd" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요">
+                                    <br>
+                                    <c:if test="${fail_check == 1 }">
+                                    	<P align="center" style="color: red;">로그인 실패, 아이디와 비밀번호를 확인해주세요</P>
+                                    </c:if>
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
                                 <input type="button" class="btn oneMusic-btn mt-30" onclick="location.href='user_insert.do'" value="Register"></button>

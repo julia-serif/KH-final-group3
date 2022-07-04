@@ -59,7 +59,7 @@
            <th>회원아이디</th>
            <td><input name="user_id"></td>
          </tr>
-      
+
          <tr>
            <th>회원 이름</th>
            <td> <input name="user_name"> </td>

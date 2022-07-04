@@ -46,21 +46,21 @@
 
        <!-- 정보 수정 페이지 -->
        <div >
-       <c:set var="dto" value="${member }" />                                    
-        <h2> ${dto.getUser_name() }님 정보 수정</h2>
+       <c:set var="dto2" value="${Cont }" />                                    
+        <h2> ${dto2.getUser_name() }님 정보 수정</h2>
         
 	   <br>
 	   
 	   <form method="post"
 	      action="<%=request.getContextPath() %>/user_modify_ok.do">
 	   
-	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
-	   	  <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
-	      <table border="1" cellspacing="0" width="450">
+	   	  <input type="hidden" name="user_no" value="${dto2.user_no }">
+	   	  <input type="hidden" name="db_pwd" value="${dto2.user_pwd }">
+	      <table border="1" cellspacing="0" width="480">
 	         <tr>
 	            <th>회원 아이디</th>
 	            <td> <input name="user_id"
-	            				value="${dto.user_id }" readonly> </td>
+	            				value="${dto2.user_id }" readonly> </td>
 	         </tr>
 	        <tr>
 	            <th>회원 비밀번호</th>
@@ -70,31 +70,76 @@
 	         <tr>
 	            <th>회원 이름</th>
 	            <td> <input name="user_name"
-	            				value="${dto.user_name }" readonly> </td>
+	            				value="${dto2.user_name }" readonly> </td>
 	         </tr>
 	         
 	         <tr>
 	            <th>회원 성별</th>
 	            <td> <input name="user_gender"
-	            				value="${dto.user_gender }" readonly> </td>
+	            				value="${dto2.user_gender }" readonly> </td>
 	         </tr>
 	         
 	         <tr>
 	            <th>회원 이메일</th>
 	            <td> 
 	               <input name="user_email"
-	            				value="${dto.user_email }">
+	            				value="${dto2.user_email }">
 	            </td>
 	         </tr>
 	         
 	         <tr>
 	            <th>회원 연락처</th>
 	            <td> <input name="user_phone"
-	            				value="${dto.user_phone }"> </td>
+	            				value="${dto2.user_phone }"> </td>
 	         </tr>
 	         
+	         <c:if test="${dto2.user_purchase == 0 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="이용권 없음" readonly> </td>
+	         </tr>
+	         </c:if>
+
+	         <c:if test="${dto2.user_purchase == 1 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="스마트 이용권1"> </td>
+	         </tr>
+	         </c:if>
 	         
+	         <c:if test="${dto2.user_purchase == 2 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="스마트 이용권2"> </td>
+	         </tr>
+	         </c:if>
 	         
+	         <c:if test="${dto2.user_purchase == 3 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="가족 할인 이용권"> </td>
+	         </tr>
+	         </c:if>
+	         
+	         <c:if test="${dto2.user_purchase == 4 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="음악 감상 이용권  1"> </td>
+	         </tr>
+	         </c:if>
+	         
+	         <c:if test="${dto2.user_purchase == 5 }">
+	         <tr>
+	            <th>이용권 소유</th>
+	            <td> <input name="user_purchase"
+	            				value="음악 감상 이용권  2"> </td>
+	         </tr>
+	         </c:if>
 	         <tr>
 	            <td colspan="2" align="center">
 	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
@@ -117,10 +162,12 @@
                             </div>
                             <div class="widget-content">
                                 <ul>
-                                    <li><a href="mypage.do">회원 정보 수정</a></li>
-                                    <li><a href="#">회원 탈퇴</a></li>
-                                    <li><a href="mypass.do">내 이용권 </a></li>
-                                    <li><a href="#">이벤트 확인</a></li>
+                                    <li><a href="mypage.do?user_no=${dto2.getUser_no()}">회원 정보 수정</a></li>
+                                    <li><a href="user_delete.do?user_no=${dto2.getUser_no()}" 
+                                           onclick="return confirm('정말로 삭제하시겠습니까?');"
+                                                    >회원 탈퇴</a></li>
+                                    <li><a href="mypass.do?user_no=${dto2.getUser_no()}">내 이용권 </a></li>
+                                    <li><a href="events.do">이벤트 확인</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -3,6 +3,11 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+<script type="text/javascript">
+    function submit2(frm) {
+		frm.sub,it
+	}
+</script>
 
 <head>
     <meta charset="UTF-8">
@@ -49,13 +54,22 @@
         <div class="section-heading text-left mb-50">
             <h4>스마트 이용권 1</h4>         
              <br>
+             
+             <p> 위 이용권은 다음달 휴대폰 요금으로 결제되며 <br>
+              (주의사항) 다음 결제에는 정상가(7,400원)로 결제가 됩나다.</p>
+                               
+              <br>                 
+              
+             <label><input type="checkbox" name="checkbox1" value="checkbox1" >유료서비스약관 및 하단 유의사항에 동의합니다 .</label>
+             <br> 
+             <label><input type="checkbox" name="checkbox2" value="checkbox2" >전자금융거래 이용약관에 동의합니다.</label>         
         </div>
        <div class="newsletter-form">
-        <form action="#">
+        <form action="mypass1.do">
          <p></p>
-         <button onclick="#" class="btn oneMusic-btn">결제하기</button>
+         <button onclick="mypass1.do" class="btn oneMusic-btn">결제하기</button>
          &nbsp;&nbsp;&nbsp;&nbsp;
-         <button onclick="#" class="btn oneMusic-btn">취소하기</button>
+         <button onclick="history.back()" class="btn oneMusic-btn">취소하기</button>
           </form>
          </div>
        </div>
