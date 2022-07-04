@@ -38,6 +38,10 @@
 			width: 100%;
 			height: 100%;
 		}
+		
+		#float_btn:after {
+			clear: both;
+		}
     </style>
     
 </head>
@@ -106,23 +110,32 @@
 			</div>
 		</div>
 	</div>
-    
-    <section>
-    	<div class="card my-4">
-			<h5 class="card-header">댓글</h5>
-			<div class="card-body">
-				<form name="comment-form" action="<%=request.getContextPath() %>/video_reply_write.do" method="post" autocomplete="off">
-					<div class="form-group">
-						<input type="hidden" name="v_no" value="${music.getM_no() }">
-						<textarea name="vr_cont" class="form-control" rows="3"></textarea>
-					</div>
-					<button type="submit" class="btn btn-primary">작성</button>
-				</form>
-			</div>
-		</div>
-		
-		
+    <!-- ##### Newsletter & Testimonials Area Start ##### -->
+    <section class="newsletter-testimonials-area">
+        <div class="container">
+            <div class="row">
+
+                <!-- Newsletter Area -->
+                <div class="col-12">
+                	<div class="section-heading text-left mb-50">
+                        <p>총 n개</p>
+                        <h2>댓글</h2>
+                    </div>
+                    <div class="newsletter-area mb-100" style="padding-bottom: 60px;">
+                        <div class="newsletter-form" action="<%=request.getContextPath() %>/video_reply_write.do" method="post" autocomplete="off">
+                            <form action="#">
+                            	<input type="hidden" name="v_no" value="${music.getM_no() }">
+                                <textarea name="vr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"
+                                placeholder="명예훼손, 개인정보 유출, 인격권 침해, 허위사실 유포 등은 이용약관 및 관련법률에 의해 제재를 받을 수 있습니다. 건전한 댓글문화 정착을 위해 이용에 주의를 부탁드립니다."></textarea>
+                                <button type="submit" class="btn oneMusic-btn" id="float_btn" style="float: right;">댓글 등록</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    
     
 	
 	<jsp:include page="/resources/include/footer.jsp"></jsp:include>
