@@ -11,38 +11,38 @@ public class VideoReplyDAOImpl implements VideoReplyDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	@Override
-	public int getBoardCount() {
+	public int getRecordCount(int no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public List<VideoReplyDTO> getBoardList(PageDTO dto) {
+	public List<VideoReplyDTO> getVideoReplyList(PageDTO dto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insertBoard(VideoReplyDTO dto) {
+	public int insertVideoReply(VideoReplyDTO dto) {
 		return this.sqlSession.insert("video_reply", dto);
 	}
 
 	@Override
-	public VideoReplyDTO boardCont(int no) {
+	public VideoReplyDTO videoReplyCont(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int updateBoard(VideoReplyDTO dto) {
+	public int updateVideoReply(VideoReplyDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int deleteBoard(int no) {
+	public int deleteVideoReply(int no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -52,5 +52,5 @@ public class VideoReplyDAOImpl implements VideoReplyDAO {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

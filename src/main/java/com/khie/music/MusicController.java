@@ -213,10 +213,31 @@ public class MusicController {
 	}
 	
 	@RequestMapping("video.do")
-	public String video_cont(@RequestParam("no") int no, Model model) {
+	public String video_cont(HttpServletRequest request, @RequestParam("no") int no, Model model) {
 		
 		MusicDTO dto = this.dao.musicCont(no);
 		model.addAttribute("music", dto);
+		//여기까지가 동영상 표시 부분 처리.
+		
+		
+		int page;	//현재 페이지 변수
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}else {
+			page = 1;    // 처음으로 게시물 전체 목록 태그를 선택한 경우
+		}
+		
+		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
+		int totalRecord = this.vr_dao.getRecordCount(no);
+		
+		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
+		
+		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
+		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
+		
+		model.addAttribute("List", list);
+		model.addAttribute("Paging", pdto);
 		
 		return "video_content";
 	}
@@ -231,7 +252,7 @@ public class MusicController {
 			return "login";
 		} else {
 			dto.setVr_writer(member.getUser_id());
-			this.vr_dao.insertBoard(dto);
+			this.vr_dao.insertVideoReply(dto);
 			
 			MusicDTO musicDto = this.dao.musicCont(dto.getV_no());
 			model.addAttribute("music", musicDto);

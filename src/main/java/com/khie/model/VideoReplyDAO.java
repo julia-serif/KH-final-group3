@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface VideoReplyDAO {
 	
-public int getBoardCount();
+	public int getRecordCount(int no);	//no에 해당하는 동영상에 달린 댓글들의 수를 확인하는 메서드
 	
-	public List<VideoReplyDTO> getBoardList(PageDTO dto);
+	public List<VideoReplyDTO> getVideoReplyList(PageDTO dto);	//페이지에 해당하는 동영상 댓글들을 가져오는 메서드
 	
-	public int insertBoard(VideoReplyDTO dto);
+	public int insertVideoReply(VideoReplyDTO dto);
 	
-	public VideoReplyDTO boardCont(int no);
+	public VideoReplyDTO videoReplyCont(int no);
 	
-	public int updateBoard(VideoReplyDTO dto);
+	public int updateVideoReply(VideoReplyDTO dto);
 	
-	public int deleteBoard(int no);
+	public int deleteVideoReply(int no);
 	
 	public void updateSeq(int no);
 	
