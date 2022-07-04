@@ -37,7 +37,7 @@ create table music_member(
      );
 
  insert into music_member
-    values('1','admin', '1234', '관리자','','admin@naver.com','010-1234-5678','true', sysdate ,'','1');     
+    values('1','admin', '1234', '관리자','','admin@naver.com','010-1234-5678','true', '', sysdate ,'','1');     
 
 -- 음원별 댓글 테이블
 create table m_reply (
