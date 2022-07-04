@@ -260,10 +260,18 @@ public class MusicController {
 			dto.setVr_writer(member.getUser_id());
 			this.vr_dao.insertVideoReply(dto);
 			
-			MusicDTO musicDto = this.dao.musicCont(dto.getV_no());
-			model.addAttribute("music", musicDto);
-			return "video_content";
+			return video_cont(request, dto.getV_no(), model);
 		}
+		
+	}
+	
+	@RequestMapping("video_reply_delete.do")
+	private String deleteVideoReply(HttpServletRequest request, @RequestParam("v_no") int v_no,
+				@RequestParam("vr_no") int vr_no, Model model) {
+		
+		this.vr_dao.deleteVideoReply(vr_no);
+		
+		return video_cont(request, v_no, model);
 		
 	}
 	

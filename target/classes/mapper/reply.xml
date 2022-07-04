@@ -27,4 +27,8 @@
 		insert into v_reply values(#{v_no}, #{vr_no} + 1, #{vr_cont}, #{vr_writer},
 			sysdate, '', default, default)
 	</insert>
+	
+	<delete id="delete_v_reply" parameterType="int">
+		delete from v_reply where vr_no = #{vr_no}
+	</delete>
 </mapper>
