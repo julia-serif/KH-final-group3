@@ -9,6 +9,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="MusicDAO">
+	<select id="musicCont" parameterType="int" resultType="MusicDTO">
+		select * from music where m_no = #{m_no}
+	</select>
+	
+	<insert id="music_reply" parameterType="MusicReplyDTO">
+		<selectKey resultType="int" keyProperty="mr_no" order="BEFORE">
+			select max(mr_no) m_reply
+		</selectKey>
+		insert into m_reply values(#{m_no} + 1, #{mr_writer}, 
+		#{mr_cont}, sysdate, default, default)
+	</insert>
+	
 	
 	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
@@ -39,18 +51,6 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
-
-	<select id="musicCont" parameterType="int" resultType="MusicDTO">
-		select * from music where m_no = #{m_no}
-	</select>
-	
-	<insert id="music_reply" parameterType="MusicReplyDTO">
-		<selectKey resultType="int" keyProperty="mr_no" order="BEFORE">
-			select max(mr_no) m_reply
-		</selectKey>
-		insert into m_reply values(#{m_no} + 1, #{mr_writer}, 
-		#{mr_cont}, sysdate, default, default)
-	</insert>
 	
 	<select id="searchVideo" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
