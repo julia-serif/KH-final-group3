@@ -230,6 +230,7 @@ public class MusicController {
 		
 		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
 		int totalRecord = this.vr_dao.getRecordCount(no);
+		model.addAttribute("totalRecord", totalRecord);
 		
 		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
 		pdto.setNo(no);
