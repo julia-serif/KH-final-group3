@@ -23,161 +23,114 @@
 <body>
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
 
-    <!-- ##### Hero Area Start ##### -->
+   <!-- ##### Hero Area Start ##### -->
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
-            <!-- Single Hero Slide -->
+		
+            <!-- top1 음원 Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
+            <c:set var="toplist" value="${topList }" />
+                <c:if test="${!empty toplist }">
+                <c:forEach items="${toplist }" var="top1" begin="0" end="0">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(resources/img/bg-img/bg-1.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(resources/img/album-img/${top1.m_image});"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Beyond Time <span>Beyond Time</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Today TOP music</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">${top1.m_name} <span>${top1.m_name}</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">go music <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
+                </c:forEach>
+                </c:if>
             </div>
 
-            <!-- Single Hero Slide -->
+            <!-- 새 음원 Slide -->
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
+            <c:set var="newlist" value="${newList }" />
+                <c:if test="${!empty newlist }">
+                <c:forEach var="n1" items="${newlist}" begin="0" end="0">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(resources/img/bg-img/bg-2.jpg);"></div>
+                <div class="slide-img bg-img" style="background-image: url(resources/img/album-img/${n1.m_image});"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="hero-slides-content text-center">
-                                <h6 data-animation="fadeInUp" data-delay="100ms">Latest album</h6>
-                                <h2 data-animation="fadeInUp" data-delay="300ms">Colorlib Music <span>Colorlib Music</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Discover <i class="fa fa-angle-double-right"></i></a>
+                                <h6 data-animation="fadeInUp" data-delay="100ms">new album</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">${n1.m_name} <span>${n1.m_name}</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">go music <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
+                </c:forEach>
+               	</c:if>
             </div>
         </div>
     </section>
     <!-- ##### Hero Area End ##### -->
 
-    <!-- ##### Latest Albums Area Start ##### -->
+   <!-- ##### TOP100 Area Start ##### -->
     <section class="latest-albums-area section-padding-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
-                        <p>See what’s new</p>
-                        <h2>Latest Albums</h2>
+                        <p>믿고 듣는 TOP10, 많은 사람들이 선택한 음악은?</p>
+                        <h2>TOP 10</h2>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <!--  <div class="row justify-content-center">
                 <div class="col-12 col-lg-9">
                     <div class="ablums-text text-center mb-70">
                         <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row">
                 <div class="col-12">
                     <div class="albums-slideshow owl-carousel">
-                        <!-- Single Album -->
+                    <c:set var="toplist" value="${topList}"/>
+                    <c:if test="${! empty toplist }">
+                    <c:forEach items="${toplist}" var="top">
+                    <!-- Single Album -->
                         <div class="single-album">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a1.jpg" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}">
                             <div class="album-info">
-                                <a href="#">
-                                    <h5>The Cure</h5>
+                                <a href="music_cont.do?m_no=${top.m_no }&page=1">
+                                    <h5>${top.m_name}</h5>
                                 </a>
-                                <p>Second Song</p>
+                                <p>${top.m_artist}</p>
                             </div>
                         </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a2.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Sam Smith</h5>
-                                </a>
-                                <p>Underground</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a3.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Will I am</h5>
-                                </a>
-                                <p>First</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a4.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Cure</h5>
-                                </a>
-                                <p>Second Song</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a5.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>DJ SMITH</h5>
-                                </a>
-                                <p>The Album</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a6.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Ustopable</h5>
-                                </a>
-                                <p>Unplugged</p>
-                            </div>
-                        </div>
-
-                        <!-- Single Album -->
-                        <div class="single-album">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/a7.jpg" alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>Beyonce</h5>
-                                </a>
-                                <p>Songs</p>
-                            </div>
-                        </div>
+                    </c:forEach>
+                    </c:if>
+	<c:if test="${empty toplist}">
+		top10 음악이 없습니다.
+	</c:if>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ##### Latest Albums Area End ##### -->
+   <!-- ##### TOP10 Area End ##### -->
 
-    <!-- ##### Buy Now Area Start ##### -->
+    <!-- ##### New Music Area Start ##### -->
     <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading style-2">
-                        <p>See what’s new</p>
-                        <h2>Buy What’s New</h2>
+                        <p>오늘의 신곡, 새로운 음악을 만나보세요</p>
+                        <h2>new Music</h2>
                     </div>
                 </div>
             </div>
@@ -186,13 +139,14 @@
 
                 <!-- Single Album Area -->
                 <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
+                <c:set var="newlist" value="${newList }" />
+                <c:if test="${!empty newlist }">
+                <c:set var="i" value="1"/>
+                <c:forEach var="n" items="${newlist}" begin="0" end="11">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="${i*100}ms">
+                    <a href="#">
                         <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
+                            <img src="<%= request.getContextPath()%>/resources/img/album-img/${n.m_image}">
                             <!-- Play Icon -->
                             <div class="play-icon">
                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
@@ -203,192 +157,22 @@
                                 <h5>Garage Band</h5>
                             </a>
                             <p>Radio Station</p>
+                        
+                                <h5> ${n.m_name}</h5>
+                            <p> ${n.m_artist}</p>
+                            <c:set var="i" value="${i + 1 }"/>
                         </div>
+                      </a>
                     </div>
+                    </c:forEach>
+                    </c:if>
+                    <c:if test="${empty newlist }">
+                    	오늘은 새로운 음원이 없습니다.
+                    </c:if>
                 </div>
 
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b1.jpg" alt="">
-                            <!-- Album Price -->
-                            <div class="album-price">
-                                <p>$0.90</p>
-                            </div>
-                            <!-- Play Icon -->
-                            <div class="play-icon">
-                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                            </div>
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b2.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b3.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Jess Parker</h5>
-                            </a>
-                            <p>The Album</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Album Area -->
-                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                    <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
-                        <div class="album-thumb">
-                            <img src="<%= request.getContextPath() %>/resources/img/bg-img/b4.jpg" alt="">
-                        </div>
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Noises</h5>
-                            </a>
-                            <p>Buble Gum</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+               
+               
 
             <div class="row">
                 <div class="col-12">
@@ -399,7 +183,7 @@
             </div>
         </div>
     </section>
-    <!-- ##### Buy Now Area End ##### -->
+     <!-- ##### New Music Area End ##### -->
 
     <!-- ##### Featured Artist Area Start ##### -->
     <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url(resources/img/bg-img/bg-4.jpg);">

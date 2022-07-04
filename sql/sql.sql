@@ -12,7 +12,7 @@ create table music (
     m_artist varchar2(100) not null,
     m_like number default 0,
     m_audio varchar2(50) not null,
-    m_mv varchar2(50) not null,
+    m_mv varchar2(50),
     m_image varchar2(50) not null,
     m_pcount number default 0,
     m_ptime number not null,
@@ -21,7 +21,7 @@ create table music (
     m_update date
 );
 
-create table music_user (
+create table music_member (
     user_no number primary key,
     user_id varchar2(50) unique not null,
     user_pwd varchar2(100) not null,
@@ -34,6 +34,20 @@ create table music_user (
     user_update date
     user_rank varchar2(10) not null
 );
+
+create table music_member(
+     user_no number(5) primary key,
+     user_id varchar2(30) unique not null,
+     user_pwd varchar2(30) not null,
+     user_name varchar2(30) not null,
+     user_gender varchar2(30),
+     user_email varchar2(100) not null,
+     user_phone varchar2(30),
+     user_purchase char(5) check(user_purchase in('false', 'true')),
+     user_date date,
+     user_update date, 
+     user_rank varchar2(10) not null
+     );
 
 -- 음원별 댓글 테이블
 create table m_reply (
@@ -91,6 +105,7 @@ create table music_playlist (
 	playlist_no number not null,		-- 플레이리스트 번호
 	playlist_name varchar2(1000) not null,	-- 플레이리스트 이름
 	playlist_thumbnail varchar2(50),	-- 플레이리스트 섬네일
+	playlist_order number not null,		-- 플레이리스트 순서
 	constraint music_playlist_pk primary key(user_no, m_no, playlist_no)
 );
 

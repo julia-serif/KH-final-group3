@@ -1,5 +1,7 @@
 package com.khie.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,6 +51,37 @@ public class MemberDAOImpl implements MemberDAO{
 	public int updateBoard(MemberDTO dto) {
 		
 		return this.sqlSession.update("modify", dto);
+	}
+
+	@Override
+	public List<MemberDTO> getMemberList() {
+		
+		return this.sqlSession.selectList("every");
+	}
+
+	@Override
+	public MemberDTO getMember(int user_no) {
+		
+		return this.sqlSession.selectOne("content", user_no);
+	}
+
+	@Override
+	public int insertMember(MemberDTO dto) {
+		
+		return this.sqlSession.insert("add", dto);
+	}
+
+	@Override
+	public int deleteMember(int user_no) {
+		
+		return this.sqlSession.delete("user_delete",user_no);
+	}
+
+	@Override
+	public void updateSequence(int user_no) {
+		
+		this.sqlSession.update("Sequence",user_no);
+		
 	}
 
 

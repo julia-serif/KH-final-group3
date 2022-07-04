@@ -19,15 +19,21 @@ public class MusicDAOImpl implements MusicDAO {
 	}
 
 	@Override
-	public List<MusicDTO> selectSomeMusic(PageDTO pDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MusicDTO> selectNewMusic(PageDTO pDto) {
+		
+		return this.sqlSession.selectList("MusicList", pDto);
 	}
 
 	@Override
 	public List<MusicDTO> selectTop() {
 		
 		return this.sqlSession.selectList("top10");
+	}
+	
+	@Override
+	public int selectTotalCont() {
+		
+		return this.sqlSession.selectOne("MusicCont");
 	}
 	
 	@Override

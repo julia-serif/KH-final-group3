@@ -17,6 +17,13 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
+    
+    
+<style type="text/css">
+
+
+
+</style>
 
 </head>
 <body>
@@ -75,17 +82,20 @@
 							</ul>
 						</div>
 						
-						<br> <br>
 						
-						<div class="single_text">
-							<p>${dto.getM_lyrics() }</p>
-						
-						</div>
 						
 					</div>
 				</div>
 
 			</div>
+			
+			<br> <br>
+						
+			<div class="single_text">
+				<p>${dto.getM_lyrics() }</p>
+			</div> 
+						
+						
 		</div>
 	</div>
 	
@@ -95,24 +105,48 @@
     </c:if>
     </section>
     
+    
+    
     <section>
     	<div class="card my-4">
-			<h5 class="card-header">댓글</h5>
-			<div class="card-body">
-				<form name="comment-form" action="<%=request.getContextPath() %>/reply_write.do?m_no=${dto.getM_no() }" method="post" autocomplete="off">
-					<div class="form-group">
-						<textarea name="mr_cont" class="form-control" rows="3"></textarea>
-					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
-			</div>
+		<h5 class="card-header">댓글</h5> <br>
+			<c:set var="list" value="${musicReplyList }"/>
+			<c:set var="paging" value="${Paging }"/>
+			
+			<table border="0" cellspacing="0">
+			<c:if test="${!empty list }">
+				<c:forEach items="${list }" var="i">
+					<div align="center">
+						<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${i.mr_no }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						${i.mr_writer }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						${i.mr_cont }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						${i.mr_date.substring(0, 10) }</p>
+					</div>							
+				</c:forEach>
+			</c:if>
+			</table>
+			
+			<c:if test="${empty list }">
+				<div>
+					<h3>전체 게시물 목록이 없습니다.</h3>
+				</div>
+			</c:if>
+			
+	<br>
+	
+		<div class="card-body">
+			<form name="comment-form" action="<%=request.getContextPath() %>/musicReply.do?m_no=${dto.getM_no() }" method="post" autocomplete="off">
+				<div class="form-group">
+					<textarea name="mr_cont" class="form-control" rows="3"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
 		</div>
-		
-		
+	</div>
     </section>
     
+   
     
-	
 	<jsp:include page="/resources/include/footer.jsp"></jsp:include>
 
 </body>

@@ -40,7 +40,6 @@
 				
 					<c:set var="list" value="${searchMusicList }" />
 					<c:set var="paging" value="${Paging }" />
-					<h6>통합 검색 / 아티스트 / 곡 / 앨범 / 동영상 / 가사 - tab</h6>
 					
 					<div class="new-hits-area mb-100">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
@@ -58,7 +57,9 @@
 		                                </div>
 		                                <div class="content-">
 		                                    <h6>${music.getM_name() }</h6>
-		                                    <p>${music.getM_album() }  |  ${music.getM_artist() }</p>
+		                                    <p style="display: inline-block; padding-right: 5px;">${music.getM_album() }</p>
+		                                    |
+		                                    <p style="display: inline-block; padding-left: 5px;">${music.getM_artist() }</p>
 		                                </div>
 		                            </div>
 		                            <audio preload="auto" controls>
@@ -74,6 +75,9 @@
 						
 					</div>
 				</div>
+				
+				<jsp:include page="/resources/include/search_widget.jsp"></jsp:include>
+				
 			</div>
 		</div>
 	</div>

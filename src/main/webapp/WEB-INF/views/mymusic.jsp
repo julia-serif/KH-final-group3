@@ -43,7 +43,7 @@
                             <img src="resources/img/bg-img/MM01.png" alt="">
                         </div>
                         <div class="event-text">
-                            <a href="#" class="btn see-more-btn">좋아요 표시한 음악</a>
+                            <a href="<%=request.getContextPath() %>/select_like.do" class="btn see-more-btn">좋아요 표시한 음악</a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                             <img src="resources/img/bg-img/MM02.png" alt="">
                         </div>
                         <div class="event-text">
-                            <a href="#" class="btn see-more-btn">최근 들은 음악</a>
+                            <a href="<%=request.getContextPath() %>/select_recent.do" class="btn see-more-btn">최근 들은 음악</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <img src="resources/img/bg-img/MM03.png" alt="">
                         </div>
                         <div class="event-text">
-                            <a href="#" class="btn see-more-btn">많이 들은 음악</a>
+                            <a href="<%=request.getContextPath() %>/select_much.do" class="btn see-more-btn">많이 들은 음악</a>
                         </div>
                     </div>
                 </div>
@@ -86,6 +86,32 @@
                 <div class="load-more-btn text-right mb-70">
                     <a href="#" class="btn playlist-btn"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;ADD PLAYLIST</a>
                 </div>
+				<div class="col-12 col-lg-6">
+                    <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
+                        <!-- single accordian area -->
+                        <div class="panel single-accordion">
+                            <h6>
+                                <a role="button" aria-expanded="true" aria-controls="collapseThree" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseThree"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;ADD PLAYLIST
+                                        <span class="accor-open"><!-- <i class="fa fa-plus" aria-hidden="true"></i> --></span>
+                                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                    </a>
+                            </h6>
+                            <div id="collapseThree" class="accordion-content collapse">
+	                            <form method="post" action="<%=request.getContextPath() %>/playlist_insert.do">
+									<table border="0" cellspacing="0" width="350" bgcolor="white">
+										<c:set value="${Member }" var="dto" />
+	   	  								<input type="hidden" name="user_no" value="${dto.getUser_no() }">
+										<tr>
+											<th>플레이리스트 이름</th>
+											<td><input name="playlist_name"></td>
+											<td><input type="submit" value="등록"></td>
+										</tr>
+									</table>
+								</form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <div class="row">
                 <!-- Single List Area -->
                 <div class="col-12">
@@ -95,7 +121,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 1번　|　01곡</p>
+                                <p>임시　|　01곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
@@ -114,7 +140,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 2번　|　33곡</p>
+                                <p>임시　|　33곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
@@ -133,7 +159,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 3번　|　08곡</p>
+                                <p>임시　|　08곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
@@ -143,8 +169,8 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Single Song Area -->
+				<c:set value="${Count }" var="count" />
+                <c:forEach items="${List }" var="playlist">
                 <div class="col-12">
                     <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
                         <div class="song-thumbnail">
@@ -152,7 +178,7 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                                <p>플레이리스트 4번　|　17곡</p>
+                                <p>${playlist.getPlaylist_name() }　|　${playlist.getPlaylist_order() }곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
 		                                <img src="resources/img/bg-img/Audio.png" alt="">
@@ -162,6 +188,7 @@
                         </div>
                     </div>
                 </div>
+                </c:forEach>
             </div>
         </div>
     </div>

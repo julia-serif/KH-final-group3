@@ -34,88 +34,7 @@
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-        <!-- Navbar Area -->
-        <div class="oneMusic-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
-
-                        <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- Close Button -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="index.do">Home</a></li>
-                                    <li><a href="albums-store.html">Albums</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.do">Home</a></li>
-                                            <li><a href="albums-store.html">Albums</a></li>
-                                            <li><a href="event.html">Events</a></li>
-                                            <li><a href="blog.html">News</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="#">Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="event.html">Events</a></li>
-                                    <li><a href="blog.html">News</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-
-                                <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="login" id="loginBtn">Login / Register</a>
-                                    </div>
-
-                                   
-                                </div>
-                            </div>
-                            <!-- Nav End -->
-
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- ##### Header Area End ##### -->
+    <jsp:include page="/resources/include/header.jsp"></jsp:include>
 
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
@@ -147,7 +66,7 @@
                                     <input type="password" class="form-control" name="user_pwd" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요">
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
-                                <input type="button" class="btn oneMusic-btn mt-30" onclick="location.href='member_insert.do'" value="Register"></button>
+                                <input type="button" class="btn oneMusic-btn mt-30" onclick="location.href='user_insert.do'" value="Register"></button>
                             
                             </form>
                         </div>
@@ -157,6 +76,8 @@
         </div>
     </section>
     <!-- ##### Login Area End ##### -->
+    
+    
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
@@ -184,6 +105,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ##### Footer Area Start ##### -->
+    <jsp:include page="/resources/include/footer.jsp"></jsp:include>
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->

@@ -19,5 +19,8 @@ public class MusicDTO {
     private String m_lyrics;
     private String m_date;
     private String m_update;
+    
+	private String play_date;
+	private int play_counts;
 
 }

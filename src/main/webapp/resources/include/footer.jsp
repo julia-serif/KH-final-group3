@@ -33,13 +33,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="col-12 col-md-6">
                     <div class="footer-nav">
                         <ul>
-                            <li><a href="<%= request.getContextPath() %>">Home</a></li>
-                            <li><a href="<%= request.getContextPath() %>/about.do">About</a></li> <!-- 도움말 -->
-                            <li><a href="<%= request.getContextPath() %>/events.do">Events</a></li> <!-- 이벤트 -->
-                            <li><a href="<%= request.getContextPath() %>/news.do">News</a></li> <!-- 공지사항 & 뉴스 -->
-                            <li><a href="<%= request.getContextPath() %>/service.do">Service</a></li> <!-- 고객센터 -->
-                            <li><a href="<%= request.getContextPath() %>/mypage.do">MyPage</a></li> <!-- 내 페이지 -->
-                            <li><a href="<%= request.getContextPath() %>/sitemap.do">Sitemap</a></li> <!-- 사이트맵 -->
+                              <li><a href="<%= request.getContextPath() %>">Home</a></li>
+                              <li><a href="<%= request.getContextPath() %>/top10.do">Top10</a></li> <!-- top10 -->
+                              <li><a href="<%= request.getContextPath() %>/newMusic.do">New</a></li> <!-- 새음악 -->
+                              <li><a href="<%= request.getContextPath() %>/events.do">Events</a></li> <!-- 이벤트 -->
+                              <li><a href="<%= request.getContextPath() %>/mymusic.do">MyMusic</a></li> <!-- 내 음악 -->
+                              <li><a href="<%= request.getContextPath() %>/news.do">Other</a></li> <!-- 전체메뉴 -->
                         </ul>
                     </div>
                 </div>

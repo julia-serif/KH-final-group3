@@ -161,7 +161,38 @@
 <div class="col-12 col-lg-10">
        <div class="newsletter-area mb-100">
         <div class="section-heading text-left mb-50">
-            <h4>이용권 사용 안내</h4>         
+            <h4>이용권 사용 안내</h4>   
+            <c:if test="${member.user_purchase == 1 }">
+            <b>스마트 음악 감상1</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한</p>
+
+            </c:if>
+            <c:if test="${member.user_purchase == 2 }">
+            <b>스마트 음악 감상2</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한</p>
+            </c:if> 
+            
+            <c:if test="${member.user_purchase == 3 }">
+            <b>가족할인</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한   최대 공유 4인</p>
+            </c:if>   
+            
+            <c:if test="${member.user_purchase == 4 }">
+            <b> 음악 감상1</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한</p>
+
+            </c:if>  
+            
+            <c:if test="${member.user_purchase == 5 }">
+            <b>음악 감상2</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한</p>
+
+            </c:if>
              <br>
         </div>
        <div class="newsletter-form">

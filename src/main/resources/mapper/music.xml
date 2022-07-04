@@ -9,18 +9,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="MusicDAO">
-
-	<select id="searchAll" parameterType="PageDTO" resultType="MusicDTO">
-		<![CDATA[
-			select * from
-				(select m.*, row_number()
-					over(order by m_no desc) rnum from music m
-					where m_name like '%' || #{keyword} || '%' or
-						m_album like '%' || #{keyword} || '%' or
-						m_artist like '%' || #{keyword} || '%')
-					where rnum >= #{startNo} and rnum <= #{endNo}
-		]]>
-	</select>
 	
 	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
@@ -34,7 +22,7 @@
 	
 	<select id="searchAlbum" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
-			select * from
+			select distinct m_album, m_artist, m_image from
 				(select m.*, row_number()
 					over(order by m_no desc) rnum from music m
 					where m_album like '%' || #{keyword} || '%')
@@ -44,7 +32,7 @@
 	
 	<select id="searchArtist" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
-			select * from
+			select distinct m_artist from
 				(select m.*, row_number()
 					over(order by m_no desc) rnum from music m
 					where m_artist like '%' || #{keyword} || '%')
@@ -53,25 +41,39 @@
 	</select>
 
 	<select id="musicCont" parameterType="int" resultType="MusicDTO">
-		select * from final.music where m_no = #{m_no}
+		select * from music where m_no = #{m_no}
 	</select>
 	
+	<select id="count" resultType="int">
+		select count(*) from m_reply
+	</select>
+	
+	<select id="musicReplyList" parameterType="PageDTO" resultType="MusicReplyDTO">
+		<![CDATA[
+		select * from 
+			(select m.*, row_number() 
+				over(order by mr_no desc) rnum from m_reply m)
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	
 	<insert id="music_reply" parameterType="MusicReplyDTO">
-		<selectKey resultType="int" keyProperty="mr_no" order="BEFORE">
-			select max(mr_no) m_reply
-		</selectKey>
-		insert into m_reply values(#{m_no} + 1, #{mr_writer}, 
-		#{mr_cont}, sysdate, default, default)
+      <selectKey resultType="int" keyProperty="mr_no" order="BEFORE">
+         select max(mr_no) from m_reply
+      </selectKey>
+		insert into m_reply values(#{m_no}, #{mr_no} + 1, #{mr_cont},
+		 'admin', sysdate, '', #{mr_no} + 1, default)
 	</insert>
 	
-	<select id="searchPlaylist"></select>
-
-	<select id="searchVideo">
+	
+	<select id="searchVideo" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
 				(select m.*, row_number()
 					over(order by m_no desc) rnum from music m
-					where m_name like '%' || #{keyword} || '%')
+					where m_name like '%' || #{keyword} || '%' and
+					m_mv is not null)
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
@@ -82,51 +84,71 @@
 			select * from
 				(select m.*, row_number()
 					over(order by m_no desc) rnum from music m
-					where m_lyrics like '%' || #{keyword} || '%')
+					where m_lyrics like '%' || #{keyword} || '%' or
+					m_name like '%' || #{keyword} || '%')
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
    
 	<select id="countAll" resultType="int">
-		select count(*) from final.music
+		select count(*) from music
 			where m_name like '%' || #{keyword} || '%' or
 				m_album like '%' || #{keyword} || '%' or
 				m_artist like '%' || #{keyword} || '%'
 	</select>
 	
 	<select id="countSong" resultType="int">
-		select count(*) from final.music
+		select count(*) from music
 			where m_name like '%' || #{keyword} || '%'
 	</select>
 	
 	<select id="countAlbum" resultType="int">
-		select count(*) from final.music
-			where m_album like '%' || #{keyword} || '%'
+		select count(*) from
+			(select distinct m_album from music 
+			where m_album like '%' || #{keyword} || '%')
 	</select>
 	
 	<select id="countArtist" resultType="int">
-		select count(*) from final.music
+		select count(distinct m_artist) from music
 			where m_artist like '%' || #{keyword} || '%'
 	</select>
 	
-	<select id="countVideo">
-		select count(*) from final.music
-			where m_name like '%' || #{keyword} || '%'
+
+	<select id="countVideo" resultType="int">
+		select count(*) from music
+			where m_name like '%' || #{keyword} || '%' and
+			m_mv is not null
 	</select>
 	
 	<select id="countLyrics" resultType="int">
-		select count(*) from final.music
-			where m_lyrics like '%' || #{keyword} || '%'
+		select count(*) from music
+			where m_lyrics like '%' || #{keyword} || '%' or
+			m_name like '%' || #{keyword} || '%'
 	</select>
 	
+	
+	
 	<select id="newAll" resultType="MusicDTO">
-		select * from final.music order by m_no desc
+		select * from music order by m_no desc
 	</select>
 	
 	<select id="top10" resultType="MusicDTO">
 	<![CDATA[
-		select * from (select * from final.music order by m_pcount desc) where rownum <= 10
+		select * from (select * from music order by m_pcount desc) where rownum <= 10
 	]]>
 	</select>
+	
+	<select id="MusicCont" resultType="int">
+		select count(*) from music
+	</select>
+	
+	<select id="MusicList" parameterType="PageDTO" resultType="MusicDTO" >
+    		<![CDATA[
+			select * from
+				(select b.*, row_number() 
+					over(order by m_no desc) rnum from music b)
+					where rnum >= #{startNo} and rnum <= #{endNo}
+	    ]]>
+    	</select>
 	
 </mapper>

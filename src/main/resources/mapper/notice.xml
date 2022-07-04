@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD(Document Type Definition)
+	 - 작성한 문서가 어떤문서인지에 대해서 정의하는 것 
+	 - 하나의 시스템 내에서 사용할 XML 데엍의 구조를 정의하여 유효성을 점검시 사용함 -->
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.khie.model.NoticeDAO">
+
+    <select id="all" resultType="com.khie.model.NoticeDTO">
+		select * from music_notice order by music_no desc
+	</select>
+	
+	<insert id="write" parameterType="com.khie.model.NoticeDTO">
+	insert into music_notice values((select max(music_no) from music_notice) +1,
+           #{music_writer}, #{music_title}, #{music_cont}, #{music_pwd},default,sysdate,'')
+	</insert>
+	
+	<update id="read" parameterType="int">
+	   update music_notice set music_hit = music_hit + 1
+			where music_no = #{music_no}
+	</update>
+	
+	<select id="cont" parameterType="int" resultType="com.khie.model.NoticeDTO">
+	select * from music_notice where music_no = #{music_no}
+	</select>
+	
+	<update id="notice_modify" parameterType="com.khie.model.NoticeDTO">
+	  update music_notice set music_title = #{music_title},
+	  music_cont = #{music_cont} where music_no = #{music_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+	    delete from music_notice where music_no = #{music_no}
+	</delete>
+	
+	<update id="seq" parameterType="int">
+		<![CDATA[
+			update music_notice set music_no = music_no - 1
+			where music_no > #{music_no}
+		]]>	
+	</update>
+	
+	
+</mapper>

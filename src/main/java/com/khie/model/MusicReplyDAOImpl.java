@@ -14,14 +14,12 @@ public class MusicReplyDAOImpl implements MusicReplyDAO {
 	
 	@Override
 	public int getBoardCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.selectOne("count");
 	}
 
 	@Override
 	public List<MusicReplyDTO> getBoardList(PageDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sqlSession.selectList("musicReplyList", dto);
 	}
 
 	@Override
