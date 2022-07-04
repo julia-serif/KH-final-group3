@@ -30,6 +30,7 @@ create table music_member(
      user_email varchar2(100) not null,
      user_phone varchar2(30),
      user_purchase char(5) check(user_purchase in('false', 'true')),
+     user_purchase_no varchar2(30),
      user_date date,
      user_update date, 
      user_rank varchar2(10) not null
