@@ -481,7 +481,7 @@ public class MusicController {
 	
 		} 
 		
-		return "loginmain";
+		return "index";
 	}
 
 // 로그아웃 
