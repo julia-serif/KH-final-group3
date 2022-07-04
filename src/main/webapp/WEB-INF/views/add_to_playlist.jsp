@@ -1,77 +1,79 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false" pageEncoding="UTF-8"%>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta charset="UTF-8">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!-- Title -->
-    <title>One Music - Modern Music HTML5 Template</title>
+<!-- Title -->
+<title>One Music - Modern Music HTML5 Template</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="<%= request.getContextPath() %>/resources/img/core-img/favicon.ico">
+<!-- Favicon -->
+<link rel="icon"
+	href="<%= request.getContextPath() %>/resources/img/core-img/favicon.ico">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
+<!-- Stylesheet -->
+<link rel="stylesheet"
+	href="<%= request.getContextPath() %>/resources/style.css">
 
 </head>
 <body>
 
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
-	
+
 	<!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
-        <div class="bradcumbContent">
-            <p>Add to Playlist</p>
-            <h2>플레이리스트에 넣기</h2>
-        </div>
-    </section>
-    <!-- ##### Breadcumb Area End ##### -->
-    
-    
-    <section>
+	<section class="breadcumb-area bg-img bg-overlay"
+		style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
+		<div class="bradcumbContent">
+			<c:set var="dto" value="${cont }" />
+			<p>${dto.getM_artist() }의${dto.getM_name() } 곡을</p>
+			<h2>플레이리스트에 넣기</h2>
+		</div>
+	</section>
+	<!-- ##### Breadcumb Area End ##### -->
 
-	<!-- Single -->
-	
-	<c:set var="dto" value="${cont }"/>
-	<c:if test="${!empty dto }">
-	<div class="single">
-		<div class="container">
-			<div class="row">
-				
-				<!-- Single Info -->
-				<div class="col-lg-5">
-					<div class="single_info">
-						<div class="single_image"><img src="resources/img/bg-img/a2.jpg" alt=""></div>
-					</div>
-				</div>
 
-				<!-- Single Content -->
-				<div class="col-lg-7 single_content_col">
-					<div class="single_content">
-						<div class="single_text">
-							<ul>
-								<li><span>곡명</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.getM_name() }</li>
-								<li><span>아티스트</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.getM_artist() }</li>
-								<li><span>앨범명</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.getM_album() }</li>
-								<li><span>발매일</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.getM_date().substring(0,10) }</li>
-							</ul>
-						</div>
+	<section>
+
+		<!-- Single -->
+		<div class="one-music-songs-area mt-70 mb-70">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					<!-- Content -->
+					<c:forEach items="${List }" var="playlist">
+						<form method="post" action="<%=request.getContextPath() %>/add_to_playlist_ok.do">
+							<input type="hidden" name="m_no" value="${dto.getM_no() }">
+							<input type="hidden" name="user_no" value="${playlist.getUser_no() }"> <input type="hidden" name="playlist_no" value="${playlist.getPlaylist_no() }">
+							<input type="hidden" name="playlist_thumbnail" value="${playlist.getPlaylist_thumbnail() }">
+							<input type="hidden" name="playlist_name" value="${playlist.getPlaylist_name() }">
+							<div class="post-meta d-flex d-flex-row-reverse mb-30">
+	                          	<c:if test="${playlist.getPlaylist_thumbnail() != null }">
+	                        		<img src="<%= request.getContextPath() %>/resources/img/album-img/${playlist.getPlaylist_thumbnail() }" alt="${playlist.getPlaylist_thumbnail() } 앨범 재킷" height="100px" width="100px">
+	                        	</c:if>
+	                        	<c:if test="${playlist.getPlaylist_thumbnail() == null }">
+	                        		<img src="<%= request.getContextPath() %>/resources/img/album-img/PlaylistDefault.jpg" alt="PlaylistDefault.jpg" height="100px" width="100px">
+	                       		</c:if>
+								<c:if test="${playlist.getM_order() == 1}">
+									<input type="submit" value="${playlist.getPlaylist_name() }" class="btn btn-light btn-lg btn-block">
+								</c:if>
+								<c:if test="${playlist.getM_order() == 0}">
+									<input type="submit" value="${playlist.getPlaylist_name() }" class="btn btn-light btn-lg btn-block" disabled>
+								</c:if>
+							</div>
+						</form>
+					</c:forEach>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-    </c:if>
-    </section>
-    <br><br>
-    <section>
-    
-    </section>
+	</section>
+
 	<jsp:include page="/resources/include/footer.jsp"></jsp:include>
 </body>
 </html>
