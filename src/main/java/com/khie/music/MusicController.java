@@ -31,6 +31,8 @@ import com.khie.model.PlaylistDTO;
 import com.khie.model.QA_PageDTO;
 import com.khie.model.QandADAO;
 import com.khie.model.QandADTO;
+import com.khie.model.VideoReplyDAO;
+import com.khie.model.VideoReplyDTO;
 import com.khie.model.MemberDAO;
 
 @Controller
@@ -46,6 +48,8 @@ public class MusicController {
 	private MusicReplyDAO dao3;
 	@Autowired
 	private NoticeDAO dao4;
+	@Autowired
+	private VideoReplyDAO vr_dao;
 
 	@Autowired 
 	private QandADAO Qand_dao;
@@ -216,6 +220,19 @@ public class MusicController {
 		
 		return "video_content";
 	}
+	
+	@RequestMapping("video_reply_write.do")
+	private String insertVideoReply(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		if(member == null) {
+			return "login";
+		} else {
+			return null;
+		}
+		
+	}
+	
 	
 	@RequestMapping("reply_write.do")
 	private String insertReply(HttpServletResponse response, MusicReplyDTO dto) {

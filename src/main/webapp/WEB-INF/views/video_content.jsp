@@ -102,13 +102,26 @@
                     <c:if test="${empty music }">
 						<h6>동영상 정보가 존재하지 않습니다.</h6>
 					</c:if>
-                    
-                    <p>댓글</p>
-                    
 				</div>
 			</div>
 		</div>
 	</div>
+    
+    <section>
+    	<div class="card my-4">
+			<h5 class="card-header">댓글</h5>
+			<div class="card-body">
+				<form name="comment-form" action="<%=request.getContextPath() %>/video_reply_write.do">
+					<div class="form-group">
+						<textarea name="vr_cont" class="form-control" rows="3"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+		
+		
+    </section>
     
 	
 	<jsp:include page="/resources/include/footer.jsp"></jsp:include>
