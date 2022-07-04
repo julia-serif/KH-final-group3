@@ -233,7 +233,7 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		if(member == null) {
-			session.setAttribute("page_check", "mymusic");
+			session.setAttribute("page_check", "mymusic.do");
 			return "login";
 		} else {
 			int user_no = member.getUser_no();
@@ -497,7 +497,7 @@ public class MusicController {
 			
 			PrintWriter out = response.getWriter();
 			if(page != null && dto.getUser_rank() != "1") {
-				return "redirect:/"+page+".do";
+				return "redirect:/"+page;
 			} else {
 				return "redirect:/";
 			}
