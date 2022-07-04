@@ -10,7 +10,7 @@
     
 <mapper namespace="MyMusicDAO">
 	<select id="select_playlist" parameterType="int" resultType="PlaylistDTO">
-		select distinct playlist_no, playlist_name, playlist_thumbnail, last_value(m_no) over(order by playlist_no) as m_no
+		select distinct playlist_no, playlist_name, playlist_thumbnail, last_value(m_order) over(order by playlist_no) as m_order
 		from music_playlist
 		where user_no = #{user_no} order by playlist_no
 	</select>
@@ -68,6 +68,17 @@
 			(select * from music_by_user where user_no = #{user_no} and m_no = #{music_no})
 		]]>
 	</insert>
+	
+	<select id="see_playlist" resultType="PlaylistDTO">
+		<![CDATA[
+			select distinct playlist_no, playlist_name, playlist_thumbnail
+			from music_playlist
+			where user_no = #{user_no}
+			and playlist_no not in
+				(select playlist_no from music_playlist where m_no = #{m_no})
+			order by playlist_no
+		]]>
+	</select>
 	
  	<insert id="to_playlist" parameterType="PlaylistDTO">
 		<selectKey resultType="int" keyProperty="m_order" order="BEFORE">

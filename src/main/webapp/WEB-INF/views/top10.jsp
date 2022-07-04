@@ -206,7 +206,7 @@
                              		   			</a>
                             			 </td>
                             			 <td>
-                            			  <a href="#">
+                            			  <a href="<%=request.getContextPath() %>/add_to_playlist.do?m_no=${top.m_no }">
                             			  <!-- 플레이 리스트에 담기 -->
                             			    <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
                            			     </a>
