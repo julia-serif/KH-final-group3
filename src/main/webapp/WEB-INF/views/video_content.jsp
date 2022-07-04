@@ -133,8 +133,8 @@
                     
                     <!-- 댓글 표시 Area -->
                     <div class="new-hits-area mb-50">
-						<c:if test="${!empty List }">
-							<c:forEach items="${List }" var="reply">
+						<c:if test="${!empty list }">
+							<c:forEach items="${list }" var="reply">
 		                        <!-- Single Top Item -->
 		                        <div class="single-new-item d-flex align-items-center justify-content-between">
 		                            <div class="first-part d-flex align-items-center">
@@ -150,7 +150,7 @@
 	                        </c:forEach>
                         </c:if>
                         
-                        <c:if test="${empty List }">
+                        <c:if test="${empty list }">
 							<p>아직 등록된 덧글이 없습니다.</p>
 						</c:if>
                 	</div>

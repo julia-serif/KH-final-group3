@@ -238,8 +238,8 @@ public class MusicController {
 		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
 		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
 		
-		model.addAttribute("List", list);
-		model.addAttribute("Paging", pdto);
+		model.addAttribute("list", list);
+		model.addAttribute("paging", pdto);
 		
 		return "video_content";
 	}
