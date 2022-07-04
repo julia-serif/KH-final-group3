@@ -72,7 +72,6 @@
                                         <ul class="dropdown">
                                          <li><a href="<%= request.getContextPath() %>/notice_list.do">공지 사항</a></li>
                                          <li><a href="<%= request.getContextPath() %>/about.do">Q/A 게시판</a></li>
-                                         <li><a href="<%= request.getContextPath() %>/about.do">도움말</a></li>
                                        </ul>
                                     </li>
                                     <li><a href="<%= request.getContextPath() %>/events.do">이벤트 관리</a></li> <!-- 이벤트 관리 -->
