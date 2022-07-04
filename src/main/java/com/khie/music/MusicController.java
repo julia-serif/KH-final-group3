@@ -329,7 +329,7 @@ public class MusicController {
 		}
 	}
 	
-	@RequestMapping("add_to_playlist_ok.do")
+	@RequestMapping("add_to_playlist_ok.do") // 미구현
 	public void add_to_playlist_ok(PlaylistDTO dto, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		int check = this.mm_dao.musicToPlaylist(dto);
 		
