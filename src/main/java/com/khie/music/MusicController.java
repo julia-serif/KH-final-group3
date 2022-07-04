@@ -257,7 +257,7 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		if(member == null) {
-			session.setAttribute("page_check", "mymusic");
+			session.setAttribute("page_check", "mymusic.do");
 			return "login";
 		} else {
 			int user_no = member.getUser_no();
@@ -340,15 +340,27 @@ public class MusicController {
 		return "music_muchlist";
 	}
 	
-	@RequestMapping("add_to_playlist.do") // 미구현
-	public String add_to_playlist(@RequestParam("m_no") int m_no, MusicDTO dto, HttpServletRequest request, Model model) throws IOException {
+	@RequestMapping("add_to_playlist.do")
+	public String add_to_playlist(@RequestParam("m_no") int m_no, MusicDTO mDto, HttpServletRequest request, Model model) throws IOException {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
-		dto = this.dao.musicCont(m_no);
 		if(member == null) {
+			session.setAttribute("page_check", "add_to_playlist.do?m_no=" + m_no);
 			return "login";
 		} else {
-			model.addAttribute("cont", dto);
+			int user_no = member.getUser_no();
+			mDto = this.dao.musicCont(m_no);
+			PlaylistDTO pDto = new PlaylistDTO();
+			
+			pDto.setM_no(m_no);
+			pDto.setUser_no(user_no);
+			
+			List<PlaylistDTO> playlist = this.mm_dao.seePlaylist(pDto);
+			
+			model.addAttribute("cont", mDto);
+			model.addAttribute("Member", member);
+			model.addAttribute("List", playlist);
+			
 			return "add_to_playlist";
 		}
 	}
@@ -364,9 +376,8 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('추가 성공')");
-			out.println("history.go(-2)");
+			out.println("location.href='add_to_playlist.do?m_no=" + dto.getM_no() + "'");
 			out.println("</script>");
-			this.mm_dao.updatePlaylistCount(dto);
 		} else {
 			out.println("<script>");
 			out.println("alert('추가 실패')");
