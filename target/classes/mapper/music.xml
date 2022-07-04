@@ -63,7 +63,7 @@
          select max(mr_no) from m_reply
       </selectKey>
 		insert into m_reply values(#{m_no}, #{mr_no} + 1, #{mr_cont},
-		 'admin', sysdate, '', #{mr_no} + 1, default)
+		 #{mr_writer}, sysdate, '', #{mr_no} + 1, default)
 	</insert>
 	
 	

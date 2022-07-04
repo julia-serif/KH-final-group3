@@ -21,7 +21,6 @@ import com.khie.model.MemberDTO;
 import com.khie.model.MusicDAO;
 import com.khie.model.MusicDTO;
 import com.khie.model.MyMusicDAO;
-import com.khie.model.MyMusicDTO;
 import com.khie.model.NoticeDAO;
 import com.khie.model.NoticeDTO;
 import com.khie.model.MusicReplyDAO;
@@ -214,7 +213,7 @@ public class MusicController {
 		// DB 상의 전체 게시물의 수를 확인하는 메서드 호출
 		totalRecord = this.dao3.getBoardCount();
 		
-		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
+		PageDTO pdto = new PageDTO();
 		
 		dto = this.dao.musicCont(m_no);
 		
@@ -240,26 +239,30 @@ public class MusicController {
 	@RequestMapping("musicReply.do")
 	private void insertReply(@RequestParam("m_no") int m_no,
 			@RequestParam("mr_cont") String mr_cont,
-			HttpServletResponse response, MusicReplyDTO dto) throws IOException {
+			HttpServletRequest request, HttpServletResponse response, MusicReplyDTO dto) throws IOException {
 
 		dto.setM_no(m_no);
 		dto.setMr_cont(mr_cont);
 		
-		int check = this.dao3.insertBoard(dto);
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
 
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
 		
-		if(check > 0) {
+		if(member == null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
+			out.println("</script>");
+			
+		}else {
+			dto.setMr_writer(member.getUser_id());
+			this.dao3.insertBoard(dto);
 			out.println("<script>");
 			out.println("alert('댓글 등록 성공')");
 			out.println("location.href='music_cont.do?m_no="+m_no+"'");
-			out.println("</script>");
-		}else {
-			out.println("<script>");
-			out.println("alert('댓글 등록 실패')");
-			out.println("history.back()");
 			out.println("</script>");
 		}
 		

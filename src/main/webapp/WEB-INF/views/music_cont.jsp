@@ -79,6 +79,7 @@
 								<li><span>앨범명</span>${dto.getM_album() }</li>
 								<li><span>좋아요</span>${dto.getM_like() }</li>
 								<li><span>발매일</span>${dto.getM_date().substring(0,10) }</li>
+								<li><span>재생시간</span>${Math.floor(dto.getM_ptime() / 60) } : ${dto.getM_ptime() % 60 }</li>
 							</ul>
 						</div>
 						
@@ -116,12 +117,13 @@
 			<table border="0" cellspacing="0">
 			<c:if test="${!empty list }">
 				<c:forEach items="${list }" var="i">
-					<div align="center">
-						<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${i.mr_no }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						${i.mr_writer }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						${i.mr_cont }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						${i.mr_date.substring(0, 10) }</p>
-					</div>							
+					<tr align="center">
+						<td>${i.mr_no }</td>
+						<td>${i.mr_writer }</td>
+						<td>${i.mr_cont }</td>
+						<td>${i.mr_date.substring(0, 10) }</td>
+					</tr>
+					<tr height="10">&nbsp;</tr>
 				</c:forEach>
 			</c:if>
 			</table>
