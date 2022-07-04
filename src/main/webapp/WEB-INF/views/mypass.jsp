@@ -39,9 +39,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9">
-                  <c:set var="dto2" value="${member2 }" />
-                  <input type="hidden" name="user_no" value="${dto.user_no }">
-                  <input type="hidden" name="user_purchase" value="${dto.user_purchase }">  
+                  <c:set var="dto2" value="${Cont }" />
+                  <input type="hidden" name="user_no" value="${dto2.user_no }">
+                  <input type="hidden" name="user_purchase" value="${dto2.user_purchase }">  
+                  <input type="hidden" name="user_purchase_no" value="${dto2.user_purchase_no }"> 
                 
                                                   
 
@@ -151,8 +152,8 @@
     </section>
 </c:if> 
 
-<c:if test="${dto2.user_purchase == true }">   
  
+ <c:if test="${dto2.user_purchase == true }"/> 
     <!-- 이용권 옵션 종류 -->
     <div class="blog-area section-padding-100">
         <div class="container">
@@ -161,37 +162,38 @@
        <div class="newsletter-area mb-100">
         <div class="section-heading text-left mb-50">
             <h4>이용권 사용 안내</h4>   
-            <c:if test="${dto2.user_purchase == 1 }">
+            <c:if test="${dto2.user_purchase_no == 1 }">
             <b>스마트 음악 감상1</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
             <p>음악 감상 : 무제한</p>
-
             </c:if>
-            <c:if test="${dto2.user_purchase == 2 }">
+            
+            <c:if test="${dto2.user_purchase_no == 2 }">
             <b>스마트 음악 감상2</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
             <p>음악 감상 : 무제한</p>
             </c:if> 
             
-            <c:if test="${dto2.user_purchase == 3 }">
+            <c:if test="${dto2.user_purchase_no == 3 }">
             <b>가족할인</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
             <p>음악 감상 : 무제한   최대 공유 4인</p>
             </c:if>   
             
-            <c:if test="${dto2.user_purchase == 4 }">
+            <c:if test="${dto2.user_purchase_no == 4 }">
             <b> 음악 감상1</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
             <p>음악 감상 : 무제한</p>
 
             </c:if>  
             
-            <c:if test="${dto2.user_purchase == 5 }">
+            <c:if test="${dto2.user_purchase_no == 5 }">
             <b>음악 감상2</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
             <p>음악 감상 : 무제한</p>
 
             </c:if>
+
              <br>
         </div>
        <div class="newsletter-form">
@@ -208,7 +210,7 @@
     </div>
     </div>
   
-</c:if>
+
 
                 </div>
                 <!-- mypage 사이드바 -->
