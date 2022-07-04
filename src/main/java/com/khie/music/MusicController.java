@@ -840,7 +840,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('회원 등록 성공')");
-			out.println("location.href='member.do'");
+			out.println("location.href='login.do'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");
