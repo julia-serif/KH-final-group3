@@ -21,6 +21,9 @@ public class PageDTO {
 	private String keyword;
 	private String field;
 	
+	//음원이나 동영상 상세 댓글 표시에 쓰기 위한 현재 숫자 변수, setter로 세팅해줘야 함.
+	private int no;
+	
 	public PageDTO() { }
 	public PageDTO(int page, int rowPage, int totalMusic) { 
 		

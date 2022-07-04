@@ -350,6 +350,34 @@ img {
       background-color: #fff;
       color: #232323; }
 
+/* :: 3.8.0 oneMusic Button small */
+.oneMusic-btn-small {
+  background-color: #fff;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  height: 40px;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 0;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 700; }
+  .oneMusic-btn-small i {
+    margin-left: 5px; }
+  .oneMusic-btn-small:hover, .oneMusic-btn-small:focus {
+    font-weight: 700;
+    background-color: #000000;
+    color: #fff; }
+  .oneMusic-btn-small.btn-2 {
+    background-color: #000000;
+    color: #fff; }
+    .oneMusic-btn-small.btn-2:hover, .oneMusic-btn-small.btn-2:focus {
+      background-color: #fff;
+      color: #232323; }
+
 /* :: 4.0 Header Area CSS */
 .header-area {
   position: absolute;
