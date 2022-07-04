@@ -488,7 +488,7 @@ public class MusicController {
 			model.addAttribute("fail_check", 1);
 			session.setAttribute("member", null);
 			return "login";
-   // 로그인 성공시  회원 로그인 화면으로 넘어갑니다.
+			 // 로그인 성공시  회원 로그인 화면으로 넘어갑니다.
 		} else {
 			session.setAttribute("member", login); 
 			
