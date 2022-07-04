@@ -21,20 +21,6 @@ create table music (
     m_update date
 );
 
-create table music_member (
-    user_no number primary key,
-    user_id varchar2(50) unique not null,
-    user_pwd varchar2(100) not null,
-    user_name varchar(20) not null,
-    user_gender varchar2(20),
-    user_email varchar2(100) not null,
-    user_phone varchar2(30),
-    user_purchase char(5) check(user_purchase in('false', 'true')),
-    user_regdate date,
-    user_update date
-    user_rank varchar2(10) not null
-);
-
 create table music_member(
      user_no number(5) primary key,
      user_id varchar2(30) unique not null,
