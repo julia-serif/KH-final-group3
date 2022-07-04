@@ -36,7 +36,7 @@ create table music_member(
      );
 
  insert into music_member
-    values('1','admin', '1234', '관리자','','admin@naver.com','010-1234-5678','1', sysdate ,'','1');     
+    values('1','admin', '1234', '관리자','','admin@naver.com','010-1234-5678','true', sysdate ,'','1');     
 
 -- 음원별 댓글 테이블
 create table m_reply (
@@ -103,7 +103,7 @@ create table music_by_user (
 	m_no number not null,						-- 곡 번호
 	play_date date,							-- 최근 재생한 날짜
 	play_thumbs  varchar2(5) check(play_thumbs in('false', 'true')),		-- '좋아요' 여부
-	play_counts number,						- 곡 플레이 횟수
+	play_counts number,						-- 곡 플레이 횟수
 	constraint music_by_user_PK primary key(user_no, m_no)
 );
 
