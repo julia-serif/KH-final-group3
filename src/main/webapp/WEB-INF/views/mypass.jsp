@@ -39,7 +39,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9">
-                  <c:set var="dto2" value="${Cont }" />
+                  <c:set var="dto2" value="${member2 }" />
                   <input type="hidden" name="user_no" value="${dto2.user_no }">
                   <input type="hidden" name="user_purchase" value="${dto2.user_purchase }">  
                   <input type="hidden" name="user_purchase_no" value="${dto2.user_purchase_no }"> 
@@ -47,7 +47,7 @@
                                                   
 
     <!-- 이용권 옵션 종류 -->
-    <c:if test="${dto2.user_purchase == false }">  
+    <c:if test="${dto2.user_purchase_no == 0 }">  
     <section class="newsletter-testimonials-area">
         <div class="container">
             <div class="row">
@@ -153,7 +153,7 @@
 </c:if> 
 
  
- <c:if test="${dto2.user_purchase == true }"/> 
+
     <!-- 이용권 옵션 종류 -->
     <div class="blog-area section-padding-100">
         <div class="container">
