@@ -125,11 +125,10 @@
                         </div>
                         <div class="song-play-area">
                             <div class="song-name">
-                               <p>${playlist.getPlaylist_name() }　|　${playlist.getM_no() }곡</p>
+                               <p>${playlist.getPlaylist_name() }　|　${playlist.getM_order() }곡</p>
                                 <div class="blog-content">
 	                                <div class="post-meta d-inline-flex mb-20">
-	                                <a href="<%=request.getContextPath() %>/select_musiclist.do?playlist_no=${playlist.getPlaylist_no() }"><img src="resources/img/bg-img/Audio.png" alt=""></a>
-		                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                	<a href="<%=request.getContextPath() %>/select_musiclist.do?playlist_no=${playlist.getPlaylist_no() }"><img src="resources/img/bg-img/Audio.png" alt=""></a>
 	                          	    </div>
 	                          	    <div style="float:right">
 	                          	    <button type="button" class="btn btn-secondary"

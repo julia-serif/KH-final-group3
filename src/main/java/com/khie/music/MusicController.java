@@ -59,7 +59,7 @@ public class MusicController {
 	private final int QA_rowsize = 5;     // 한 페이지당 보여질 질문 게시물의 수
 	private int QA_totalRecord = 0;       // DB 상의 전체 질문 게시물의 수
 
-
+	
 	@RequestMapping("index.do")
 	public String index() {
 		return "index";
@@ -175,7 +175,8 @@ public class MusicController {
 	}
 	
 	@RequestMapping("login.do")
-	public String login() {
+	public String login(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		return "login";
 	}
 
@@ -232,6 +233,7 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		if(member == null) {
+			session.setAttribute("page_check", "mymusic");
 			return "login";
 		} else {
 			int user_no = member.getUser_no();
@@ -315,7 +317,20 @@ public class MusicController {
 	}
 	
 	@RequestMapping("add_to_playlist.do") // 미구현
-	public void add_to_playlist(PlaylistDTO dto, HttpServletResponse response) throws IOException {
+	public String add_to_playlist(@RequestParam("m_no") int m_no, MusicDTO dto, HttpServletRequest request, Model model) throws IOException {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		dto = this.dao.musicCont(m_no);
+		if(member == null) {
+			return "login";
+		} else {
+			model.addAttribute("cont", dto);
+			return "add_to_playlist";
+		}
+	}
+	
+	@RequestMapping("add_to_playlist_ok.do")
+	public void add_to_playlist_ok(PlaylistDTO dto, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		int check = this.mm_dao.musicToPlaylist(dto);
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -325,7 +340,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('추가 성공')");
-			out.println("history.back()");
+			out.println("history.go(-2)");
 			out.println("</script>");
 			this.mm_dao.updatePlaylistCount(dto);
 		} else {
@@ -366,9 +381,6 @@ public class MusicController {
 		dto.setUser_no(user_no);
 		dto.setPlaylist_no(playlist_no);
 		
-		System.out.println("플레이리스트 번호 : " + dto.getPlaylist_no());
-		System.out.println("플레이리스트 이름 : " + dto.getPlaylist_name());
-		System.out.println("유저번호 : " + dto.getUser_no());
 		int check = this.mm_dao.modifyPlaylist(dto);
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -466,22 +478,39 @@ public class MusicController {
 	// 로그인 작업입니다.
 
 	@RequestMapping("login_Ok.do")
-	public String login(MemberDTO dto, HttpServletRequest req, HttpServletResponse response) throws Exception{
+	public String login(MemberDTO dto, HttpServletRequest req, HttpServletResponse response, Model model) throws Exception{
 
 		HttpSession session = req.getSession();
 		MemberDTO login = this.dao2.login(dto);
 		
 	// 	회원 정보가 틀리면 로그인 화면으로 다시 돌아갑니다.
 		if(login == null) {
+			model.addAttribute("fail_check", 1);
 			session.setAttribute("member", null);
-			return "login_back";
+			return "login";
    // 로그인 성공시  회원 로그인 화면으로 넘어갑니다.
+<<<<<<< HEAD
 		}else {
 			session.setAttribute("member", login);
 	
 		} 
 		
 		return "index";
+=======
+		} else {
+			session.setAttribute("member", login); 
+			
+			String page = (String)session.getAttribute("page_check");
+			session.setAttribute("page_check", null);
+			
+			PrintWriter out = response.getWriter();
+			if(page != null && dto.getUser_rank() != "1") {
+				return "redirect:/"+page+".do";
+			} else {
+				return "redirect:/";
+			}
+		}
+>>>>>>> bf0557f87f09022127fa75974d69383df57574c9
 	}
 
 // 로그아웃 
