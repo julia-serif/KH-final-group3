@@ -14,14 +14,12 @@ public class VideoReplyDAOImpl implements VideoReplyDAO {
 
 	@Override
 	public int getRecordCount(int no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.selectOne("count_v_reply", no);
 	}
 
 	@Override
 	public List<VideoReplyDTO> getVideoReplyList(PageDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sqlSession.selectList("select_v_reply_list", dto);
 	}
 
 	@Override

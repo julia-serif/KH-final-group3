@@ -232,6 +232,7 @@ public class MusicController {
 		int totalRecord = this.vr_dao.getRecordCount(no);
 		
 		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
+		pdto.setNo(no);
 		
 		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
 		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
