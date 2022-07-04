@@ -111,11 +111,12 @@
     	<div class="card my-4">
 			<h5 class="card-header">댓글</h5>
 			<div class="card-body">
-				<form name="comment-form" action="<%=request.getContextPath() %>/video_reply_write.do">
+				<form name="comment-form" action="<%=request.getContextPath() %>/video_reply_write.do" method="post" autocomplete="off">
 					<div class="form-group">
+						<input type="hidden" name="v_no" value="${music.getM_no() }">
 						<textarea name="vr_cont" class="form-control" rows="3"></textarea>
 					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" class="btn btn-primary">작성</button>
 				</form>
 			</div>
 		</div>

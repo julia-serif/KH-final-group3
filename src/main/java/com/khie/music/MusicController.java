@@ -222,13 +222,20 @@ public class MusicController {
 	}
 	
 	@RequestMapping("video_reply_write.do")
-	private String insertVideoReply(HttpServletRequest request, HttpServletResponse response) {
+	private String insertVideoReply(HttpServletRequest request, HttpServletResponse response, 
+			VideoReplyDTO dto, Model model) {
+		
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		if(member == null) {
 			return "login";
 		} else {
-			return null;
+			dto.setVr_writer(member.getUser_id());
+			this.vr_dao.insertBoard(dto);
+			
+			MusicDTO musicDto = this.dao.musicCont(dto.getV_no());
+			model.addAttribute("music", musicDto);
+			return "video_content";
 		}
 		
 	}

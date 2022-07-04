@@ -13,5 +13,7 @@
   	<typeAlias type="com.khie.model.MyMusicDTO" alias="MyMusicDTO"/>
   	<typeAlias type="com.khie.model.PlaylistDTO" alias="PlaylistDTO"/>
   	<typeAlias type="com.khie.model.MusicReplyDTO" alias="MusicReplyDTO"/>
+  	<typeAlias type="com.khie.model.VideoReplyDAO" alias="VideoReplyDAO"/>
+  	<typeAlias type="com.khie.model.VideoReplyDTO" alias="VideoReplyDTO"/>
   	</typeAliases>
   </configuration>
