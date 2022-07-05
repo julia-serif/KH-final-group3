@@ -122,5 +122,6 @@ create table music_qanda(
    qa_hit number(5) default 0         -- 질문게시판 조회수
    );  
 
-
+ insert into music_qanda
+    values('1','관리자', '1234', '첫번째 질문입니다.',sysdate,'','1','' ,'',default); 
 
