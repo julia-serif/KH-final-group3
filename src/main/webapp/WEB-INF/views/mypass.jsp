@@ -157,14 +157,14 @@
  
 
     <!-- 이용권 옵션 종류 -->
-     <c:if test="${dto2.user_purchase == true }">
+     
     <div class="blog-area section-padding-100">
         <div class="container">
             <div class="row">
 <div class="col-12 col-lg-10">
        <div class="newsletter-area mb-100">
         <div class="section-heading text-left mb-50">
-           <c:if test="${dto2.user_purchase == false }">
+          
                
             <c:if test="${dto2.user_purchase_no == 1 }">
             <h4>이용권 사용 안내</h4>
@@ -235,7 +235,7 @@
        			}else { return; }" class="btn oneMusic-btn">취소하기</button>
          
             </c:if>
-            </c:if>
+            
              <br>
         </div>
        
@@ -249,7 +249,7 @@
     </div>
     </div>
     </div>
-    </c:if>
+    
 
 
                 </div>

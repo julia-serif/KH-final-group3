@@ -102,7 +102,7 @@
 	
 	<update id="change3" parameterType="com.khie.model.MemberDTO">
 	 
-		update music_member set set user_purchase = 'true',
+		update music_member set user_purchase = 'true',
                user_purchase_no = '3' 
 		       where user_no = #{user_no}
      
