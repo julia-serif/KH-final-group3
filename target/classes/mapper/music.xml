@@ -8,37 +8,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="MusicDAO">	
-	
-	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
-		<![CDATA[
-			select * from
-				(select m.*, row_number()
-					over(order by m_no desc) rnum from music m
-					where m_name like '%' || #{keyword} || '%')
-					where rnum >= #{startNo} and rnum <= #{endNo}
-		]]>
-	</select>
-	
-	<select id="searchAlbum" parameterType="PageDTO" resultType="MusicDTO">
-		<![CDATA[
-			select distinct m_album, m_artist, m_image from
-				(select m.*, row_number()
-					over(order by m_no desc) rnum from music m
-					where m_album like '%' || #{keyword} || '%')
-					where rnum >= #{startNo} and rnum <= #{endNo}
-		]]>
-	</select>
-	
-	<select id="searchArtist" parameterType="PageDTO" resultType="MusicDTO">
-		<![CDATA[
-			select distinct m_artist from
-				(select m.*, row_number()
-					over(order by m_no desc) rnum from music m
-					where m_artist like '%' || #{keyword} || '%')
-					where rnum >= #{startNo} and rnum <= #{endNo}
-		]]>
-	</select>
+<mapper namespace="MusicDAO">
 
 	<select id="musicCont" parameterType="int" resultType="MusicDTO">
 		select * from music where m_no = #{m_no}
@@ -82,6 +52,36 @@
 		delete from m_reply where mr_no = #{mr_no}
 	</delete>
 	
+	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
+		<![CDATA[
+			select * from
+				(select m.*, row_number()
+					over(order by m_no desc) rnum from music m
+					where m_name like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="searchAlbum" parameterType="PageDTO" resultType="MusicDTO">
+		<![CDATA[
+			select distinct m_album, m_artist, m_image from
+				(select m.*, row_number()
+					over(order by m_no desc) rnum from music m
+					where m_album like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="searchArtist" parameterType="PageDTO" resultType="MusicDTO">
+		<![CDATA[
+			select distinct m_artist from
+				(select m.*, row_number()
+					over(order by m_no desc) rnum from music m
+					where m_artist like '%' || #{keyword} || '%')
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
 	<select id="searchVideo" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
 			select * from
@@ -103,13 +103,6 @@
 					m_name like '%' || #{keyword} || '%')
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
-	</select>
-   
-	<select id="countAll" resultType="int">
-		select count(*) from music
-			where m_name like '%' || #{keyword} || '%' or
-				m_album like '%' || #{keyword} || '%' or
-				m_artist like '%' || #{keyword} || '%'
 	</select>
 	
 	<select id="countSong" resultType="int">
@@ -175,6 +168,11 @@
     			'',#{m_ptime},#{m_lyrics}, sysdate,'')
     	
     	</insert>
+	
+	<update id="updateMusic" parameterType="MusicDTO">
+    		update music set m_name = #{m_name}, m_cont = #{m_cont}, m_album = #{m_album} m_artist=#{m_artist},m_mv = #{m_mv}, m_lyrics = #{m_lyrics}, where m_no = #{m_no}
+    	
+    	</update>
     	
     	<delete id="deleteMusic" parameterType="int" >
     		delete from music where m_no = #{m_no}

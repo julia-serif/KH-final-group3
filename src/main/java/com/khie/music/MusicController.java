@@ -236,41 +236,6 @@ public class MusicController {
 
 	}
 
-	@RequestMapping("video.do")
-	public String video_cont(HttpServletRequest request, @RequestParam("no") int no, Model model) {
-		
-		MusicDTO dto = this.dao.musicCont(no);
-		model.addAttribute("music", dto);
-		//여기까지가 동영상 표시 부분 처리.
-		
-		
-		int page;	//현재 페이지 변수
-		if(request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}else {
-			page = 1;    // 처음으로 게시물 전체 목록 태그를 선택한 경우
-		}
-		
-		int totalRecord = this.vr_dao.getRecordCount(no);
-		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
-		model.addAttribute("totalRecord", totalRecord);
-		
-		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
-		pdto.setNo(no);
-		
-		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
-		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
-		
-		model.addAttribute("list", list);
-		model.addAttribute("paging", pdto);
-		
-		HttpSession session = request.getSession();
-		MemberDTO member = (MemberDTO)session.getAttribute("member");
-		model.addAttribute("member", member);
-		
-		return "video_content";
-	}
-
 	@RequestMapping("musicReply.do")
 	private void insertReply(@RequestParam("m_no") int m_no,
 			@RequestParam("mr_cont") String mr_cont,
@@ -355,6 +320,58 @@ public class MusicController {
 			this.dao3.insertMusicReply(rdto);
 			
 			return music_cont(m_no, dto, model, request);
+		}
+		
+	}
+	
+	@RequestMapping("video.do")
+	public String video_cont(HttpServletRequest request, @RequestParam("no") int no, Model model) {
+		
+		MusicDTO dto = this.dao.musicCont(no);
+		model.addAttribute("music", dto);
+		//여기까지가 동영상 표시 부분 처리.
+		
+		
+		int page;	//현재 페이지 변수
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}else {
+			page = 1;    // 처음으로 게시물 전체 목록 태그를 선택한 경우
+		}
+		
+		int totalRecord = this.vr_dao.getRecordCount(no);
+		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
+		model.addAttribute("totalRecord", totalRecord);
+		
+		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
+		pdto.setNo(no);
+		
+		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
+		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
+		
+		model.addAttribute("list", list);
+		model.addAttribute("paging", pdto);
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		model.addAttribute("member", member);
+		
+		return "video_content";
+	}
+	
+	@RequestMapping("video_reply_write.do")
+	private String insertVideoReply(HttpServletRequest request, HttpServletResponse response, 
+			VideoReplyDTO dto, Model model) {
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		if(member == null) {
+			return "login";
+		} else {
+			dto.setVr_writer(member.getUser_id());
+			this.vr_dao.insertVideoReply(dto);
+			
+			return video_cont(request, dto.getV_no(), model);
 		}
 		
 	}
