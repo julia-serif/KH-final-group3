@@ -86,7 +86,7 @@
 </style>
 <script type="text/javascript">
 
-function deleteMusic() {
+function deleteArtist() {
 	
 	let no = $("#m_no").val();
 	
