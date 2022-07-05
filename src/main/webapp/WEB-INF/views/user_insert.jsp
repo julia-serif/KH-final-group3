@@ -14,12 +14,22 @@
     <!-- Title -->
     <title>One Music - Modern Music HTML5 Template</title>
 
+
+
     <!-- Favicon -->
     <link rel="icon" href="<%= request.getContextPath() %>/resources/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
+	 <!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	 
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	 
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -28,7 +38,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>공지사항</h2>
+            <h2>MyPage</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -46,83 +56,58 @@
 
        <!-- 회원 상세 페이지 -->
        <div align="center">
-       <c:set var="dto" value="${content1 }" />                                    
+      
+         <h3>회원 가입 페이지</h3>
+      
+      <br>
+      
+      <form method="post" 
+          action="<%=request.getContextPath()%>/member_insert_ok.do">
+           
+           <table class="table table-boardered">
+         <tr>
+           <th>회원아이디</th>
+           <td><input type="text" class="form-control" name="user_id" placeholder="id를 넣으세요"></td>
+         </tr>
 
-        
-	   <br>
- 
-	   	  <input type="hidden" name="music_no" value="${dto.music_no }">
-	   	  <input type="hidden" name="db_pwd" value="${dto.music_pwd }">
-	      <table border="1" cellspacing="0" width="400">
-	      <tr>
-	         <th>작성자</th>
-	         <td> ${dto.getMusic_writer() } </td>
-	      </tr>
-	      
-	      <tr>
-	         <th>글 제목</th>
-	         <td> ${dto.getMusic_title() } </td>
-	      </tr>
-	      
-	      <tr>
-	         <th>글 내용</th>
-	         <td>
-	            <textarea rows="7" cols="25" readonly>${dto.getMusic_cont() }</textarea>
-	         </td>
-	      </tr>
-	      
-	      <tr>
-	         <th>비밀번호</th>
-	         <td>
-	            <c:if test="${!empty dto.getMusic_pwd() }">
-	               <c:forEach begin="1" end="${dto.getMusic_pwd().length() }">
-	                    *
-	               </c:forEach>
-	            </c:if>
-	         </td>
-	      </tr>
-	      
-	      <tr>
-	         <th>조회 수</th>
-	         <td> ${dto.getMusic_hit() } </td>
-	      </tr>
-	      
-	      <tr>
-	         <c:if test="${empty dto.getMusic_update() }">
-	            <th>작성일자</th>
-	            <td> ${dto.getMusic_date().substring(0,10) } </td>
-	         </c:if>
-	         
-	         <c:if test="${!empty dto.getMusic_update() }">
-	            <th>수정일자</th>
-	            <td> ${dto.getMusic_update().substring(0,10) } </td>
-	         </c:if>
-	      </tr>
-	      
-	      <c:if test="${empty dto }">
-	         <tr>
-	            <td colspan="2" align="center">
-	               <h3>조회된 상세 내역이 없습니다.....</h3>
-	            </td>
-	         </tr>
-	      </c:if>
-	      
-	      <tr>
-	         <td colspan="2" align="center">
-	            <input type="button" value="글수정"
-	               onclick="location.href='notice_modify.do?music_no=${dto.getMusic_no()}'">
-	               &nbsp;
-	            <input type="button" value="글삭제"
-	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
-	               				location.href='notice_delete.do?music_no=${dto.getMusic_no()}'
-	               			}else { return; }">
-	               &nbsp;         
-	            <input type="button" value="전체목록"
-	               onclick="location.href='notice_list.do?'">
-	         </td>
-	      </tr>
-	   </table>
-	</div>
+         <tr>
+           <th>회원 이름</th>
+           <td> <input type="text" class="form-control" name="user_name" placeholder="이름을 넣으세요"> </td>
+         </tr>
+         
+         <tr>
+           <th>회원 비밀번호</th>
+           <td> <input type="password" class="form-control" name="user_pwd" placeholder="비밀번호를  넣어주세요"> </td>
+         </tr>
+         
+         <tr>
+           <th>회원 성별</th>
+           
+           <td> 
+           <input  type="radio" name="user_gender" value="남성">남성 &nbsp;&nbsp;&nbsp;
+           <input  type="radio" name="user_gender" value="여성">여성 &nbsp;&nbsp;&nbsp;
+            </td>
+         </tr>
+         
+         <tr>
+           <th>회원 이메일</th>
+           <td> <input type="email" class="form-control" name="user_email"> </td>
+         </tr>
+         
+         <tr>
+           <th>회원 연락처</th>
+           <td> <input type="tel" class="form-control" name="user_phone"> </td>
+         </tr>
+  
+         <tr>
+            <td colspan="3" align="center">
+              <input type="submit" class="btn btn-primary" value="회원등록">&nbsp;&nbsp;&nbsp;
+              <input type="reset" class="btn btn-danger" value="다시작성">
+             </td>
+         </tr>
+       </table>
+     </form>
+  </div>
                         </div>
                     </div>
                 

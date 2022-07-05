@@ -28,7 +28,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>MyPage</h2>
+            <h2> Q/A 게시판</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -47,7 +47,6 @@
        <!-- 회원 상세 페이지 -->
        <div align="center">
        <c:set var="dto" value="${content2 }" />                                    
-        <h2> 공지사항</h2>
         
 	   <br>
  
