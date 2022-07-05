@@ -208,7 +208,7 @@
 									</div>
 								</a>
 								</td>
-								<c:if test="${i%4 == 0 }">
+								<c:if test="${i%6 == 0 }">
 									</tr>
 									<tr align="left">
 								</c:if>
