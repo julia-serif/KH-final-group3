@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.khie.model.MemberDTO;
 import com.khie.model.MusicDAO;
 import com.khie.model.MusicDTO;
+import com.khie.model.MusicArtistDAO;
+import com.khie.model.MusicArtistDTO;
 import com.khie.model.MyMusicDAO;
 import com.khie.model.MyMusicDTO;
 import com.khie.model.NoticeDAO;
