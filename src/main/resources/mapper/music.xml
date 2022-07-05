@@ -175,6 +175,11 @@
     			'',#{m_ptime},#{m_lyrics}, sysdate,'')
     	
     	</insert>
+	
+	<update id="updateMusic" parameterType="MusicDTO">
+    		update music set m_name = #{m_name}, m_cont = #{m_cont}, m_album = #{m_album} m_artist=#{m_artist},m_mv = #{m_mv}, m_lyrics = #{m_lyrics}, where m_no = #{m_no}
+    	
+    	</update>
     	
     	<delete id="deleteMusic" parameterType="int" >
     		delete from music where m_no = #{m_no}
