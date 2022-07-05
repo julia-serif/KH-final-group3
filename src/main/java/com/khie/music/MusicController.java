@@ -50,12 +50,10 @@ public class MusicController {
 	private NoticeDAO dao4;
 	@Autowired
 	private VideoReplyDAO vr_dao;
-
+	@Autowired
+	private MusicArtistDAO artistDAO;
 	@Autowired 
 	private QandADAO Qand_dao;
-
-	@Autowired
-	private Upload upload;
 	
 	private final int rowsize = 10;	//한 페이지당 보여질 음원의 수
 	private int totalMusic = 0;	//DB 상의 전체 음원의 수
@@ -1501,7 +1499,7 @@ public class MusicController {
 	
 	//관리자 음원 추가 완료
 	@RequestMapping("admin_insert_music_ok.do")
-	public void adminInsertMusicOk(MusicDTO musicDTO ,HttpServletRequest requst, HttpServletResponse response) throws IOException {
+	public void adminInsertMusicOk(MusicDTO musicDTO ,HttpServletRequest requst, HttpServletResponse response, MultipartHttpServletRequest mRequest) throws IOException {
 		
 		//재생시간 
 		int minute = Integer.parseInt(requst.getParameter("minute").trim());
@@ -1510,11 +1508,68 @@ public class MusicController {
 		musicDTO.setM_ptime((minute*60) + second);
 		
 		//파일 업로드
-		boolean uploadAudio = upload.UploadAudio(musicDTO.getM_audio());
+		//boolean uploadAudio = upload.UploadAudio(musicDTO.getM_audio());
 		
-		if(uploadAudio) {
-			System.out.println("오디오 파일 업로드 성공");
+		//if(uploadAudio) {
+		//	System.out.println("오디오 파일 업로드 성공");
+		//}
+		
+		//++----파일 추가 ------++
+		int count = 0;
+		String uploadPath = "";
+		
+		
+		
+		// 업로드된 파일들의 이름을 목록으로 제공하는 메서드
+		Iterator<String> iterator = mRequest.getFileNames();
+				
+		while(iterator.hasNext()) {
+			String uploadFileName = iterator.next();
+					
+			MultipartFile mFile =  mRequest.getFile(uploadFileName);
+			
+		//각자 프로젝트에 맞게 경로 지정해주세요!
+		if(count == 0) {
+			uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\audio\\";
+			
+		}else if(count == 1) {
+			uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\album-img\\";
+			
 		}
+		
+		// 업로드한 파일의 이름을 구하는 메서드
+		String orginfileName = mFile.getOriginalFilename();
+		
+		
+		//실제 파일을 들어보자
+		String saveFileName = orginfileName;
+		
+		
+		if(saveFileName != null) {
+			
+			
+			try {
+				File origin = new File(uploadPath+"\\"+saveFileName);
+				
+				// transferTo() : 파일 데이터를 지정한 폴더로 실제 저장시키는 메서드
+				mFile.transferTo(origin);
+				
+				System.out.println("filename>>>" + saveFileName);
+				
+				String filename =  (String)saveFileName;
+				
+				if(count == 0) {
+					musicDTO.setM_audio(filename);
+				}else if(count == 1) {
+					musicDTO.setM_image(filename);
+				}
+				
+				count++;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}//if end
+		}//while end (++---- 파일 추가 end ----++)
 		
 		int check = this.dao.insertMusic(musicDTO);
 		
@@ -1593,8 +1648,72 @@ public class MusicController {
 	
 	//관리자 아티스트 추가
 	@RequestMapping("admin_insert_artist_ok.do")
-	private void adminInsertArtistOk() {
+	private void adminInsertArtistOk(MusicArtistDTO dto,HttpServletRequest requst, HttpServletResponse response, MultipartHttpServletRequest mRequest) throws IOException{
 	
+		// 업로드된 파일들의 이름을 목록으로 제공하는 메서드
+		Iterator<String> iterator = mRequest.getFileNames();
+				
+		while(iterator.hasNext()) {
+			String uploadFileName = iterator.next();
+					
+			MultipartFile mFile =  mRequest.getFile(uploadFileName);
+			
+		//각자 프로젝트에 맞게 경로 지정해주세요!
+		
+		
+		String	uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\artist-img\\";
+	
+		
+		// 업로드한 파일의 이름을 구하는 메서드
+		String orginfileName = mFile.getOriginalFilename();
+		
+		
+		//실제 파일을 들어보자
+		String saveFileName = orginfileName;
+		
+		
+		if(saveFileName != null) {
+			
+			
+			try {
+				File origin = new File(uploadPath+"\\"+saveFileName);
+				
+				// transferTo() : 파일 데이터를 지정한 폴더로 실제 저장시키는 메서드
+				mFile.transferTo(origin);
+				
+				System.out.println("filename>>>" + saveFileName);
+				
+				String filename =  (String)saveFileName;
+				
+				
+					dto.setM_artist_img(filename);
+				
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}//if end
+		}//while end (++---- 파일 추가 end ----++)
+		
+		int check = this.artistDAO.insertArtist(dto);
+		
+		 response.setContentType("text/html; charset=UTF-8");
+			
+		 PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('아티스트 추가 성공')");
+			out.println("location.href='admin_artist.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('아티스트 추가 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+			
+		}
 
 	}
 	
