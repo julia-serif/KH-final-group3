@@ -87,13 +87,13 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	}
 
 	@Override
-	public List<MusicDTO> orderMusiclist(PlaylistDTO dto) {
-		return this.sqlSession.selectList("order_musiclist", dto);
+	public int orderMusiclist(PlaylistDTO dto) {
+		return this.sqlSession.update("order_musiclist", dto);
 	}
 
 	@Override
-	public void deleteMusiclist(PlaylistDTO dto) {
-		this.sqlSession.delete("delete_musiclist", dto);
+	public int deleteMusiclist(PlaylistDTO dto) {
+		return this.sqlSession.delete("delete_musiclist", dto);
 	}
 
 	@Override

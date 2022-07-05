@@ -65,7 +65,7 @@
 				<div align="center">
 					<c:set value="${List}" var="list" />
 					<c:if test="${! empty list}">
-						<c:forEach items="${list}" var="list">
+						<c:forEach items="${list}" var="list" varStatus="status">
 							<table width="180%" id="newtable">
 								<tr>
 									<td width="20%">
@@ -77,17 +77,34 @@
 									<td width="50%" id="title">
 									<a href="#">
 										<!-- 음원 상세페이지로 이동 -->
-										<h5>&nbsp; &nbsp; ${list.getM_name() }</h5><p>&nbsp;&nbsp;&nbsp; ${list.getM_artist() }</p>
+										<h5>&nbsp; &nbsp; ${list.getM_name() }</h5><p>&nbsp;&nbsp;&nbsp; ${list.getM_artist() }  ${status.count}</p>
 									</a>
 									</td>
-									<td width="30%"><a href="#">
-										<!-- 플레이 리스트에 담기 -->
-										<img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
-									</a> &nbsp;&nbsp;&nbsp;
+									<td width="30%">
 									<a href="#">
 										<!-- 뮤비 페이지로 이동 -->
 										<img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
-									</a>
+									</a>&nbsp;&nbsp;&nbsp;
+										<!-- 플레이 리스트에서 삭제하기 -->
+										<img src="<%= request.getContextPath() %>/resources/img/core-img/delete.png" width="40" height="40" 
+										onclick="if(confirm('플레이리스트에서 제거하시겠습니까?')) {
+	               							location.href='delete_musiclist.do?playlist_no=${Playlist }&m_order=${status.count }'
+	               							} else { return; }"/>
+	               							<br>
+	               							
+										<!-- 위로 이동 -->
+										<c:if test="${status.first eq false}">
+											<a href="<%=request.getContextPath() %>/order_musiclist.do?playlist_no=${Playlist }&prev=${status.count - 1 }&next=${status.count }">
+												<img src="<%= request.getContextPath() %>/resources/img/core-img/ArrowUp.png" width="40" height="40" />
+											</a>&nbsp;&nbsp;&nbsp;
+										</c:if>
+										
+										<!-- 아래로 이동 -->
+										<c:if test="${status.last eq false}">
+											<a href="<%=request.getContextPath() %>/order_musiclist.do?playlist_no=${Playlist }&prev=${status.count }&next=${status.count + 1 }">
+												<img src="<%= request.getContextPath() %>/resources/img/core-img/ArrowDown.png" width="40" height="40" />
+											</a>&nbsp;&nbsp;&nbsp;
+										</c:if>
 									</td>
 								</tr>
 							</table>
@@ -100,17 +117,16 @@
 				<!-- 새 음원 Area end-->
 			</div>
 		</div>
-
-		<br>
-		<br>
-		<br>
-
-		<br>
-		<br>
-		<br>
 	</section>
 	<!-- ***** Elements Area End ***** -->
-
+	
+	<section>
+		<div class="one-music-songs-area mt-70 mb-70">
+			<div class="load-more-btn text-center">
+		        <a href="<%=request.getContextPath() %>/mymusic.do" class="btn oneMusic-btn">뒤로 가기<i class="icon-return"></i></a>
+		    </div>
+	    </div>
+	</section>
 
 	<!-- ##### Footer Area Start ##### -->
 

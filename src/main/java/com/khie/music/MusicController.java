@@ -401,7 +401,7 @@ public class MusicController {
 	}
 	
 	@RequestMapping("add_to_playlist_ok.do")
-	public void add_to_playlist_ok(PlaylistDTO dto, HttpServletResponse response, HttpServletRequest request) throws IOException {
+	public void add_to_playlist_ok(PlaylistDTO dto, HttpServletResponse response) throws IOException {
 		int check = this.mm_dao.musicToPlaylist(dto);
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -534,6 +534,63 @@ public class MusicController {
 		model.addAttribute("Playlist", playlist_no);
 		model.addAttribute("List", musiclist);
 		return "music_playlist";
+	}
+	
+	@RequestMapping("delete_musiclist.do")
+	public void delete_musiclist(PlaylistDTO dto, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		dto.setUser_no(user_no);
+		
+		int check = this.mm_dao.deleteMusiclist(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		if(check > 0) {
+				this.mm_dao.updateMusiclistSequence(dto);
+				
+				out.println("<script>");
+				out.println("alert('삭제 성공')");
+				out.println("location.href='select_musiclist.do?playlist_no=" + dto.getPlaylist_no() + "'");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("alert('삭제 실패')");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+	}
+	
+	@RequestMapping("order_musiclist.do")
+	public void order_musiclist(@RequestParam("playlist_no") int playlist_no, @RequestParam("prev") int prev, @RequestParam("next") int next,
+			HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		PlaylistDTO playlist = new PlaylistDTO();
+		System.out.println("플레이리스트 : " + playlist_no + ", 유저 : " + user_no + ", prev : " + prev + ", next : " + next);
+		
+		playlist.setPlaylist_no(playlist_no);
+		playlist.setUser_no(user_no);
+		playlist.setM_order(prev);
+		
+		int check = this.mm_dao.orderMusiclist(playlist);
+
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('순서 변경 성공')");
+			out.println("location.href='select_musiclist.do?playlist_no=" + playlist.getPlaylist_no() + "'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('순서 변경 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
 	}
 	
 	@RequestMapping("empty.do")

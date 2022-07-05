@@ -31,15 +31,13 @@
 		style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
 		<div class="bradcumbContent">
 			<c:set var="dto" value="${cont }" />
-			<p>${dto.getM_artist() }의${dto.getM_name() } 곡을</p>
+			<p>${dto.getM_artist() }의 ${dto.getM_name() } 곡을</p>
 			<h2>플레이리스트에 넣기</h2>
 		</div>
 	</section>
 	<!-- ##### Breadcumb Area End ##### -->
 
-
 	<section>
-
 		<!-- Single -->
 		<div class="one-music-songs-area mt-70 mb-70">
 			<div class="container">
@@ -49,10 +47,11 @@
 					<c:forEach items="${List }" var="playlist">
 						<form method="post" action="<%=request.getContextPath() %>/add_to_playlist_ok.do">
 							<input type="hidden" name="m_no" value="${dto.getM_no() }">
-							<input type="hidden" name="user_no" value="${playlist.getUser_no() }"> <input type="hidden" name="playlist_no" value="${playlist.getPlaylist_no() }">
+							<input type="hidden" name="user_no" value="${playlist.getUser_no() }">
+							<input type="hidden" name="playlist_no" value="${playlist.getPlaylist_no() }">
 							<input type="hidden" name="playlist_thumbnail" value="${playlist.getPlaylist_thumbnail() }">
 							<input type="hidden" name="playlist_name" value="${playlist.getPlaylist_name() }">
-							<div class="post-meta d-flex d-flex-row-reverse mb-30">
+							<div class="post-meta d-flex d-flex-row-reverse mb-30 wow fadeInUp" data-wow-delay="100ms">
 	                          	<c:if test="${playlist.getPlaylist_thumbnail() != null }">
 	                        		<img src="<%= request.getContextPath() %>/resources/img/album-img/${playlist.getPlaylist_thumbnail() }" alt="${playlist.getPlaylist_thumbnail() } 앨범 재킷" height="100px" width="100px">
 	                        	</c:if>
@@ -60,10 +59,10 @@
 	                        		<img src="<%= request.getContextPath() %>/resources/img/album-img/PlaylistDefault.jpg" alt="PlaylistDefault.jpg" height="100px" width="100px">
 	                       		</c:if>
 								<c:if test="${playlist.getM_order() == 1}">
-									<input type="submit" value="${playlist.getPlaylist_name() }" class="btn btn-light btn-lg btn-block">
+									<input type="submit" value="${playlist.getPlaylist_name() } 에 추가하기" class="btn btn-light btn-lg btn-block">
 								</c:if>
 								<c:if test="${playlist.getM_order() == 0}">
-									<input type="submit" value="${playlist.getPlaylist_name() }" class="btn btn-light btn-lg btn-block" disabled>
+									<input type="submit" value="${playlist.getPlaylist_name() } 에 추가하기" class="btn btn-light btn-lg btn-block" disabled>
 								</c:if>
 							</div>
 						</form>
@@ -72,6 +71,17 @@
 				</div>
 			</div>
 		</div>
+	</section>
+	
+	<section>
+		<div class="one-music-songs-area mt-70 mb-70">
+			<div class="load-more-btn text-center wow fadeInUp" data-wow-delay="100ms">
+		        <a href="javascript:history.go(-1)" class="btn oneMusic-btn">뒤로 가기<i class="icon-return"></i></a>
+		    </div>
+	    </div>
+	</section>
+	
+	<section>
 	</section>
 
 	<jsp:include page="/resources/include/footer.jsp"></jsp:include>
