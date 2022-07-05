@@ -19,7 +19,10 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
-
+    
+    <!-- Stylesheet2 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+   
 </head>
 
 <body>
@@ -47,7 +50,7 @@
        <!-- 정보 수정 페이지 -->
        <div >
        <c:set var="dto2" value="${Cont }" />                                    
-        <h2> ${dto2.getUser_name() }님 정보 수정</h2>
+        <h2 align="center"> ${dto2.getUser_name() }님 정보 수정</h2>
         
 	   <br>
 	   
@@ -56,7 +59,7 @@
 	   
 	   	  <input type="hidden" name="user_no" value="${dto2.user_no }">
 	   	  <input type="hidden" name="db_pwd" value="${dto2.user_pwd }">
-	      <table border="1" cellspacing="0" width="480">
+	      <table class="table table-striped table-bordered" >
 	         <tr>
 	            <th>회원 아이디</th>
 	            <td> <input name="user_id"
@@ -143,8 +146,8 @@
 	         
 	         <tr>
 	            <td colspan="2" align="center">
-	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
-	               <input type="reset" value="다시작성">
+	               <input class="btn btn-primary" type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;
+	               <input class="btn btn-primary" type="reset" value="다시작성">
 	            </td>
 	         </tr>
 	      </table>

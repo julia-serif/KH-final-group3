@@ -20,6 +20,8 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
+    <!-- Stylesheet2 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -53,7 +55,7 @@
  
 	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
 	   	  <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
-	      <table border="1" cellspacing="0" width="450">
+	      <table class="table table-striped table-bordered">
 	         <tr>
 	            <th>회원 아이디</th>
 	            <td> ${dto.getUser_id() } </td>
