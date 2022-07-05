@@ -42,7 +42,45 @@
 			clear: both;
 		}
     </style>
-    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+	
+		function nested_reply() {
+			
+			var uid = '${member}';
+			
+			if(!uid){
+				window.location.href = "${pageContext.request.contextPath}/login.do";
+				
+			} else {
+				
+				/* $.ajax({
+					type: "post",
+					url: "${pageContext.request.contextPath}/resources/ajax/nested_reply.jsp",
+					data: {vr_no: ${reply.getVr_no() }},
+					dataType: "html",
+					success: function(data) {
+						$(".single-new-item").append(data);	//vr_no 해당하는것만 특정 가능하게?
+						if(){
+							//안 펼쳐졌을때 펼치기
+						} else {
+							//펼쳐졌을때 닫기
+						}
+					},
+					error: function(data) {
+						//
+					}
+				}); */
+				
+			}
+			
+			
+			
+			
+		}
+	
+	
+	</script>
 </head>
 <body>
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
@@ -154,7 +192,7 @@
 			                            		location.href='video_reply_delete.do?v_no=${reply.getV_no() }&vr_no=${reply.getVr_no() }' }
 			                            		else { return; }">삭제</button>
 			                            </c:if>
-		                            <button type="button" class="oneMusic-btn-small">댓글</button>
+		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
 		                            </div>
 		                        </div>
 	                        </c:forEach>
