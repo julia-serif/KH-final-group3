@@ -1869,11 +1869,7 @@ public class MusicController {
 		if (check > 0) {
 			out.println("<script>");
 			out.println("alert('아티스트 삭제 성공')");
-<<<<<<< HEAD
 			out.println("location.href='admin_artist.do'");
-=======
-			out.println("location.href='admin_artis.do'");
->>>>>>> 3b98d8d (아티스트 조회, 아티스트 삭제 추가)
 			out.println("</script>");
 		} else {
 			out.println("<script>");
