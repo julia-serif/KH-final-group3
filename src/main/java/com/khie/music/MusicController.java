@@ -221,15 +221,14 @@ public class MusicController {
 		
 		
 		int page;	//현재 페이지 변수
-		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}else {
 			page = 1;    // 처음으로 게시물 전체 목록 태그를 선택한 경우
 		}
 		
-		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
 		int totalRecord = this.vr_dao.getRecordCount(no);
+		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
 		model.addAttribute("totalRecord", totalRecord);
 		
 		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
