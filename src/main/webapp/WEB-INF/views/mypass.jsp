@@ -137,11 +137,11 @@
                             <br>
                         </div>
                         <div class="newsletter-form">
-                            <form action="mypay5.do">
+                            <form action="mypay5.do" >
                                 <p>12개월 특가 할인</p>
                                 <p>65% <del>88,000원</del></p>
                                 <h3>57,720원</h3>
-                                <button onclick="mypay5.do" class="btn oneMusic-btn">구독하기</button>
+                                <button  onclick="mypay5.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
  
 
     <!-- 이용권 옵션 종류 -->
-     
+    <c:if test="${dto2.user_purchase == true }"> 
     <div class="blog-area section-padding-100">
         <div class="container">
             <div class="row">
@@ -249,9 +249,7 @@
     </div>
     </div>
     </div>
-    
-
-
+    </c:if>
                 </div>
                 <!-- mypage 사이드바 -->
                 <div class="col-12 col-lg-3">
