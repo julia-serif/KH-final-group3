@@ -90,47 +90,21 @@
 	            <td> ${dto.getUser_phone() }</td>
 	         </tr>
 	         
-	         <c:if test="${dto.user_purchase == 0 }">
+	         <c:if test="${dto.user_purchase == false }">
 	         <tr>
 	            <th>이용권 소유</th>
 	            <td> 이용권 없음</td>
 	         </tr>
              </c:if>
              
-             <c:if test="${dto.user_purchase == 1 }">
+             <c:if test="${dto.user_purchase == true }">
 	         <tr>
 	            <th>이용권 소유</th>
-	            <td> 스마트 이용권 1</td>
+	            <td> 이용권 소유</td>
 	         </tr>
              </c:if>
              
-             <c:if test="${dto.user_purchase == 2 }">
-	         <tr>
-	            <th>이용권 소유</th>
-	            <td> 스마트 이용권 2</td>
-	         </tr>
-             </c:if>
              
-             <c:if test="${dto.user_purchase == 3 }">
-	         <tr>
-	            <th>이용권 소유</th>
-	            <td> 가족 할인권</td>
-	         </tr>
-             </c:if>
-             
-             <c:if test="${dto.user_purchase == 4 }">
-	         <tr>
-	            <th>이용권 소유</th>
-	            <td> 음악  감상 이용권1</td>
-	         </tr>
-             </c:if>
-             
-             <c:if test="${dto.user_purchase == 5 }">
-	         <tr>
-	            <th>이용권 소유</th>
-	            <td> 음악  감상 이용권2</td>
-	         </tr>
-             </c:if>
 	         
 	         <tr>
 	            <td colspan="2" align="center">

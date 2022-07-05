@@ -13,6 +13,7 @@ public class MemberDTO {
 	private String user_email;
 	private String user_phone;
 	private String user_purchase;
+	private String user_purchase_no;
 	private String user_date;
 	private String user_update;
 	private String user_rank;

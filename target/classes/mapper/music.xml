@@ -8,7 +8,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="MusicDAO">
+<mapper namespace="MusicDAO">	
 	
 	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
@@ -44,19 +44,19 @@
 		select * from music where m_no = #{m_no}
 	</select>
 	
-	<select id="count" resultType="int">
-		select count(*) from m_reply
+	<select id="count" resultType="int" parameterType="int">
+		select count(*) from m_reply where m_no = #{no}
 	</select>
 	
 	<select id="musicReplyList" parameterType="PageDTO" resultType="MusicReplyDTO">
 		<![CDATA[
 		select * from 
 			(select m.*, row_number() 
-				over(order by mr_no desc) rnum from m_reply m)
+				over(order by mr_no desc) rnum from m_reply m
+				where m_no = #{no})
 				where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
-	
 	
 	<insert id="music_reply" parameterType="MusicReplyDTO">
       <selectKey resultType="int" keyProperty="mr_no" order="BEFORE">
@@ -65,7 +65,10 @@
 		insert into m_reply values(#{m_no}, #{mr_no} + 1, #{mr_cont},
 		 #{mr_writer}, sysdate, '', #{mr_no} + 1, default)
 	</insert>
-	
+
+	<update id="likeUp" parameterType="int">
+		update music set m_like = m_like + 1 where m_no = #{m_no}
+	</update>
 	
 	<select id="searchVideo" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[

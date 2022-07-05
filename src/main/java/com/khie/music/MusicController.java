@@ -30,6 +30,8 @@ import com.khie.model.PlaylistDTO;
 import com.khie.model.QA_PageDTO;
 import com.khie.model.QandADAO;
 import com.khie.model.QandADTO;
+import com.khie.model.VideoReplyDAO;
+import com.khie.model.VideoReplyDTO;
 import com.khie.model.MemberDAO;
 
 @Controller
@@ -45,6 +47,8 @@ public class MusicController {
 	private MusicReplyDAO dao3;
 	@Autowired
 	private NoticeDAO dao4;
+	@Autowired
+	private VideoReplyDAO vr_dao;
 
 	@Autowired 
 	private QandADAO Qand_dao;
@@ -210,28 +214,61 @@ public class MusicController {
 			page = 1;	// 처음으로 "전체 게시물 목록" a 태그를 선택한 경우
 		}
 		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		
 		// DB 상의 전체 게시물의 수를 확인하는 메서드 호출
-		totalRecord = this.dao3.getBoardCount();
+		totalRecord = this.dao3.getBoardCount(m_no);
 		
-		PageDTO pdto = new PageDTO();
-		
-		dto = this.dao.musicCont(m_no);
+		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
+		pdto.setNo(m_no);
 		
 		List<MusicReplyDTO> replyList = this.dao3.getBoardList(pdto);
+		dto = this.dao.musicCont(m_no);
 		
 		model.addAttribute("cont", dto);
 		model.addAttribute("musicReplyList", replyList);
 		model.addAttribute("Paging", pdto);
+		model.addAttribute("totalRecord", totalRecord);
+		model.addAttribute("member", member);
 		
 		return "music_cont";
 
 	}
 
 	@RequestMapping("video.do")
-	public String video_cont(@RequestParam("no") int no, Model model) {
+	public String video_cont(HttpServletRequest request, @RequestParam("no") int no, Model model) {
 		
 		MusicDTO dto = this.dao.musicCont(no);
 		model.addAttribute("music", dto);
+		//여기까지가 동영상 표시 부분 처리.
+		
+		
+		int page;	//현재 페이지 변수
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}else {
+			page = 1;    // 처음으로 게시물 전체 목록 태그를 선택한 경우
+		}
+		
+		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
+		int totalRecord = this.vr_dao.getRecordCount(no);
+		model.addAttribute("totalRecord", totalRecord);
+		
+		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
+		pdto.setNo(no);
+		
+		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
+		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
+		
+		model.addAttribute("list", list);
+		model.addAttribute("paging", pdto);
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		model.addAttribute("member", member);
 		
 		return "video_content";
 	}
@@ -243,7 +280,7 @@ public class MusicController {
 
 		dto.setM_no(m_no);
 		dto.setMr_cont(mr_cont);
-		
+	
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 
@@ -265,6 +302,13 @@ public class MusicController {
 			out.println("location.href='music_cont.do?m_no="+m_no+"'");
 			out.println("</script>");
 		}
+		
+	}
+	
+	@RequestMapping("m_like_up.do")
+	private void likeUp(@RequestParam("m_no") int m_no) {
+		
+		this.dao.updateLike(m_no);
 		
 	}
 	
@@ -530,7 +574,6 @@ public class MusicController {
 			model.addAttribute("fail_check", 1);
 			session.setAttribute("member", null);
 			return "login";
-   // 로그인 성공시  회원 로그인 화면으로 넘어갑니다.
 		} else {
 			session.setAttribute("member", login); 
 			
@@ -539,7 +582,7 @@ public class MusicController {
 			
 			PrintWriter out = response.getWriter();
 			if(page != null && dto.getUser_rank() != "1") {
-				return "redirect:/"+page+".do";
+				return "redirect:/"+page;
 			} else {
 				return "redirect:/";
 			}
@@ -858,7 +901,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('회원 등록 성공')");
-			out.println("location.href='member.do'");
+			out.println("location.href='login.do'");
 			out.println("</script>");
 		}else {
 			out.println("<script>");

@@ -7,40 +7,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MusicReplyDAOImpl implements MusicReplyDAO {
+public class VideoReplyDAOImpl implements VideoReplyDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	@Override
-	public int getBoardCount(int no) {
-		return this.sqlSession.selectOne("count", no);
+	public int getRecordCount(int no) {
+		return this.sqlSession.selectOne("count_v_reply", no);
 	}
 
 	@Override
-	public List<MusicReplyDTO> getBoardList(PageDTO dto) {
-		return this.sqlSession.selectList("musicReplyList", dto);
+	public List<VideoReplyDTO> getVideoReplyList(PageDTO dto) {
+		return this.sqlSession.selectList("select_v_reply_list", dto);
 	}
 
 	@Override
-	public int insertBoard(MusicReplyDTO dto) {
-		return this.sqlSession.insert("music_reply", dto);
+	public int insertVideoReply(VideoReplyDTO dto) {
+		return this.sqlSession.insert("video_reply", dto);
 	}
 
 	@Override
-	public MusicReplyDTO boardCont(int no) {
+	public VideoReplyDTO videoReplyCont(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int updateBoard(MusicReplyDTO dto) {
+	public int updateVideoReply(VideoReplyDTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int deleteBoard(int no) {
+	public int deleteVideoReply(int no) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -50,5 +50,5 @@ public class MusicReplyDAOImpl implements MusicReplyDAO {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="VideoReplyDAO">
+	<select id="count_v_reply" resultType="int">
+		select count(*) from v_reply where v_no = #{no}
+	</select>
+	
+	<select id="select_v_reply_list" parameterType="PageDTO" resultType="VideoReplyDTO">
+		<![CDATA[
+			select * from
+				(select vr.*, row_number()
+					over(order by vr_no desc) rnum from v_reply vr
+					where v_no = #{no})
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
+	
+	<insert id="video_reply" parameterType="VideoReplyDTO">
+		<selectKey resultType="int" keyProperty="vr_no" order="BEFORE">
+			select nvl(max(vr_no), 0) from v_reply
+		</selectKey>
+		insert into v_reply values(#{v_no}, #{vr_no} + 1, #{vr_cont}, #{vr_writer},
+			sysdate, '', default, default)
+	</insert>
+</mapper>

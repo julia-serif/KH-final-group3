@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface MusicReplyDAO {
 	
-public int getBoardCount();
+	public int getBoardCount(int no);
 	
 	public List<MusicReplyDTO> getBoardList(PageDTO dto);
 	

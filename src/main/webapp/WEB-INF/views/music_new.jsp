@@ -194,7 +194,7 @@
   				<c:if test="${paging.endBlock < paging.totalBlock }">
   					<a href="newMusic.do?page=${paging.page + 1 }">▶</a>
   					<a href="newMusic.do?page=${paging.totalBlock }">▶▶</a>
-  				
+
   				</c:if>
   		</div>		
   		<!-- 페이징 Area end -->

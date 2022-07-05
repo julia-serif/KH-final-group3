@@ -93,53 +93,54 @@
 	            				value="${dto2.user_phone }"> </td>
 	         </tr>
 	         
-	         <c:if test="${dto2.user_purchase == 0 }">
+	         <c:if test="${dto2.user_purchase_no == 0 }">
 	         <tr>
 	            <th>이용권 소유</th>
-	            <td> <input name="user_purchase"
+	            <td> <input name="user_purchase_no"
 	            				value="이용권 없음" readonly> </td>
 	         </tr>
 	         </c:if>
 
-	         <c:if test="${dto2.user_purchase == 1 }">
+	         <c:if test="${dto2.user_purchase_no == 1 }">
 	         <tr>
 	            <th>이용권 소유</th>
 	            <td> <input name="user_purchase"
-	            				value="스마트 이용권1"> </td>
+	            				value="스마트 음악 감상1"> </td>
 	         </tr>
 	         </c:if>
 	         
-	         <c:if test="${dto2.user_purchase == 2 }">
+	         <c:if test="${dto2.user_purchase_no == 2 }">
 	         <tr>
 	            <th>이용권 소유</th>
 	            <td> <input name="user_purchase"
-	            				value="스마트 이용권2"> </td>
+	            				value="스마트 음악 감상2"> </td>
 	         </tr>
 	         </c:if>
 	         
-	         <c:if test="${dto2.user_purchase == 3 }">
+	         <c:if test="${dto2.user_purchase_no == 3 }">
 	         <tr>
 	            <th>이용권 소유</th>
 	            <td> <input name="user_purchase"
-	            				value="가족 할인 이용권"> </td>
+	            				value="가족 할인"> </td>
 	         </tr>
 	         </c:if>
 	         
-	         <c:if test="${dto2.user_purchase == 4 }">
+	         <c:if test="${dto2.user_purchase_no == 4 }">
 	         <tr>
 	            <th>이용권 소유</th>
 	            <td> <input name="user_purchase"
-	            				value="음악 감상 이용권  1"> </td>
+	            				value="음악 감상1"> </td>
 	         </tr>
 	         </c:if>
 	         
-	         <c:if test="${dto2.user_purchase == 5 }">
+	         <c:if test="${dto2.user_purchase_no == 5 }">
 	         <tr>
 	            <th>이용권 소유</th>
 	            <td> <input name="user_purchase"
-	            				value="음악 감상 이용권  2"> </td>
+	            				value="음악 감상2"> </td>
 	         </tr>
 	         </c:if>
+	         
 	         <tr>
 	            <td colspan="2" align="center">
 	               <input type="submit" value="정보 수정">&nbsp;&nbsp;&nbsp;

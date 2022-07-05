@@ -152,15 +152,7 @@
                                 <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
                             </div>
                         </div>
-                        <div class="album-info">
-<<<<<<< HEAD
-                            <a href="<%=request.getContextPath() %>/music_cont.do?m_no=1">
-                                <h5>Garage Band</h5>
-                            </a>
-                            <p>Radio Station</p>
-=======
->>>>>>> branch 'main' of https://github.com/julia-serif/KH-final-group3.git
-                        
+                        <div class="album-info">                        
                                 <h5> ${n.m_name}</h5>
                             <p> ${n.m_artist}</p>
                             <c:set var="i" value="${i + 1 }"/>

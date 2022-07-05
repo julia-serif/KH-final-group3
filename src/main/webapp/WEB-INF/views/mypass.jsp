@@ -46,7 +46,7 @@
                                                   
 
     <!-- 이용권 옵션 종류 -->
-    <c:if test="${dto2.user_purchase == 0 }">  
+    <c:if test="${dto2.user_purchase == false }">  
     <section class="newsletter-testimonials-area">
         <div class="container">
             <div class="row">
@@ -151,7 +151,7 @@
     </section>
 </c:if> 
 
-<c:if test="${dto2.user_purchase != 0 }">   
+<c:if test="${dto2.user_purchase == true }">   
  
     <!-- 이용권 옵션 종류 -->
     <div class="blog-area section-padding-100">
