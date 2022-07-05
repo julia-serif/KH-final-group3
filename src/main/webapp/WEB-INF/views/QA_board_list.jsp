@@ -41,19 +41,20 @@
                 <div class="col-12 col-lg-9" >
                     <div class="contact-content mb-100" >
                         <!-- Title -->
-                        <table border="1" cellspacing="0" width="500">
+                        <table class="table table-hover">
+       <thead>
        <tr>
          <th>게시물 번호</th>
          <th>제목</th>
          <th>작성자</th>
          <th>게시일</th>
        </tr>
+       </thead>
        
        <c:set var="QA_list" value="${QA_List}"/>
-      
-       
        <c:if test="${!empty QA_list}">
           <c:forEach items="${QA_list }" var="dto">
+            <tbody>
             <tr>
               <td>${dto.qa_no }</td>
               <td>
@@ -62,6 +63,7 @@
               <td>${dto.qa_writer }</td>
               <td>${dto.qa_date.substring(0,10) }</td>            
             </tr>  
+            </tbody>
           </c:forEach>
        </c:if>
      
@@ -75,7 +77,7 @@
       
        <tr>
         <td colspan="4" align="right">
-            <input type="button" value="게시물 등록"
+            <input type="button" value="게시물 등록" class="btn btn-default pull-right"
                     onclick="location.href='qa_insert.do'"> 
         </td>      
       </tr>

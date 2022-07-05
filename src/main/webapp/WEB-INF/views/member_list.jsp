@@ -122,17 +122,20 @@
                 <div class="col-12 col-lg-9" >
                     <div class="contact-content mb-100" >
                         <!-- Title -->
-                        <table border="1" cellspacing="0" width="400">
+                        <table class="table">
+      <thead>                 
        <tr>
          <th>회원 번호</th>
          <th>회원 아이디</th>
          <th>회원 이름</th>
          <th>가입일</th>
        </tr>
-       
+      </thead>
+      
        <c:set var="list" value="${List }"/>
        <c:if test="${!empty list }">
           <c:forEach items="${list }" var="dto">
+          <tbody>
             <tr>
               <td>${dto.getUser_no() }</td>
               <td>
@@ -140,7 +143,8 @@
               ${dto.getUser_id() }</a></td>
               <td>${dto.getUser_name() }</td>
               <td>${dto.getUser_date().substring(0,10) }</td>            
-            </tr>  
+            </tr>
+           </tbody>
           </c:forEach>
        </c:if>
      
@@ -154,7 +158,7 @@
       
        <tr>
         <td colspan="4" align="right">
-            <input type="button" value="회원등록"
+            <input type="button" value="회원등록" class="btn btn-default pull-right"
                     onclick="location.href='user_insert.do'"> 
         </td>      
       </tr>
