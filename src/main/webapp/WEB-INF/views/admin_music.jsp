@@ -136,7 +136,7 @@ function deleteMusic() {
 <br><br><br>
              <!-- 음원/아티스트 이동 바 start -->
             <div align="center">
-            	<input type="button" value="음원 목록" id="musicList" onclick="#">
+            	<input type="button" value="음원 목록" id="musicList" >
             	<input type="button" value="아티스트 목록" id="artistList" onclick="location.href='admin_artist.do'">
             </div>
             <!-- 음원/아티스트 이동 바 end -->
