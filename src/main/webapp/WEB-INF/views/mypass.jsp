@@ -207,6 +207,7 @@
        			}else { return; }" class="btn oneMusic-btn">취소하기</button>
         
             </c:if>   
+          
             
             <c:if test="${dto2.user_purchase_no == 4 }">
             <h4>이용권 사용 안내</h4>
