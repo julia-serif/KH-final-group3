@@ -55,7 +55,7 @@
            <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
            <input type="hidden" name="user_purchase" value="${dto.user_purchase }">
            
-           <table border="1" cellspacing="0" width="350">
+           <table class="table table-bordered">
 
          <tr>
            <th>고객 비밀번호</th>
@@ -64,8 +64,8 @@
          
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="결제하기">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
+              <input type="submit" value="결제하기" class="btn btn-success">&nbsp;&nbsp;&nbsp;
+              <input  value="취소하기" onclick="history.back()" class="btn btn-primary">
              </td>
          </tr>
        </table>

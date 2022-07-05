@@ -14,12 +14,22 @@
     <!-- Title -->
     <title>One Music - Modern Music HTML5 Template</title>
 
+
+
     <!-- Favicon -->
     <link rel="icon" href="<%= request.getContextPath() %>/resources/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
+	 <!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	 
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	 
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -43,29 +53,56 @@
       <div >
       <!-- Post Thumb -->
                         
+
        <!-- 회원 상세 페이지 -->
        <div align="center">
-       
+      
+         <h3>회원 가입 페이지</h3>
+      
       <br>
-
+      
       <form method="post" 
-          action="<%=request.getContextPath()%>/pass_change_Ok.do">
-           <c:set var="dto" value="${member }" /> 
-           <input type="hidden" name="user_no" value="${dto.user_no }">
-           <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
-           <input type="hidden" name="user_purchase" value="${dto.user_purchase }">
+          action="<%=request.getContextPath()%>/member_insert_ok.do">
            
-           <table class="table table-bordered">
+           <table class="table table-boardered">
+         <tr>
+           <th>회원아이디</th>
+           <td><input type="text" class="form-control" name="user_id" placeholder="id를 넣으세요"></td>
+         </tr>
 
          <tr>
-           <th>고객 비밀번호</th>
-           <td> <input type="password" name="user_pwd"> </td>
+           <th>회원 이름</th>
+           <td> <input type="text" class="form-control" name="user_name" placeholder="이름을 넣으세요"> </td>
          </tr>
          
          <tr>
-            <td colspan="2" align="center">
-              <input type="submit" value="결제하기" class="btn btn-success">&nbsp;&nbsp;&nbsp;
-              <input  value="취소하기" onclick="history.back()" class="btn btn-primary">
+           <th>회원 비밀번호</th>
+           <td> <input type="password" class="form-control" name="user_pwd" placeholder="비밀번호를  넣어주세요"> </td>
+         </tr>
+         
+         <tr>
+           <th>회원 성별</th>
+           
+           <td> 
+           <input  type="radio" name="user_gender" value="남성">남성 &nbsp;&nbsp;&nbsp;
+           <input  type="radio" name="user_gender" value="여성">여성 &nbsp;&nbsp;&nbsp;
+            </td>
+         </tr>
+         
+         <tr>
+           <th>회원 이메일</th>
+           <td> <input type="email" class="form-control" name="user_email"> </td>
+         </tr>
+         
+         <tr>
+           <th>회원 연락처</th>
+           <td> <input type="tel" class="form-control" name="user_phone"> </td>
+         </tr>
+  
+         <tr>
+            <td colspan="3" align="center">
+              <input type="submit" class="btn btn-primary" value="회원등록">&nbsp;&nbsp;&nbsp;
+              <input type="reset" class="btn btn-danger" value="다시작성">
              </td>
          </tr>
        </table>

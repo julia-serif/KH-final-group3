@@ -52,12 +52,12 @@
 	   <br>
  
 	   	  
-	   	  <form method="post" 
+	   	  <form method="post" class="form-horizontal" 
           action="<%=request.getContextPath()%>/qa_update_ok.do">
           
 	      <input type="hidden" name="qa_no" value="${dto.qa_no }">
 	   	  <input type="hidden" name="db_pwd" value="${dto.qa_pwd }">
-	      <table border="1" cellspacing="0" width="600">
+	      <table class="table table-striped table-bordered">
          
 	      <tr>
 	         <th>글 제목</th>
@@ -97,8 +97,8 @@
 	      
 	      <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="글 등록">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
+              <input type="submit" class="btn btn-primary" value="글 등록">&nbsp;&nbsp;&nbsp;
+              <input type="reset" class="btn btn-primary" value="다시작성">
              </td>
          </tr>
 	   </table>

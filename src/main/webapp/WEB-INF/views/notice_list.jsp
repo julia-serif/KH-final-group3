@@ -41,7 +41,8 @@
                 <div class="col-12 col-lg-9" >
                     <div class="contact-content mb-100" >
                         <!-- Title -->
-                        <table border="1" cellspacing="0" width="500">
+                        <table class="table table-hover" >
+       <thead>
        <tr>
          <th>게시판 No.</th>
          <th>글 제목</th>
@@ -49,10 +50,12 @@
          <th>조회수</th>
          <th>작성일자</th>
        </tr>
+      </thead>
        
        <c:set var="list" value="${List }"/>    
        <c:if test="${!empty list }">
           <c:forEach items="${list }" var="dto">
+          <tbody>
             <tr>
               <td>${dto.getMusic_no() }</td>
               <td>
@@ -62,6 +65,7 @@
               <td>${dto.getMusic_hit() }</td>
               <td>${dto.getMusic_date().substring(0,10) }</td>            
             </tr>  
+           </tbody>
           </c:forEach>
        </c:if>
      
@@ -74,9 +78,9 @@
       </c:if>
       
        <tr>
-        <td colspan="4" align="right">
-            <input type="button" value="글쓰기"
-                    onclick="location.href='notice_write.do'"> 
+        <td colspan="5" align="right">
+            <input type="button" value="글쓰기" class="btn btn-info float-right"
+                    onclick="location.href='notice_write.do'" > 
         </td>      
       </tr>
      </table>

@@ -136,7 +136,7 @@ function deleteMusic() {
 <br><br><br>
              <!-- 음원/아티스트 이동 바 start -->
             <div align="center">
-            	<input type="button" value="음원 목록" id="musicList" onclick="#">
+            	<input type="button" value="음원 목록" id="musicList" >
             	<input type="button" value="아티스트 목록" id="artistList" onclick="location.href='admin_artist.do'">
             </div>
             <!-- 음원/아티스트 이동 바 end -->
@@ -163,7 +163,7 @@ function deleteMusic() {
   							<tr>
  
   								<td width="7%" >
-  									<a href="#">
+  									<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${top.m_no}">
   									<!-- 음원 상세페이지로 이동 -->
   										<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="300" height="300" />
                           			</a>
@@ -176,18 +176,14 @@ function deleteMusic() {
                              		   	</a>
                             	 </td>
                             	 <td width="18%" align="right">
-                            	  <a href="#">
-                            	  <!-- 플레이 리스트에 담기 -->
-                             	 	  <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
-                             	   </a>
-                             	   &nbsp; &nbsp; &nbsp;
-                               	  <a href="#">
+                            	
+                               	  <a href="<%=request.getContextPath()%>/video.do?no=${top.m_no}">
                                  <!-- 뮤비 페이지로 이동 -->
                                		 <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
                                	 </a>
                                	 &nbsp; &nbsp; &nbsp;
                                	 <!-- 수정 페이지로 이동 -->
-                               	 	<input type="button" value="수정" onclick="location.href='#?no=${top.m_no}'">
+                               	 	<input type="button" value="수정" onclick="location.href='admin_music_update.?no=${top.m_no}'">
                                	 
                             	&nbsp; || &nbsp;
                             	 <!-- 삭제 페이지로 이동 -->

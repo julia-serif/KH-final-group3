@@ -43,29 +43,56 @@
       <div >
       <!-- Post Thumb -->
                         
+
        <!-- 회원 상세 페이지 -->
        <div align="center">
-       
+      
+         <h3>회원 가입 페이지</h3>
+      
       <br>
-
+      
       <form method="post" 
-          action="<%=request.getContextPath()%>/pass_change_Ok.do">
-           <c:set var="dto" value="${member }" /> 
-           <input type="hidden" name="user_no" value="${dto.user_no }">
-           <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
-           <input type="hidden" name="user_purchase" value="${dto.user_purchase }">
+          action="<%=request.getContextPath()%>/user_insert_ok.do">
            
-           <table class="table table-bordered">
+           <table border="1" cellspacing="0" width="350">
+         <tr>
+           <th>회원아이디</th>
+           <td><input name="user_id"></td>
+         </tr>
 
          <tr>
-           <th>고객 비밀번호</th>
+           <th>회원 이름</th>
+           <td> <input name="user_name"> </td>
+         </tr>
+         
+         <tr>
+           <th>회원 비밀번호</th>
            <td> <input type="password" name="user_pwd"> </td>
          </tr>
          
          <tr>
-            <td colspan="2" align="center">
-              <input type="submit" value="결제하기" class="btn btn-success">&nbsp;&nbsp;&nbsp;
-              <input  value="취소하기" onclick="history.back()" class="btn btn-primary">
+           <th>회원 성별</th>
+           
+           <td> 
+           <input  type="radio" name="user_gender" value="남성">남성 &nbsp;&nbsp;&nbsp;
+           <input  type="radio" name="user_gender" value="여성">여성 &nbsp;&nbsp;&nbsp;
+            </td>
+         </tr>
+         
+         <tr>
+           <th>회원 이메일</th>
+           <td> <input name="user_email"> </td>
+         </tr>
+         
+         <tr>
+           <th>회원 연락처</th>
+           <td> <input name="user_phone"> </td>
+         </tr>
+  
+         <tr>
+            <td colspan="3" align="center">
+              <input type="submit" value="회원등록">&nbsp;&nbsp;&nbsp;
+              <input type="reset" value="다시작성">
              </td>
          </tr>
        </table>

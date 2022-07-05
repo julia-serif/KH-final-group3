@@ -28,7 +28,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>MyPage</h2>
+            <h2>공지사항</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -56,7 +56,7 @@
            <input type="hidden" name="music_no" value="${dto.music_no }">
            <input type="hidden" name="db_pwd" value="${dto.music_pwd }">
            
-           <table border="1" cellspacing="0" width="350">
+           <table class="table table-bordered">
 
          <tr>
            <th>삭제할 글 비밀번호</th>
@@ -65,8 +65,8 @@
          
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="글삭제">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
+              <input type="submit" value="글삭제" class="btn btn-success">&nbsp;&nbsp;&nbsp;
+              <input type="reset" value="다시작성" class="btn btn-primary">
              </td>
          </tr>
        </table>

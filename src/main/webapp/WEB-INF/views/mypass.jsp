@@ -40,13 +40,15 @@
             <div class="row">
                 <div class="col-12 col-lg-9">
                   <c:set var="dto2" value="${member2 }" />
-                  <input type="hidden" name="user_no" value="${dto.user_no }">
-                  <input type="hidden" name="user_purchase" value="${dto.user_purchase }">  
+                  <input type="hidden" name="user_no" value="${dto2.user_no }">
+                  <input type="hidden" name="user_purchase" value="${dto2.user_purchase }">  
+                  <input type="hidden" name="user_purchase_no" value="${dto2.user_purchase_no }"> 
                 
                                                   
 
     <!-- 이용권 옵션 종류 -->
-    <c:if test="${dto2.user_purchase == false }">  
+    <c:if test="${dto2.user_purchase == false }"> 
+    <c:if test="${dto2.user_purchase_no == 0 }">  
     <section class="newsletter-testimonials-area">
         <div class="container">
             <div class="row">
@@ -55,14 +57,14 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <p>스마트 음악 감상1</p>          
+                            <h4 align="center">스마트 음악 감상1</h4>         
                             <br>
                         </div>
                         <div class="newsletter-form">
                             <form action="mypay.do">
-                                <p>첫달 100원</p>
-                                <p>98% <del>7,400원</del></p>
-                                <h3>100원</h3>
+                                <p align="center">첫달 100원</p>
+                                <p align="center">98% <del>7,400원</del></p>
+                                <h3 align="center">100원</h3>
                                 <button onclick="mypay.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
@@ -73,14 +75,14 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <p>스마트 음악 감상2</p>          
+                            <h4 align="center">스마트 음악 감상2</h4>         
                             <br>
                         </div>
                         <div class="newsletter-form">
                             <form action="mypay2.do">
-                                <p>6개월 특가 할인</p>
-                                <p>34% <del>7,400원</del></p>
-                                <h3>4,900원</h3>
+                                <p align="center">6개월 특가 할인</p>
+                                <p align="center">34% <del>7,400원</del></p>
+                                <h3 align="center">4,900원</h3>
                                 <button onclick="mypay2.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
@@ -94,12 +96,13 @@
                             <h4 align="center">가족 할인</h4>         
                             <br>
                         </div>
-                        <div class="newsletter-form">
+                        <div class="newsletter-form" >
                             <form action="mypay3.do">
                                 <p align="center">6개월 특가 할인</p>
                                 <p align="center">34% <del>17,300원</del></p>
                                 <h3 align="center">9,900원</h3>
-                                <button onclick="mypay3.do" class="btn oneMusic-btn">구독하기</button>
+                                 <br>
+                                 <p align="center"><button onclick="mypay3.do" class="btn oneMusic-btn">구독하기</button></p>
                             </form>
                         </div>
                     </div>
@@ -113,14 +116,14 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <h4>음악 감상1</h4>         
+                            <h4 align="center">음악 감상1</h4>         
                             <br>
                         </div>
                         <div class="newsletter-form">
                             <form action="mypay4.do">
-                                <p>3개월 특가 할인</p>
-                                <p>50% <del>22,200원</del></p>
-                                <h3>11,100원</h3>
+                                <p align="center">3개월 특가 할인</p>
+                                <p align="center">50% <del>22,200원</del></p>
+                                <h3 align="center">11,100원</h3>
                                 <button onclick="mypay4.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
@@ -131,15 +134,15 @@
                 <div class="col-12 col-lg-5">
                     <div class="newsletter-area mb-100">
                         <div class="section-heading text-left mb-50">
-                            <h4>음악 감상2</h4>         
+                            <h4 align="center">음악 감상2</h4>         
                             <br>
                         </div>
                         <div class="newsletter-form">
-                            <form action="mypay5.do">
-                                <p>12개월 특가 할인</p>
-                                <p>65% <del>88,000원</del></p>
-                                <h3>57,720원</h3>
-                                <button onclick="mypay5.do" class="btn oneMusic-btn">구독하기</button>
+                            <form action="mypay5.do" >
+                                <p align="center">12개월 특가 할인</p>
+                                <p align="center">65% <del>88,000원</del></p>
+                                <h3 align="center">57,720원</h3>
+                                <button  onclick="mypay5.do" class="btn oneMusic-btn">구독하기</button>
                             </form>
                         </div>
                     </div>
@@ -150,67 +153,163 @@
         </div>        
     </section>
 </c:if> 
+</c:if>
 
-<c:if test="${dto2.user_purchase == true }">   
  
+
     <!-- 이용권 옵션 종류 -->
+    
+    <c:if test="${dto2.user_purchase_no == 1 }">
     <div class="blog-area section-padding-100">
         <div class="container">
             <div class="row">
-<div class="col-12 col-lg-10">
+     <div class="col-12 col-lg-10">
        <div class="newsletter-area mb-100">
         <div class="section-heading text-left mb-50">
-            <h4>이용권 사용 안내</h4>   
-            <c:if test="${dto2.user_purchase == 1 }">
+          
+               
+            
+            <h4>이용권 사용 안내</h4>
             <b>스마트 음악 감상1</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
             <p>음악 감상 : 무제한</p>
-
+            
+            <p></p>   
+            <br>
+            <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
+				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
+       			}else { return; }" class="btn oneMusic-btn">취소하기</button>
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
             </c:if>
-            <c:if test="${dto2.user_purchase == 2 }">
+            
+            
+            
+           
+    <c:if test="${dto2.user_purchase_no == 2 }">
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+     <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+          
+               
+            
+            <h4>이용권 사용 안내</h4>
             <b>스마트 음악 감상2</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
             <p>음악 감상 : 무제한</p>
-            </c:if> 
             
-            <c:if test="${dto2.user_purchase == 3 }">
-            <b>가족할인</b>
-            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
-            <p>음악 감상 : 무제한   최대 공유 4인</p>
-            </c:if>   
-            
-            <c:if test="${dto2.user_purchase == 4 }">
-            <b> 음악 감상1</b>
-            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
-            <p>음악 감상 : 무제한</p>
-
-            </c:if>  
-            
-            <c:if test="${dto2.user_purchase == 5 }">
-            <b>음악 감상2</b>
-            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
-            <p>음악 감상 : 무제한</p>
-
-            </c:if>
-             <br>
-        </div>
-       <div class="newsletter-form">
-        
-         <p></p>   
-         <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
+            <p></p>   
+            <br>
+            <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
 				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
        			}else { return; }" class="btn oneMusic-btn">취소하기</button>
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
+            </c:if>
+            
           
-         </div>
-       </div>
-    </div>
-    </div>
-    </div>
-    </div>
-  
-</c:if>
-
-                </div>
+           
+    <c:if test="${dto2.user_purchase_no == 3 }">
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+     <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+          
+               
+            
+            <h4>이용권 사용 안내</h4>
+            <b>가족 할인권</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한  4인 공유 가능</p>
+            
+            <p></p>   
+            <br>
+            <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
+				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
+       			}else { return; }" class="btn oneMusic-btn">취소하기</button>
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
+            </c:if>
+            
+            
+            
+    <c:if test="${dto2.user_purchase_no == 4 }">
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+     <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+          
+               
+            
+            <h4>이용권 사용 안내</h4>
+            <b>음악 감상1</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한  </p>
+            
+            <p></p>   
+            <br>
+            <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
+				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
+       			}else { return; }" class="btn oneMusic-btn">취소하기</button>
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
+            </c:if>
+            
+            
+           
+    <c:if test="${dto2.user_purchase_no == 5 }">
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+     <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+          
+               
+            
+            <h4>이용권 사용 안내</h4>
+            <b>음악 감상2</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한  </p>
+            
+            <p></p>   
+            <br>
+            <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
+				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
+       			}else { return; }" class="btn oneMusic-btn">취소하기</button>
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
+            </c:if>
+            
+            
+          </div> 
                 <!-- mypage 사이드바 -->
                 <div class="col-12 col-lg-3">
                     <div class="blog-sidebar-area">

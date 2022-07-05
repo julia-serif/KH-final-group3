@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD(Document Type Definition)
+	 - 작성한 문서가 어떤문서인지에 대해서 정의하는 것 
+	 - 하나의 시스템 내에서 사용할 XML 데엍의 구조를 정의하여 유효성을 점검시 사용함 -->
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace="ArtistDAO">
+ 
+ 	<select id="selectArtist" parameterType="PageDTO" resultType="ArtistDTO">
+ 	<![CDATA[
+			select * from
+				(select m.*, row_number()
+					over(order by m_artist_no desc) rnum from music_artist m)
+					where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+ 	
+ 	</select>
+ 	<select id="selectArtistNo" resultType="int">
+ 		select max(m_artist_no) from music_artist
+ 	</select>
+ 
+ 	<insert id="insertArtist" parameterType="ArtistDTO">
+ 		insert into music_artist values(#{m_artist_no},#{m_artist},#{m_artist_img})
+ 	
+ 	</insert>
+ 	
+ 	<delete id="deleteArtist" parameterType="int">
+ 		delete from music_artist where m_artist_no = #{m_artist_no}
+ 	</delete>
+ </mapper>
