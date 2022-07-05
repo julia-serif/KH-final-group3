@@ -11,7 +11,7 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-
+	
 	@Override
 	public List<MusicDTO> selectLike(PageDTO dto) {
 		return this.sqlSession.selectList("select_like", dto);
@@ -37,6 +37,10 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 		this.sqlSession.update("watch_record", dto);
 	}
 
+	@Override
+	public List<PlaylistDTO> seePlaylist(PlaylistDTO dto) {
+		return this.sqlSession.selectList("see_playlist", dto);
+	}
 	@Override
 	public int musicToPlaylist(PlaylistDTO dto) {
 		return this.sqlSession.insert("to_playlist", dto);
@@ -95,10 +99,5 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	@Override
 	public void updateMusiclistSequence(PlaylistDTO dto) {
 		this.sqlSession.update("update_m_seq", dto);
-	}
-
-	@Override
-	public List<PlaylistDTO> updatePlaylistCount(PlaylistDTO dto) {
-		return this.sqlSession.selectList("playlist_order", dto);
 	}
 }
