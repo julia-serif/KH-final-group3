@@ -43,43 +43,27 @@
 		}
     </style>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+		window.onload = function () {
+			$(".reply_field").hide();
+		};
+	</script>
 	<script type="text/javascript">
 	
 		function nested_reply() {
 			
 			var uid = '${member}';
-			
 			if(!uid){
 				window.location.href = "${pageContext.request.contextPath}/login.do";
 				
 			} else {
-				
-				/* $.ajax({
-					type: "post",
-					url: "${pageContext.request.contextPath}/resources/ajax/nested_reply.jsp",
-					data: {vr_no: ${reply.getVr_no() }},
-					dataType: "html",
-					success: function(data) {
-						$(".single-new-item").append(data);	//vr_no 해당하는것만 특정 가능하게?
-						if(){
-							//안 펼쳐졌을때 펼치기
-						} else {
-							//펼쳐졌을때 닫기
-						}
-					},
-					error: function(data) {
-						//
-					}
-				}); */
-				
-			}
-			
-			
-			
-			
+				if($(".reply_field").is(":hidden")){
+					$(".reply_field").show();
+				} else {
+					$(".reply_field").hide();
+				}
+			}	
 		}
-	
-	
 	</script>
 </head>
 <body>
@@ -195,6 +179,14 @@
 		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
 		                            </div>
 		                        </div>
+		                        <div class="reply_field">
+			                        <form action="<%=request.getContextPath() %>/video_reply_write.do" method="post" autocomplete="off">
+		                            	<input type="hidden" name="v_no" value="${music.getM_no() }">
+		                                <textarea name="vr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"></textarea>
+		                                <button type="button" class="oneMusic-btn-small" style="float: right;">등록</button>
+		                            </form>
+		                            <hr style="margin-top: 50px;">
+	                            </div>
 	                        </c:forEach>
                         </c:if>
                         
