@@ -66,7 +66,7 @@
 										<h5>&nbsp; &nbsp; ${like.getM_name() }</h5><p>&nbsp;&nbsp;&nbsp; ${like.getM_artist() }</p>
 									</a>
 									</td>
-									<td width="30%"><a href="#">
+									<td width="30%"><a href="<%=request.getContextPath() %>/add_to_playlist.do?m_no=${like.getM_no() }">
 										<!-- 플레이 리스트에 담기 -->
 										<img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
 									</a> &nbsp;&nbsp;&nbsp;
