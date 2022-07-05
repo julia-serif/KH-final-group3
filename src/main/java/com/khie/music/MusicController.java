@@ -1679,6 +1679,42 @@ public class MusicController {
 		}
 	}
 	
+	//관리자 음원 수정
+	@RequestMapping("admin_music_update.do")
+	public String upadteMusic(@RequestParam("no") int m_no, MusicDTO dto, Model model) {
+		
+		dto = this.dao.musicCont(m_no);
+		
+		model.addAttribute("cont", dto);
+		
+		return "admin_music_update";
+
+	}
+	
+	//관리자 음원 수정 성공
+	@RequestMapping("admin_music_update_ok.do")
+	public void updateMusicOk(MusicDTO dto, HttpServletResponse response) throws IOException {
+		
+		int check = dao.updateMusic(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('음원 수정 성공')");
+			out.println("location.href='admin_Music.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('음원 수정 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
+		}
+	}
+	
+	
 	//관리자 음원 삭제
 	@RequestMapping("admin_music_delete.do")
 	public void adminDeleteMusic(HttpServletResponse response, @RequestParam("no") int m_no) throws IOException {

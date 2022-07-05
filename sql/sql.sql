@@ -59,6 +59,8 @@ create table m_reply (
     mr_layer number default 0
 );
 
+insert into m_reply values(1, 1, '첫 번째 댓글입니다.', 'admin', sysdate, '', 1, default);
+
 -- 영상별 댓글 테이블
 create table v_reply (
     v_no number references music(m_no),
