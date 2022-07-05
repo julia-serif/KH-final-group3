@@ -22,13 +22,19 @@
 	href="<%=request.getContextPath()%>/resources/style.css">
 <style type="text/css">
 
-.col-12 col-sm-6 col-md-4 col-lg-2{
-	width: 100%;
-
-}
 
 #newMusic{
 	width: 100%;
+}
+
+.album-thumb img{
+	
+	width: 80%;
+
+}
+
+#leadMoreBtn{
+	margin-left: 13%;
 }
 	
 </style>
@@ -61,7 +67,7 @@
 										<h2 data-animation="fadeInUp" data-delay="300ms">${top1.m_name}
 											<span>${top1.m_name}</span>
 										</h2>
-										<a data-animation="fadeInUp" data-delay="500ms" href="#"
+										<a data-animation="fadeInUp" data-delay="500ms" href="<%=request.getContextPath()%>/music_cont.do?m_no=${top1.m_no}"
 											class="btn oneMusic-btn mt-50">go music <i
 											class="fa fa-angle-double-right"></i></a>
 									</div>
@@ -91,7 +97,7 @@
 										<h2 data-animation="fadeInUp" data-delay="300ms">${n1.m_name}
 											<span>${n1.m_name}</span>
 										</h2>
-										<a data-animation="fadeInUp" data-delay="500ms" href="#"
+										<a data-animation="fadeInUp" data-delay="500ms" href="<%=request.getContextPath()%>/music_cont.do?m_no=${n1.m_no}"
 											class="btn oneMusic-btn mt-50">go music <i
 											class="fa fa-angle-double-right"></i></a>
 									</div>
@@ -132,14 +138,16 @@
 							<c:forEach items="${toplist}" var="top">
 								<!-- Single Album -->
 								<div class="single-album">
+								<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${top.m_no}">
 									<img
 										src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" />
 									<div class="album-info">
-										<a href="#">
+										
 											<h5>${top.m_name}</h5>
-										</a>
+										
 										<p>${top.m_artist}</p>
 									</div>
+									</a>
 								</div>
 							</c:forEach>
 						</c:if>
@@ -167,18 +175,17 @@
 			</div>
 
 			<div class="row">
-			<div id="newMusic"> 
+			<div id="newMusic" width="80%"> 
 				<!-- Single Album Area -->
 				<!--<div class="col-12 col-sm-6 col-md-4 col-lg-2" >-->
 					<c:set var="newlist" value="${newList }" />
 					<c:if test="${!empty newlist }">
 						<c:set var="i" value="1" />
-						<table>
-						<tr>
+					 <table>
+						<tr align="left"> 
 							<c:forEach var="n" items="${newlist}" begin="0" end="11">
-								
-								<td width="25%">
-								
+								<td width="300px" align="center" >
+								<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${n.m_no}">
 									<div class="single-album-area wow fadeInUp">
 
 										<div class="album-thumb">
@@ -192,17 +199,18 @@
 										</div>
 										<div class="album-info" align="center">
 
-											<a>
+											
 												<h5>${n.m_name}</h5>
-											</a>
+
 											<p>${n.m_artist}</p>
 
 										</div>
 									</div>
+								</a>
 								</td>
 								<c:if test="${i%4 == 0 }">
 									</tr>
-									<tr>
+									<tr align="left">
 								</c:if>
 								<c:set var="i" value="${i + 1 }" />
 							</c:forEach>
@@ -221,9 +229,11 @@
 					<div class="col-12">
 						<div class="load-more-btn text-center wow fadeInUp"
 							data-wow-delay="300ms">
+							<div id="leadMoreBtn">
 							<a href="<%=request.getContextPath()%>/newMusic.do"
 								class="btn oneMusic-btn">Load More <i
 								class="fa fa-angle-double-right"></i></a>
+							</div>
 						</div>
 					</div>
 				</div>
