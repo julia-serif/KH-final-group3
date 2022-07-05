@@ -20,6 +20,8 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -50,10 +52,10 @@
       
       <br>
       <c:set var="dto" value="${member }" />
-      <form method="post" 
+      <form method="post"  class="form-horizontal"
           action="<%=request.getContextPath()%>/qa_notice_write_ok.do">
            
-           <table border="1" cellspacing="0" width="500">
+           <table class="table table-striped table-bordered">
          <tr>
            <th>제목</th>
            <td> <input name="qa_title"> </td>
@@ -80,8 +82,8 @@
   
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="글 등록">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
+              <input type="submit" class="btn btn-primary" value="글 등록">&nbsp;&nbsp;&nbsp;
+              <input type="reset" class="btn btn-primary" value="다시작성">
              </td>
          </tr>
        </table>

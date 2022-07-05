@@ -20,6 +20,8 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
+    <!-- Stylesheet2 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -28,7 +30,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>MyPage</h2>
+            <h2>회원 정보</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -53,7 +55,7 @@
  
 	   	  <input type="hidden" name="user_no" value="${dto.user_no }">
 	   	  <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
-	      <table border="1" cellspacing="0" width="450">
+	      <table class="table table-striped table-bordered">
 	         <tr>
 	            <th>회원 아이디</th>
 	            <td> ${dto.getUser_id() } </td>
@@ -108,10 +110,10 @@
 	         
 	         <tr>
 	            <td colspan="2" align="center">
-	               <input type="button" value="정보 수정"
+	               <input type="button" value="정보 수정" class="btn btn-success"
 	               onclick="location.href='user_modify.do?user_no=${dto.getUser_no()}'">
 	               &nbsp;&nbsp;&nbsp;
-	               <input type="button" value="회원 탈퇴"
+	               <input type="button" value="회원 탈퇴" class="btn btn-danger"
 	               onclick="if(confirm('회원을 탈퇴 처리하시겠습니까?')) {
 	               				location.href='user_delete.do?user_no=${dto.getUser_no()}'
 	               			}else { return; }">

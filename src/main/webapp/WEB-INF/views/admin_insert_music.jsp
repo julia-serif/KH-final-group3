@@ -64,19 +64,19 @@
   							</tr>
   							<tr>
   								<td align="center"> 곡 소개 </td>
-  								<td> <input name="m_artist"></td>
+  								<td> <input name="m_cont"></td>
   							</tr>
   							<tr>
   								<td align="center"> 앨범 명 </td>
   								<td> <input name="m_album" required="required"></td>
   							</tr>
-							<tr>
+  							<tr>
   								<td align="center"> 아티스트 </td>
   								<td> <input name="m_artist" required="required"></td>
   							</tr>
   							<tr>
   								<td align="center"> mp3 파일 </td>
-  								<td> <input type="file" name="m_audio" required="required"></td>
+  								<td> <input type="file" name="file1" required="required"></td>
   							</tr>
   							<tr>
   								<td align="center"> 뮤직비디오 링크 </td>
@@ -84,7 +84,7 @@
   							</tr>
   							<tr>
   								<td align="center"> 앨범 이미지 </td>
-  								<td> <input type="file" name="m_image" required="required"></td>
+  								<td> <input type="file" name="file2" required="required"></td>
   							</tr>
   							<tr>
   								<td align="center"> 재생시간 </td>

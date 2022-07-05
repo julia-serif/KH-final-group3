@@ -20,6 +20,9 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
 </head>
 
 <body>
@@ -47,13 +50,13 @@
        <!-- 회원 상세 페이지 -->
        <div align="center">
        <c:set var="dto" value="${content1 }" />                                    
-
+       <c:set var="member" value="${member }" /> 
         
 	   <br>
  
 	   	  <input type="hidden" name="music_no" value="${dto.music_no }">
 	   	  <input type="hidden" name="db_pwd" value="${dto.music_pwd }">
-	      <table border="1" cellspacing="0" width="400">
+	      <table class="table table-striped table-bordered" >
 	      <tr>
 	         <th>작성자</th>
 	         <td> ${dto.getMusic_writer() } </td>
@@ -67,7 +70,7 @@
 	      <tr>
 	         <th>글 내용</th>
 	         <td>
-	            <textarea rows="7" cols="25" readonly>${dto.getMusic_cont() }</textarea>
+	            <textarea rows="7" cols="25" class="form-control" readonly>${dto.getMusic_cont() }</textarea>
 	         </td>
 	      </tr>
 	      
@@ -107,20 +110,31 @@
 	         </tr>
 	      </c:if>
 	      
+	      <c:if test="${member.user_rank == 1 }">
 	      <tr>
 	         <td colspan="2" align="center">
-	            <input type="button" value="글수정"
+	            <input type="button" value="글수정" class="btn btn-success"
 	               onclick="location.href='notice_modify.do?music_no=${dto.getMusic_no()}'">
 	               &nbsp;
-	            <input type="button" value="글삭제"
+	            <input type="button" value="글삭제" class="btn btn-danger"
 	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
 	               				location.href='notice_delete.do?music_no=${dto.getMusic_no()}'
 	               			}else { return; }">
 	               &nbsp;         
-	            <input type="button" value="전체목록"
+	            <input type="button" value="전체목록" class="btn btn-primary"
 	               onclick="location.href='notice_list.do?'">
 	         </td>
-	      </tr>
+	         </tr>
+	         </c:if>
+	         <c:if test="${member.user_rank != 1 }">
+	        <tr>
+	        <td colspan="2" align="center">
+	        <input type="button" value="전체목록" class="btn btn-primary"
+	               onclick="location.href='notice_list.do?'">
+	        </tr>
+	          </c:if>
+	      
+	      
 	   </table>
 	</div>
                         </div>

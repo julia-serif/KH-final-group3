@@ -47,12 +47,12 @@
        <!-- 회원 상세 페이지 -->
        <div align="center">
        <c:set var="dto" value="${content2 }" />                                    
-        
+       <c:set var="member" value="${member }" /> 
 	   <br>
  
 	   	  <input type="hidden" name="qa_no" value="${dto.qa_no }">
 	   	  <input type="hidden" name="db_pwd" value="${dto.qa_pwd }">
-	      <table border="1" cellspacing="0" width="400">
+	      <table class="table table-striped table-bordered">
 
 	      <tr>
 	         <th>글 제목</th>
@@ -80,7 +80,7 @@
 	      <tr>
 	         <th>글 내용</th>
 	         <td>
-	            <textarea rows="10" cols="40" readonly>${dto.getQa_cont() }</textarea>
+	            <textarea rows="10" cols="40" class="form-control" readonly>${dto.getQa_cont() }</textarea>
 	         </td>
 	      </tr>
 	      
@@ -112,22 +112,39 @@
 	         </tr>
 	      </c:if>
 	      
+	      <c:if test="${member.user_rank == 1 }">
 	      <tr>
 	         <td colspan="2" align="center">
-	            <input type="button" value="글수정"
+	            <input type="button" value="글수정" class="btn btn-success"
 	               onclick="location.href='qa_modify.do?qa_no=${dto.getQa_no()}'">
 	               &nbsp;
-	            <input type="button" value="글삭제"
+	            <input type="button" value="글삭제"   class="btn btn-danger"
 	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
 	               				location.href='qa_delete.do?qa_no=${dto.getQa_no()}'
 	               				}else { return; }">
 	               &nbsp;         
-	            <input type="button" value="전체목록"
+	            <input type="button" value="전체목록" class="btn btn-primary"
 	               onclick="location.href='qanda_list.do?'">
-	            <input type="button" value="답변 달기"
+	            <input type="button" value="답변 달기" class="btn btn-success"
 	               onclick="location.href='qanda_reply.do?qa_no=${dto.getQa_no()}'">   	               
 	         </td>
 	      </tr>
+	      </c:if>
+	      <c:if test="${member.user_rank != 1 }">
+	      <tr>
+	        <td colspan="2" align="center">
+	            <input type="button" value="글수정" class="btn btn-success"
+	               onclick="location.href='qa_modify.do?qa_no=${dto.getQa_no()}'">
+	               &nbsp; 
+	               <input type="button" value="글삭제"   class="btn btn-danger"
+	               onclick="if(confirm('게시글을 삭제하시겠습니까?')) {
+	               				location.href='qa_delete.do?qa_no=${dto.getQa_no()}'
+	               				}else { return; }">
+	               &nbsp;
+	               <input type="button" value="전체목록" class="btn btn-primary"
+	               onclick="location.href='qanda_list.do?'">				
+	      </tr>
+	      </c:if> 
 	   </table>
 	</div>
                         </div>

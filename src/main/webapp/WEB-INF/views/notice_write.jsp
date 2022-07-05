@@ -19,7 +19,9 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
-
+     
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -28,7 +30,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
-            <h2>MyPage</h2>
+            <h2>공지사항 글쓰기</h2>
         </div>
     </section>
     <!-- ##### Breadcumb Area End ##### -->
@@ -44,45 +46,43 @@
       <!-- Post Thumb -->
                         
 
-       <!-- 회원 상세 페이지 -->
+       <!-- 공지사항 글쓰기 -->
        <div align="center">
+
       
-         <h3>회원 가입 페이지</h3>
-      
-      <br>
-      
-      <form method="post" 
+      <form method="post" class="form-horizontal" 
           action="<%=request.getContextPath()%>/notice_write_ok.do">
            
-           <table border="1" cellspacing="0" width="500">
+           <table class="table table-striped table-bordered">
          <tr>
            <th>작성자</th>
-           <td><input  name="music_writer" value="관리자" readonly></td>
+           <td><input  class="form-control" name="music_writer" value="관리자" readonly></td>
          </tr>
-      
+      <br>
          <tr>
            <th>제목</th>
-           <td> <input name="music_title"> </td>
+           <td> <input class="form-control" name="music_title"> </td>
          </tr>
-         
+         <br>
          <tr>
            <th>비밀번호</th>
-           <td> <input type="password" name="music_pwd"> </td>
+           <td> <input type="password"  class="form-control" name="music_pwd"> </td>
          </tr>
-         
+         <br>
          
          <tr>
            <th>내 용</th>
            <td> 
-           <textarea rows="7"cols="50" name="music_cont"></textarea>  
+           <textarea rows="7"cols="50"  class="form-control" name="music_cont"></textarea>  
            </td>
          </tr>
          
+         <br> <br>
   
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="글 등록">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
+              <input type="submit" class="btn btn-primary" value="글 등록">&nbsp;&nbsp;&nbsp;
+              <input type="reset" class="btn btn-primary" value="다시작성">
              </td>
          </tr>
        </table>

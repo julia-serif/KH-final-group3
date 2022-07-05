@@ -233,10 +233,9 @@
 		                            </div>
 		                            <div>
 		                            	<c:if test="${reply.getMr_writer() == member.getUser_id() }">
-		                            		<input type="hidden" name="m_no" value="${dto.getM_no() }">
 			                            	<button type="button" class="oneMusic-btn-small" 
 			                            		onclick="if(confirm('정말로 삭제하시겠습니까?')) {
-													location.href='music_reply_delete.do?mr_no=${reply.getMr_no() }&page=${paging.page }'
+													location.href='music_reply_delete.do?mr_no=${reply.getMr_no() }&page=${paging.page }&m_no=${dto.getM_no() }'
 												}else {return;}">삭제</button>
 			                            </c:if>
 		                            <button type="button" class="oneMusic-btn-small">댓글</button>

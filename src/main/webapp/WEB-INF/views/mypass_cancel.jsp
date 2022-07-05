@@ -54,7 +54,7 @@
            <input type="hidden" name="user_no" value="${dto.user_no }">
            <input type="hidden" name="db_pwd" value="${dto.user_pwd }">
            <input type="hidden" name="user_purchase" value="${dto.user_purchase }">
-           <table border="1" cellspacing="0" width="350">
+           <table class="table table-bordered">
 
          <tr>
            <th> 사용자 비밀번호</th>
@@ -63,8 +63,8 @@
          
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="회원권 취소">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
+              <input type="submit" value="회원권 취소" class="btn btn-success">&nbsp;&nbsp;&nbsp;
+              <input type="reset" value="다시작성" class="btn btn-primary">
              </td>
          </tr>
        </table>
