@@ -163,7 +163,7 @@ function deleteMusic() {
   							<tr>
  
   								<td width="7%" >
-  									<a href="#">
+  									<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${top.m_no}">
   									<!-- 음원 상세페이지로 이동 -->
   										<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="300" height="300" />
                           			</a>
@@ -176,12 +176,8 @@ function deleteMusic() {
                              		   	</a>
                             	 </td>
                             	 <td width="18%" align="right">
-                            	  <a href="#">
-                            	  <!-- 플레이 리스트에 담기 -->
-                             	 	  <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
-                             	   </a>
-                             	   &nbsp; &nbsp; &nbsp;
-                               	  <a href="#">
+                            	
+                               	  <a href="<%=request.getContextPath()%>/video.do?no=${top.m_no}">
                                  <!-- 뮤비 페이지로 이동 -->
                                		 <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
                                	 </a>
