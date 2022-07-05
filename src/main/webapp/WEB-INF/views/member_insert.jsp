@@ -72,7 +72,11 @@
          
          <tr>
            <th>회원 성별</th>
-           <td> <input name="user_gender"> </td>
+           
+           <td> 
+           <input  type="radio" name="user_gender" value="남성">남성 &nbsp;&nbsp;&nbsp;
+           <input  type="radio" name="user_gender" value="여성">여성 &nbsp;&nbsp;&nbsp;
+            </td>
          </tr>
          
          <tr>
@@ -86,7 +90,7 @@
          </tr>
   
          <tr>
-            <td colspan="2" align="center">
+            <td colspan="3" align="center">
               <input type="submit" value="회원등록">&nbsp;&nbsp;&nbsp;
               <input type="reset" value="다시작성">
              </td>
