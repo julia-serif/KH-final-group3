@@ -71,7 +71,7 @@
 	   		select max(mr_no) from m_reply
 		</selectKey>
 			insert into m_reply values(#{m_no}, #{mr_no} + 1, #{mr_cont},
-			#{mr_writer}, sysdate, '', #{mr_group} + 1, 1)
+			#{mr_writer}, sysdate, '', #{mr_group}, 1)
 	</insert>
 
 	<update id="likeUp" parameterType="int">

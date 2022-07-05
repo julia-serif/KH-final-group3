@@ -243,8 +243,9 @@
 		                        <div class="single-new-item d-flex align-items-center justify-content-between">
 		                            <div class="first-part d-flex align-items-center">
 		                            	<c:if test="${reply.getMr_layer() != 0 }">
-											<c:forEach begin="1" end="${reply.getMr_layer()+3 }">
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<c:forEach begin="1" end="${reply.getMr_layer() }">
+												<img alt="" src="<%= request.getContextPath() %>/resources/img/bg-img/right-arrow.png"
+													width="50" height="50">&nbsp;&nbsp;&nbsp;
 											</c:forEach>
 										</c:if>
 		                                <div class="thumbnail">
