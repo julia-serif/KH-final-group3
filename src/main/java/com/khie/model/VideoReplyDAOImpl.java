@@ -40,9 +40,8 @@ public class VideoReplyDAOImpl implements VideoReplyDAO {
 	}
 
 	@Override
-	public int deleteVideoReply(int no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteVideoReply(int vr_no) {
+		return this.sqlSession.delete("delete_v_reply", vr_no);
 	}
 
 	@Override

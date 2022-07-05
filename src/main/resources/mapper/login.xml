@@ -65,7 +65,10 @@
 	</select>
 	
 	<insert id="add" parameterType="com.khie.model.MemberDTO">
-	 insert into music_member values((select max(user_no) from music_member) +1,
+		<selectKey keyProperty="user_no" resultType="int" order="BEFORE">
+			select max(user_no) from music_member
+		</selectKey>
+	 insert into music_member values(#{user_no} +1,
 	    #{user_id}, #{user_pwd},#{user_name},#{user_gender}, 
 	    #{user_email}, #{user_phone},'false','0', sysdate,'',2)
 	</insert>
@@ -95,7 +98,7 @@
 	<update id="change2" parameterType="com.khie.model.MemberDTO">
 	 
 		update music_member set user_purchase = 'true',
-               user_purchase_no = '1' 
+               user_purchase_no = '2' 
 		       where user_no = #{user_no}
      
 	</update>
@@ -103,7 +106,7 @@
 	<update id="change3" parameterType="com.khie.model.MemberDTO">
 	 
 		update music_member set set user_purchase = 'true',
-               user_purchase_no = '1' 
+               user_purchase_no = '3' 
 		       where user_no = #{user_no}
      
 	</update>
@@ -111,7 +114,7 @@
 	<update id="change4" parameterType="com.khie.model.MemberDTO">
 	 
 		update music_member set user_purchase = 'true',
-               user_purchase_no = '1' 
+               user_purchase_no = '4' 
 		       where user_no = #{user_no}
      
 	</update>
@@ -119,7 +122,7 @@
 	<update id="change5" parameterType="com.khie.model.MemberDTO">
 	 
 		update music_member set user_purchase = 'true',
-               user_purchase_no = '1' 
+               user_purchase_no = '5' 
 		       where user_no = #{user_no}
      
 	</update>
@@ -127,7 +130,8 @@
 	
 	<update id="cancle" parameterType="com.khie.model.MemberDTO">
 	 
-		update music_member set user_purchase = 0 
+		update music_member set user_purchase = 'false',
+		       user_purchase_no = '0' 
 		       where user_no = #{user_no}
      
 	</update>

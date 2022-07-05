@@ -149,7 +149,10 @@
 		                            </div>
 		                            <div>
 		                            	<c:if test="${reply.getVr_writer() == member.getUser_id() }">
-			                            	<button type="button" class="oneMusic-btn-small">삭제</button>
+			                            	<button type="button" class="oneMusic-btn-small"
+			                            	onclick="if(confirm('정말로 삭제하시겠습니까?')) { 
+			                            		location.href='video_reply_delete.do?v_no=${reply.getV_no() }&vr_no=${reply.getVr_no() }' }
+			                            		else { return; }">삭제</button>
 			                            </c:if>
 		                            <button type="button" class="oneMusic-btn-small">댓글</button>
 		                            </div>

@@ -305,12 +305,49 @@ public class MusicController {
 		
 	}
 	
+	@RequestMapping("music_reply_delete.do")
+	private void deleteMusicReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
+			@RequestParam("page") int page, Model model, HttpServletResponse response) throws IOException {
+		
+		int check = this.dao3.deleteBoard(mr_no);		
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('삭제 성공')");
+			out.println("location.href='music_cont.do?m_no="+m_no);
+			out.println("</script>");
+			
+		} else {
+			out.println("<script>");
+			out.println("alert('삭제 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		
+		
+	}
+	
 	@RequestMapping("m_like_up.do")
 	private void likeUp(@RequestParam("m_no") int m_no) {
-		
+
 		this.dao.updateLike(m_no);
 		
 	}
+
+	@RequestMapping("video_reply_delete.do")
+	private String deleteVideoReply(HttpServletRequest request, @RequestParam("v_no") int v_no,
+				@RequestParam("vr_no") int vr_no, Model model) {
+		
+		this.vr_dao.deleteVideoReply(vr_no);
+		
+		return video_cont(request, v_no, model);
+		
+	}
+	
 	
 	
 	
@@ -882,9 +919,16 @@ public class MusicController {
 	
 	// 회원 가입 //
 	@RequestMapping("user_insert.do")
+		public String insert2() {
+			
+		return "member_insert";
+	}
+
+	// 회원 가입 //
+	@RequestMapping("member_insert.do")
 	public String insert() {
 		
-		return "member_insert";
+		return "user_insert";
 	}
 	
 	// 회원 가입 완료//
@@ -912,7 +956,31 @@ public class MusicController {
 		}
 	}
 	
-	
+	// 회원 가입 완료//
+		@RequestMapping("member_insert_ok.do")
+		public void insertOk2(MemberDTO dto,
+				HttpServletResponse response) throws IOException {
+			
+			int check = this.dao2.insertMember(dto);
+			
+			response.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter out = response.getWriter();
+			
+			if(check > 0) {
+				out.println("<script>");
+				out.println("alert('회원 등록 성공')");
+				out.println("location.href='member.do'");
+				out.println("</script>");
+			}else {
+				out.println("<script>");
+				out.println("alert('회원 등록 실패')");
+				out.println("history.back()");
+				out.println("</script>");
+				
+			}
+		}
+
 
 	//관리자 회원 수정 요구//
 	@RequestMapping("user_modify.do")

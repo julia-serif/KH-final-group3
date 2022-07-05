@@ -154,7 +154,7 @@
   				<table>
   					<tr>
   						<td rowspan="2" width="30%">
-  							<a href="#">
+  							<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${top.m_no}">
   							<!-- 음원 상세 페이지로 이동 -->
   								<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}"  width="200" height="200" />
   							</a>
@@ -166,7 +166,7 @@
   					</tr>
   					<tr>
   						<td width="45%" align="center">
-  							<a href="#">
+  							<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${top.m_no}">
   							<!--  음원 상세 페이지로 이동 -->
   									
                               	    <p id="top1">${top.m_name}</p>
@@ -174,11 +174,11 @@
                            	   </a>
                            	 </td>
                              	 <td>
-                             	   <a href="#">
+                             	   <a href="<%=request.getContextPath() %>/add_to_playlist.do?m_no=${top.m_no }">
                              		   <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
                              		   </a>
                             	    &nbsp; &nbsp; &nbsp;
-                             	    <a href="#">
+                             	    <a href="<%=request.getContextPath()%>/video.do?no=${top.m_no}">
                              		   <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
                               	  </a>
                                 </td>
@@ -192,13 +192,13 @@
   					<tr>
   						<td width="10%"><p id="num"> ${count}</p></td>
   						<td width="20%">
-  							<a href="#">
+  							<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${top.m_no}">
   							<!-- 음원 상세페이지로 이동 -->
   								<img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" width="100" height="100" />
                           				</a>
                             			</td>
                          		   	<td width="45%">
-                              				     <a href="#">
+                              				     <a href="<%=request.getContextPath()%>/music_cont.do?m_no=${top.m_no}">
                               				     <!-- 음원 상세페이지로 이동 -->
                               				     	 <h5> ${top.m_name}</h5>
      
@@ -211,7 +211,7 @@
                             			    <img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
                            			     </a>
                            			     &nbsp; &nbsp; &nbsp;
-                           			      <a href="#">
+                           			      <a href="<%=request.getContextPath()%>/video.do?no=${top.m_no}">
                             			     <!-- 뮤비 페이지로 이동 -->
                            				     <img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
                                				</a>

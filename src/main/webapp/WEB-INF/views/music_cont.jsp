@@ -60,7 +60,11 @@
 		
 
 </style>
+<script type="text/javascript">
 
+
+
+</script>
 </head>
 <body>
 
@@ -128,7 +132,7 @@
 		                           	<tr>
 		                           		<th>재생시간</th>
 		                           		<td width="150"></td>
-		                           		<td>${Math.floor(dto.getM_ptime() / 60) } : ${dto.getM_ptime() % 60 }</td>
+		                           		<td>${Math.floor(dto.getM_ptime() / 60).intValue() } : ${dto.getM_ptime() % 60 }</td>
 		                           	</tr>
 		                           	
 		                           	<tr>
@@ -229,7 +233,11 @@
 		                            </div>
 		                            <div>
 		                            	<c:if test="${reply.getMr_writer() == member.getUser_id() }">
-			                            	<button type="button" class="oneMusic-btn-small">삭제</button>
+		                            		<input type="hidden" name="m_no" value="${dto.getM_no() }">
+			                            	<button type="button" class="oneMusic-btn-small" 
+			                            		onclick="if(confirm('정말로 삭제하시겠습니까?')) {
+													location.href='music_reply_delete.do?mr_no=${reply.getMr_no() }&page=${paging.page }'
+												}else {return;}">삭제</button>
 			                            </c:if>
 		                            <button type="button" class="oneMusic-btn-small">댓글</button>
 		                            </div>
@@ -243,7 +251,6 @@
                 	</div>
                 
                 <div align="center">
-  				<c:set value="${Paging}" var="paging"/>
   			
   				<!-- 1페이지 이후 페이지 -->
   				<c:if test="${paging.page > paging.startBlock}">

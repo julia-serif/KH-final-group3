@@ -14,7 +14,7 @@ public interface VideoReplyDAO {
 	
 	public int updateVideoReply(VideoReplyDTO dto);
 	
-	public int deleteVideoReply(int no);
+	public int deleteVideoReply(int vr_no);	//vr_no에 해당하는 레코드를 삭제하는 메서드
 	
 	public void updateSeq(int no);
 	

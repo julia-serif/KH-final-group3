@@ -29,7 +29,6 @@ public class MusicReplyDAOImpl implements MusicReplyDAO {
 
 	@Override
 	public MusicReplyDTO boardCont(int no) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -40,9 +39,8 @@ public class MusicReplyDAOImpl implements MusicReplyDAO {
 	}
 
 	@Override
-	public int deleteBoard(int no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteBoard(int mr_no) {
+		return this.sqlSession.delete("musicReplyDel", mr_no);
 	}
 
 	@Override

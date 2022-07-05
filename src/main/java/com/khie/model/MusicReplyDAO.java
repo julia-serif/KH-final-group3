@@ -14,7 +14,7 @@ public interface MusicReplyDAO {
 	
 	public int updateBoard(MusicReplyDTO dto);
 	
-	public int deleteBoard(int no);
+	public int deleteBoard(int mr_no);
 	
 	public void updateSeq(int no);
 	
