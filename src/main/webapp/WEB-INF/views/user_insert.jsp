@@ -14,12 +14,22 @@
     <!-- Title -->
     <title>One Music - Modern Music HTML5 Template</title>
 
+
+
     <!-- Favicon -->
     <link rel="icon" href="<%= request.getContextPath() %>/resources/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/style.css">
 
+	 <!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	 
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	 
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -54,20 +64,20 @@
       <form method="post" 
           action="<%=request.getContextPath()%>/member_insert_ok.do">
            
-           <table border="1" cellspacing="0" width="350">
+           <table class="table table-boardered">
          <tr>
            <th>회원아이디</th>
-           <td><input name="user_id"></td>
+           <td><input type="text" class="form-control" name="user_id" placeholder="id를 넣으세요"></td>
          </tr>
 
          <tr>
            <th>회원 이름</th>
-           <td> <input name="user_name"> </td>
+           <td> <input type="text" class="form-control" name="user_name" placeholder="이름을 넣으세요"> </td>
          </tr>
          
          <tr>
            <th>회원 비밀번호</th>
-           <td> <input type="password" name="user_pwd"> </td>
+           <td> <input type="password" class="form-control" name="user_pwd" placeholder="비밀번호를  넣어주세요"> </td>
          </tr>
          
          <tr>
@@ -81,18 +91,18 @@
          
          <tr>
            <th>회원 이메일</th>
-           <td> <input name="user_email"> </td>
+           <td> <input type="email" class="form-control" name="user_email"> </td>
          </tr>
          
          <tr>
            <th>회원 연락처</th>
-           <td> <input name="user_phone"> </td>
+           <td> <input type="tel" class="form-control" name="user_phone"> </td>
          </tr>
   
          <tr>
             <td colspan="3" align="center">
-              <input type="submit" value="회원등록">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
+              <input type="submit" class="btn btn-primary" value="회원등록">&nbsp;&nbsp;&nbsp;
+              <input type="reset" class="btn btn-danger" value="다시작성">
              </td>
          </tr>
        </table>
