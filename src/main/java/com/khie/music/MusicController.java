@@ -856,9 +856,16 @@ public class MusicController {
 	
 	// 회원 가입 //
 	@RequestMapping("user_insert.do")
+		public String insert2() {
+			
+		return "member_insert";
+	}
+
+	// 회원 가입 //
+	@RequestMapping("member_insert.do")
 	public String insert() {
 		
-		return "member_insert";
+		return "user_insert";
 	}
 	
 	// 회원 가입 완료//
@@ -886,7 +893,31 @@ public class MusicController {
 		}
 	}
 	
-	
+	// 회원 가입 완료//
+		@RequestMapping("member_insert_ok.do")
+		public void insertOk2(MemberDTO dto,
+				HttpServletResponse response) throws IOException {
+			
+			int check = this.dao2.insertMember(dto);
+			
+			response.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter out = response.getWriter();
+			
+			if(check > 0) {
+				out.println("<script>");
+				out.println("alert('회원 등록 성공')");
+				out.println("location.href='member.do'");
+				out.println("</script>");
+			}else {
+				out.println("<script>");
+				out.println("alert('회원 등록 실패')");
+				out.println("history.back()");
+				out.println("</script>");
+				
+			}
+		}
+
 
 	//관리자 회원 수정 요구//
 	@RequestMapping("user_modify.do")

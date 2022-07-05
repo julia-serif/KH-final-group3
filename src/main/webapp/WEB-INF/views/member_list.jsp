@@ -159,7 +159,7 @@
        <tr>
         <td colspan="4" align="right">
             <input type="button" value="회원등록" class="btn btn-info float-right"
-                    onclick="location.href='user_insert.do'"> 
+                    onclick="location.href='member_insert.do'"> 
         </td>      
       </tr>
      </table>
