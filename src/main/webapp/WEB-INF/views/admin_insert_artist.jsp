@@ -60,7 +60,7 @@
   						<table  id="addTable" border="1">
   							<tr>
   								<td align="center"> 아티스트 </td>
-  								<td> <input name="m_name" autofocus="autofocus" required="required"></td>
+  								<td> <input name="m_artist" autofocus="autofocus" required="required"></td>
   							</tr>
   							<tr>
   								<td align="center"> 아티스트 이미지 </td>
