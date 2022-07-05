@@ -157,16 +157,17 @@
  
 
     <!-- 이용권 옵션 종류 -->
-    <c:if test="${dto2.user_purchase == true }"> 
+    
+    <c:if test="${dto2.user_purchase_no == 1 }">
     <div class="blog-area section-padding-100">
         <div class="container">
             <div class="row">
-<div class="col-12 col-lg-10">
+     <div class="col-12 col-lg-10">
        <div class="newsletter-area mb-100">
         <div class="section-heading text-left mb-50">
           
                
-            <c:if test="${dto2.user_purchase_no == 1 }">
+            
             <h4>이용권 사용 안내</h4>
             <b>스마트 음악 감상1</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
@@ -177,10 +178,27 @@
             <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
 				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
        			}else { return; }" class="btn oneMusic-btn">취소하기</button>
-        
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
             </c:if>
             
-            <c:if test="${dto2.user_purchase_no == 2 }">
+            
+            
+           
+    <c:if test="${dto2.user_purchase_no == 2 }">
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+     <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+          
+               
+            
             <h4>이용권 사용 안내</h4>
             <b>스마트 음악 감상2</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
@@ -191,67 +209,106 @@
             <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
 				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
        			}else { return; }" class="btn oneMusic-btn">취소하기</button>
-        
-            </c:if> 
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
+            </c:if>
             
-            <c:if test="${dto2.user_purchase_no == 3 }">
-            <h4>이용권 사용 안내</h4>
-            <b>가족할인</b>
-            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
-            <p>음악 감상 : 무제한   최대 공유 4인</p>
-            
-            <p></p>   
-            <br>
-            <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
-				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
-       			}else { return; }" class="btn oneMusic-btn">취소하기</button>
-        
-            </c:if>   
           
+           
+    <c:if test="${dto2.user_purchase_no == 3 }">
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+     <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+          
+               
             
-            <c:if test="${dto2.user_purchase_no == 4 }">
             <h4>이용권 사용 안내</h4>
-            <b> 음악 감상1</b>
+            <b>가족 할인권</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
-            <p>음악 감상 : 무제한</p>
+            <p>음악 감상 : 무제한  4인 공유 가능</p>
             
             <p></p>   
             <br>
             <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
 				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
        			}else { return; }" class="btn oneMusic-btn">취소하기</button>
-        
-            </c:if>  
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
+            </c:if>
             
-            <c:if test="${dto2.user_purchase_no == 5 }">
+            
+            
+    <c:if test="${dto2.user_purchase_no == 4 }">
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+     <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+          
+               
+            
+            <h4>이용권 사용 안내</h4>
+            <b>음악 감상1</b>
+            <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
+            <p>음악 감상 : 무제한  </p>
+            
+            <p></p>   
+            <br>
+            <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
+				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
+       			}else { return; }" class="btn oneMusic-btn">취소하기</button>
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
+            </c:if>
+            
+            
+           
+    <c:if test="${dto2.user_purchase_no == 5 }">
+    <div class="blog-area section-padding-100">
+        <div class="container">
+            <div class="row">
+     <div class="col-12 col-lg-10">
+       <div class="newsletter-area mb-100">
+        <div class="section-heading text-left mb-50">
+          
+               
+            
             <h4>이용권 사용 안내</h4>
             <b>음악 감상2</b>
             <p>모바일 잔여곡수 무제한 PC 잔여곡수 무제한</p>
-            <p>음악 감상 : 무제한</p>
+            <p>음악 감상 : 무제한  </p>
             
-            <p></p>  
-            <br> 
+            <p></p>   
+            <br>
             <button onclick="if(confirm('이용권을 취소하시겠습니까?')) {
 				location.href='mypass_cancel.do?user_no=${dto2.getUser_no()}'
        			}else { return; }" class="btn oneMusic-btn">취소하기</button>
-         
+            </div>      
+	        </div>
+	        </div>
+		    </div>
+		    </div>
+		    </div>
             </c:if>
             
-             <br>
-        </div>
-       
-       <div class="newsletter-form">
- 
-        </div>
-          
-       </div>
-      
-    </div>
-    </div>
-    </div>
-    </div>
-    </c:if>
-                </div>
+            
+          </div> 
                 <!-- mypage 사이드바 -->
                 <div class="col-12 col-lg-3">
                     <div class="blog-sidebar-area">
