@@ -43,11 +43,14 @@
 		}
     </style>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<<<<<<< HEAD
     <script type="text/javascript">
 		window.onload = function () {
 			$(".reply_field").hide();
 		};
 	</script>
+=======
+>>>>>>> ac7a413 (버튼 클릭 시 로그인 안된 상황이면 로그인 화면으로 보내는 기능 구현)
 	<script type="text/javascript">
 	
 		function nested_reply() {
