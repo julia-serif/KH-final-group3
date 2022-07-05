@@ -1632,7 +1632,7 @@ public class MusicController {
 				
 		PageDTO pageDTO = new PageDTO(page, rowpage, totalcont);
 				
-		List<MusicDTO> list = this.dao.selectNewMusic(pageDTO);
+		List<MusicArtistDTO> list = this.artistDAO.selectArtist(pageDTO);
 				
 		model.addAttribute("list" , list);
 		model.addAttribute("pageDTO", pageDTO);
@@ -1719,9 +1719,26 @@ public class MusicController {
 	
 	//관리자 아티스트 삭제
 	@RequestMapping("admin_delete_artist.do")
-	public void adminDeleteArtist() {
+	public void adminDeleteArtist(HttpServletResponse response, @RequestParam("no") int m_no) throws IOException {
 		
-	}
+		int check = this.artistDAO.deleteAritst(m_no);
+
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('아티스트 삭제 성공')");
+			out.println("location.href='admin_artis.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('아티스트 삭제 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
+		}
 		
 	
 }
