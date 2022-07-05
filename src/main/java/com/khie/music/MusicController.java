@@ -1732,7 +1732,7 @@ public class MusicController {
 		if (check > 0) {
 			out.println("<script>");
 			out.println("alert('아티스트 삭제 성공')");
-			out.println("location.href='admin_artis.do'");
+			out.println("location.href='admin_artist.do'");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
