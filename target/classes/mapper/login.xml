@@ -65,7 +65,10 @@
 	</select>
 	
 	<insert id="add" parameterType="com.khie.model.MemberDTO">
-	 insert into music_member values((select max(user_no) from music_member) +1,
+		<selectKey keyProperty="user_no" resultType="int" order="BEFORE">
+			select max(user_no) from music_member
+		</selectKey>
+	 insert into music_member values(#{user_no} +1,
 	    #{user_id}, #{user_pwd},#{user_name},#{user_gender}, 
 	    #{user_email}, #{user_phone},'false','0', sysdate,'',2)
 	</insert>

@@ -13,15 +13,13 @@ public class MusicReplyDAOImpl implements MusicReplyDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int getBoardCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getBoardCount(int no) {
+		return this.sqlSession.selectOne("count", no);
 	}
 
 	@Override
 	public List<MusicReplyDTO> getBoardList(PageDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sqlSession.selectList("musicReplyList", dto);
 	}
 
 	@Override
@@ -31,7 +29,6 @@ public class MusicReplyDAOImpl implements MusicReplyDAO {
 
 	@Override
 	public MusicReplyDTO boardCont(int no) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -42,15 +39,20 @@ public class MusicReplyDAOImpl implements MusicReplyDAO {
 	}
 
 	@Override
-	public int deleteBoard(int no) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteBoard(int mr_no) {
+		return this.sqlSession.delete("musicReplyDel", mr_no);
 	}
 
 	@Override
 	public void updateSeq(int no) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int insertMusicReply(MusicReplyDTO dto) {
+		
+		return this.sqlSession.insert("MusicReplyInsert", dto);
 	}
 
 }

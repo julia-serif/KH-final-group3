@@ -13,7 +13,7 @@
 	   class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-		<property name="username" value="web" />
+		<property name="username" value="final" />
 		<property name="password" value="1234" />
 	</bean>
 	
@@ -28,7 +28,7 @@
 	<!-- 3. SqlSessionTemplate 클래스 설정 -->
 	<bean name="sqlSession"
 	   			class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory" />
+		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	
 	<!-- 파일 업로드 관련 설정 -->
