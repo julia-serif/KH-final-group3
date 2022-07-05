@@ -1610,8 +1610,6 @@ public class MusicController {
 		
 		musicDTO.setM_ptime((minute*60) + second);
 		
-		Upload upload = new Upload();
-		
 		//파일 업로드
 		//boolean uploadAudio = upload.UploadAudio(musicDTO.getM_audio());
 		
