@@ -79,7 +79,7 @@
       
        <tr>
         <td colspan="5" align="right">
-            <input type="button" value="글쓰기" class="btn btn-default pull-right"
+            <input type="button" value="글쓰기" class="btn btn-info float-right"
                     onclick="location.href='notice_write.do'" > 
         </td>      
       </tr>

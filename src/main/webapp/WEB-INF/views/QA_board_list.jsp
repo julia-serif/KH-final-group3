@@ -77,7 +77,7 @@
       
        <tr>
         <td colspan="4" align="right">
-            <input type="button" value="게시물 등록" class="btn btn-default pull-right"
+            <input type="button" value="게시물 등록" class="btn btn-info float-right"
                     onclick="location.href='qa_insert.do'"> 
         </td>      
       </tr>
