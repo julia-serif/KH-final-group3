@@ -57,33 +57,13 @@
 				window.location.href = "${pageContext.request.contextPath}/login.do";
 				
 			} else {
-				
-				/* $.ajax({
-					type: "post",
-					url: "${pageContext.request.contextPath}/resources/ajax/nested_reply.jsp",
-					data: {vr_no: ${reply.getVr_no() }},
-					dataType: "html",
-					success: function(data) {
-						$(".single-new-item").append(data);	//vr_no 해당하는것만 특정 가능하게?
-						if(){
-							//안 펼쳐졌을때 펼치기
-						} else {
-							//펼쳐졌을때 닫기
-						}
-					},
-					error: function(data) {
-						//
-					}
-				}); */
-				
-			}
-			
-			
-			
-			
+				if($(".reply_field").is(":hidden")){
+					$(".reply_field").show();
+				} else {
+					$(".reply_field").hide();
+				}
+			}	
 		}
-	
-	
 	</script>
 </head>
 <body>
