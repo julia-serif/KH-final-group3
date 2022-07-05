@@ -21,6 +21,14 @@ create table music (
     m_update date
 );
 
+--아티스트 테이블
+create table music_artist(
+    m_artist_no number primary key,
+    m_artist varchar2(100) not null,
+    m_artist_img varchar2(50)
+);
+insert into music_artist values(1,'부석순(세븐틴)','부석순(세븐틴).jpg');
+
 create table music_member(
      user_no number(5) primary key,
      user_id varchar2(30) unique not null,
