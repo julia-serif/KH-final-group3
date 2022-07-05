@@ -56,8 +56,7 @@ public class MusicDAOImpl implements MusicDAO {
 
 	@Override
 	public int updateMusic(MusicDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.sqlSession.update("updateMusic", dto);
 	}
 
 	@Override
@@ -68,7 +67,8 @@ public class MusicDAOImpl implements MusicDAO {
 
 	@Override
 	public void updateLike(int m_no) {
-		// TODO Auto-generated method stub
+		
+		this.sqlSession.update("likeUp", m_no);
 
 	}
 

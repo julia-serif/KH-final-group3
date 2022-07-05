@@ -42,7 +42,29 @@
 			clear: both;
 		}
     </style>
-    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+		window.onload = function () {
+			$(".reply_field").hide();
+		};
+	</script>
+	<script type="text/javascript">
+	
+		function nested_reply() {
+			
+			var uid = '${member}';
+			if(!uid){
+				window.location.href = "${pageContext.request.contextPath}/login.do";
+				
+			} else {
+				if($(".reply_field").is(":hidden")){
+					$(".reply_field").show();
+				} else {
+					$(".reply_field").hide();
+				}
+			}	
+		}
+	</script>
 </head>
 <body>
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>
@@ -154,9 +176,17 @@
 			                            		location.href='video_reply_delete.do?v_no=${reply.getV_no() }&vr_no=${reply.getVr_no() }' }
 			                            		else { return; }">삭제</button>
 			                            </c:if>
-		                            <button type="button" class="oneMusic-btn-small">댓글</button>
+		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
 		                            </div>
 		                        </div>
+		                        <div class="reply_field">
+			                        <form action="<%=request.getContextPath() %>/video_reply_write.do" method="post" autocomplete="off">
+		                            	<input type="hidden" name="v_no" value="${music.getM_no() }">
+		                                <textarea name="vr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"></textarea>
+		                                <button type="button" class="oneMusic-btn-small" style="float: right;">등록</button>
+		                            </form>
+		                            <hr style="margin-top: 50px;">
+	                            </div>
 	                        </c:forEach>
                         </c:if>
                         

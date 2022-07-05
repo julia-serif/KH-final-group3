@@ -9,18 +9,48 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="MusicDAO">
+
 	<select id="musicCont" parameterType="int" resultType="MusicDTO">
 		select * from music where m_no = #{m_no}
 	</select>
 	
+	<select id="count" resultType="int" parameterType="int">
+		select count(*) from m_reply where m_no = #{no}
+	</select>
+	
+	<select id="musicReplyList" parameterType="PageDTO" resultType="MusicReplyDTO">
+		<![CDATA[
+		select * from 
+			(select m.*, row_number() 
+				over(order by mr_group desc, mr_layer) rnum from m_reply m
+				where m_no = #{no})
+				where rnum >= #{startNo} and rnum <= #{endNo}
+		]]>
+	</select>
+	
 	<insert id="music_reply" parameterType="MusicReplyDTO">
-		<selectKey resultType="int" keyProperty="mr_no" order="BEFORE">
-			select max(mr_no) m_reply
-		</selectKey>
-		insert into m_reply values(#{m_no} + 1, #{mr_writer}, 
-		#{mr_cont}, sysdate, default, default)
+      <selectKey resultType="int" keyProperty="mr_no" order="BEFORE">
+         select max(mr_no) from m_reply
+      </selectKey>
+			insert into m_reply values(#{m_no}, #{mr_no} + 1, #{mr_cont},
+			 #{mr_writer}, sysdate, '', #{mr_no} + 1, default)
 	</insert>
 	
+	<insert id="MusicReplyInsert" parameterType="MusicReplyDTO">
+		<selectKey resultType="int" keyProperty="mr_no" order="BEFORE">
+	   		select max(mr_no) from m_reply
+		</selectKey>
+			insert into m_reply values(#{m_no}, #{mr_no} + 1, #{mr_cont},
+			#{mr_writer}, sysdate, '', #{mr_group}, 1)
+	</insert>
+
+	<update id="likeUp" parameterType="int">
+		update music set m_like = m_like + 1 where m_no = #{m_no}
+	</update>
+	
+	<delete id="musicReplyDel" parameterType="int">
+		delete from m_reply where mr_no = #{mr_no}
+	</delete>
 	
 	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
@@ -74,7 +104,6 @@
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
 	</select>
-   
 	
 	<select id="countSong" resultType="int">
 		select count(*) from music
@@ -92,6 +121,7 @@
 			where m_artist like '%' || #{keyword} || '%'
 	</select>
 	
+
 	<select id="countVideo" resultType="int">
 		select count(*) from music
 			where m_name like '%' || #{keyword} || '%' and
@@ -138,6 +168,11 @@
     			'',#{m_ptime},#{m_lyrics}, sysdate,'')
     	
     	</insert>
+	
+	<update id="updateMusic" parameterType="MusicDTO">
+    		update music set m_name = #{m_name}, m_cont = #{m_cont}, m_album = #{m_album} m_artist=#{m_artist},m_mv = #{m_mv}, m_lyrics = #{m_lyrics}, where m_no = #{m_no}
+    	
+    	</update>
     	
     	<delete id="deleteMusic" parameterType="int" >
     		delete from music where m_no = #{m_no}

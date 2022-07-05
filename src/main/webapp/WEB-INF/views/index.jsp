@@ -130,30 +130,27 @@
                 </div>
             </div> -->
 
-			<div class="row">
-				<div class="col-12">
-					<div class="albums-slideshow owl-carousel">
-						<c:set var="toplist" value="${topList}" />
-						<c:if test="${! empty toplist }">
-							<c:forEach items="${toplist}" var="top">
-								<!-- Single Album -->
-								<div class="single-album">
-								<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${top.m_no}">
-									<img
-										src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}" />
-									<div class="album-info">
-										
-											<h5>${top.m_name}</h5>
-										
-										<p>${top.m_artist}</p>
-									</div>
-									</a>
-								</div>
-							</c:forEach>
-						</c:if>
+            <div class="row">
+                <div class="col-12">
+                    <div class="albums-slideshow owl-carousel">
+                    <c:set var="toplist" value="${topList}"/>
+                    <c:if test="${! empty toplist }">
+                    <c:forEach items="${toplist}" var="top">
+                    <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}">
+                            <div class="album-info">
+                                <a href="music_cont.do?m_no=${top.m_no }&page=1">
+                                    <h5>${top.m_name}</h5>
+                                </a>
+                                <p>${top.m_artist}</p>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    </c:if>
 						<c:if test="${empty toplist}">
-		top10 음악이 없습니다.
-	</c:if>
+							top10 음악이 없습니다.
+						</c:if>
 					</div>
 				</div>
 			</div>

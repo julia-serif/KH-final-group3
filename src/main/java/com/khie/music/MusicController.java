@@ -23,7 +23,6 @@ import com.khie.model.MusicDTO;
 import com.khie.model.MusicArtistDAO;
 import com.khie.model.MusicArtistDTO;
 import com.khie.model.MyMusicDAO;
-import com.khie.model.MyMusicDTO;
 import com.khie.model.NoticeDAO;
 import com.khie.model.NoticeDTO;
 import com.khie.model.MusicReplyDAO;
@@ -202,14 +201,127 @@ public class MusicController {
 	
 
 	@RequestMapping("music_cont.do")
-	public String music_cont(@RequestParam("m_no") int m_no, MusicDTO dto, Model model) {
+	public String music_cont(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
+			HttpServletRequest request) {
 		
+		int page;	// 현재 페이지 변수
+		int rowsize = 10;		// 한 페이지당 보여질 게시물 수
+		int totalRecord = 0;		// DB 상의 전체 게시물 수
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}else {
+			page = 1;	// 처음으로 "전체 게시물 목록" a 태그를 선택한 경우
+		}
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		// DB 상의 전체 게시물의 수를 확인하는 메서드 호출
+		totalRecord = this.dao3.getBoardCount(m_no);
+		
+		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
+		pdto.setNo(m_no);
+		
+		List<MusicReplyDTO> replyList = this.dao3.getBoardList(pdto);
 		dto = this.dao.musicCont(m_no);
 		
 		model.addAttribute("cont", dto);
+		model.addAttribute("musicReplyList", replyList);
+		model.addAttribute("Paging", pdto);
+		model.addAttribute("totalRecord", totalRecord);
+		model.addAttribute("member", member);
 		
 		return "music_cont";
 
+	}
+
+	@RequestMapping("musicReply.do")
+	private void insertReply(@RequestParam("m_no") int m_no,
+			@RequestParam("mr_cont") String mr_cont,
+			HttpServletRequest request, HttpServletResponse response, MusicReplyDTO dto) throws IOException {
+
+		dto.setM_no(m_no);
+		dto.setMr_cont(mr_cont);
+	
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(member == null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
+			out.println("</script>");
+			
+		}else {
+			dto.setMr_writer(member.getUser_id());
+			this.dao3.insertBoard(dto);
+			out.println("<script>");
+			out.println("alert('댓글 등록 성공')");
+			out.println("location.href='music_cont.do?m_no="+m_no+"'");
+			out.println("</script>");
+		}
+		
+	}
+	
+	@RequestMapping("music_reply_delete.do")
+	private void deleteMusicReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
+			@RequestParam("page") int page, Model model, HttpServletResponse response) throws IOException {
+		
+		int check = this.dao3.deleteBoard(mr_no);		
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			out.println("<script>");
+			out.println("alert('삭제 성공')");
+			out.println("location.href='music_cont.do?m_no="+m_no+"&page="+page+"'");
+			out.println("</script>");
+			
+		} else {
+			out.println("<script>");
+			out.println("alert('삭제 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		
+		
+	}
+	
+	@RequestMapping("m_like_up.do")
+	private String likeUp(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
+			HttpServletRequest request) {
+
+		this.dao.updateLike(m_no);
+		
+		return music_cont(m_no, dto, model, request);
+		
+	}
+	
+	@RequestMapping("music_reply_write.do")
+	private String insertVideoReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
+			HttpServletRequest request, HttpServletResponse response, 
+			MusicReplyDTO rdto, MusicDTO dto, Model model) {
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		if(member == null) {
+			return "login";
+		} else {
+			rdto.setMr_writer(member.getUser_id());
+			rdto.setM_no(m_no);
+			rdto.setMr_group(mr_no);
+			this.dao3.insertMusicReply(rdto);
+			
+			return music_cont(m_no, dto, model, request);
+		}
+		
 	}
 	
 	@RequestMapping("video.do")
@@ -221,15 +333,14 @@ public class MusicController {
 		
 		
 		int page;	//현재 페이지 변수
-		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}else {
 			page = 1;    // 처음으로 게시물 전체 목록 태그를 선택한 경우
 		}
 		
-		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
 		int totalRecord = this.vr_dao.getRecordCount(no);
+		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
 		model.addAttribute("totalRecord", totalRecord);
 		
 		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
@@ -264,7 +375,7 @@ public class MusicController {
 		}
 		
 	}
-	
+
 	@RequestMapping("video_reply_delete.do")
 	private String deleteVideoReply(HttpServletRequest request, @RequestParam("v_no") int v_no,
 				@RequestParam("vr_no") int vr_no, Model model) {
@@ -275,15 +386,6 @@ public class MusicController {
 		
 	}
 	
-	
-	@RequestMapping("reply_write.do")
-	private String insertReply(HttpServletResponse response, MusicReplyDTO dto) {
-		
-		this.dao3.insertBoard(dto);
-		
-		return null;
-		
-	}
 	
 	
 	
@@ -615,7 +717,6 @@ public class MusicController {
 			model.addAttribute("fail_check", 1);
 			session.setAttribute("member", null);
 			return "login";
-			 // 로그인 성공시  회원 로그인 화면으로 넘어갑니다.
 		} else {
 			session.setAttribute("member", login); 
 			
@@ -1592,6 +1693,42 @@ public class MusicController {
 			
 		}
 	}
+	
+	//관리자 음원 수정
+	@RequestMapping("admin_music_update.do")
+	public String upadteMusic(@RequestParam("no") int m_no, MusicDTO dto, Model model) {
+		
+		dto = this.dao.musicCont(m_no);
+		
+		model.addAttribute("cont", dto);
+		
+		return "admin_music_update";
+
+	}
+	
+	//관리자 음원 수정 성공
+	@RequestMapping("admin_music_update_ok.do")
+	public void updateMusicOk(MusicDTO dto, HttpServletResponse response) throws IOException {
+		
+		int check = dao.updateMusic(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('음원 수정 성공')");
+			out.println("location.href='admin_Music.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('음원 수정 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
+		}
+	}
+	
 	
 	//관리자 음원 삭제
 	@RequestMapping("admin_music_delete.do")
