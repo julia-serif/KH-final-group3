@@ -49,4 +49,10 @@ public class MusicReplyDAOImpl implements MusicReplyDAO {
 		
 	}
 
+	@Override
+	public int insertMusicReply(MusicReplyDTO dto) {
+		
+		return this.sqlSession.insert("MusicReplyInsert", dto);
+	}
+
 }

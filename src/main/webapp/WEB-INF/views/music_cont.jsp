@@ -62,6 +62,25 @@
 </style>
 <script type="text/javascript">
 
+		window.onload = function () {
+			$(".reply_field").hide();
+		};
+
+		function nested_reply() {
+			
+			var uid = '${member}';
+			var mr_no = '${reply.getMr_no() }';
+			if(!uid){
+				window.location.href = "${pageContext.request.contextPath}/login.do";
+				
+			} else {
+				if($(".reply_field").is(":hidden")){
+					$(".reply_field").show();
+				} else {
+					$(".reply_field").hide();
+				}
+			}	
+		}
 
 
 </script>
@@ -92,6 +111,7 @@
 
 	<!-- Single -->
 	<c:set var="dto" value="${cont }"/>
+	<c:set var="paging" value="${Paging }"/>
 	 <div class="blog-area section-padding-100">
 		<div class="container">
 			<div class="row">
@@ -147,12 +167,12 @@
 	                            <br> <br>
 	                            
 	                            <div class="button-content">
-	                            	<a href="<%=request.getContextPath() %>/m_like_up.do?m_no=${dto.getM_no() }">
+	                            	<a href="<%=request.getContextPath() %>/m_like_up.do?m_no=${dto.getM_no() }&page=${paging.page }">
 	                       			  <!-- 좋아요 버튼 -->
 	                    				<img src="<%= request.getContextPath() %>/resources/img/bg-img/like.png" width="40" height="40" />
 	                   			    </a>
 	                   			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						            <a href="#">
+						            <a href="<%=request.getContextPath()%>/video.do?no=${dto.getM_no()}">
 	                       			<!-- 뮤비 페이지로 이동 -->
 	                      				<img src="<%= request.getContextPath() %>/resources/img/bg-img/television.png" width="40" height="40" />
 	                          		</a>
@@ -196,7 +216,7 @@
         <div class="container">
             <div class="row">
             	<c:set var="list" value="${musicReplyList }"/>
-				<c:set var="paging" value="${Paging }"/>
+				
 
                 <!-- Newsletter Area -->
                 <div class="col-12">
@@ -222,6 +242,11 @@
 		                        <!-- Single Top Item -->
 		                        <div class="single-new-item d-flex align-items-center justify-content-between">
 		                            <div class="first-part d-flex align-items-center">
+		                            	<c:if test="${reply.getMr_layer() != 0 }">
+											<c:forEach begin="1" end="${reply.getMr_layer()+3 }">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											</c:forEach>
+										</c:if>
 		                                <div class="thumbnail">
 		                                    <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt7.jpg" alt="">
 		                                </div>
@@ -238,9 +263,22 @@
 													location.href='music_reply_delete.do?mr_no=${reply.getMr_no() }&page=${paging.page }&m_no=${dto.getM_no() }'
 												}else {return;}">삭제</button>
 			                            </c:if>
-		                            <button type="button" class="oneMusic-btn-small">댓글</button>
+		                            
+		                            <c:if test="${reply.getMr_layer() == 0 }">
+		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
+		                            </c:if>
 		                            </div>
 		                        </div>
+		                        
+		                          <div class="reply_field">
+			                        <form action="<%=request.getContextPath() %>/music_reply_write.do" method="post" autocomplete="off">
+		                            	<input type="hidden" name="mr_no" value="${reply.getMr_no() }">
+		                            	<input type="hidden" name="m_no" value="${dto.getM_no() }">
+		                                <textarea name="mr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"></textarea>
+		                                <button type="submit" class="oneMusic-btn-small" style="float: right;">등록</button>
+		                            </form>
+		                            <hr style="margin-top: 50px;">
+	                            </div>
 	                        </c:forEach>
                         </c:if>
                         

@@ -10,6 +10,8 @@ public interface MusicReplyDAO {
 	
 	public int insertBoard(MusicReplyDTO dto);
 	
+	public int insertMusicReply(MusicReplyDTO dto);
+	
 	public MusicReplyDTO boardCont(int no);
 	
 	public int updateBoard(MusicReplyDTO dto);

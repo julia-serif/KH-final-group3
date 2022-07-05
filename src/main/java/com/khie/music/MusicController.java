@@ -217,7 +217,6 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		
-		
 		// DB 상의 전체 게시물의 수를 확인하는 메서드 호출
 		totalRecord = this.dao3.getBoardCount(m_no);
 		
@@ -332,9 +331,32 @@ public class MusicController {
 	}
 	
 	@RequestMapping("m_like_up.do")
-	private void likeUp(@RequestParam("m_no") int m_no) {
+	private String likeUp(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
+			HttpServletRequest request) {
 
 		this.dao.updateLike(m_no);
+		
+		return music_cont(m_no, dto, model, request);
+		
+	}
+	
+	@RequestMapping("music_reply_write.do")
+	private String insertVideoReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
+			HttpServletRequest request, HttpServletResponse response, 
+			MusicReplyDTO rdto, MusicDTO dto, Model model) {
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		if(member == null) {
+			return "login";
+		} else {
+			rdto.setMr_writer(member.getUser_id());
+			rdto.setM_no(m_no);
+			rdto.setMr_group(mr_no);
+			this.dao3.insertMusicReply(rdto);
+			
+			return music_cont(m_no, dto, model, request);
+		}
 		
 	}
 
