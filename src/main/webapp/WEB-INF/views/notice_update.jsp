@@ -51,12 +51,12 @@
       
       <br>
       
-      <form method="post" 
+      <form method="post" class="form-horizontal" 
           action="<%=request.getContextPath()%>/notice_modify_Ok.do">
            
            <input type="hidden" name="music_no" value="${dto.music_no }">
            <input type="hidden" name="db_pwd" value="${dto.music_pwd }">
-           <table border="1" cellspacing="0" width="450">
+           <table class="table table-striped table-bordered">
          <tr>
            <th>작성자</th>
            <td><input  name="music_writer" value="${dto.music_writer }" readonly></td>
@@ -82,8 +82,8 @@
   
          <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="정보수정">&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="다시작성">
+              <input type="submit" class="btn btn-primary" value="정보수정">&nbsp;&nbsp;&nbsp;
+              <input type="reset" class="btn btn-primary" value="다시작성">
              </td>
          </tr>
        </table>
