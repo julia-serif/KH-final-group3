@@ -12,7 +12,7 @@ public interface MusicDAO {
 	int insertMusic(MusicDTO dto);				//새 음악 삽입
 	int updateMusic(MusicDTO dto);				//음악 상세 정보 수정
 	int deleteMusic(int m_no);					//음악 삭제
-	void updateLike(int m_no);					//좋아요 수 수정
+	int updateLike(int m_no, int bool);					//좋아요 수 수정
 	void updatePlayCount(int m_no);				//음원 플레이 수 수정
 	
 	int searchMusicCount(String field, String keyword);	//검색으로 표시될 음악의 숫자

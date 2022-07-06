@@ -48,6 +48,10 @@
 		update music set m_like = m_like + 1 where m_no = #{m_no}
 	</update>
 	
+	<update id="likeDown" parameterType="int">
+		update music set m_like = m_like - 1 where m_no = #{m_no}
+	</update>
+	
 	<delete id="musicReplyDel" parameterType="int">
 		delete from m_reply where mr_no = #{mr_no}
 	</delete>

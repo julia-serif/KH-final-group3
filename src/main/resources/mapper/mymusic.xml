@@ -53,7 +53,7 @@
 				when play_thumbs = 'true' then 'false'
 				when play_thumbs = 'false' then 'true'
 			end
-			where user_no = #{user_no} and m_no = #{music_no}
+			where user_no = #{user_no} and m_no = #{m_no}
 		]]>
 	</update>
 
@@ -132,4 +132,8 @@
 	<update id="update_m_seq" parameterType="PlaylistDTO">
 		update music_playlist set m_order = m_order - 1 where m_order > #{m_order} and user_no = #{user_no} and playlist_no = #{playlist_no}
 	</update>
+	
+	<select id="my_info" parameterType="MyMusicDTO" resultType="MyMusicDTO">
+		select * from music_by_user where user_no = #{user_no} and m_no = #{m_no}
+	</select>
 </mapper>
