@@ -61,7 +61,7 @@
 									</a>
 									</td>
 									<td width="50%" id="title">
-									<a href="<%=request.getContextPath()%>/music_cont.do?m_no="${like.getM_no() }>
+									<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${like.getM_no() }">
 										<!-- 음원 상세페이지로 이동 -->
 										<h5>&nbsp; &nbsp; ${like.getM_name() }</h5><p>&nbsp;&nbsp;&nbsp; ${like.getM_artist() }</p>
 									</a>

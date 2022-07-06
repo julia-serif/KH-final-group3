@@ -55,7 +55,7 @@
 							<table width="180%" id="newtable">
 								<tr>
 									<td width="20%">
-									<a href="<%=request.getContextPath()%>/music_cont.do?m_no="${much.getM_no() }>
+									<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${much.getM_no() }">
 											<!-- 음원 상세페이지로 이동 -->
 											<img src="<%= request.getContextPath() %>/resources/img/album-img/${much.getM_image() }" width="300" height="300" />
 									</a>
