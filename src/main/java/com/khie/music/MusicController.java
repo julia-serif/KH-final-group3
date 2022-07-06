@@ -1810,10 +1810,10 @@ public class MusicController {
 			
 		//각자 프로젝트에 맞게 경로 지정해주세요!
 		if(count == 0) {
-			uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\audio\\";
+			uploadPath = "C:\\Users\\wonhe\\Documents\\KH-final-group3\\src\\main\\webapp\\resources\\audio";
 			
 		}else if(count == 1) {
-			uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\album-img\\";
+			uploadPath = "C:\\Users\\wonhe\\Documents\\KH-final-group3\\src\\main\\webapp\\resources\\img\\album-img";
 			
 		}
 		
@@ -1977,7 +1977,7 @@ public class MusicController {
 		//각자 프로젝트에 맞게 경로 지정해주세요!
 		
 		
-		String	uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\artist-img\\";
+		String	uploadPath = "C:\\Users\\wonhe\\Documents\\KH-final-group3\\src\\main\\webapp\\resources\\img\\album-img";
 	
 		
 		// 업로드한 파일의 이름을 구하는 메서드
@@ -2064,7 +2064,7 @@ public class MusicController {
 				//각자 프로젝트에 맞게 경로 지정해주세요!
 				
 				
-				String	uploadPath = "C:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\artist-img\\";
+				String	uploadPath = "C:\\Users\\wonhe\\Documents\\KH-final-group3\\src\\main\\webapp\\resources\\img\\artist-img";
 			
 				
 				// 업로드한 파일의 이름을 구하는 메서드
