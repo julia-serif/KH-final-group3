@@ -1608,7 +1608,7 @@ public class MusicController {
 	public void replyOk(QandADTO dto,
 			HttpServletResponse response) throws IOException {
 		
-		int check = this.Qand_dao.insertQandA(dto);
+		int check = this.Qand_dao.insertQandA2(dto);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		
