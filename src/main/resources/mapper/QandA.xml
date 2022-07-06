@@ -97,7 +97,7 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by qa_group desc, qa_step, qa_no) rnum from music_qanda b
+					over(order by qa_group desc, qa_indent, qa_no) rnum from music_qanda b
 					where qa_title like '%' || #{qa_keyword} || '%')
 					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
 	    ]]>
@@ -107,7 +107,7 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by qa_group desc, qa_step, qa_no) rnum from music_qanda b
+					over(order by qa_group desc, qa_indent, qa_no) rnum from music_qanda b
 					where qa_cont like '%' || #{qa_keyword} || '%')
 					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
 	    ]]>
@@ -117,7 +117,7 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by qa_group desc, qa_step, qa_no) rnum from music_qanda b
+					over(order by qa_group desc, qa_indent, qa_no) rnum from music_qanda b
 					where qa_title like '%' || #{qa_keyword} || '%' or 
 					qa_cont like '%' || #{qa_keyword} || '%')
 					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
@@ -128,7 +128,7 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by qa_no desc) rnum from music_qanda b
+					over(order by qa_group desc, qa_indent, qa_no) rnum from music_qanda b
 					where qa_writer like '%' || #{keyword} || '%')
 					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
 	    ]]>
