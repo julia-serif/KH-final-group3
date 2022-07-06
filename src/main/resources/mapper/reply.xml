@@ -13,7 +13,7 @@
 		<![CDATA[
 			select * from
 				(select vr.*, row_number()
-					over(order by vr_no desc) rnum from v_reply vr
+					over(order by vr_group desc, vr_layer, vr_no) rnum from v_reply vr
 					where v_no = #{no})
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
