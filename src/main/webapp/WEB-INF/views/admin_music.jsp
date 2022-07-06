@@ -183,7 +183,7 @@ function deleteMusic() {
                                	 </a>
                                	 &nbsp; &nbsp; &nbsp;
                                	 <!-- 수정 페이지로 이동 -->
-                               	 	<input type="button" value="수정" onclick="location.href='admin_music_update.?no=${top.m_no}'">
+                               	 	<input type="button" value="수정" onclick="location.href='admin_music_update.do?no=${top.m_no}'">
                                	 
                             	&nbsp; || &nbsp;
                             	 <!-- 삭제 페이지로 이동 -->
