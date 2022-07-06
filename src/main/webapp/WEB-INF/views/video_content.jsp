@@ -111,7 +111,7 @@
 	                                <p class="post-author"><a href="#">${music.getM_artist() }</a></p>
 	                                <p class="tags"><a href="#">${music.getM_album() }</a></p>
 	                                <p class="tags">${music.getM_date().substring(0,10) }</p>
-	                                <p class="tags">▶${music.getPlay_counts() }</p>
+	                                <p class="tags">▶${music.getM_pcount() }</p>
 	                            </div>
 	                        </div>
 	                        

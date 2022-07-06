@@ -35,7 +35,7 @@
 
 	<!-- ##### Breadcumb Area Start ##### -->
 	<div class="breadcumb-area bg-img bg-overlay"
-		style="background-image: url(img/bg-img/breadcumb2.jpg);">
+		style="background-image: url(resources/img/bg-img/breadcumb2.jpg);">
 		<div class="bradcumbContent">
 			<p>최근 들은 음악</p>
 			<h2>RECENT LISTENED</h2>

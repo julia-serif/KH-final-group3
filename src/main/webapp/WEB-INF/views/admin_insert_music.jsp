@@ -43,7 +43,7 @@
     </div>
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb2.jpg);">
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb2.jpg);">
         <div class="bradcumbContent">
             <p>ONE SOUND 음원 추가</p>
             <h2>ADD MUSIC PAGE</h2>

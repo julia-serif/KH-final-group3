@@ -169,7 +169,10 @@
 	                            <div class="button-content">
 								<c:set var="myInfo" value="${myInfo }"/>
 	                            	<c:if test="${member == null }">
-	                    				<img src="<%= request.getContextPath() %>/resources/img/bg-img/like.png" width="40" height="40" />
+	                    				<a href="<%=request.getContextPath() %>/m_like_up.do?m_no=${dto.getM_no() }&page=${paging.page }">
+		                       			  <!-- 좋아요 버튼 -->
+		                    				<img src="<%= request.getContextPath() %>/resources/img/bg-img/like.png" width="40" height="40" />
+		                   			    </a>
 	                            	</c:if>
 	                            	<c:if test="${myInfo.getPlay_thumbs() == 'false' }">
 		                            	<a href="<%=request.getContextPath() %>/m_like_up.do?m_no=${dto.getM_no() }&page=${paging.page }">

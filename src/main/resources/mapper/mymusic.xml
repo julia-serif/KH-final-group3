@@ -57,15 +57,15 @@
 		]]>
 	</update>
 
-	<update id="watch_history" parameterType="MyMusicDTO">
-		update music_by_user set play_date = sysdate, play_counts = play_counts + 1 where user_no = #{user_no} and m_no = #{music_no}
+	<update id="watch_record" parameterType="MyMusicDTO">
+		update music_by_user set play_date = sysdate, play_counts = play_counts + 1 where user_no = #{user_no} and m_no = #{m_no}
 	</update>
 	
 	<insert id="first_watch" parameterType="MyMusicDTO">
 		<![CDATA[
 			insert into music_by_user
-			select #{user_no}, #{music_no}, sysdate, 'false', 0 from dual where not exists
-			(select * from music_by_user where user_no = #{user_no} and m_no = #{music_no})
+			select #{user_no}, #{m_no}, sysdate, 'false', 0 from dual where not exists
+			(select * from music_by_user where user_no = #{user_no} and m_no = #{m_no})
 		]]>
 	</insert>
 	

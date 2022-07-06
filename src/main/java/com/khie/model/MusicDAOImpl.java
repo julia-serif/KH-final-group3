@@ -76,8 +76,7 @@ public class MusicDAOImpl implements MusicDAO {
 
 	@Override
 	public void updatePlayCount(int m_no) {
-		// TODO Auto-generated method stub
-
+		this.sqlSession.update("playCountUp", m_no);
 	}
 
 	@Override
