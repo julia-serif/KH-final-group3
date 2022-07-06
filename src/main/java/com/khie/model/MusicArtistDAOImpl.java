@@ -32,8 +32,8 @@ public class MusicArtistDAOImpl implements MusicArtistDAO{
 
 	@Override
 	public int updateArtist(MusicArtistDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.sqlSession.update("updateArtist", dto);
 	}
 
 	@Override
