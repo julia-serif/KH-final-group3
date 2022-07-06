@@ -288,7 +288,7 @@
 						</c:if>
                 	</div>
                 
-                <div align="center">
+                <div align="center" style="margin-bottom: 50px;">
   			
   				<!-- 1페이지 이후 페이지 -->
   				<c:if test="${paging.page > paging.startBlock}">
