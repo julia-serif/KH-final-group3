@@ -91,7 +91,7 @@ create table music_notice (
    music_update date                -- 공지사항 글 수정일자 
 );
 
-insert into music_notice values(1, '관리자', '첫번째 공지사항', '안녕하세요. ONE SOUND입니다.
+insert into music_notice values(1, '관리자', '개인정보처리방침 개정 안내', '안녕하세요. ONE SOUND입니다.
 
 서비스를 이용해 주시는 이용자 여러분께 감사드리며, 새로운 개인정보 처리방침 적용에 관한 안내 말씀 드립니다
 
