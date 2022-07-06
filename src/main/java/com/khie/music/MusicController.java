@@ -516,7 +516,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('추가 성공')");
-			out.println("location.href='add_to_playlist.do?m_no=" + dto.getM_no() + "'");
+			out.println("history.go(-2)");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
