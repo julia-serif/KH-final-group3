@@ -85,6 +85,8 @@ create table music_notice (
    music_update date                -- 공지사항 글 수정일자 
 );
 
+insert into music_notice values(1, '관리자', '첫번째 공지사항', '첫번째 공지사항 입니다', '1234',default,sysdate,'');
+
 
 -- 회원별 플레이리스트
 create table music_playlist (
