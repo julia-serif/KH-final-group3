@@ -122,7 +122,7 @@
 	      </select>
 	      
 	      <input name="qa_keyword">&nbsp;&nbsp;
-	      <input type="submit" value="검색" class="btn btn-primary">
+	      <input type="submit" value="검색" class="btn btn-primary btn-sm">
 	   </form>
                         
 
