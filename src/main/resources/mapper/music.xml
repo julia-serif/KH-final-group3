@@ -182,4 +182,7 @@
     		delete from music where m_no = #{m_no}
     	</delete>
 	
+	<update id="playCountUp" parameterType="int">
+		update music set m_pcount = m_pcount + 1 where m_no = #{m_no}
+	</update>
 </mapper>
