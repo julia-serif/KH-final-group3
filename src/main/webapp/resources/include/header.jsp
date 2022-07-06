@@ -93,7 +93,7 @@
                                     <li><a href="<%= request.getContextPath() %>/newMusic.do">New</a></li> <!-- 새음악 -->
                                     <li><a href="<%= request.getContextPath() %>/events.do">Events</a></li> <!-- 이벤트 -->
                                     <li><a href="<%= request.getContextPath() %>/mymusic.do">MyMusic</a></li> <!-- 내 음악 -->
-                                    <li><a href="<%= request.getContextPath() %>/service.do">Service</a>
+                                    <li><a href="<%= request.getContextPath() %>/notice_list.do">Service</a>
                                         <ul class="dropdown">
                                          <li><a href="<%= request.getContextPath() %>/notice_list.do">Notice</a></li>
                                          <li><a href="<%= request.getContextPath() %>/qanda_list.do">Q/A Boards</a></li>

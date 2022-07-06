@@ -55,13 +55,13 @@
 							<table width="180%" id="newtable">
 								<tr>
 									<td width="20%">
-									<a href="#">
+									<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${like.getM_no() }">
 											<!-- 음원 상세페이지로 이동 -->
 											<img src="<%= request.getContextPath() %>/resources/img/album-img/${like.getM_image() }" width="300" height="300" />
 									</a>
 									</td>
 									<td width="50%" id="title">
-									<a href="#">
+									<a href="<%=request.getContextPath()%>/music_cont.do?m_no="${like.getM_no() }>
 										<!-- 음원 상세페이지로 이동 -->
 										<h5>&nbsp; &nbsp; ${like.getM_name() }</h5><p>&nbsp;&nbsp;&nbsp; ${like.getM_artist() }</p>
 									</a>
@@ -70,7 +70,7 @@
 										<!-- 플레이 리스트에 담기 -->
 										<img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
 									</a> &nbsp;&nbsp;&nbsp;
-									<a href="#">
+									<a href="<%=request.getContextPath()%>/video.do?no=${like.getM_no() }">
 										<!-- 뮤비 페이지로 이동 -->
 										<img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
 									</a>

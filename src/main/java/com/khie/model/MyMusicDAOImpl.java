@@ -100,4 +100,9 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	public void updateMusiclistSequence(PlaylistDTO dto) {
 		this.sqlSession.update("update_m_seq", dto);
 	}
+
+	@Override
+	public MyMusicDTO getMyMusicInfo(MyMusicDTO dto) {
+		return this.sqlSession.selectOne("my_info", dto);
+	}
 }

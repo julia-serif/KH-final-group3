@@ -219,7 +219,7 @@
                             			 </td>
                          		    </tr>  
                     		       </table>
-                          
+                     		     <br>
   						</c:if>
 					  <c:set value="${count + 1 }" var="count"/>
   					</c:forEach>

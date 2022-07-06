@@ -66,10 +66,12 @@ public class MusicDAOImpl implements MusicDAO {
 	}
 
 	@Override
-	public void updateLike(int m_no) {
-		
-		this.sqlSession.update("likeUp", m_no);
-
+	public int updateLike(int m_no, int bool) {
+		if(bool==0) {
+			return this.sqlSession.update("likeUp", m_no);
+		} else {
+			return this.sqlSession.update("likeDown", m_no);
+		}
 	}
 
 	@Override
