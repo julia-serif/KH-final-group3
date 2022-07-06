@@ -22,19 +22,20 @@
  	<select id="selectArtistNo" resultType="int">
  		select max(m_artist_no) from music_artist
  	</select>
-	 
-	 <select id="selectArtistCont" parameterType="int" resultType="ArtistDTO">
+ 	
+ 	<select id="selectArtistCont" parameterType="int" resultType="ArtistDTO">
  		select * from music_artist where m_artist_no = #{m_artist_no}
  	</select>
  
  	<insert id="insertArtist" parameterType="ArtistDTO">
  		insert into music_artist values(#{m_artist_no},#{m_artist},#{m_artist_img})
+ 	
  	</insert>
  	
-	 <update id="updateArtist" parameterType="ArtistDTO">
+ 	<update id="updateArtist" parameterType="ArtistDTO">
  		update music_artist set m_artist = #{m_artist}, m_artist_img = #{m_artist_img} where m_artist_no = #{m_artist_no}
  	</update>
-	 
+ 	
  	<delete id="deleteArtist" parameterType="int">
  		delete from music_artist where m_artist_no = #{m_artist_no}
  	</delete>
