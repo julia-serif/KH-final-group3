@@ -192,7 +192,7 @@
 		                            	<input type="hidden" name="vr_no" value="${reply.getVr_no() }">
 		                            	<input type="hidden" name="v_no" value="${music.getM_no() }">
 		                                <textarea name="vr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"></textarea>
-		                                <button type="button" class="oneMusic-btn-small" style="float: right;">등록</button>
+		                                <button type="submit" class="oneMusic-btn-small" style="float: right;">등록</button>
 		                            </form>
 		                            <hr style="margin-top: 50px;">
 	                            </div>
