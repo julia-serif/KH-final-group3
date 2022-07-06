@@ -50,17 +50,17 @@
 	</script>
 	<script type="text/javascript">
 	
-		function nested_reply() {
+		function nested_reply(a) {
 			
 			var uid = '${member}';
 			if(!uid){
 				window.location.href = "${pageContext.request.contextPath}/login.do";
 				
 			} else {
-				if($(".reply_field").is(":hidden")){
-					$(".reply_field").show();
+				if($("#"+a).is(":hidden")){
+					$("#"+a).show();
 				} else {
-					$(".reply_field").hide();
+					$("#"+a).hide();
 				}
 			}	
 		}
@@ -160,6 +160,7 @@
 		                        <!-- Single Top Item -->
 		                        <div class="single-new-item d-flex align-items-center justify-content-between">
 		                            <div class="first-part d-flex align-items-center">
+<<<<<<< HEAD
 		                               <c:if test="${reply.getVr_layer() != 0 }">
 											<c:forEach begin="1" end="${reply.getVr_layer() }">
 												<img alt="" src="<%= request.getContextPath() %>/resources/img/bg-img/right-arrow.png"
@@ -167,6 +168,14 @@
 											</c:forEach>
 										</c:if>
 		                               
+=======
+						 <c:if test="${reply.getVr_layer() != 0 }">
+							<c:forEach begin="1" end="${reply.getVr_layer() }">
+								<img alt="" src="<%= request.getContextPath() %>/resources/img/bg-img/right-arrow.png"
+									width="50" height="50">&nbsp;&nbsp;&nbsp;
+							</c:forEach>
+						</c:if>					     
+>>>>>>> branch 'main' of https://github.com/julia-serif/KH-final-group3.git
 		                                <div class="thumbnail">
 		                                    <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt7.jpg" alt="">
 		                                </div>
@@ -183,13 +192,24 @@
 			                            		location.href='video_reply_delete.do?v_no=${reply.getV_no() }&vr_no=${reply.getVr_no() }' }
 			                            		else { return; }">삭제</button>
 			                            </c:if>
+<<<<<<< HEAD
 			                        <c:if test="${reply.getVr_layer() == 0 }">
 		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
 		                            </c:if>
+=======
+					 <c:if test="${reply.getVr_layer() == 0 }">				 
+		                            <button type="button" class="oneMusic-btn-small nested_reply" onclick="nested_reply(${reply.getVr_no()})">댓글</button>
+					</c:if>
+>>>>>>> branch 'main' of https://github.com/julia-serif/KH-final-group3.git
 		                            </div>
 		                        </div>
+<<<<<<< HEAD
 		                        <div class="reply_field">
 			                        <form action="<%=request.getContextPath() %>/video_reply_insert.do" method="post" autocomplete="off">
+=======
+		                        <div class="reply_field" id="${reply.getVr_no() }">
+			                       <form action="<%=request.getContextPath() %>/video_reply_insert.do" method="post" autocomplete="off">
+>>>>>>> branch 'main' of https://github.com/julia-serif/KH-final-group3.git
 		                            	<input type="hidden" name="vr_no" value="${reply.getVr_no() }">
 		                            	<input type="hidden" name="v_no" value="${music.getM_no() }">
 		                                <textarea name="vr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"></textarea>

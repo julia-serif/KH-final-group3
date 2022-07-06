@@ -66,9 +66,13 @@
 			$(".reply_field").hide();
 		};
 
+<<<<<<< HEAD
 </script>
 <script type="text/javascript">
 	function nested_reply(a) {
+=======
+		function nested_reply(a) {
+>>>>>>> branch 'main' of https://github.com/julia-serif/KH-final-group3.git
 			
 			var uid = '${member}';
 			if(!uid){
@@ -282,7 +286,7 @@
 			                            </c:if>
 		                            
 		                            <c:if test="${reply.getMr_layer() == 0 }">
-		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
+		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply(${reply.getMr_no()})">댓글</button>
 		                            </c:if>
 		                            </div>
 		                        </div>

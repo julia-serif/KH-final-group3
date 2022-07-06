@@ -69,9 +69,16 @@
 							<table width="180%" id="newtable">
 								<tr>
 									<td width="20%">
-									<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${list.getM_no() }">
-											<!-- 음원 상세페이지로 이동 -->
+									<!-- 플레이리스트 이미지로 등록하기 -->
+							    	<div class="mask" style="background-color: rgba(255, 255, 255, 0.5)">
+										<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${list.getM_no() }">
 											<img src="<%= request.getContextPath() %>/resources/img/album-img/${list.getM_image() }" width="300" height="300" />
+										</a>
+									</div>
+									<a href="<%=request.getContextPath() %>/image_register.do?playlist_no=${Playlist }&m_no=${list.getM_no() }">
+									    <div class="d-flex justify-content-center align-items-center h-100">
+									    	<p class="mb-0">이미지 섬네일로 등록</p>
+									    </div>
 									</a>
 									</td>
 									<td width="50%" id="title">

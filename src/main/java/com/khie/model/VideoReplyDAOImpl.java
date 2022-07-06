@@ -26,7 +26,7 @@ public class VideoReplyDAOImpl implements VideoReplyDAO {
 	public int insertVideoReply(VideoReplyDTO dto) {
 		return this.sqlSession.insert("video_reply", dto);
 	}
-
+	
 	@Override
 	public int insertReply(VideoReplyDTO dto) {
 		return this.sqlSession.insert("reply_insert", dto);

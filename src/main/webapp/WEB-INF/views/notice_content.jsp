@@ -70,7 +70,7 @@
 	      <tr>
 	         <th>글 내용</th>
 	         <td>
-	            <textarea rows="7" cols="25" class="form-control" readonly>${dto.getMusic_cont() }</textarea>
+	            <textarea rows="25" cols="25" class="form-control" readonly>${dto.getMusic_cont() }</textarea>
 	         </td>
 	      </tr>
 	      

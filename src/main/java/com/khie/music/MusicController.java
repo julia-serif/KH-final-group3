@@ -253,7 +253,8 @@ public class MusicController {
 
 	}
 	
-	// 댓글 등록 시 RequestMapping
+
+	// 음원에 대한 댓글 등록 시 RequestMapping
 	@RequestMapping("musicReply.do")
 	private void insertReply(@RequestParam("m_no") int m_no,
 			@RequestParam("mr_cont") String mr_cont,
@@ -379,7 +380,7 @@ public class MusicController {
 		}
 	}
 	
-	// 대댓글 등록 시 RequestMapping
+	// 음원에 대해 댓글 등록 시 RequestMapping
 	@RequestMapping("music_reply_write.do")
 	private void insertMusicReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
 			HttpServletRequest request, HttpServletResponse response, 
@@ -494,6 +495,7 @@ public class MusicController {
 		return "video_content";
 	}
 	
+		
 	// 비디오에 대한 댓글 등록 시 RequestMapping
 	@RequestMapping("video_reply_write.do")
 	private void insertVideoReply(HttpServletRequest request, HttpServletResponse response, 
@@ -513,7 +515,7 @@ public class MusicController {
 			out.println("location.href='login.do'");
 			out.println("</script>");
 			
-		}else {
+		} else {
 			dto.setVr_writer(member.getUser_id());
 			this.vr_dao.insertVideoReply(dto);
 			out.println("<script>");
@@ -523,6 +525,8 @@ public class MusicController {
 		}
 		
 	}
+		
+	
 
 	@RequestMapping("video_reply_delete.do")
 	private String deleteVideoReply(HttpServletRequest request, @RequestParam("v_no") int v_no,
@@ -743,24 +747,34 @@ public class MusicController {
 			}
 	}
 	
-	@RequestMapping("image_register.do") // 미구현
-	public void image_register(PlaylistDTO dto, HttpServletResponse response) throws IOException {
-		int check = this.mm_dao.imageRegister(dto);
+	@RequestMapping("image_register.do")
+	public void image_register(@RequestParam("playlist_no") int playlist_no, @RequestParam("m_no") int m_no, 
+			HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		PlaylistDTO playlist = new PlaylistDTO();
 		
+		playlist.setPlaylist_no(playlist_no);
+		playlist.setUser_no(user_no);
+		playlist.setM_no(m_no);
+		
+		int check = this.mm_dao.imageRegister(playlist);
+
 		response.setContentType("text/html; charset=UTF-8");
-		
 		PrintWriter out = response.getWriter();
+		
 		if(check > 0) {
-				out.println("<script>");
-				out.println("alert('수정 성공')");
-				out.println("location.href='mymusic.do'");
-				out.println("</script>");
-			} else {
-				out.println("<script>");
-				out.println("alert('수정 실패')");
-				out.println("history.back()");
-				out.println("</script>");
-			}
+			out.println("<script>");
+			out.println("alert('이미지 등록 성공')");
+			out.println("location.href='select_musiclist.do?playlist_no=" + playlist.getPlaylist_no() + "'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('이미지 등록 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
 	}
 	
 	@RequestMapping("select_musiclist.do")
@@ -817,7 +831,6 @@ public class MusicController {
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
 		PlaylistDTO playlist = new PlaylistDTO();
-		System.out.println("플레이리스트 : " + playlist_no + ", 유저 : " + user_no + ", prev : " + prev + ", next : " + next);
 		
 		playlist.setPlaylist_no(playlist_no);
 		playlist.setUser_no(user_no);
@@ -1331,6 +1344,8 @@ public class MusicController {
 
    if(check > 0) {
 	   this.dao2.updateSequence(user_no);
+	   this.mm_dao.deletePlaylistUser(user_no);
+	   this.mm_dao.deleteMusicByUser(user_no);
 	  
 	    out.println("<script>");
 		out.println("alert('회원 삭제 성공!!!')");

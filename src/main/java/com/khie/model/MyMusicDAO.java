@@ -27,4 +27,7 @@ public interface MyMusicDAO {
 	public void updateMusiclistSequence(PlaylistDTO dto); // 플레이리스트 보관 음악 삭제 후 시퀀스 앞당기기
 	
 	public MyMusicDTO getMyMusicInfo(MyMusicDTO dto); // 내 유저번호로 내 음악 상태 확인
+	
+	public void deletePlaylistUser(int user_no);
+	public void deleteMusicByUser(int user_no);
 }

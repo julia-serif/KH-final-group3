@@ -10,7 +10,7 @@
     
 <mapper namespace="MusicDAO">
 	
-	
+
 	<update id="likeUp" parameterType="int">
 		update music set m_like = m_like + 1 where m_no = #{m_no}
 	</update>
