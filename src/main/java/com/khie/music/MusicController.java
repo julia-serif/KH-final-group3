@@ -488,7 +488,7 @@ public class MusicController {
 	}
 		
 	// 비디오에 대한 대댓글 등록 시 RequestMapping
-	@RequestMapping("video_reply_insert.do")
+	@RequestMapping("video_rereply_write.do")
 	private void insertReply(@RequestParam("v_no") int v_no, @RequestParam("vr_no") int vr_no,
 			HttpServletRequest request, HttpServletResponse response, 
 			VideoReplyDTO vdto, MusicDTO dto, Model model) throws IOException {
@@ -511,7 +511,7 @@ public class MusicController {
 			vdto.setVr_writer(member.getUser_id());
 			vdto.setV_no(v_no);
 			vdto.setVr_group(vr_no);
-			this.vr_dao.insertReply(vdto);
+			this.vr_dao.insertVideoReReply(vdto);
 			out.println("<script>");
 			out.println("alert('댓글 등록 성공')");
 			out.println("location.href='video.do?no="+v_no+"'");

@@ -188,7 +188,7 @@
 		                            </div>
 		                        </div>
 		                        <div class="reply_field" id="${reply.getVr_no() }">
-			                       <form action="<%=request.getContextPath() %>/video_reply_insert.do" method="post" autocomplete="off">
+			                       <form action="<%=request.getContextPath() %>/video_rereply_write.do" method="post" autocomplete="off">
 		                            	<input type="hidden" name="vr_no" value="${reply.getVr_no() }">
 		                            	<input type="hidden" name="v_no" value="${music.getM_no() }">
 		                                <textarea name="vr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"></textarea>

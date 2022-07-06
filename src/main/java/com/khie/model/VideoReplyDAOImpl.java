@@ -28,31 +28,13 @@ public class VideoReplyDAOImpl implements VideoReplyDAO {
 	}
 	
 	@Override
-	public int insertReply(VideoReplyDTO dto) {
-		return this.sqlSession.insert("reply_insert", dto);
+	public int insertVideoReReply(VideoReplyDTO dto) {
+		return this.sqlSession.insert("video_rereply", dto);
 	}
-
-	@Override
-	public VideoReplyDTO videoReplyCont(int no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int updateVideoReply(VideoReplyDTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public int deleteVideoReply(int vr_no) {
 		return this.sqlSession.delete("delete_v_reply", vr_no);
-	}
-
-	@Override
-	public void updateSeq(int no) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

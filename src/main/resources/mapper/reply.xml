@@ -19,7 +19,6 @@
 		]]>
 	</select>
 	
-	
 	<insert id="video_reply" parameterType="VideoReplyDTO">
 		<selectKey resultType="int" keyProperty="vr_no" order="BEFORE">
 			select nvl(max(vr_no), 0) from v_reply
@@ -32,7 +31,7 @@
 		delete from v_reply where vr_no = #{vr_no}
 	</delete>
 	
-	<insert id="reply_insert" parameterType="VideoReplyDTO">
+	<insert id="video_rereply" parameterType="VideoReplyDTO">
 		<selectKey resultType="int" keyProperty="vr_no" order="BEFORE">
 			select max(vr_no) from v_reply
 		</selectKey>
