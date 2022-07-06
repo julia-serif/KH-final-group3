@@ -379,7 +379,7 @@ public class MusicController {
 	}
 	
 	@RequestMapping("music_reply_write.do")
-	private String insertVideoReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
+	private String insertMusicReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
 			HttpServletRequest request, HttpServletResponse response, 
 			MusicReplyDTO rdto, MusicDTO dto, Model model) {
 		
