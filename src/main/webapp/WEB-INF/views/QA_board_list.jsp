@@ -44,7 +44,7 @@
                         <table class="table table-hover">
        <thead>
        <tr>
-         <th>게시물 번호</th>
+
          <th>제목</th>
          <th>작성자</th>
          <th>게시일</th>
@@ -56,7 +56,7 @@
           <c:forEach items="${QA_list }" var="dto">
             <tbody>
             <tr>
-              <td>${dto.qa_no }</td>
+              
               <td>
                <a href="<%=request.getContextPath()%>/qanda_content.do?qa_no=${dto.qa_no}">
               ${dto.qa_title }</a></td>
