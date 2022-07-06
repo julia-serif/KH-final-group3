@@ -252,7 +252,8 @@ public class MusicController {
 		return "music_cont";
 
 	}
-
+	
+	// 음원에 대한 댓글 등록 시 RequestMapping
 	@RequestMapping("musicReply.do")
 	private void insertReply(@RequestParam("m_no") int m_no,
 			@RequestParam("mr_cont") String mr_cont,
@@ -378,6 +379,7 @@ public class MusicController {
 		}
 	}
 	
+	// 음원에 대해 댓글 등록 시 RequestMapping
 	@RequestMapping("music_reply_write.do")
 	private String insertMusicReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
 			HttpServletRequest request, HttpServletResponse response, 
@@ -385,16 +387,26 @@ public class MusicController {
 		
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
 		if(member == null) {
-			return "login";
-		} else {
+			session.setAttribute("page_check", "music_cont.do?m_no=" + m_no);
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
+			out.println("</script>");
+			
+		}else {
 			rdto.setMr_writer(member.getUser_id());
 			rdto.setM_no(m_no);
 			rdto.setMr_group(mr_no);
 			this.dao3.insertMusicReply(rdto);
-			
-			return music_cont(m_no, dto, model, request);
-		}
+			out.println("<script>");
+			out.println("alert('댓글 등록 성공')");
+			out.println("location.href='music_cont.do?m_no="+m_no+"'");
+			out.println("</script>");
 		
 	}
 	
@@ -445,7 +457,8 @@ public class MusicController {
 		
 		return "video_content";
 	}
-	
+		
+	// 비디오에 대한 댓글 등록 시 RequestMapping
 	@RequestMapping("video_reply_write.do")
 	private void insertVideoReply(HttpServletRequest request, HttpServletResponse response, 
 			VideoReplyDTO dto, Model model) throws IOException {
@@ -468,6 +481,39 @@ public class MusicController {
 			
 			out.println("<script>");
 			out.println("location.href='video.do?no="+dto.getV_no()+"'");
+			out.println("</script>");
+		}
+		
+	}
+		
+	// 비디오에 대한 대댓글 등록 시 RequestMapping
+	@RequestMapping("video_reply_insert.do")
+	private void insertReply(@RequestParam("v_no") int v_no, @RequestParam("vr_no") int vr_no,
+			HttpServletRequest request, HttpServletResponse response, 
+			VideoReplyDTO vdto, MusicDTO dto, Model model) throws IOException {
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(member == null) {
+			session.setAttribute("page_check", "video.do?no=" + v_no);
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
+			out.println("</script>");
+			
+		}else {
+			vdto.setVr_writer(member.getUser_id());
+			vdto.setV_no(v_no);
+			vdto.setVr_group(vr_no);
+			this.vr_dao.insertReply(vdto);
+			out.println("<script>");
+			out.println("alert('댓글 등록 성공')");
+			out.println("location.href='video.do?no="+v_no+"'");
 			out.println("</script>");
 		}
 		
