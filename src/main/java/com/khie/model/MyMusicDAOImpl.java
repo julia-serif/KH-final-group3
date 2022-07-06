@@ -106,4 +106,14 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	public MyMusicDTO getMyMusicInfo(MyMusicDTO dto) {
 		return this.sqlSession.selectOne("my_info", dto);
 	}
+	
+	@Override
+	public void deletePlaylistUser(int user_no) {
+		this.sqlSession.delete("delete_playlist_user", user_no);
+	}
+	
+	@Override
+	public void deleteMusicByUser(int user_no) {
+		this.sqlSession.delete("delete_music_by_user", user_no);
+	}
 }

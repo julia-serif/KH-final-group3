@@ -695,24 +695,34 @@ public class MusicController {
 			}
 	}
 	
-	@RequestMapping("image_register.do") // 미구현
-	public void image_register(PlaylistDTO dto, HttpServletResponse response) throws IOException {
-		int check = this.mm_dao.imageRegister(dto);
+	@RequestMapping("image_register.do")
+	public void image_register(@RequestParam("playlist_no") int playlist_no, @RequestParam("m_no") int m_no, 
+			HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		int user_no = member.getUser_no();
+		PlaylistDTO playlist = new PlaylistDTO();
 		
+		playlist.setPlaylist_no(playlist_no);
+		playlist.setUser_no(user_no);
+		playlist.setM_no(m_no);
+		
+		int check = this.mm_dao.imageRegister(playlist);
+
 		response.setContentType("text/html; charset=UTF-8");
-		
 		PrintWriter out = response.getWriter();
+		
 		if(check > 0) {
-				out.println("<script>");
-				out.println("alert('수정 성공')");
-				out.println("location.href='mymusic.do'");
-				out.println("</script>");
-			} else {
-				out.println("<script>");
-				out.println("alert('수정 실패')");
-				out.println("history.back()");
-				out.println("</script>");
-			}
+			out.println("<script>");
+			out.println("alert('이미지 등록 성공')");
+			out.println("location.href='select_musiclist.do?playlist_no=" + playlist.getPlaylist_no() + "'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('이미지 등록 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
 	}
 	
 	@RequestMapping("select_musiclist.do")
@@ -769,7 +779,6 @@ public class MusicController {
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		int user_no = member.getUser_no();
 		PlaylistDTO playlist = new PlaylistDTO();
-		System.out.println("플레이리스트 : " + playlist_no + ", 유저 : " + user_no + ", prev : " + prev + ", next : " + next);
 		
 		playlist.setPlaylist_no(playlist_no);
 		playlist.setUser_no(user_no);
@@ -1283,6 +1292,8 @@ public class MusicController {
 
    if(check > 0) {
 	   this.dao2.updateSequence(user_no);
+	   this.mm_dao.deletePlaylistUser(user_no);
+	   this.mm_dao.deleteMusicByUser(user_no);
 	  
 	    out.println("<script>");
 		out.println("alert('회원 삭제 성공!!!')");
