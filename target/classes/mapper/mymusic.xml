@@ -106,6 +106,9 @@
 	</update>
 	
 	<update id="image_register" parameterType="PlaylistDTO">
+		<selectKey resultType="String" keyProperty="playlist_thumbnail" order="BEFORE">
+			select m_image from music where m_no = #{m_no}
+		</selectKey>
 		update music_playlist set playlist_thumbnail = #{playlist_thumbnail} where user_no = #{user_no} and playlist_no = #{playlist_no}
 	</update>
 	
@@ -136,4 +139,12 @@
 	<select id="my_info" parameterType="MyMusicDTO" resultType="MyMusicDTO">
 		select * from music_by_user where user_no = #{user_no} and m_no = #{m_no}
 	</select>
+	
+	<delete id="delete_playlist_user" parameterType="int">
+		delete from music_playlist where user_no = #{user_no}
+	</delete>
+	
+	<delete id="delete_music_by_user" parameterType="int">
+		delete from music_by_user where user_no = #{user_no}
+	</delete>
 </mapper>
