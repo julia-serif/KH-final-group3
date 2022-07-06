@@ -3,7 +3,6 @@ package com.khie.music;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -26,7 +25,6 @@ import com.khie.model.MusicDTO;
 import com.khie.model.MusicArtistDAO;
 import com.khie.model.MusicArtistDTO;
 import com.khie.model.MyMusicDAO;
-import com.khie.model.MyMusicDTO;
 import com.khie.model.NoticeDAO;
 import com.khie.model.NoticeDTO;
 import com.khie.model.MusicReplyDAO;
@@ -1778,7 +1776,6 @@ public class MusicController {
 	public String adminInertMusic() {
 		return"admin_insert_music";
 	}
-	
 	//관리자 음원 추가 완료
 	@RequestMapping("admin_insert_music_ok.do")
 	public void adminInsertMusicOk(MusicDTO musicDTO ,HttpServletRequest requst, HttpServletResponse response, MultipartHttpServletRequest mRequest) throws IOException {
@@ -2014,7 +2011,6 @@ public class MusicController {
 		}//if end
 		}//while end (++---- 파일 추가 end ----++)
 		
-		
 		int check = this.artistDAO.insertArtist(dto);
 		
 		 response.setContentType("text/html; charset=UTF-8");
@@ -2148,8 +2144,7 @@ public class MusicController {
 
 		}
 		
+	
 	}
-	
 }
-	
 
