@@ -137,15 +137,16 @@
                     <c:if test="${! empty toplist }">
                     <c:forEach items="${toplist}" var="top">
                     <!-- Single Album -->
+			 <a href="music_cont.do?m_no=${top.m_no }">
                         <div class="single-album">
                             <img src="<%= request.getContextPath() %>/resources/img/album-img/${top.m_image}">
                             <div class="album-info">
-                                <a href="music_cont.do?m_no=${top.m_no }&page=1">
+                                
                                     <h5>${top.m_name}</h5>
-                                </a>
                                 <p>${top.m_artist}</p>
                             </div>
                         </div>
+			</a>
                     </c:forEach>
                     </c:if>
 						<c:if test="${empty toplist}">
@@ -182,7 +183,7 @@
 						<tr align="left"> 
 							<c:forEach var="n" items="${newlist}" begin="0" end="11">
 								<td width="300px" align="center" >
-								<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${n.m_no}">
+								<a href="music_cont.do?m_no=${n.m_no}">
 									<div class="single-album-area wow fadeInUp">
 
 										<div class="album-thumb">
