@@ -107,7 +107,7 @@
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb.jpg);">
         <div class="bradcumbContent">  
             <h2>회원 관리</h2>
         </div>

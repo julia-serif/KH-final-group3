@@ -125,7 +125,7 @@ function deleteMusic() {
     </div>
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb2.jpg);">
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb2.jpg);">
         <div class="bradcumbContent">
             <p>ONE SOUND의 모든 음원 관리</p>
             <h2>All MUSIC</h2>

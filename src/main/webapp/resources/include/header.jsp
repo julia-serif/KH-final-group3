@@ -99,7 +99,6 @@
                                          <li><a href="<%= request.getContextPath() %>/qanda_list.do">Q/A Boards</a></li>
                                        </ul>
                                     </li> <!-- 서비스 -->
-                                    <li><a href="<%= request.getContextPath() %>/news.do">Other</a></li> <!-- 전체메뉴 -->
                                 </ul>
                              </c:if>
 
