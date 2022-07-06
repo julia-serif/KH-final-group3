@@ -40,7 +40,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-event-area mb-30">
                         <div class="event-thumbnail">
-                            <img src="resources/img/bg-img/IU.jpg" alt="">
+                            <img src="resources/img/bg-img/IU3.png" alt="">
                         </div>
                         <div class="event-text">
                             <h4>세상의 모든 TOP 100</h4>
@@ -52,12 +52,13 @@
                         </div>
                     </div>
                 </div>
+                
 
                 <!-- Single Event Area -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-event-area mb-30">
                         <div class="event-thumbnail">
-                            <img src="resources/img/bg-img/event2.png" alt="">
+                            <img src="resources/img/bg-img/event3.png" alt="">
                         </div>
                         <div class="event-text">
                             <h4>감사 이벤트</h4>
@@ -74,7 +75,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-event-area mb-30">
                         <div class="event-thumbnail">
-                            <img src="resources/img/bg-img/re.png" alt="">
+                            <img src="resources/img/bg-img/re3.png" alt="">
                         </div>
                         <div class="event-text">
                             <h4>Planet ibiza</h4>
