@@ -1859,6 +1859,95 @@ public class MusicController {
 
 	}
 	
+	//관리자 아티스트 수정
+	@RequestMapping("admin_artist_update.do")
+	public String adminArtistUpdate(@RequestParam("no") int m_no, Model model) {
+		
+		MusicArtistDTO dto = artistDAO.selectContArtist(m_no);
+		
+		model.addAttribute("cont", dto);
+		
+		return "admin_artist_update";
+	}
+	
+	//관리자 아티스트 수정 완료
+	@RequestMapping("admin_artist_update_ok.do")
+	private void adminArtistUpdateOk(MusicArtistDTO dto, HttpServletResponse response, MultipartHttpServletRequest mRequest) throws IOException {
+		
+		//업로드 파일이 null인 경우를 대비해서 이미지 세팅
+		MusicArtistDTO artist = artistDAO.selectContArtist(dto.getM_artist_no());
+		dto.setM_artist_img(artist.getM_artist_img());
+		
+		//++파일 들어왔는지 확인++
+		// 업로드된 파일들의 이름을 목록으로 제공하는 메서드
+				Iterator<String> iterator = mRequest.getFileNames();
+						
+				if(iterator.hasNext()) { //파일이 들어왔다면
+					String uploadFileName = iterator.next();
+							
+					MultipartFile mFile =  mRequest.getFile(uploadFileName);
+					
+				//각자 프로젝트에 맞게 경로 지정해주세요!
+				
+				
+				String	uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\artist-img\\";
+			
+				
+				// 업로드한 파일의 이름을 구하는 메서드
+				String orginfileName = mFile.getOriginalFilename();
+				
+				
+				//실제 파일을 들어보자
+				String saveFileName = orginfileName;
+				
+				
+				if(saveFileName != null) {
+					
+					
+					try {
+						File origin = new File(uploadPath+"\\"+saveFileName);
+						
+						// transferTo() : 파일 데이터를 지정한 폴더로 실제 저장시키는 메서드
+						mFile.transferTo(origin);
+						
+						System.out.println("filename>>>" + saveFileName);
+						
+						String filename =  (String)saveFileName;
+						
+						
+							dto.setM_artist_img(filename); //받은 파일로 이미지 세팅
+						
+						
+						
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}//if end
+				}//if end
+		
+				
+		
+		int check = this.artistDAO.updateArtist(dto);
+
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('아티스트 수정 성공')");
+			out.println("location.href='admin_artist.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('아티스트 수정 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
+		}
+
+	}
+	
 	//관리자 아티스트 삭제
 	@RequestMapping("admin_delete_artist.do")
 	public void adminDeleteArtist(HttpServletResponse response, @RequestParam("no") int m_no) throws IOException {
