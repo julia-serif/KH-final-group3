@@ -52,7 +52,7 @@
  
 	   	  <input type="hidden" name="qa_no" value="${dto.qa_no }">
 	   	  <form method="post" 
-          action="<%=request.getContextPath()%>/qa_notice_write_ok.do">
+          action="<%=request.getContextPath()%>/qa_notice_reply_ok.do">
 	      <table class="table table-striped table-bordered">
          <c:set var="dto" value="${content2 }" />
 	      <tr>

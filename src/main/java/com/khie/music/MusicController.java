@@ -1452,6 +1452,30 @@ public class MusicController {
 		return "qa_board_reply";
 	}
 	
+	@RequestMapping("qa_notice_reply_ok.do")
+	public void replyOk(QandADTO dto,
+			HttpServletResponse response) throws IOException {
+		
+		int check = this.Qand_dao.insertQandA(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			
+			out.println("<script>");
+			out.println("alert('게시글 추가 성공!!!')");
+			out.println("location.href='qanda_list.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('게시글 추가 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
 	//관리자 Q/A 게시판 수정 폼 페이지
 	@RequestMapping("qa_modify.do")
 	public String qa_modify(@RequestParam("qa_no") int qa_no, Model model) {
