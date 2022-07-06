@@ -1,9 +1,11 @@
 package com.khie.music;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.khie.model.MemberDTO;
 import com.khie.model.MusicDAO;
@@ -355,6 +358,23 @@ public class MusicController {
 			this.dao3.insertMusicReply(rdto);
 			
 			return music_cont(m_no, dto, model, request);
+		}
+		
+	}
+	
+	@RequestMapping("video_reply_write.do")
+	private String insertVideoReply(HttpServletRequest request, HttpServletResponse response, 
+			VideoReplyDTO dto, Model model) {
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		if(member == null) {
+			return "login";
+		} else {
+			dto.setVr_writer(member.getUser_id());
+			this.vr_dao.insertVideoReply(dto);
+			
+			return video_cont(request, dto.getV_no(), model);
 		}
 		
 	}
@@ -1828,7 +1848,9 @@ public class MusicController {
 
 		}
 		
-	
+	}
 }
+
+
 	
 

@@ -284,38 +284,39 @@
 			<div class="row">
 				<!-- ***** Weeks Top ***** -->
 				<div class="col-12 col-lg-4">
+					
 					<div class="weeks-top-area mb-100">
 						<div class="section-heading text-left mb-50 wow fadeInUp"
 							data-wow-delay="50ms">
 							<p>이번주 top음원</p>
 							<h2>This week’s top</h2>
 						</div>
-
+						<c:forEach var="top10" items="${toplist }" begin="0" end="0">
 						<!-- Single Top Item -->
 						<div class="single-top-item d-flex wow fadeInUp"
 							data-wow-delay="100ms">
 							<div class="thumbnail">
 								<img
-									src="<%=request.getContextPath()%>/resources/img/bg-img/wt1.jpg"
+									src="<%=request.getContextPath()%>/resources/img/album-img/${top10.m_image}"
 									alt="">
 							</div>
 							<div class="content-">
-								<h6>Sam Smith</h6>
-								<p>Underground</p>
+								<h6>${top10.m_artist }</h6>
+								<p>${top10.m_name }</p>
 							</div>
 						</div>
-
+						</c:forEach>
 						<!-- Single Top Item -->
 						<div class="single-top-item d-flex wow fadeInUp"
 							data-wow-delay="150ms">
 							<div class="thumbnail">
 								<img
-									src="<%=request.getContextPath()%>/resources/img/bg-img/wt2.jpg"
+									src="<%=request.getContextPath()%>/resources/img/album-img/${top10.m_image}"
 									alt="">
 							</div>
 							<div class="content-">
-								<h6>Power Play</h6>
-								<p>In my mind</p>
+								<h6>${top10.m_artist }</h6>
+								<p>${top10.m_name }</p>
 							</div>
 						</div>
 
@@ -374,7 +375,7 @@
 								<p>Pop Songs</p>
 							</div>
 						</div>
-
+						
 					</div>
 				</div>
 
