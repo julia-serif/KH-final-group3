@@ -114,8 +114,8 @@ create table music_qanda(
    qa_no number(5) not null,         -- 질문게시판 글 번호
    qa_writer varchar2(50) not null,  -- 질문게시판 글 작성자
    qa_pwd varchar2(100) not null,    -- 질문게시판 글 비번
-   qa_title varchar2(1000) not null,  -- 질문게시판 글 제목
-   qa_cont varchar2(2000) not null,     -- 질문게시판 글 내용    
+   qa_title varchar2(2000) not null,  -- 질문게시판 글 제목
+   qa_cont varchar2(30) not null,     -- 질문게시판 글 내용    
    qa_date date,                      -- 질문게시판 글 작성일자
    qa_update date,                    -- 질문게시판 글 수정일자 
    qa_group number(5)  not null,      -- 질문게시판 그룹 번호
@@ -125,5 +125,15 @@ create table music_qanda(
    );  
 
  insert into music_qanda
-    values('1','관리자', '1234', '첫번째 질문입니다.',sysdate,'','1','' ,'',default); 
+    values('1','관리자', '1234', 'FAQ(환불관련)',' 환불에 대한 답변
+고객님의 요청에 따라 잔액의 전액 환불이 가능합니다.
+결제수단으로 환불을 하게됩니다.
+
+단, 아래의 경우에는 환불이 불가합니다.
+
+1. 다른 고객 또는 제3자로부터 선물을 받아 적립된 경우
+2. 이벤트 당첨 또는 참여를 통하여 적립된 경우
+3. 결제 도용 등과 같이 불법적인 수단으로 적립된 경우',sysdate,'','1','' ,'',default);     
+   
+commit;
 
