@@ -8,7 +8,16 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="MusicDAO">	
+<mapper namespace="MusicDAO">
+	
+	
+	<update id="likeUp" parameterType="int">
+		update music set m_like = m_like + 1 where m_no = #{m_no}
+	</update>
+	
+	<update id="likeDown" parameterType="int">
+		update music set m_like = m_like - 1 where m_no = #{m_no}
+	</update>
 	
 	<select id="searchSong" parameterType="PageDTO" resultType="MusicDTO">
 		<![CDATA[
@@ -52,7 +61,7 @@
 		<![CDATA[
 		select * from 
 			(select m.*, row_number() 
-				over(order by mr_group desc, mr_layer) rnum from m_reply m
+				over(order by mr_group desc, mr_layer, mr_no) rnum from m_reply m
 				where m_no = #{no})
 				where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
@@ -73,10 +82,6 @@
 			insert into m_reply values(#{m_no}, #{mr_no} + 1, #{mr_cont},
 			#{mr_writer}, sysdate, '', #{mr_group}, 1)
 	</insert>
-
-	<update id="likeUp" parameterType="int">
-		update music set m_like = m_like + 1 where m_no = #{m_no}
-	</update>
 	
 	<delete id="musicReplyDel" parameterType="int">
 		delete from m_reply where mr_no = #{mr_no}
@@ -103,13 +108,6 @@
 					m_name like '%' || #{keyword} || '%')
 					where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>
-	</select>
-   
-	<select id="countAll" resultType="int">
-		select count(*) from music
-			where m_name like '%' || #{keyword} || '%' or
-				m_album like '%' || #{keyword} || '%' or
-				m_artist like '%' || #{keyword} || '%'
 	</select>
 	
 	<select id="countSong" resultType="int">
@@ -175,9 +173,17 @@
     			'',#{m_ptime},#{m_lyrics}, sysdate,'')
     	
     	</insert>
+	
+	<update id="updateMusic" parameterType="MusicDTO">
+    		update music set m_name = #{m_name}, m_cont = #{m_cont}, m_album = #{m_album}, m_artist = #{m_artist} , m_mv = #{m_mv}, m_lyrics = #{m_lyrics} where m_no = #{m_no}
+    	
+    	</update>
     	
     	<delete id="deleteMusic" parameterType="int" >
     		delete from music where m_no = #{m_no}
     	</delete>
 	
+	<update id="playCountUp" parameterType="int">
+		update music set m_pcount = m_pcount + 1 where m_no = #{m_no}
+	</update>
 </mapper>

@@ -73,4 +73,15 @@ public class QandADAOImpl implements QandADAO{
 		return this.sqlSession.selectList(dto.getQa_field()+"1",dto);
 	}
 
+	@Override
+	public void updateSequence2(int qa_no) {
+		this.sqlSession.update("qa_seq2", qa_no);
+		
+	}
+
+	@Override
+	public int insertQandA2(QandADTO dto) {
+		return this.sqlSession.insert("qa_reply1", dto);
+	}
+
 }

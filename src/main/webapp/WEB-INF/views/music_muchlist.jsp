@@ -35,7 +35,7 @@
 
 	<!-- ##### Breadcumb Area Start ##### -->
 	<div class="breadcumb-area bg-img bg-overlay"
-		style="background-image: url(img/bg-img/breadcumb2.jpg);">
+		style="background-image: url(resources/img/bg-img/breadcumb2.jpg);">
 		<div class="bradcumbContent">
 			<p>자주 들은 음악</p>
 			<h2>TOP LISTENED</h2>
@@ -55,13 +55,13 @@
 							<table width="180%" id="newtable">
 								<tr>
 									<td width="20%">
-									<a href="#">
+									<a href="<%=request.getContextPath()%>/music_cont.do?m_no="${much.getM_no() }>
 											<!-- 음원 상세페이지로 이동 -->
 											<img src="<%= request.getContextPath() %>/resources/img/album-img/${much.getM_image() }" width="300" height="300" />
 									</a>
 									</td>
 									<td width="50%" id="title">
-									<a href="#">
+									<a href="<%=request.getContextPath()%>/music_cont.do?m_no=${much.getM_no() }">
 										<!-- 음원 상세페이지로 이동 -->
 										<h5 style="display:inline">&nbsp; &nbsp;${much.getM_name() }</h5>
 										<p style="display:inline">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;${much.getPlay_counts() }회 시청</p>
@@ -72,7 +72,7 @@
 										<!-- 플레이 리스트에 담기 -->
 										<img src="<%= request.getContextPath() %>/resources/img/core-img/playMusic.png" width="40" height="40" />
 									</a> &nbsp;&nbsp;&nbsp;
-									<a href="#">
+									<a href="<%=request.getContextPath()%>/video.do?no=${much.getM_no() }">
 										<!-- 뮤비 페이지로 이동 -->
 										<img src="<%= request.getContextPath() %>/resources/img/core-img/playMV.png" width="40" height="40" />
 									</a>

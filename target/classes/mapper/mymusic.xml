@@ -53,26 +53,26 @@
 				when play_thumbs = 'true' then 'false'
 				when play_thumbs = 'false' then 'true'
 			end
-			where user_no = #{user_no} and m_no = #{music_no}
+			where user_no = #{user_no} and m_no = #{m_no}
 		]]>
 	</update>
 
-	<update id="watch_history" parameterType="MyMusicDTO">
-		update music_by_user set play_date = sysdate, play_counts = play_counts + 1 where user_no = #{user_no} and m_no = #{music_no}
+	<update id="watch_record" parameterType="MyMusicDTO">
+		update music_by_user set play_date = sysdate, play_counts = play_counts + 1 where user_no = #{user_no} and m_no = #{m_no}
 	</update>
 	
 	<insert id="first_watch" parameterType="MyMusicDTO">
 		<![CDATA[
 			insert into music_by_user
-			select #{user_no}, #{music_no}, sysdate, 'false', 0 from dual where not exists
-			(select * from music_by_user where user_no = #{user_no} and m_no = #{music_no})
+			select #{user_no}, #{m_no}, sysdate, 'false', 0 from dual where not exists
+			(select * from music_by_user where user_no = #{user_no} and m_no = #{m_no})
 		]]>
 	</insert>
 	
 	<select id="see_playlist" resultType="PlaylistDTO">
 		<![CDATA[
 			select distinct playlist_no, playlist_name, playlist_thumbnail, user_no,
-			case when playlist_no not in (select playlist_no from music_playlist where m_no = #{m_no}) then 1 else 0 end as m_order
+			case when playlist_no not in (select playlist_no from music_playlist where m_no = #{m_no} and user_no = #{user_no}) then 1 else 0 end as m_order
 			from music_playlist
 			where user_no = #{user_no}
 			order by playlist_no
@@ -132,4 +132,8 @@
 	<update id="update_m_seq" parameterType="PlaylistDTO">
 		update music_playlist set m_order = m_order - 1 where m_order > #{m_order} and user_no = #{user_no} and playlist_no = #{playlist_no}
 	</update>
+	
+	<select id="my_info" parameterType="MyMusicDTO" resultType="MyMusicDTO">
+		select * from music_by_user where user_no = #{user_no} and m_no = #{m_no}
+	</select>
 </mapper>

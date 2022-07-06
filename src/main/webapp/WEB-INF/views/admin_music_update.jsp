@@ -46,7 +46,7 @@
     <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb2.jpg);">
         <div class="bradcumbContent">
             <p>ONE SOUND 음원 추가</p>
-            <h2>ADD MUSIC PAGE</h2>
+            <h2>UPDATE MUSIC</h2>
         </div>
     </div>
     <!-- ##### Breadcumb Area End ##### -->
@@ -56,52 +56,40 @@
             <!--음원 추가 Area start -->
             
   				<div align="center" id="musicADD">
-  					<form method="post"  enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin_insert_music_ok.do">
+  				<c:set value="${cont}" var="music"/>
+  					<form method="post"  enctype="multipart/form-data" action="<%=request.getContextPath() %>/admin_music_update_ok.do">
+  						<input type="hidden" name="m_no" value="${music.m_no}">
   						<table  id="addTable" border="1">
   							<tr>
   								<td align="center"> 곡 명 </td>
-  								<td> <input name="m_name" autofocus="autofocus" required="required"></td>
+  								<td> <input name="m_name" value="${music.m_name}" autofocus="autofocus" required="required"></td>
   							</tr>
   							<tr>
   								<td align="center"> 곡 소개 </td>
-  								<td> <input name="m_cont"></td>
+  								<td> <input name="m_cont" value="${music.m_cont}"></td>
   							</tr>
   							<tr>
   								<td align="center"> 앨범 명 </td>
-  								<td> <input name="m_album" required="required"></td>
+  								<td> <input name="m_album" value="${music.m_album}" required="required"></td>
   							</tr>
   							<tr>
   								<td align="center"> 아티스트 </td>
-  								<td> <input name="m_artist" required="required"></td>
-  							</tr>
-  							<tr>
-  								<td align="center"> mp3 파일 </td>
-  								<td> <input type="file" name="file1" required="required"></td>
+  								<td> <input name="m_artist" value="${music.m_artist}" required="required"></td>
   							</tr>
   							<tr>
   								<td align="center"> 뮤직비디오 링크 </td>
-  								<td> <input name="m_mv"></td>
-  							</tr>
-  							<tr>
-  								<td align="center"> 앨범 이미지 </td>
-  								<td> <input type="file" name="file2" required="required"></td>
-  							</tr>
-  							<tr>
-  								<td align="center"> 재생시간 </td>
-  								<td> <input type="number" name="minute" value="0" max="99" min="0"  required="required"> 분 
-  									 <input type="number" name="second" value="0" max="59" min="0"  required="required"> 초  
-  								</td>
+  								<td> <input name="m_mv" value="${music.m_mv}"></td>
   							</tr>
   							<tr>
   								<td align="center"> 곡 가사 </td>
   								<td> 
-  									<textarea rows="20" cols="50" style="overflow-y:scroll; " name="m_lyrics">
+  									<textarea rows="20" cols="50" style="overflow-y:scroll; " name="m_lyrics">${music.m_lyrics}
   									</textarea>
   								</td>
   							</tr>
   							<tr>
   								<td colspan="2" align="right">
-  									<input type="submit" value="음원 추가">
+  									<input type="submit" value="음원 수정">
   								</td>
   							</tr>
                         </table>

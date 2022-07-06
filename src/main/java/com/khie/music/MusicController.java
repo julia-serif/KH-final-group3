@@ -26,6 +26,7 @@ import com.khie.model.MusicDTO;
 import com.khie.model.MusicArtistDAO;
 import com.khie.model.MusicArtistDTO;
 import com.khie.model.MyMusicDAO;
+import com.khie.model.MyMusicDTO;
 import com.khie.model.NoticeDAO;
 import com.khie.model.NoticeDTO;
 import com.khie.model.MusicReplyDAO;
@@ -226,54 +227,33 @@ public class MusicController {
 		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
 		pdto.setNo(m_no);
 		
+		if(member!=null) {
+			MyMusicDTO mmdto = new MyMusicDTO();
+			mmdto.setM_no(m_no);
+			mmdto.setUser_no(member.getUser_no());
+			
+			MyMusicDTO myInfo = this.mm_dao.getMyMusicInfo(mmdto);
+			model.addAttribute("myInfo", myInfo);
+			
+			this.mm_dao.updatePlayMusic(mmdto);
+		}
+		
 		List<MusicReplyDTO> replyList = this.dao3.getBoardList(pdto);
 		dto = this.dao.musicCont(m_no);
+		
 		
 		model.addAttribute("cont", dto);
 		model.addAttribute("musicReplyList", replyList);
 		model.addAttribute("Paging", pdto);
 		model.addAttribute("totalRecord", totalRecord);
 		model.addAttribute("member", member);
+		this.dao.updatePlayCount(m_no);
 		
 		return "music_cont";
 
 	}
-
-	@RequestMapping("video.do")
-	public String video_cont(HttpServletRequest request, @RequestParam("no") int no, Model model) {
-		
-		MusicDTO dto = this.dao.musicCont(no);
-		model.addAttribute("music", dto);
-		//여기까지가 동영상 표시 부분 처리.
-		
-		
-		int page;	//현재 페이지 변수
-		if(request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}else {
-			page = 1;    // 처음으로 게시물 전체 목록 태그를 선택한 경우
-		}
-		
-		int totalRecord = this.vr_dao.getRecordCount(no);
-		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
-		model.addAttribute("totalRecord", totalRecord);
-		
-		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
-		pdto.setNo(no);
-		
-		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
-		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
-		
-		model.addAttribute("list", list);
-		model.addAttribute("paging", pdto);
-		
-		HttpSession session = request.getSession();
-		MemberDTO member = (MemberDTO)session.getAttribute("member");
-		model.addAttribute("member", member);
-		
-		return "video_content";
-	}
-
+	
+	// 댓글 등록 시 RequestMapping
 	@RequestMapping("musicReply.do")
 	private void insertReply(@RequestParam("m_no") int m_no,
 			@RequestParam("mr_cont") String mr_cont,
@@ -290,6 +270,7 @@ public class MusicController {
 		PrintWriter out = response.getWriter();
 		
 		if(member == null) {
+			session.setAttribute("page_check", "music_cont.do?m_no=" + m_no);
 			out.println("<script>");
 			out.println("alert('로그인이 필요합니다.')");
 			out.println("location.href='login.do'");
@@ -333,48 +314,212 @@ public class MusicController {
 	}
 	
 	@RequestMapping("m_like_up.do")
-	private String likeUp(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
-			HttpServletRequest request) {
+	private void likeUp(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		this.dao.updateLike(m_no);
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		
-		return music_cont(m_no, dto, model, request);
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html; charset=UTF-8");
 		
+		if(member == null) {
+			session.setAttribute("page_check", "music_cont.do?m_no=" + m_no);
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
+			out.println("</script>");
+			
+		} else {
+			MyMusicDTO mm_dto = new MyMusicDTO();
+			mm_dto.setM_no(m_no);
+			mm_dto.setUser_no(member.getUser_no());
+			
+			int check = this.dao.updateLike(m_no, 0);
+			
+			if(check > 0) {
+				this.mm_dao.clickLike(mm_dto);
+				out.println("<script>");
+				out.println("location.href='music_cont.do?m_no="+m_no+"'");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("history.back()");
+				out.println("</script>");
+			}
+		}
 	}
 	
+	@RequestMapping("m_like_down.do")
+	private void likeDown(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		MyMusicDTO mm_dto = new MyMusicDTO();
+		mm_dto.setM_no(m_no);
+		mm_dto.setUser_no(member.getUser_no());
+		
+		int check = this.dao.updateLike(m_no, 1);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			this.mm_dao.clickLike(mm_dto);
+			out.println("<script>");
+			out.println("location.href='music_cont.do?m_no="+m_no+"'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
+	// 대댓글 등록 시 RequestMapping
 	@RequestMapping("music_reply_write.do")
-	private String insertVideoReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
+	private void insertMusicReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
 			HttpServletRequest request, HttpServletResponse response, 
-			MusicReplyDTO rdto, MusicDTO dto, Model model) {
+			MusicReplyDTO rdto, MusicDTO dto, Model model) throws IOException {
 		
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
 		if(member == null) {
-			return "login";
-		} else {
+			session.setAttribute("page_check", "music_cont.do?m_no=" + m_no);
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
+			out.println("</script>");
+			
+		}else {
 			rdto.setMr_writer(member.getUser_id());
 			rdto.setM_no(m_no);
 			rdto.setMr_group(mr_no);
 			this.dao3.insertMusicReply(rdto);
-			
-			return music_cont(m_no, dto, model, request);
+			out.println("<script>");
+			out.println("alert('댓글 등록 성공')");
+			out.println("location.href='music_cont.do?m_no="+m_no+"'");
+			out.println("</script>");
 		}
 		
 	}
 	
-	@RequestMapping("video_reply_write.do")
-	private String insertVideoReply(HttpServletRequest request, HttpServletResponse response, 
-			VideoReplyDTO dto, Model model) {
+	// 비디오에 대한 대댓글 등록 시 RequestMapping
+	@RequestMapping("video_reply_insert.do")
+	private void insertReply(@RequestParam("v_no") int v_no, @RequestParam("vr_no") int vr_no,
+			HttpServletRequest request, HttpServletResponse response, 
+			VideoReplyDTO vdto, MusicDTO dto, Model model) throws IOException {
 		
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
 		if(member == null) {
-			return "login";
-		} else {
+			session.setAttribute("page_check", "video.do?no=" + v_no);
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
+			out.println("</script>");
+			
+		}else {
+			vdto.setVr_writer(member.getUser_id());
+			vdto.setV_no(v_no);
+			vdto.setVr_group(vr_no);
+			this.vr_dao.insertReply(vdto);
+			out.println("<script>");
+			out.println("alert('댓글 등록 성공')");
+			out.println("location.href='video.do?no="+v_no+"'");
+			out.println("</script>");
+		}
+		
+	}
+	
+
+	@RequestMapping("video.do")
+	public String video_cont(HttpServletRequest request, @RequestParam("no") int no, Model model) {
+		
+		MusicDTO dto = this.dao.musicCont(no);
+		model.addAttribute("music", dto);
+		//여기까지가 동영상 표시 부분 처리.
+		
+		int page;	//현재 페이지 변수
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}else {
+			page = 1;    // 처음으로 게시물 전체 목록 태그를 선택한 경우
+		}
+		
+		int totalRecord = this.vr_dao.getRecordCount(no);
+		//DB상의 v_no가 현재 페이지의 v_no에 해당하는 레코드들의 수를 확인하는 메서드 호출.
+		model.addAttribute("totalRecord", totalRecord);
+		
+		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
+		pdto.setNo(no);
+		
+		
+		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
+		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
+		
+		model.addAttribute("list", list);
+		model.addAttribute("paging", pdto);
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+
+		if(member!=null) {
+			MyMusicDTO mmdto = new MyMusicDTO();
+			mmdto.setM_no(no);
+			mmdto.setUser_no(member.getUser_no());
+			// MyMusicDTO myInfo = this.mm_dao.getMyMusicInfo(mmdto);
+			// model.addAttribute("myInfo", myInfo);
+			// 위 두 줄은 좋아요 삽입 시 필요한 속성
+			
+			this.mm_dao.updatePlayMusic(mmdto);
+		}
+		this.dao.updatePlayCount(no);
+		
+		model.addAttribute("member", member);
+		
+		return "video_content";
+	}
+	
+	// 비디오에 대한 댓글 등록 시 RequestMapping
+	@RequestMapping("video_reply_write.do")
+	private void insertVideoReply(HttpServletRequest request, HttpServletResponse response, 
+			VideoReplyDTO dto, Model model) throws IOException {
+		
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(member == null) {
+			session.setAttribute("page_check", "video.do?no=" + dto.getV_no());
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
+			out.println("</script>");
+			
+		}else {
 			dto.setVr_writer(member.getUser_id());
 			this.vr_dao.insertVideoReply(dto);
-			
-			return video_cont(request, dto.getV_no(), model);
+			out.println("<script>");
+			out.println("alert('댓글 등록 성공')");
+			out.println("location.href='video.do?no="+dto.getV_no()+"'");
+			out.println("</script>");
 		}
 		
 	}
@@ -388,9 +533,6 @@ public class MusicController {
 		return video_cont(request, v_no, model);
 		
 	}
-	
-	
-	
 	
 	@RequestMapping("mymusic.do")
 	public String mymusic(HttpServletRequest request, Model model) {
@@ -516,7 +658,7 @@ public class MusicController {
 		if(check > 0) {
 			out.println("<script>");
 			out.println("alert('추가 성공')");
-			out.println("location.href='add_to_playlist.do?m_no=" + dto.getM_no() + "'");
+			out.println("history.go(-2)");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
@@ -1452,6 +1594,30 @@ public class MusicController {
 		return "qa_board_reply";
 	}
 	
+	@RequestMapping("qa_notice_reply_ok.do")
+	public void replyOk(QandADTO dto,
+			HttpServletResponse response) throws IOException {
+		
+		int check = this.Qand_dao.insertQandA(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			
+			out.println("<script>");
+			out.println("alert('게시글 추가 성공!!!')");
+			out.println("location.href='qanda_list.do'");
+			out.println("</script>");
+		}else {
+			out.println("<script>");
+			out.println("alert('게시글 추가 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
 	//관리자 Q/A 게시판 수정 폼 페이지
 	@RequestMapping("qa_modify.do")
 	public String qa_modify(@RequestParam("qa_no") int qa_no, Model model) {
@@ -1613,8 +1779,6 @@ public class MusicController {
 		
 		musicDTO.setM_ptime((minute*60) + second);
 		
-		Upload upload = new Upload();
-		
 		//파일 업로드
 		//boolean uploadAudio = upload.UploadAudio(musicDTO.getM_audio());
 		
@@ -1698,6 +1862,42 @@ public class MusicController {
 			
 		}
 	}
+	
+	//관리자 음원 수정
+	@RequestMapping("admin_music_update.do")
+	public String upadteMusic(@RequestParam("no") int m_no, MusicDTO dto, Model model) {
+		
+		dto = this.dao.musicCont(m_no);
+		
+		model.addAttribute("cont", dto);
+		
+		return "admin_music_update";
+
+	}
+	
+	//관리자 음원 수정 성공
+	@RequestMapping("admin_music_update_ok.do")
+	public void updateMusicOk(MusicDTO dto, HttpServletResponse response) throws IOException {
+		
+		int check = dao.updateMusic(dto);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('음원 수정 성공')");
+			out.println("location.href='admin_Music.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('음원 수정 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
+		}
+	}
+	
 	
 	//관리자 음원 삭제
 	@RequestMapping("admin_music_delete.do")
@@ -1821,6 +2021,95 @@ public class MusicController {
 			out.println("history.back()");
 			out.println("</script>");
 			
+		}
+
+	}
+	
+	//관리자 아티스트 수정
+	@RequestMapping("admin_artist_update.do")
+	public String adminArtistUpdate(@RequestParam("no") int m_no, Model model) {
+		
+		MusicArtistDTO dto = artistDAO.selectContArtist(m_no);
+		
+		model.addAttribute("cont", dto);
+		
+		return "admin_artist_update";
+	}
+	
+	//관리자 아티스트 수정 완료
+	@RequestMapping("admin_artist_update_ok.do")
+	private void adminArtistUpdateOk(MusicArtistDTO dto, HttpServletResponse response, MultipartHttpServletRequest mRequest) throws IOException {
+		
+		//업로드 파일이 null인 경우를 대비해서 이미지 세팅
+		MusicArtistDTO artist = artistDAO.selectContArtist(dto.getM_artist_no());
+		dto.setM_artist_img(artist.getM_artist_img());
+		
+		//++파일 들어왔는지 확인++
+		// 업로드된 파일들의 이름을 목록으로 제공하는 메서드
+				Iterator<String> iterator = mRequest.getFileNames();
+						
+				if(iterator.hasNext()) { //파일이 들어왔다면
+					String uploadFileName = iterator.next();
+							
+					MultipartFile mFile =  mRequest.getFile(uploadFileName);
+					
+				//각자 프로젝트에 맞게 경로 지정해주세요!
+				
+				
+				String	uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\artist-img\\";
+			
+				
+				// 업로드한 파일의 이름을 구하는 메서드
+				String orginfileName = mFile.getOriginalFilename();
+				
+				
+				//실제 파일을 들어보자
+				String saveFileName = orginfileName;
+				
+				
+				if(saveFileName != null) {
+					
+					
+					try {
+						File origin = new File(uploadPath+"\\"+saveFileName);
+						
+						// transferTo() : 파일 데이터를 지정한 폴더로 실제 저장시키는 메서드
+						mFile.transferTo(origin);
+						
+						System.out.println("filename>>>" + saveFileName);
+						
+						String filename =  (String)saveFileName;
+						
+						
+							dto.setM_artist_img(filename); //받은 파일로 이미지 세팅
+						
+						
+						
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				}//if end
+				}//if end
+		
+				
+		
+		int check = this.artistDAO.updateArtist(dto);
+
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+
+		if (check > 0) {
+			out.println("<script>");
+			out.println("alert('아티스트 수정 성공')");
+			out.println("location.href='admin_artist.do'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('아티스트 수정 실패')");
+			out.println("history.back()");
+			out.println("</script>");
+
 		}
 
 	}

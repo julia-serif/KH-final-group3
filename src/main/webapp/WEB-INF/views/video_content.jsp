@@ -160,6 +160,13 @@
 		                        <!-- Single Top Item -->
 		                        <div class="single-new-item d-flex align-items-center justify-content-between">
 		                            <div class="first-part d-flex align-items-center">
+		                               <c:if test="${reply.getVr_layer() != 0 }">
+											<c:forEach begin="1" end="${reply.getVr_layer() }">
+												<img alt="" src="<%= request.getContextPath() %>/resources/img/bg-img/right-arrow.png"
+													width="50" height="50">&nbsp;&nbsp;&nbsp;
+											</c:forEach>
+										</c:if>
+		                               
 		                                <div class="thumbnail">
 		                                    <img src="<%= request.getContextPath() %>/resources/img/bg-img/wt7.jpg" alt="">
 		                                </div>
@@ -176,14 +183,17 @@
 			                            		location.href='video_reply_delete.do?v_no=${reply.getV_no() }&vr_no=${reply.getVr_no() }' }
 			                            		else { return; }">삭제</button>
 			                            </c:if>
+			                        <c:if test="${reply.getVr_layer() == 0 }">
 		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
+		                            </c:if>
 		                            </div>
 		                        </div>
 		                        <div class="reply_field">
-			                        <form action="<%=request.getContextPath() %>/video_reply_write.do" method="post" autocomplete="off">
+			                        <form action="<%=request.getContextPath() %>/video_reply_insert.do" method="post" autocomplete="off">
+		                            	<input type="hidden" name="vr_no" value="${reply.getVr_no() }">
 		                            	<input type="hidden" name="v_no" value="${music.getM_no() }">
 		                                <textarea name="vr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"></textarea>
-		                                <button type="button" class="oneMusic-btn-small" style="float: right;">등록</button>
+		                                <button type="submit" class="oneMusic-btn-small" style="float: right;">등록</button>
 		                            </form>
 		                            <hr style="margin-top: 50px;">
 	                            </div>

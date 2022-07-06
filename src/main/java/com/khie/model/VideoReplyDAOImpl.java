@@ -28,6 +28,11 @@ public class VideoReplyDAOImpl implements VideoReplyDAO {
 	}
 
 	@Override
+	public int insertReply(VideoReplyDTO dto) {
+		return this.sqlSession.insert("reply_insert", dto);
+	}
+
+	@Override
 	public VideoReplyDTO videoReplyCont(int no) {
 		// TODO Auto-generated method stub
 		return null;
@@ -49,5 +54,6 @@ public class VideoReplyDAOImpl implements VideoReplyDAO {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }

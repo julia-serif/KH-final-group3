@@ -94,12 +94,12 @@
                                     <li><a href="<%= request.getContextPath() %>/events.do">Events</a></li> <!-- 이벤트 -->
                                     <li><a href="<%= request.getContextPath() %>/mymusic.do">MyMusic</a></li> <!-- 내 음악 -->
                                     <li><a href="#">Service</a>
+                                    <li><a href="<%= request.getContextPath() %>/notice_list.do">Service</a>
                                         <ul class="dropdown">
                                          <li><a href="<%= request.getContextPath() %>/notice_list.do">Notice</a></li>
                                          <li><a href="<%= request.getContextPath() %>/qanda_list.do">Q/A Boards</a></li>
                                        </ul>
                                     </li> <!-- 서비스 -->
-                                    <li><a href="<%= request.getContextPath() %>/news.do">Other</a></li> <!-- 전체메뉴 -->
                                 </ul>
                              </c:if>
 

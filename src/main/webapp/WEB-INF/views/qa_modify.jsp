@@ -47,7 +47,7 @@
        <!-- 회원 상세 페이지 -->
        <div align="center">
        <c:set var="dto" value="${content2 }" />                                  
-        <h2> 답변글</h2>
+        <h2> 질문 수정</h2>
         
 	   <br>
  
@@ -97,7 +97,7 @@
 	      
 	      <tr>
             <td colspan="2" align="center">
-              <input type="submit" class="btn btn-primary" value="글 등록">&nbsp;&nbsp;&nbsp;
+              <input type="submit" class="btn btn-primary" value="글 수정">&nbsp;&nbsp;&nbsp;
               <input type="reset" class="btn btn-primary" value="다시작성">
              </td>
          </tr>

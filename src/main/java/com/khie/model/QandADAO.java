@@ -11,6 +11,8 @@ public int getQandAListCount();
 	
 	public int insertQandA(QandADTO dto);
 	
+	public int insertQandA2(QandADTO dto);
+	
 	public void readCount(int qa_no);
 	
 	public QandADTO boardCont(int qa_no);
@@ -20,6 +22,8 @@ public int getQandAListCount();
 	public int deleteBoard(int qa_no);
 	
 	public void updateSequence(int qa_no);
+	
+	public void updateSequence2(int qa_no);
 	
 	public int searchBoardCount(String qa_field, String qa_keyword);
 	

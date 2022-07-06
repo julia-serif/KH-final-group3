@@ -23,7 +23,7 @@
     <jsp:include page="/resources/include/header.jsp"></jsp:include>
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb.jpg);">
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb.jpg);">
         <div class="bradcumbContent">
             <p>See what’s new</p>
             <h2>Contact</h2>

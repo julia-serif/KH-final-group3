@@ -127,7 +127,7 @@ function deleteArtist() {
     </div>
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb2.jpg);">
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb2.jpg);">
         <div class="bradcumbContent">
             <p>ONE SOUND의 아티스트 관리</p>
             <h2>All ARTIST</h2>
@@ -180,7 +180,7 @@ function deleteArtist() {
                     
                                	 &nbsp; &nbsp; &nbsp;
                                	 <!-- 수정 페이지로 이동 -->
-                               	 	<input type="button" value="수정" onclick="location.href='#?no=${top.m_artist_no}'">
+                               	 	<input type="button" value="수정" onclick="location.href='admin_artist_update.do?no=${top.m_artist_no}'">
                                	 
                             	&nbsp; || &nbsp;
                             	 <!-- 삭제 페이지로 이동 -->

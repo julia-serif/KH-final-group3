@@ -125,7 +125,7 @@ function deleteMusic() {
     </div>
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb2.jpg);">
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/img/bg-img/breadcumb2.jpg);">
         <div class="bradcumbContent">
             <p>ONE SOUND의 모든 음원 관리</p>
             <h2>All MUSIC</h2>
@@ -183,7 +183,7 @@ function deleteMusic() {
                                	 </a>
                                	 &nbsp; &nbsp; &nbsp;
                                	 <!-- 수정 페이지로 이동 -->
-                               	 	<input type="button" value="수정" onclick="location.href='admin_music_update.?no=${top.m_no}'">
+                               	 	<input type="button" value="수정" onclick="location.href='admin_music_update.do?no=${top.m_no}'">
                                	 
                             	&nbsp; || &nbsp;
                             	 <!-- 삭제 페이지로 이동 -->

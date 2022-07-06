@@ -34,6 +34,7 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 
 	@Override
 	public void updatePlayMusic(MyMusicDTO dto) {
+		this.sqlSession.insert("first_watch", dto);
 		this.sqlSession.update("watch_record", dto);
 	}
 
@@ -99,5 +100,10 @@ public class MyMusicDAOImpl implements MyMusicDAO {
 	@Override
 	public void updateMusiclistSequence(PlaylistDTO dto) {
 		this.sqlSession.update("update_m_seq", dto);
+	}
+
+	@Override
+	public MyMusicDTO getMyMusicInfo(MyMusicDTO dto) {
+		return this.sqlSession.selectOne("my_info", dto);
 	}
 }

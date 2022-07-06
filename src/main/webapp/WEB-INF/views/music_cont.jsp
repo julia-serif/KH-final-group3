@@ -66,19 +66,19 @@
 			$(".reply_field").hide();
 		};
 
-		function nested_reply() {
+</script>
+<script type="text/javascript">
+	function nested_reply(a) {
 			
 			var uid = '${member}';
-			
-			
 			if(!uid){
 				window.location.href = "${pageContext.request.contextPath}/login.do";
 				
 			} else {
-				if($(".reply_field").is(":hidden")){
-					$(".reply_field").show();
+				if($("#"+a).is(":hidden")){
+					$("#"+a).show();
 				} else {
-					$(".reply_field").hide();
+					$("#"+a).hide();
 				}
 			}	
 		}
@@ -168,10 +168,25 @@
 	                            <br> <br>
 	                            
 	                            <div class="button-content">
-	                            	<a href="<%=request.getContextPath() %>/m_like_up.do?m_no=${dto.getM_no() }&page=${paging.page }">
-	                       			  <!-- 좋아요 버튼 -->
-	                    				<img src="<%= request.getContextPath() %>/resources/img/bg-img/like.png" width="40" height="40" />
-	                   			    </a>
+								<c:set var="myInfo" value="${myInfo }"/>
+	                            	<c:if test="${member == null }">
+	                    				<a href="<%=request.getContextPath() %>/m_like_up.do?m_no=${dto.getM_no() }&page=${paging.page }">
+		                       			  <!-- 좋아요 버튼 -->
+		                    				<img src="<%= request.getContextPath() %>/resources/img/bg-img/like.png" width="40" height="40" />
+		                   			    </a>
+	                            	</c:if>
+	                            	<c:if test="${myInfo.getPlay_thumbs() == 'false' }">
+		                            	<a href="<%=request.getContextPath() %>/m_like_up.do?m_no=${dto.getM_no() }&page=${paging.page }">
+		                       			  <!-- 좋아요 버튼 -->
+		                    				<img src="<%= request.getContextPath() %>/resources/img/bg-img/like.png" width="40" height="40" />
+		                   			    </a>
+	                   			    </c:if>
+	                            	<c:if test="${myInfo.getPlay_thumbs() == 'true' }">
+		                            	<a href="<%=request.getContextPath() %>/m_like_down.do?m_no=${dto.getM_no() }&page=${paging.page }">
+		                       			  <!-- 좋아요 버튼 -->
+		                    				<img src="<%= request.getContextPath() %>/resources/img/bg-img/like2.png" width="40" height="40" />
+		                   			    </a>
+	                   			    </c:if>
 	                   			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						            <a href="<%=request.getContextPath()%>/video.do?no=${dto.getM_no()}">
 	                       			<!-- 뮤비 페이지로 이동 -->
@@ -272,7 +287,7 @@
 		                            </div>
 		                        </div>
 		                        
-		                          <div class="reply_field">
+		                          <div class="reply_field" id="${reply.getMr_no() }">
 			                        <form action="<%=request.getContextPath() %>/music_reply_write.do" method="post" autocomplete="off">
 		                            	<input type="hidden" name="mr_no" value="${reply.getMr_no() }">
 		                            	<input type="hidden" name="m_no" value="${dto.getM_no() }">

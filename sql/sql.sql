@@ -59,6 +59,8 @@ create table m_reply (
     mr_layer number default 0
 );
 
+insert into m_reply values(1, 1, '첫 번째 댓글입니다.', 'admin', sysdate, '', 1, default);
+
 -- 영상별 댓글 테이블
 create table v_reply (
     v_no number references music(m_no),
@@ -83,17 +85,8 @@ create table music_notice (
    music_update date                -- 공지사항 글 수정일자 
 );
 
--- 이벤트 테이블
-create table music_event (
-   event_no number(5) primary key,      -- 이벤트 글 번호
-   event_writer varchar2(30) not null,  -- 이벤트 글 작성자
-   event_title varchar2(1000) not null, -- 이벤트 글 제목
-   event_cont varchar2(2000) not null,  -- 이벤트 글 내용
-   event_pwd varchar2(30) not null,     -- 이벤트 글 비밀번호
-   event_hit number(10) default 0,      -- 이벤트 글 조회수
-   event_date date,                     -- 이벤트 글 작성일자
-   event_update date                -- 이벤트 글 수정일자 
-);
+insert into music_notice values(1, '관리자', '첫번째 공지사항', '첫번째 공지사항 입니다', '1234',default,sysdate,'');
+
 
 -- 회원별 플레이리스트
 create table music_playlist (
@@ -116,7 +109,7 @@ create table music_by_user (
 	constraint music_by_user_PK primary key(user_no, m_no)
 );
 
--- 공지사항 테이블
+-- 질문게시판 테이블
 create table music_qanda(
    qa_no number(5) not null,         -- 질문게시판 글 번호
    qa_writer varchar2(50) not null,  -- 질문게시판 글 작성자
@@ -131,5 +124,16 @@ create table music_qanda(
    qa_hit number(5) default 0         -- 질문게시판 조회수
    );  
 
+ insert into music_qanda
+    values('1','관리자', '1234', 'FAQ(환불관련)',' 환불에 대한 답변
+고객님의 요청에 따라 잔액의 전액 환불이 가능합니다.
+결제수단으로 환불을 하게됩니다.
 
+단, 아래의 경우에는 환불이 불가합니다.
+
+1. 다른 고객 또는 제3자로부터 선물을 받아 적립된 경우
+2. 이벤트 당첨 또는 참여를 통하여 적립된 경우
+3. 결제 도용 등과 같이 불법적인 수단으로 적립된 경우',sysdate,'','1','' ,'',default);     
+   
+commit;
 
