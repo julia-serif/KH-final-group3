@@ -8,6 +8,6 @@ public interface MusicArtistDAO {
 	public int insertArtist(MusicArtistDTO dto);
 	public int updateArtist(MusicArtistDTO dto);
 	public int deleteAritst(int m_artist_no);
-	public MusicArtistDTO selectContArtidt(int m_artist_no);
+	public MusicArtistDTO selectContArtist(int m_artist_no);
 	public List<MusicArtistDTO> searchArtist(PageDTO pDto);
 }
