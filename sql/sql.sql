@@ -114,8 +114,8 @@ create table music_qanda(
    qa_no number(5) not null,         -- 질문게시판 글 번호
    qa_writer varchar2(50) not null,  -- 질문게시판 글 작성자
    qa_pwd varchar2(100) not null,    -- 질문게시판 글 비번
-   qa_title varchar2(2000) not null,  -- 질문게시판 글 제목
-   qa_cont varchar2(30) not null,     -- 질문게시판 글 내용    
+   qa_title varchar2(1000) not null,  -- 질문게시판 글 제목
+   qa_cont varchar2(2000) not null,     -- 질문게시판 글 내용    
    qa_date date,                      -- 질문게시판 글 작성일자
    qa_update date,                    -- 질문게시판 글 수정일자 
    qa_group number(5)  not null,      -- 질문게시판 그룹 번호
