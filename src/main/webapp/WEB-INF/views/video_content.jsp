@@ -65,11 +65,6 @@
 			}	
 		}
 	</script>
-	<script type="text/javascript">
-		$('button').on("click", function() {
-			alert("clicked");
-		});
-	</script>
 </head>
 <body>
 	<jsp:include page="/resources/include/header.jsp"></jsp:include>

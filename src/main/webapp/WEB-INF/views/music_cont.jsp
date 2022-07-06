@@ -66,18 +66,17 @@
 			$(".reply_field").hide();
 		};
 
-		function nested_reply() {
+		function nested_reply(a) {
 			
 			var uid = '${member}';
-			var mr_no = '${reply.getMr_no() }';
 			if(!uid){
 				window.location.href = "${pageContext.request.contextPath}/login.do";
 				
 			} else {
-				if($(".reply_field").is(":hidden")){
-					$(".reply_field").show();
+				if($("#"+a).is(":hidden")){
+					$("#"+a).show();
 				} else {
-					$(".reply_field").hide();
+					$("#"+a).hide();
 				}
 			}	
 		}
@@ -281,12 +280,12 @@
 			                            </c:if>
 		                            
 		                            <c:if test="${reply.getMr_layer() == 0 }">
-		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
+		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply(${reply.getMr_no()})">댓글</button>
 		                            </c:if>
 		                            </div>
 		                        </div>
 		                        
-		                          <div class="reply_field">
+		                          <div class="reply_field" id="${reply.getMr_no() }">
 			                        <form action="<%=request.getContextPath() %>/music_reply_write.do" method="post" autocomplete="off">
 		                            	<input type="hidden" name="mr_no" value="${reply.getMr_no() }">
 		                            	<input type="hidden" name="m_no" value="${dto.getM_no() }">
