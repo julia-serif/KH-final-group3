@@ -231,18 +231,23 @@ public class MusicController {
 			MyMusicDTO mmdto = new MyMusicDTO();
 			mmdto.setM_no(m_no);
 			mmdto.setUser_no(member.getUser_no());
+			
 			MyMusicDTO myInfo = this.mm_dao.getMyMusicInfo(mmdto);
 			model.addAttribute("myInfo", myInfo);
+			
+			this.mm_dao.updatePlayMusic(mmdto);
 		}
 		
 		List<MusicReplyDTO> replyList = this.dao3.getBoardList(pdto);
 		dto = this.dao.musicCont(m_no);
+		
 		
 		model.addAttribute("cont", dto);
 		model.addAttribute("musicReplyList", replyList);
 		model.addAttribute("Paging", pdto);
 		model.addAttribute("totalRecord", totalRecord);
 		model.addAttribute("member", member);
+		this.dao.updatePlayCount(m_no);
 		
 		return "music_cont";
 
@@ -314,24 +319,33 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		
-		MyMusicDTO mm_dto = new MyMusicDTO();
-		mm_dto.setM_no(m_no);
-		mm_dto.setUser_no(member.getUser_no());
-		
-		int check = this.dao.updateLike(m_no, 0);
+		PrintWriter out = response.getWriter();
 		response.setContentType("text/html; charset=UTF-8");
 		
-		PrintWriter out = response.getWriter();
-		
-		if(check > 0) {
-			this.mm_dao.clickLike(mm_dto);
+		if(member == null) {
+			session.setAttribute("page_check", "music_cont.do?m_no=" + m_no);
 			out.println("<script>");
-			out.println("location.href='music_cont.do?m_no="+m_no+"'");
+			out.println("alert('로그인이 필요합니다.')");
+			out.println("location.href='login.do'");
 			out.println("</script>");
+			
 		} else {
-			out.println("<script>");
-			out.println("history.back()");
-			out.println("</script>");
+			MyMusicDTO mm_dto = new MyMusicDTO();
+			mm_dto.setM_no(m_no);
+			mm_dto.setUser_no(member.getUser_no());
+			
+			int check = this.dao.updateLike(m_no, 0);
+			
+			if(check > 0) {
+				this.mm_dao.clickLike(mm_dto);
+				out.println("<script>");
+				out.println("location.href='music_cont.do?m_no="+m_no+"'");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("history.back()");
+				out.println("</script>");
+			}
 		}
 	}
 	
@@ -391,7 +405,6 @@ public class MusicController {
 		model.addAttribute("music", dto);
 		//여기까지가 동영상 표시 부분 처리.
 		
-		
 		int page;	//현재 페이지 변수
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -406,6 +419,7 @@ public class MusicController {
 		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
 		pdto.setNo(no);
 		
+		
 		List<VideoReplyDTO> list = this.vr_dao.getVideoReplyList(pdto);
 		//페이지에 해당하는 v_reply의 레코드들을 불러오는 메서드
 		
@@ -414,6 +428,19 @@ public class MusicController {
 		
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
+
+		if(member!=null) {
+			MyMusicDTO mmdto = new MyMusicDTO();
+			mmdto.setM_no(no);
+			mmdto.setUser_no(member.getUser_no());
+			// MyMusicDTO myInfo = this.mm_dao.getMyMusicInfo(mmdto);
+			// model.addAttribute("myInfo", myInfo);
+			// 위 두 줄은 좋아요 삽입 시 필요한 속성
+			
+			this.mm_dao.updatePlayMusic(mmdto);
+		}
+		this.dao.updatePlayCount(no);
+		
 		model.addAttribute("member", member);
 		
 		return "video_content";
