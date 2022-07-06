@@ -2066,7 +2066,7 @@ public class MusicController {
 				//각자 프로젝트에 맞게 경로 지정해주세요!
 				
 				
-				String	uploadPath = "D:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\artist-img\\";
+				String	uploadPath = "C:\\ncs\\workspace(spring)\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\final\\resources\\img\\artist-img\\";
 			
 				
 				// 업로드한 파일의 이름을 구하는 메서드
