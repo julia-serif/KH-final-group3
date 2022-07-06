@@ -26,6 +26,7 @@ import com.khie.model.MusicDTO;
 import com.khie.model.MusicArtistDAO;
 import com.khie.model.MusicArtistDTO;
 import com.khie.model.MyMusicDAO;
+import com.khie.model.MyMusicDTO;
 import com.khie.model.NoticeDAO;
 import com.khie.model.NoticeDTO;
 import com.khie.model.MusicReplyDAO;
@@ -226,6 +227,14 @@ public class MusicController {
 		PageDTO pdto = new PageDTO(page, rowsize, totalRecord);
 		pdto.setNo(m_no);
 		
+		if(member!=null) {
+			MyMusicDTO mmdto = new MyMusicDTO();
+			mmdto.setM_no(m_no);
+			mmdto.setUser_no(member.getUser_no());
+			MyMusicDTO myInfo = this.mm_dao.getMyMusicInfo(mmdto);
+			model.addAttribute("myInfo", myInfo);
+		}
+		
 		List<MusicReplyDTO> replyList = this.dao3.getBoardList(pdto);
 		dto = this.dao.musicCont(m_no);
 		
@@ -255,6 +264,7 @@ public class MusicController {
 		PrintWriter out = response.getWriter();
 		
 		if(member == null) {
+			session.setAttribute("page_check", "music_cont.do?m_no=" + m_no);
 			out.println("<script>");
 			out.println("alert('로그인이 필요합니다.')");
 			out.println("location.href='login.do'");
@@ -298,13 +308,60 @@ public class MusicController {
 	}
 	
 	@RequestMapping("m_like_up.do")
-	private String likeUp(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
-			HttpServletRequest request) {
+	private void likeUp(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		this.dao.updateLike(m_no);
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		
-		return music_cont(m_no, dto, model, request);
+		MyMusicDTO mm_dto = new MyMusicDTO();
+		mm_dto.setM_no(m_no);
+		mm_dto.setUser_no(member.getUser_no());
 		
+		int check = this.dao.updateLike(m_no, 0);
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			this.mm_dao.clickLike(mm_dto);
+			out.println("<script>");
+			out.println("location.href='music_cont.do?m_no="+m_no+"'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+	}
+	
+	@RequestMapping("m_like_down.do")
+	private void likeDown(@RequestParam("m_no") int m_no, MusicDTO dto, Model model,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		HttpSession session = request.getSession();
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		MyMusicDTO mm_dto = new MyMusicDTO();
+		mm_dto.setM_no(m_no);
+		mm_dto.setUser_no(member.getUser_no());
+		
+		int check = this.dao.updateLike(m_no, 1);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(check > 0) {
+			this.mm_dao.clickLike(mm_dto);
+			out.println("<script>");
+			out.println("location.href='music_cont.do?m_no="+m_no+"'");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("history.back()");
+			out.println("</script>");
+		}
 	}
 	
 	@RequestMapping("music_reply_write.do")
@@ -369,6 +426,7 @@ public class MusicController {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		if(member == null) {
+			session.setAttribute("page_check", "video.do?no=" + dto.getV_no());
 			return "login";
 		} else {
 			dto.setVr_writer(member.getUser_id());
