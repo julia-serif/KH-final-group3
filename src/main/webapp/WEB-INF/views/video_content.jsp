@@ -50,20 +50,25 @@
 	</script>
 	<script type="text/javascript">
 	
-		function nested_reply() {
+		function nested_reply(a) {
 			
 			var uid = '${member}';
 			if(!uid){
 				window.location.href = "${pageContext.request.contextPath}/login.do";
 				
 			} else {
-				if($(".reply_field").is(":hidden")){
-					$(".reply_field").show();
+				if($("#"+a).is(":hidden")){
+					$("#"+a).show();
 				} else {
-					$(".reply_field").hide();
+					$("#"+a).hide();
 				}
 			}	
 		}
+	</script>
+	<script type="text/javascript">
+		$('button').on("click", function() {
+			alert("clicked");
+		});
 	</script>
 </head>
 <body>
@@ -176,10 +181,10 @@
 			                            		location.href='video_reply_delete.do?v_no=${reply.getV_no() }&vr_no=${reply.getVr_no() }' }
 			                            		else { return; }">삭제</button>
 			                            </c:if>
-		                            <button type="button" class="oneMusic-btn-small" onclick="nested_reply()">댓글</button>
+		                            <button type="button" class="oneMusic-btn-small nested_reply" onclick="nested_reply(${reply.getVr_no()})">댓글</button>
 		                            </div>
 		                        </div>
-		                        <div class="reply_field">
+		                        <div class="reply_field" id="${reply.getVr_no() }">
 			                        <form action="<%=request.getContextPath() %>/video_reply_write.do" method="post" autocomplete="off">
 		                            	<input type="hidden" name="v_no" value="${music.getM_no() }">
 		                                <textarea name="vr_cont" class="form-control" rows="3" style="position: relative; display: inline-block;"></textarea>
