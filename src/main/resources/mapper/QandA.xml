@@ -14,25 +14,25 @@
        <![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by qa_no asc) rnum from music_qanda b)
+					over(order by qa_group desc, qa_indent, qa_no) rnum from music_qanda b)
 					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
 	    ]]>
      </select>
      
      <insert id="qa_add" parameterType="com.khie.model.QandADTO">
 		<selectKey resultType="int" keyProperty="qa_no" order="BEFORE">
-			select max(qa_no) from music_qanda
+			select nvl(max(qa_no), 0) from music_qanda
 		</selectKey>
-		insert into music_qanda values((select max(qa_no) from music_qanda) +1, #{qa_writer}, 
-				#{qa_pwd},#{qa_title}, #{qa_cont}, sysdate,'',(select max(qa_no) from music_qanda) +1,0,0,default)
+		insert into music_qanda values(#{qa_no} +1, #{qa_writer}, 
+				#{qa_pwd},#{qa_title}, #{qa_cont}, sysdate,'',#{qa_no} +1,0,0,default)
 	</insert>
 	
 	<insert id="qa_reply1" parameterType="com.khie.model.QandADTO">		
 		<selectKey resultType="int" keyProperty="qa_no" order="BEFORE">
-			select #{qa_no} from music_qanda
+			select max(qa_no) from music_qanda
 		</selectKey>
-		insert into music_qanda values((select #{qa_no} from music_qanda) +1 , #{qa_writer}, 
-				#{qa_pwd},#{qa_title}, #{qa_cont}, sysdate,'',(select max(qa_no) from music_qanda) +1,0,0,default)
+		insert into music_qanda values(#{qa_no} +1 , #{qa_writer}, 
+				#{qa_pwd},#{qa_title}, #{qa_cont}, sysdate,'',#{qa_no},#{qa_no}, 1,default)
 	</insert>
      
      <update id="qa_read" parameterType="int">
@@ -97,7 +97,7 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by qa_no desc) rnum from music_qanda b
+					over(order by qa_group desc, qa_step, qa_no) rnum from music_qanda b
 					where qa_title like '%' || #{qa_keyword} || '%')
 					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
 	    ]]>
@@ -107,7 +107,7 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by qa_no desc) rnum from music_qanda b
+					over(order by qa_group desc, qa_step, qa_no) rnum from music_qanda b
 					where qa_cont like '%' || #{qa_keyword} || '%')
 					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
 	    ]]>
@@ -117,7 +117,7 @@
 		<![CDATA[
 			select * from
 				(select b.*, row_number() 
-					over(order by qa_no desc) rnum from music_qanda b
+					over(order by qa_group desc, qa_step, qa_no) rnum from music_qanda b
 					where qa_title like '%' || #{qa_keyword} || '%' or 
 					qa_cont like '%' || #{qa_keyword} || '%')
 					where rnum >= #{qa_startNo} and rnum <= #{qa_endNo}
