@@ -10,6 +10,8 @@ public interface VideoReplyDAO {
 	
 	public int insertVideoReply(VideoReplyDTO dto);
 	
+	public int insertReply(VideoReplyDTO dto);
+	
 	public VideoReplyDTO videoReplyCont(int no);
 	
 	public int updateVideoReply(VideoReplyDTO dto);
