@@ -2014,6 +2014,7 @@ public class MusicController {
 		}//if end
 		}//while end (++---- 파일 추가 end ----++)
 		
+		
 		int check = this.artistDAO.insertArtist(dto);
 		
 		 response.setContentType("text/html; charset=UTF-8");
