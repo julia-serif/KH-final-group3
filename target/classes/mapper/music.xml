@@ -22,7 +22,7 @@
 		<![CDATA[
 		select * from 
 			(select m.*, row_number() 
-				over(order by mr_group desc, mr_layer) rnum from m_reply m
+				over(order by mr_group desc, mr_layer, mr_no) rnum from m_reply m
 				where m_no = #{no})
 				where rnum >= #{startNo} and rnum <= #{endNo}
 		]]>

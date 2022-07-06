@@ -379,11 +379,11 @@ public class MusicController {
 		}
 	}
 	
-	// 음원에 대해 댓글 등록 시 RequestMapping
+	// 음원에 대한 대댓글 등록 시 RequestMapping
 	@RequestMapping("music_reply_write.do")
-	private String insertMusicReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
+	private void insertMusicReply(@RequestParam("m_no") int m_no, @RequestParam("mr_no") int mr_no,
 			HttpServletRequest request, HttpServletResponse response, 
-			MusicReplyDTO rdto, MusicDTO dto, Model model) {
+			MusicReplyDTO rdto, MusicDTO dto, Model model) throws IOException {
 		
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
@@ -407,6 +407,7 @@ public class MusicController {
 			out.println("alert('댓글 등록 성공')");
 			out.println("location.href='music_cont.do?m_no="+m_no+"'");
 			out.println("</script>");
+		}
 		
 	}
 	
